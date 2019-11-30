@@ -49,16 +49,18 @@
   };
 </script>
 
-  <meta name="description" content="凡是過往，皆為序章">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;Hexo&#x2F;index.html">
+  <meta name="description" content="安裝Hexo的難度不高，但是調整Theme的配置是件不小的工程，記錄一下自己的調整流程。">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Next Theme Install Note">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;hexo-install&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="凡是過往，皆為序章">
+<meta property="og:description" content="安裝Hexo的難度不高，但是調整Theme的配置是件不小的工程，記錄一下自己的調整流程。">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-30T04:17:44.104Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/Hexo/">
+<link rel="canonical" href="http://yoursite.com/2019/11/28/hexo-install/">
 
 
 <script id="page-configurations">
@@ -66,13 +68,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Tag: Hexo | Pitt Wu's 隨想筆記</title>
+  <title>Next Theme Install Note | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -177,70 +179,97 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">Hexo
-          <small>Tag</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/28/hexo-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Pitt Wu">
+      <meta itemprop="description" content="凡是過往，皆為序章">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pitt Wu's 隨想筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Next Theme Install Note
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-11-28 22:39:13" itemprop="dateCreated datePublished" datetime="2019-11-28T22:39:13+08:00">2019-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-30 12:17:44" itemprop="dateModified" datetime="2019-11-30T12:17:44+08:00">2019-11-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-29T23:04:06+08:00"
-              content="2019-11-29">
-          11-29
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/29/hexo-error-fixed/" itemprop="url">
-            <span itemprop="name">Hexo 踩坑記錄</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-28T22:39:13+08:00"
-              content="2019-11-28">
-          11-28
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/28/hexo-install/" itemprop="url">
-            <span itemprop="name">Next Theme Install Note</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+        <p>安裝<code>Hexo</code>的難度不高，但是調整<code>Theme</code>的配置是件不小的工程，記錄一下自己的調整流程。</p>
+<a id="more"></a>
+<h2 id="挑選主體"><a href="#挑選主體" class="headerlink" title="挑選主體"></a>挑選主體</h2><ul>
+<li><a href="https://hexo.io/themes/" target="_blank" rel="noopener">挑選 Hexo 主題網址</a><br>這個blog以<code>Next</code>為例：</li>
+</ul>
+<ol>
+<li>安裝<code>theme</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cd hexo-blog</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span></pre></td></tr></table></figure></li>
+</ol>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/27/firstPost/" rel="prev" title="重新拾筆">
+      <i class="fa fa-chevron-left"></i> 重新拾筆
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/29/hexo-error-fixed/" rel="next" title="Hexo 踩坑記錄">
+      Hexo 踩坑記錄 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -269,6 +298,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#挑選主體"><span class="nav-number">1.</span> <span class="nav-text">挑選主體</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
