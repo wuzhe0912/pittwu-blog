@@ -6,7 +6,7 @@ tags:
   - NPM
   - NVM
 ---
-近期公司 MIS 調整硬體設備，造成環境有點跑掉，記錄一下自己在 stackoverflow 上找到的解法。
+近期公司 MIS 調整硬體設備，造成環境有點跑掉，記錄一下自己在 Stack Overflow 上找到的解法。
 <!--more-->
 打開 iTerm 會出現下述 error。
 ```
