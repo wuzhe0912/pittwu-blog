@@ -49,17 +49,18 @@
   };
 </script>
 
-  <meta name="description" content="凡是過往，皆為序章">
-<meta property="og:type" content="website">
-<meta property="og:title" content="All tags">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;index.html">
+  <meta name="description" content="Git 雖然是基本知識，但有時操作上，還是不免出現一些 error，記錄當中的解法，方便日後快速排查問題。">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git Command Error Fixed">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;01&#x2F;git-command-error-fixed&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="凡是過往，皆為序章">
+<meta property="og:description" content="Git 雖然是基本知識，但有時操作上，還是不免出現一些 error，記錄當中的解法，方便日後快速排查問題。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-29T15:05:15.996Z">
+<meta property="og:updated_time" content="2019-12-01T07:50:58.389Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/">
+<link rel="canonical" href="http://yoursite.com/2019/12/01/git-command-error-fixed/">
 
 
 <script id="page-configurations">
@@ -67,14 +68,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>All tags | Pitt Wu's 隨想筆記
-  </title>
+  <title>Git Command Error Fixed | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -173,52 +173,91 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="en">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/git-command-error-fixed/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Pitt Wu">
+      <meta itemprop="description" content="凡是過往，皆為序章">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pitt Wu's 隨想筆記">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git Command Error Fixed
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">All tags
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2019-12-01 15:24:16 / Modified: 15:50:58" itemprop="dateCreated datePublished" datetime="2019-12-01T15:24:16+08:00">2019-12-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>Git</code> 雖然是基本知識，但有時操作上，還是不免出現一些 error，記錄當中的解法，方便日後快速排查問題。</p>
+<a id="more"></a>
+<h2 id="初始化錯誤"><a href="#初始化錯誤" class="headerlink" title="初始化錯誤"></a>初始化錯誤</h2><p>由於之前習慣性從遠端 clone 下來，所以<code>.git</code>檔案同時會被準備完成，但這次因為嘗試自動部署<code>Hexo</code>，在推送時跳出下面這個錯誤。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">fatal: Not a git repository (or any of the parent directories): .git</span></pre></td></tr></table></figure>
+<p>這個錯誤是說明，要推送的檔案不是一個<code>git</code>的<code>repository</code>，所以<code>git</code>在這個目錄底下會找不到<code>.git</code>檔案。解決方式是，執行指令<code>git init</code>，這樣就等於初始化一個<code>git repo</code>。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/29/next-theme-error-fixed/" rel="prev" title="Next Theme Error Fixed">
+      <i class="fa fa-chevron-left"></i> Next Theme Error Fixed
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/01/node-version-fixed/" rel="next" title="Node & NPM Version Path Fixed">
+      Node & NPM Version Path Fixed <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              7 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/Hexo/" style="font-size: 30px; color: #111">Hexo</a> <a href="/tags/NPM/" style="font-size: 12px; color: #ccc">NPM</a> <a href="/tags/NVM/" style="font-size: 12px; color: #ccc">NVM</a> <a href="/tags/Next-Theme/" style="font-size: 12px; color: #ccc">Next Theme</a> <a href="/tags/Node/" style="font-size: 12px; color: #ccc">Node</a> <a href="/tags/%E9%9A%A8%E6%83%B3/" style="font-size: 12px; color: #ccc">隨想</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
   </div>
 
 
@@ -248,6 +287,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化錯誤"><span class="nav-number">1.</span> <span class="nav-text">初始化錯誤</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
