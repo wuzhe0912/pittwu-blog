@@ -42,8 +42,8 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     sidebarPadding: 40
   };
@@ -159,9 +159,34 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -202,10 +227,10 @@
       <div class="post-body">
           <div class="tag-cloud">
             <div class="tag-cloud-title">
-              7 tags in total
+              9 tags in total
             </div>
             <div class="tag-cloud-tags">
-              <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/Hexo/" style="font-size: 30px; color: #111">Hexo</a> <a href="/tags/NPM/" style="font-size: 12px; color: #ccc">NPM</a> <a href="/tags/NVM/" style="font-size: 12px; color: #ccc">NVM</a> <a href="/tags/Next-Theme/" style="font-size: 12px; color: #ccc">Next Theme</a> <a href="/tags/Node/" style="font-size: 12px; color: #ccc">Node</a> <a href="/tags/%E9%9A%A8%E6%83%B3/" style="font-size: 12px; color: #ccc">隨想</a>
+              <a href="/tags/Git/" style="font-size: 12px; color: #ccc">Git</a> <a href="/tags/Hexo/" style="font-size: 30px; color: #111">Hexo</a> <a href="/tags/NPM/" style="font-size: 12px; color: #ccc">NPM</a> <a href="/tags/NVM/" style="font-size: 12px; color: #ccc">NVM</a> <a href="/tags/Netlify/" style="font-size: 12px; color: #ccc">Netlify</a> <a href="/tags/Next-Theme/" style="font-size: 12px; color: #ccc">Next Theme</a> <a href="/tags/Node/" style="font-size: 12px; color: #ccc">Node</a> <a href="/tags/auto-deploy/" style="font-size: 12px; color: #ccc">auto deploy</a> <a href="/tags/%E9%9A%A8%E6%83%B3/" style="font-size: 12px; color: #ccc">隨想</a>
             </div>
           </div>
         
@@ -263,14 +288,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -376,6 +401,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 

@@ -42,22 +42,22 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="安裝Hexo的難度不高，但是調整Theme的配置是件不小的工程，記錄一下自己的調整流程。">
+  <meta name="description" content="安裝 Hexo 的難度不高，但是調整 Hexo Theme 的配置是件不小的工程，記錄一下自己的調整流程。">
 <meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Next Theme Install Note">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;next-theme-install-note&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="安裝Hexo的難度不高，但是調整Theme的配置是件不小的工程，記錄一下自己的調整流程。">
+<meta property="og:description" content="安裝 Hexo 的難度不高，但是調整 Hexo Theme 的配置是件不小的工程，記錄一下自己的調整流程。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T07:48:21.884Z">
+<meta property="og:updated_time" content="2019-12-01T14:07:44.633Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/11/28/next-theme-install-note/">
@@ -159,9 +159,34 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -212,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-01 15:48:21" itemprop="dateModified" datetime="2019-12-01T15:48:21+08:00">2019-12-01</time>
+                <time title="Modified: 2019-12-01 22:07:44" itemprop="dateModified" datetime="2019-12-01T22:07:44+08:00">2019-12-01</time>
               </span>
 
           
@@ -233,7 +258,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>安裝<code>Hexo</code>的難度不高，但是調整<code>Theme</code>的配置是件不小的工程，記錄一下自己的調整流程。</p>
+        <p>安裝 Hexo 的難度不高，但是調整 Hexo Theme 的配置是件不小的工程，記錄一下自己的調整流程。</p>
 <a id="more"></a>
 
 <h2 id="挑選主體"><a href="#挑選主體" class="headerlink" title="挑選主體"></a>挑選主體</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">挑選 Hexo 主題網址</a>，這個 Blog 以<code>Next</code>為例。<br>step1. 安裝<code>theme</code></p>
@@ -241,26 +266,33 @@
 <p>step2. 修改設定<code>_config.yml</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">theme: landscape &#x3D;&gt; theme: next</span></pre></td></tr></table></figure>
 <p>重新啟動<code>hexo s</code></p>
-<h2 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h2><p>Next 有四種 Scheme 可以選擇，預設主題風格是 Muse。<br>在<code>themes/next/_config.yml</code>中找到 scheme 設定，再將想選擇的註釋去除即可。<br>e.g.</p>
+<h2 id="參數設定"><a href="#參數設定" class="headerlink" title="參數設定"></a>參數設定</h2><p>在<code>themes/next/_config.yml</code>中，可以透過調整參數，開啟非常多功能，以下條列其中。</p>
+<h3 id="主題"><a href="#主題" class="headerlink" title="主題"></a>主題</h3><p>Next 有四種 Scheme 可以選擇，預設主題風格是 Muse，找到 scheme 設定，再將想選擇的註釋去除即可。<br>e.g.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># Schemes</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"># scheme: Muse</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"># scheme: Mist</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"># scheme: Pisces</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">scheme: Gemini</span></pre></td></tr></table></figure>
+<h3 id="開啟社群帳號連結"><a href="#開啟社群帳號連結" class="headerlink" title="開啟社群帳號連結"></a>開啟社群帳號連結</h3><p>打開或新增個人社群網站連結，僅須將註釋去除即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">social:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;wuzhe0912 || github</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  E-Mail: mailto:kgb00128@gmail.com || envelope</span></pre></td></tr></table></figure>
+<h3 id="文章預覽"><a href="#文章預覽" class="headerlink" title="文章預覽"></a>文章預覽</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  length: 150</span></pre></td></tr></table></figure>
+<p>也可以透過<code>&lt;!--more--&gt;</code>來裁切，在<code>&lt;!--more--&gt;</code>以上的文字，會出現在預覽。</p>
+<h3 id="啟用文章閱讀進度條"><a href="#啟用文章閱讀進度條" class="headerlink" title="啟用文章閱讀進度條"></a>啟用文章閱讀進度條</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">reading_progress:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr></table></figure>
+<h3 id="左側啟用文章閱讀-數"><a href="#左側啟用文章閱讀-數" class="headerlink" title="左側啟用文章閱讀%數"></a>左側啟用文章閱讀%數</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">back2top:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  # Back to top in sidebar.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  sidebar: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  # Scroll percent label in b2t button.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  scrollpercent: true</span></pre></td></tr></table></figure>
+<h3 id="開啟網站底部用戶訪問量"><a href="#開啟網站底部用戶訪問量" class="headerlink" title="開啟網站底部用戶訪問量"></a>開啟網站底部用戶訪問量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">busuanzi_count:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr></table></figure>
+<p>接著調整<code>themes/next/layout/_third-party/statistics/busuanzi-counter.swig</code>中這兩行程式碼，可以在 i 標籤插入中文描述。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;fa fa-&#123;&#123; theme.busuanzi_count.total_visitors_icon &#125;&#125;&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;fa fa-&#123;&#123; theme.busuanzi_count.total_views_icon &#125;&#125;&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
+<h3 id="調整文章末尾-tag-樣式"><a href="#調整文章末尾-tag-樣式" class="headerlink" title="調整文章末尾 tag 樣式"></a>調整文章末尾 tag 樣式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">tag_icon: true</span></pre></td></tr></table></figure>
+<h3 id="增加本地搜索功能"><a href="#增加本地搜索功能" class="headerlink" title="增加本地搜索功能"></a>增加本地搜索功能</h3><p>安裝插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add hexo-generator-search hexo-generator-searchdb</span></pre></td></tr></table></figure>
+<p>調整設定為 true</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">local_search:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr></table></figure>
 <h2 id="關於作者"><a href="#關於作者" class="headerlink" title="關於作者"></a>關於作者</h2><h3 id="新增大頭貼"><a href="#新增大頭貼" class="headerlink" title="新增大頭貼"></a>新增大頭貼</h3><p>step 1 建立存放圖片用的資料夾</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">mkdir source&#x2F;images</span></pre></td></tr></table></figure>
 <p>step 2 將大頭貼的照片丟入資料夾<code>source/images</code>，接著在主題設定<code>themes/next/_config.yml</code>中，設定大頭貼路徑。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">avatar:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  url: &#x2F;images&#x2F;avatar.jpeg</span></pre></td></tr></table></figure>
-<h4 id="調整大頭貼樣式"><a href="#調整大頭貼樣式" class="headerlink" title="調整大頭貼樣式"></a>調整大頭貼樣式</h4><p>邊框改為圓形，設為 true</p>
+<h3 id="調整大頭貼樣式"><a href="#調整大頭貼樣式" class="headerlink" title="調整大頭貼樣式"></a>調整大頭貼樣式</h3><p>邊框改為圓形，設為 true</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rounded: false &#x3D;&gt; rounded: true</span></pre></td></tr></table></figure>
 <p>hover 時，添加旋轉特效</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rotated: false &#x3D;&gt; rotated: true</span></pre></td></tr></table></figure>
-<h2 id="開啟社群帳號連結"><a href="#開啟社群帳號連結" class="headerlink" title="開啟社群帳號連結"></a>開啟社群帳號連結</h2><p>在<code>themes/next/_config.yml</code>中可以打開或新增個人社群網站連結，僅須將註釋去除即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">social:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;wuzhe0912 || github</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  E-Mail: mailto:kgb00128@gmail.com || envelope</span></pre></td></tr></table></figure>
-<h2 id="文章預覽"><a href="#文章預覽" class="headerlink" title="文章預覽"></a>文章預覽</h2><p>在<code>themes/next/_config.yml</code>中，可以透過字數設定來才切預覽。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">auto_excerpt:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  length: 150</span></pre></td></tr></table></figure>
-<p>也可以透過<code>&lt;!--more--&gt;</code>來裁切，在<code>&lt;!--more--&gt;</code>以上的文字，會出現在預覽。</p>
-<h2 id="右上角添加-Github-Fork-圖片"><a href="#右上角添加-Github-Fork-圖片" class="headerlink" title="右上角添加 Github Fork 圖片"></a>右上角添加 Github Fork 圖片</h2><p>step 1 首先到<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">GitHub Corners</a>或是<a href="https://github.blog/2008-12-19-github-ribbons/" target="_blank" rel="noopener">GitHub Ribbons</a>尋找自己喜歡的樣式，並 copy code<br>step 2 打開<code>themes/next/layout/_layout.swig</code>，在<code>&lt;div class=&quot;headband&quot;&gt;&lt;/div&gt;</code>下面<br>step 3 將<code>href</code>後面的網址，替換成個人<code>GitHub</code>主頁。<br>重新啟動服務<code>hexo s</code>。</p>
-<h2 id="啟用文章閱讀進度條"><a href="#啟用文章閱讀進度條" class="headerlink" title="啟用文章閱讀進度條"></a>啟用文章閱讀進度條</h2><p>打開<code>themes/next/_config.yml</code>，將<code>reading_progress</code>設為 true。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">reading_progress:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr></table></figure>
-<h2 id="左側啟用文章閱讀-數"><a href="#左側啟用文章閱讀-數" class="headerlink" title="左側啟用文章閱讀%數"></a>左側啟用文章閱讀%數</h2><p>同樣在<code>themes/next/_config.yml</code>中，調整下面參數，改為 true。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">back2top:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  # Back to top in sidebar.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  sidebar: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  # Scroll percent label in b2t button.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  scrollpercent: true</span></pre></td></tr></table></figure>
+<h2 id="上方添加-Github-Fork-圖片"><a href="#上方添加-Github-Fork-圖片" class="headerlink" title="上方添加 Github Fork 圖片"></a>上方添加 Github Fork 圖片</h2><p>step 1 首先到<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">GitHub Corners</a>或是<a href="https://github.blog/2008-12-19-github-ribbons/" target="_blank" rel="noopener">GitHub Ribbons</a>尋找自己喜歡的樣式，並 copy code<br>step 2 打開<code>themes/next/layout/_layout.swig</code>，在<code>&lt;div class=&quot;headband&quot;&gt;&lt;/div&gt;</code>下面<br>step 3 將<code>href</code>後面的網址，替換成個人<code>GitHub</code>主頁。<br>重新啟動服務<code>hexo s</code>。</p>
+
     </div>
 
     
@@ -268,8 +300,9 @@
     
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
           </div>
 
         
@@ -322,7 +355,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#挑選主體"><span class="nav-number">1.</span> <span class="nav-text">挑選主體</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#設定"><span class="nav-number">2.</span> <span class="nav-text">設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#關於作者"><span class="nav-number">3.</span> <span class="nav-text">關於作者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新增大頭貼"><span class="nav-number">3.1.</span> <span class="nav-text">新增大頭貼</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#調整大頭貼樣式"><span class="nav-number">3.1.1.</span> <span class="nav-text">調整大頭貼樣式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#開啟社群帳號連結"><span class="nav-number">4.</span> <span class="nav-text">開啟社群帳號連結</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文章預覽"><span class="nav-number">5.</span> <span class="nav-text">文章預覽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#右上角添加-Github-Fork-圖片"><span class="nav-number">6.</span> <span class="nav-text">右上角添加 Github Fork 圖片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#啟用文章閱讀進度條"><span class="nav-number">7.</span> <span class="nav-text">啟用文章閱讀進度條</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左側啟用文章閱讀-數"><span class="nav-number">8.</span> <span class="nav-text">左側啟用文章閱讀%數</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#挑選主體"><span class="nav-number">1.</span> <span class="nav-text">挑選主體</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#參數設定"><span class="nav-number">2.</span> <span class="nav-text">參數設定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主題"><span class="nav-number">2.1.</span> <span class="nav-text">主題</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#開啟社群帳號連結"><span class="nav-number">2.2.</span> <span class="nav-text">開啟社群帳號連結</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章預覽"><span class="nav-number">2.3.</span> <span class="nav-text">文章預覽</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#啟用文章閱讀進度條"><span class="nav-number">2.4.</span> <span class="nav-text">啟用文章閱讀進度條</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#左側啟用文章閱讀-數"><span class="nav-number">2.5.</span> <span class="nav-text">左側啟用文章閱讀%數</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#開啟網站底部用戶訪問量"><span class="nav-number">2.6.</span> <span class="nav-text">開啟網站底部用戶訪問量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#調整文章末尾-tag-樣式"><span class="nav-number">2.7.</span> <span class="nav-text">調整文章末尾 tag 樣式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加本地搜索功能"><span class="nav-number">2.8.</span> <span class="nav-text">增加本地搜索功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#關於作者"><span class="nav-number">3.</span> <span class="nav-text">關於作者</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新增大頭貼"><span class="nav-number">3.1.</span> <span class="nav-text">新增大頭貼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#調整大頭貼樣式"><span class="nav-number">3.2.</span> <span class="nav-text">調整大頭貼樣式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上方添加-Github-Fork-圖片"><span class="nav-number">4.</span> <span class="nav-text">上方添加 Github Fork 圖片</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -338,14 +371,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -451,6 +484,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 

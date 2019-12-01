@@ -42,22 +42,22 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="雖然Hexo的學習曲線平滑，網路上也是隨手可得教學資料，但仍免不了，在使用過程中碰到一些難點，因此順手記錄這些難點的解法，方便自己日後回顧檢查。">
+  <meta name="description" content="雖然 Hexo 的學習曲線平滑，網路上也是隨手可得教學資料，但仍免不了，在使用過程中碰到一些難點，因此順手記錄這些難點的解法，方便自己日後回顧檢查。">
 <meta name="keywords" content="Hexo,Next Theme">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Next Theme Error Fixed">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;29&#x2F;next-theme-error-fixed&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="雖然Hexo的學習曲線平滑，網路上也是隨手可得教學資料，但仍免不了，在使用過程中碰到一些難點，因此順手記錄這些難點的解法，方便自己日後回顧檢查。">
+<meta property="og:description" content="雖然 Hexo 的學習曲線平滑，網路上也是隨手可得教學資料，但仍免不了，在使用過程中碰到一些難點，因此順手記錄這些難點的解法，方便自己日後回顧檢查。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T07:50:20.768Z">
+<meta property="og:updated_time" content="2019-12-01T13:37:46.568Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/11/29/next-theme-error-fixed/">
@@ -159,9 +159,34 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -212,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-01 15:50:20" itemprop="dateModified" datetime="2019-12-01T15:50:20+08:00">2019-12-01</time>
+                <time title="Modified: 2019-12-01 21:37:46" itemprop="dateModified" datetime="2019-12-01T21:37:46+08:00">2019-12-01</time>
               </span>
 
           
@@ -233,7 +258,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>雖然<code>Hexo</code>的學習曲線平滑，網路上也是隨手可得教學資料，但仍免不了，在使用過程中碰到一些難點，因此順手記錄這些難點的解法，方便自己日後回顧檢查。</p>
+        <p>雖然 Hexo 的學習曲線平滑，網路上也是隨手可得教學資料，但仍免不了，在使用過程中碰到一些難點，因此順手記錄這些難點的解法，方便自己日後回顧檢查。</p>
 <a id="more"></a>
 <h2 id="Next-主題背景動畫配置無效果"><a href="#Next-主題背景動畫配置無效果" class="headerlink" title="Next 主題背景動畫配置無效果"></a>Next 主題背景動畫配置無效果</h2><p><code>Next</code>在5.x版本時，設定背景動畫效果，僅需在<code>_config.yml</code>調整<code>true or false</code>即有效果。但在6.X版本，不知道因為何種原因，這種設置方式完全失效，因此改採用下述三個步驟設置動畫效果。</p>
 <p>e.g. 選擇 canvas_nest 這個效果</p>
@@ -245,9 +270,10 @@
     
 
       <footer class="post-footer">
+          
           <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-              <a href="/tags/Next-Theme/" rel="tag"># Next Theme</a>
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/Next-Theme/" rel="tag"><i class="fa fa-tag"></i> Next Theme</a>
           </div>
 
         
@@ -316,14 +342,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -429,6 +455,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 

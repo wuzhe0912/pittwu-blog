@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>GitHub + Netlify = Auto Deploy Hexo Post</title>
+    <url>/2019/12/01/hexo-auto-deploy/</url>
+    <content><![CDATA[<p>回歸 Hexo 寫技術筆記後，就一直懷念 Gatsby.js 可以透過 Netlify 自動推送部署，花了點時間 Google，終於也找到 Hexo 的自動部署方式，一整個對寫文章非常方便。</p>
+<a id="more"></a>
+<ul>
+<li>step 1：<br>  先在 GitHub 建立遠端 repository</li>
+<li>step 2：<br>  copy repository 的 url</li>
+<li>step 3：<br>  回到 project 內，將本地和遠端進行關聯  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;your-githubname&#x2F;your-repository</span></pre></td></tr></table></figure></li>
+<li>step 4：<br>  進行 commit  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .&#x2F;</span></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit -m &#39;commit information&#39;</span></pre></td></tr></table></figure></li>
+<li>step 5：<br>  推送到遠端  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push --set-upstream origin master</span></pre></td></tr></table></figure></li>
+<li>step 6：<br>  打開最上層的<code>_config.yml</code>，修改設定  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deploy:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  type: git # 部署方式</span></pre></td></tr><tr><td class="code"><pre><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;wuzhe0912&#x2F;pittwu-blog.git # 關聯 github</span></pre></td></tr><tr><td class="code"><pre><span class="line">  branch: run-page # 部署用 branch</span></pre></td></tr></table></figure>
+  安裝 Hexo 部署插件  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add hexo-deployer-git</span></pre></td></tr></table></figure></li>
+<li>step 7：<br>  執行指令  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean  &#x2F;&#x2F; 清除舊的靜態文件</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">hexo g      &#x2F;&#x2F; 生成新的靜態文件</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">hexo d      &#x2F;&#x2F; 部署</span></pre></td></tr></table></figure>
+  這時候本地的 Hexo 資料已推送到遠端的 Github repository</li>
+<li>step 8：<br>  接著在<a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a>建立帳號，因為我們要關聯 GitHub，所以選擇第三方登入(使用 GitHub 帳號)</li>
+<li>step 9：<br>  登入後，選擇右側的 New site from Git，再來選關聯 GitHub，授權完成後，選擇對應的 repository</li>
+<li>step 10：<br>  Branch 需選擇剛剛<code>_config.yml</code>輸入的 branch name，下方 command 和 Publish 兩欄則清空，最後點選 Deploy site</li>
+<li>step 11：<br>  很快就能在左上角看到 Netlify 幫我們生成的網址，但其中網址名的部分是亂數生成的，可以點選 Change site name 修改。</li>
+<li>step 12：<br>  日後只要本地寫完文章，執行下面三道指令，即可完成自動部署。  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean</span></pre></td></tr><tr><td class="code"><pre><span class="line">hexo g</span></pre></td></tr><tr><td class="code"><pre><span class="line">hexo d</span></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Netlify</tag>
+        <tag>auto deploy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Node &amp; NPM Version Path Fixed</title>
+    <url>/2019/12/01/node-version-fixed/</url>
+    <content><![CDATA[<p>近期公司 MIS 調整硬體設備，造成環境有點跑掉，記錄一下自己在 Stack Overflow 上找到的解法。</p>
+<a id="more"></a>
+<p>打開 iTerm 會出現下述 error。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm is not compatible with the npm config “prefix” option: currently set to “&#x2F;Users&#x2F;xxx&#x2F;.nvm&#x2F;versions&#x2F;node&#x2F;v8.12.0&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">Run &#96;npm config delete prefix&#96; or &#96;nvm use --delete-prefix v8.12.0 --silent&#96; to unset it.</span></pre></td></tr></table></figure>
+<p>從字面上來看，應該是 npm 和 nvm 管理的 node 版本沒有對上，按照終端機提供的訊息，敲入對應指令。再檢查 node 版本似乎是正常了，但事實上，若在 iTerm 上另開分頁，依然會跳相同的提示錯誤。雖然不影響操作，但看到總是不順眼，google 了一下解法，最終測試成功方案如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm config delete prefix</span></pre></td></tr><tr><td class="code"><pre><span class="line">npm config set prefix $NVM_DIR&#x2F;versions&#x2F;node&#x2F;v8.12.0</span></pre></td></tr></table></figure>
+<p>看起來應該是先刪除 npm 中設定的 prefix ，再重新設定當前 nvm 使用的版本。</p>
+<p>最後附上 <a href="https://stackoverflow.com/questions/34718528/nvm-is-not-compatible-with-the-npm-config-prefix-option" target="_blank" rel="noopener">stackoverflow</a> 找到的解法。</p>
+]]></content>
+      <tags>
+        <tag>Node</tag>
+        <tag>NPM</tag>
+        <tag>NVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git Command Error Fixed</title>
+    <url>/2019/12/01/git-command-error-fixed/</url>
+    <content><![CDATA[<p>Git 雖然是基本知識，但有時操作上，還是不免出現一些 Error，記錄當中的解法，方便日後快速排查問題。</p>
+<a id="more"></a>
+<h2 id="初始化錯誤"><a href="#初始化錯誤" class="headerlink" title="初始化錯誤"></a>初始化錯誤</h2><p>由於之前習慣性從遠端 clone 下來，所以<code>.git</code>檔案同時會被準備完成，但這次因為嘗試自動部署<code>Hexo</code>，在推送時跳出下面這個錯誤。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fatal: Not a git repository (or any of the parent directories): .git</span></pre></td></tr></table></figure>
+<p>這個錯誤是說明，要推送的檔案不是一個<code>git</code>的<code>repository</code>，所以<code>git</code>在這個目錄底下會找不到<code>.git</code>檔案。解決方式是，執行指令<code>git init</code>，這樣就等於初始化一個<code>git repo</code>。</p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Next Theme Error Fixed</title>
+    <url>/2019/11/29/next-theme-error-fixed/</url>
+    <content><![CDATA[<p>雖然 Hexo 的學習曲線平滑，網路上也是隨手可得教學資料，但仍免不了，在使用過程中碰到一些難點，因此順手記錄這些難點的解法，方便自己日後回顧檢查。</p>
+<a id="more"></a>
+<h2 id="Next-主題背景動畫配置無效果"><a href="#Next-主題背景動畫配置無效果" class="headerlink" title="Next 主題背景動畫配置無效果"></a>Next 主題背景動畫配置無效果</h2><p><code>Next</code>在5.x版本時，設定背景動畫效果，僅需在<code>_config.yml</code>調整<code>true or false</code>即有效果。但在6.X版本，不知道因為何種原因，這種設置方式完全失效，因此改採用下述三個步驟設置動畫效果。</p>
+<p>e.g. 選擇 canvas_nest 這個效果</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. cd themes&#x2F;next</span></pre></td></tr><tr><td class="code"><pre><span class="line">2. git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;theme-next-canvas-nest source &#x2F; lib &#x2F; canvas-nest</span></pre></td></tr><tr><td class="code"><pre><span class="line">3. next&#x2F;_config.yml 設定 enable: true</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">其他三種動畫效果，同前述。</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next Theme</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Next Theme Install Note</title>
+    <url>/2019/11/28/next-theme-install-note/</url>
+    <content><![CDATA[<p>安裝 Hexo 的難度不高，但是調整 Hexo Theme 的配置是件不小的工程，記錄一下自己的調整流程。</p>
+<a id="more"></a>
+
+<h2 id="挑選主體"><a href="#挑選主體" class="headerlink" title="挑選主體"></a>挑選主體</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">挑選 Hexo 主題網址</a>，這個 Blog 以<code>Next</code>為例。<br>step1. 安裝<code>theme</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd hexo-blog</span></pre></td></tr><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span></pre></td></tr></table></figure>
+<p>step2. 修改設定<code>_config.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">theme: landscape &#x3D;&gt; theme: next</span></pre></td></tr></table></figure>
+<p>重新啟動<code>hexo s</code></p>
+<h2 id="參數設定"><a href="#參數設定" class="headerlink" title="參數設定"></a>參數設定</h2><p>在<code>themes/next/_config.yml</code>中，可以透過調整參數，開啟非常多功能，以下條列其中。</p>
+<h3 id="主題"><a href="#主題" class="headerlink" title="主題"></a>主題</h3><p>Next 有四種 Scheme 可以選擇，預設主題風格是 Muse，找到 scheme 設定，再將想選擇的註釋去除即可。<br>e.g.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Schemes</span></pre></td></tr><tr><td class="code"><pre><span class="line"># scheme: Muse</span></pre></td></tr><tr><td class="code"><pre><span class="line"># scheme: Mist</span></pre></td></tr><tr><td class="code"><pre><span class="line"># scheme: Pisces</span></pre></td></tr><tr><td class="code"><pre><span class="line">scheme: Gemini</span></pre></td></tr></table></figure>
+<h3 id="開啟社群帳號連結"><a href="#開啟社群帳號連結" class="headerlink" title="開啟社群帳號連結"></a>開啟社群帳號連結</h3><p>打開或新增個人社群網站連結，僅須將註釋去除即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">social:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;wuzhe0912 || github</span></pre></td></tr><tr><td class="code"><pre><span class="line">  E-Mail: mailto:kgb00128@gmail.com || envelope</span></pre></td></tr></table></figure>
+<h3 id="文章預覽"><a href="#文章預覽" class="headerlink" title="文章預覽"></a>文章預覽</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">auto_excerpt:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  enable: false</span></pre></td></tr><tr><td class="code"><pre><span class="line">  length: 150</span></pre></td></tr></table></figure>
+<p>也可以透過<code>&lt;!--more--&gt;</code>來裁切，在<code>&lt;!--more--&gt;</code>以上的文字，會出現在預覽。</p>
+<h3 id="啟用文章閱讀進度條"><a href="#啟用文章閱讀進度條" class="headerlink" title="啟用文章閱讀進度條"></a>啟用文章閱讀進度條</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">reading_progress:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr></table></figure>
+<h3 id="左側啟用文章閱讀-數"><a href="#左側啟用文章閱讀-數" class="headerlink" title="左側啟用文章閱讀%數"></a>左側啟用文章閱讀%數</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">back2top:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr><tr><td class="code"><pre><span class="line">  # Back to top in sidebar.</span></pre></td></tr><tr><td class="code"><pre><span class="line">  sidebar: true</span></pre></td></tr><tr><td class="code"><pre><span class="line">  # Scroll percent label in b2t button.</span></pre></td></tr><tr><td class="code"><pre><span class="line">  scrollpercent: true</span></pre></td></tr></table></figure>
+<h3 id="開啟網站底部用戶訪問量"><a href="#開啟網站底部用戶訪問量" class="headerlink" title="開啟網站底部用戶訪問量"></a>開啟網站底部用戶訪問量</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">busuanzi_count:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr></table></figure>
+<p>接著調整<code>themes/next/layout/_third-party/statistics/busuanzi-counter.swig</code>中這兩行程式碼，可以在 i 標籤插入中文描述。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;fa fa-&#123;&#123; theme.busuanzi_count.total_visitors_icon &#125;&#125;&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&lt;i class&#x3D;&quot;fa fa-&#123;&#123; theme.busuanzi_count.total_views_icon &#125;&#125;&quot;&gt;&lt;&#x2F;i&gt;</span></pre></td></tr></table></figure>
+<h3 id="調整文章末尾-tag-樣式"><a href="#調整文章末尾-tag-樣式" class="headerlink" title="調整文章末尾 tag 樣式"></a>調整文章末尾 tag 樣式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tag_icon: true</span></pre></td></tr></table></figure>
+<h3 id="增加本地搜索功能"><a href="#增加本地搜索功能" class="headerlink" title="增加本地搜索功能"></a>增加本地搜索功能</h3><p>安裝插件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add hexo-generator-search hexo-generator-searchdb</span></pre></td></tr></table></figure>
+<p>調整設定為 true</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">local_search:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  enable: true</span></pre></td></tr></table></figure>
+<h2 id="關於作者"><a href="#關於作者" class="headerlink" title="關於作者"></a>關於作者</h2><h3 id="新增大頭貼"><a href="#新增大頭貼" class="headerlink" title="新增大頭貼"></a>新增大頭貼</h3><p>step 1 建立存放圖片用的資料夾</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir source&#x2F;images</span></pre></td></tr></table></figure>
+<p>step 2 將大頭貼的照片丟入資料夾<code>source/images</code>，接著在主題設定<code>themes/next/_config.yml</code>中，設定大頭貼路徑。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  url: &#x2F;images&#x2F;avatar.jpeg</span></pre></td></tr></table></figure>
+<h3 id="調整大頭貼樣式"><a href="#調整大頭貼樣式" class="headerlink" title="調整大頭貼樣式"></a>調整大頭貼樣式</h3><p>邊框改為圓形，設為 true</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rounded: false &#x3D;&gt; rounded: true</span></pre></td></tr></table></figure>
+<p>hover 時，添加旋轉特效</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rotated: false &#x3D;&gt; rotated: true</span></pre></td></tr></table></figure>
+<h2 id="上方添加-Github-Fork-圖片"><a href="#上方添加-Github-Fork-圖片" class="headerlink" title="上方添加 Github Fork 圖片"></a>上方添加 Github Fork 圖片</h2><p>step 1 首先到<a href="http://tholman.com/github-corners/" target="_blank" rel="noopener">GitHub Corners</a>或是<a href="https://github.blog/2008-12-19-github-ribbons/" target="_blank" rel="noopener">GitHub Ribbons</a>尋找自己喜歡的樣式，並 copy code<br>step 2 打開<code>themes/next/layout/_layout.swig</code>，在<code>&lt;div class=&quot;headband&quot;&gt;&lt;/div&gt;</code>下面<br>step 3 將<code>href</code>後面的網址，替換成個人<code>GitHub</code>主頁。<br>重新啟動服務<code>hexo s</code>。</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重新拾筆</title>
+    <url>/2019/11/27/firstPost/</url>
+    <content><![CDATA[<p>信手寫一些雜談想法，就當做一篇簡單的隨筆。</p>
+<a id="more"></a>
+<h2 id="框架選擇"><a href="#框架選擇" class="headerlink" title="框架選擇"></a>框架選擇</h2><p><code>Hexo</code>從2018年開始接觸，期間雖然嘗試寫了幾篇筆記，但終究因為懶，時常無疾而終。雖然後面斷斷續續摸了幾種靜態站點框架，譬如<code>Hugo</code>、<code>Gatsby.js</code>、<code>Gridsome</code>，但始終沒有很順手。</p>
+<p>但不否認，我個人蠻看好<code>Gatsby.js</code>的發展性，不過我目前還是走<code>Vue</code>的路線，對於<code>React</code>仍算陌生，<code>Gatsby.js</code>駕馭起來相當吃力，只能暫時放棄，重新運用<code>Hexo</code>作為Blog支撐，不過也不排除未來會遷移過去，就看後續的學習狀況吧。</p>
+<h2 id="種一棵樹最好的時間是十年前，其次則是現在"><a href="#種一棵樹最好的時間是十年前，其次則是現在" class="headerlink" title="種一棵樹最好的時間是十年前，其次則是現在"></a>種一棵樹最好的時間是十年前，其次則是現在</h2><p>這句話，出自非洲經濟學家 Dambisa Moyo 的《dead aid》，作為書中的結尾言，非常簡短卻發人省思。從當下時間的角度來看，種下理想最好的決心固然是十年前，畢竟現在就能收穫。但既然這已成了往事，那考慮到未來的時間，<code>現在</code>就是未來的十年前。</p>
+<p>勉勵自己，從現在開始認真寫blog吧！</p>
+]]></content>
+      <tags>
+        <tag>隨想</tag>
+      </tags>
+  </entry>
+</search>
