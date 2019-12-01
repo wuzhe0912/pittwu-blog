@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Pitt Wu's Blog
-subtitle: ''
+title: Pitt Wu's 隨想筆記
+subtitle: 好記性不如爛筆頭
 description: 凡是過往，皆為序章
 keywords:
 author: Pitt Wu
@@ -95,4 +95,6 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: ''
+  type: git # 部署方式
+  repository: https://github.com/wuzhe0912/pittwu-blog.git # 關聯 github
+  branch: run-page # 部署用 branch
