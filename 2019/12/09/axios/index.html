@@ -47,17 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="JavaScript 3D library for NexT  Installation  If you want to use the CDN instead of clone this repo, please jump to the Step 3.  Step 1 &amp;rarr; Go to NexT dir  Change dir to NexT directory. There must">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;lib&#x2F;three&#x2F;README.html">
+  <meta name="description" content="花點時間，重新實做一個小demo，複習並理解axios在vue中的應用，同時記錄一些筆記。">
+<meta name="keywords" content="axios,Vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="關於 axios 的一些小小筆記">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;axios&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="JavaScript 3D library for NexT  Installation  If you want to use the CDN instead of clone this repo, please jump to the Step 3.  Step 1 &amp;rarr; Go to NexT dir  Change dir to NexT directory. There must">
+<meta property="og:description" content="花點時間，重新實做一個小demo，複習並理解axios在vue中的應用，同時記錄一些筆記。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-27T15:39:27.349Z">
+<meta property="og:updated_time" content="2019-12-09T15:27:08.350Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/lib/three/README">
+<link rel="canonical" href="http://yoursite.com/2019/12/09/axios/">
 
 
 <script id="page-configurations">
@@ -65,14 +66,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title> | Pitt Wu's 隨想筆記
-  </title>
+  <title>關於 axios 的一些小小筆記 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -196,85 +196,94 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="en">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">
-</h1>
-
-<div class="post-meta">
+      
   
-  <ul class="breadcrumb">
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/09/axios/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Pitt Wu">
+      <meta itemprop="description" content="凡是過往，皆為序章">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pitt Wu's 隨想筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          關於 axios 的一些小小筆記
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-09 23:13:01 / Modified: 23:27:08" itemprop="dateCreated datePublished" datetime="2019-12-09T23:13:01+08:00">2019-12-09</time>
+            </span>
+
           
-            <li><a href="/lib/">LIB</a></li>
-            <li><a href="/lib/three/">THREE</a></li>
-            <li>README</li>
-          
-  </ul>
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
-</div>
+        </div>
+      </header>
 
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <h1 align="center"><a href="https://github.com/mrdoob/three.js" target="_blank" rel="noopener">JavaScript 3D library</a> for <a href="https://github.com/theme-next" target="_blank" rel="noopener">NexT</a></h1>
-
-<h1 align="center">Installation</h1>
-
-<h2>If you want to use the CDN instead of clone this repo, please jump to the Step 3.</h2>
-
-<h2 align="center">Step 1 &rarr; Go to NexT dir</h2>
-
-<p>Change dir to <strong>NexT</strong> directory. There must be <code>layout</code>, <code>source</code>, <code>languages</code> and other directories:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/next</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ ls</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">_config.yml  crowdin.yml  docs  gulpfile.js  languages  layout  LICENSE.md  package.json  README.md  scripts  <span class="built_in">source</span></span></pre></td></tr></table></figure>
-
-<h2 align="center">Step 2 &rarr; Get module</h2>
-
-<p>Install module to <code>source/lib</code> directory:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/theme-next-three <span class="built_in">source</span>/lib/three</span></pre></td></tr></table></figure>
-
-<h2 align="center">Step 3 &rarr; Set it up</h2>
-
-<p>Enable module in <strong>NexT</strong> <code>_config.yml</code> file:</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">three_waves:</span> <span class="literal">true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">OR</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="attr">canvas_lines:</span> <span class="literal">true</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">OR</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="attr">canvas_sphere:</span> <span class="literal">true</span></span></pre></td></tr></table></figure>
-
-<p><strong>And, if you wants to use the CDN, then need to set:</strong></p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="attr">vendors:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="string">...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">three:</span> <span class="string">//cdn.jsdelivr.net/gh/theme-next/theme-next-three@1/three.min.js</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">three_waves:</span> <span class="string">//cdn.jsdelivr.net/gh/theme-next/theme-next-three@latest/three-waves.min.js</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">canvas_lines:</span> <span class="string">//cdn.jsdelivr.net/gh/theme-next/theme-next-three@latest/canvas_lines.min.js</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="attr">canvas_sphere:</span> <span class="string">//cdn.jsdelivr.net/gh/theme-next/theme-next-three@latest/canvas_sphere.min.js</span></span></pre></td></tr></table></figure>
-
-<h1 align="center">Update</h1>
-
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/next/<span class="built_in">source</span>/lib/three</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ git pull</span></pre></td></tr></table></figure>
-
-      </div>
-      
-      
-      
+        <p>花點時間，重新實做一個小demo，複習並理解<code>axios</code>在<code>vue</code>中的應用，同時記錄一些筆記。</p>
+<a id="more"></a>
+<h2 id="環境安裝"><a href="#環境安裝" class="headerlink" title="環境安裝"></a>環境安裝</h2><h3 id="全域安裝-vue-cli"><a href="#全域安裝-vue-cli" class="headerlink" title="全域安裝 vue-cli"></a>全域安裝 vue-cli</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn global add @vue&#x2F;cli</span></pre></td></tr></table></figure>
     </div>
-    
-  <ul class="breadcrumb">
-          
-            <li><a href="/lib/">LIB</a></li>
-            <li><a href="/lib/three/">THREE</a></li>
-            <li>README</li>
-          
-  </ul>
 
     
     
     
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/axios/" rel="tag"><i class="fa fa-tag"></i> axios</a>
+              <a href="/tags/Vue/" rel="tag"><i class="fa fa-tag"></i> Vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/02/es6-object/" rel="prev" title="ES6：類別與物件的基本觀念">
+      <i class="fa fa-chevron-left"></i> ES6：類別與物件的基本觀念
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
 
@@ -304,7 +313,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 3D library for NexT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">Installation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.1.</span> <span class="nav-text">If you want to use the CDN instead of clone this repo, please jump to the Step 3.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.2.</span> <span class="nav-text">Step 1 → Go to NexT dir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text">Step 2 → Get module</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.4.</span> <span class="nav-text">Step 3 → Set it up</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Update</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#環境安裝"><span class="nav-number">1.</span> <span class="nav-text">環境安裝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全域安裝-vue-cli"><span class="nav-number">1.1.</span> <span class="nav-text">全域安裝 vue-cli</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
