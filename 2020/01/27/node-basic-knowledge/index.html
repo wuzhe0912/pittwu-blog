@@ -47,18 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="回歸 Hexo 寫技術筆記後，就一直懷念 Gatsby.js 可以透過 Netlify 自動推送部署，花了點時間 Google，終於也找到 Hexo 的自動部署方式，一整個對寫文章非常方便。">
-<meta name="keywords" content="Hexo,Netlify,auto deploy">
+  <meta name="description" content="記錄自己學習node.js基礎API用法。">
+<meta name="keywords" content="Node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitHub + Netlify &#x3D; Auto Deploy Hexo Post">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;01&#x2F;hexo-auto-deploy&#x2F;index.html">
+<meta property="og:title" content="Node 基礎知識">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;27&#x2F;node-basic-knowledge&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="回歸 Hexo 寫技術筆記後，就一直懷念 Gatsby.js 可以透過 Netlify 自動推送部署，花了點時間 Google，終於也找到 Hexo 的自動部署方式，一整個對寫文章非常方便。">
+<meta property="og:description" content="記錄自己學習node.js基礎API用法。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T14:46:18.832Z">
+<meta property="og:updated_time" content="2020-02-09T13:55:03.297Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/01/hexo-auto-deploy/">
+<link rel="canonical" href="http://yoursite.com/2020/01/27/node-basic-knowledge/">
 
 
 <script id="page-configurations">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>GitHub + Netlify = Auto Deploy Hexo Post | Pitt Wu's 隨想筆記</title>
+  <title>Node 基礎知識 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/hexo-auto-deploy/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/27/node-basic-knowledge/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -218,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          GitHub + Netlify = Auto Deploy Hexo Post
+          Node 基礎知識
         </h1>
 
         <div class="post-meta">
@@ -227,10 +227,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-01 22:09:56 / Modified: 22:46:18" itemprop="dateCreated datePublished" datetime="2019-12-01T22:09:56+08:00">2019-12-01</time>
+              <time title="Created: 2020-01-27 23:35:59" itemprop="dateCreated datePublished" datetime="2020-01-27T23:35:59+08:00">2020-01-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 21:55:03" itemprop="dateModified" datetime="2020-02-09T21:55:03+08:00">2020-02-09</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -250,26 +256,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>回歸 Hexo 寫技術筆記後，就一直懷念 Gatsby.js 可以透過 Netlify 自動推送部署，花了點時間 Google，終於也找到 Hexo 的自動部署方式，一整個對寫文章非常方便。</p>
+        <p>記錄自己學習<code>node.js</code>基礎API用法。</p>
 <a id="more"></a>
-<ul>
-<li>step 1：<br>  先在 GitHub 建立遠端 repository</li>
-<li>step 2：<br>  copy repository 的 url</li>
-<li>step 3：<br>  回到 project 內，將本地和遠端進行關聯  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;your-githubname&#x2F;your-repository</span></pre></td></tr></table></figure></li>
-<li>step 4：<br>  進行 commit  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git add .&#x2F;</span></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git commit -m &#39;commit information&#39;</span></pre></td></tr></table></figure></li>
-<li>step 5：<br>  推送到遠端  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span></pre></td></tr></table></figure></li>
-<li>step 6：<br>  打開最上層的<code>_config.yml</code>，修改設定  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  type: git # 部署方式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;wuzhe0912&#x2F;pittwu-blog.git # 關聯 github</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  branch: run-page # 部署用 branch</span></pre></td></tr></table></figure>
-  安裝 Hexo 部署插件  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add hexo-deployer-git</span></pre></td></tr></table></figure></li>
-<li>step 7：<br>  執行指令  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">hexo clean  &#x2F;&#x2F; 清除舊的靜態文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">hexo g      &#x2F;&#x2F; 生成新的靜態文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">hexo d      &#x2F;&#x2F; 部署</span></pre></td></tr></table></figure>
-  這時候本地的 Hexo 資料已推送到遠端的 Github repository</li>
-<li>step 8：<br>  接著在<a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a>建立帳號，因為我們要關聯 GitHub，所以選擇第三方登入(使用 GitHub 帳號)</li>
-<li>step 9：<br>  登入後，選擇右側的 New site from Git，再來選關聯 GitHub，授權完成後，選擇對應的 repository</li>
-<li>step 10：<br>  Branch 需選擇剛剛<code>_config.yml</code>輸入的 branch name，下方 command 和 Publish 兩欄則清空，最後點選 Deploy site</li>
-<li>step 11：<br>  很快就能在左上角看到 Netlify 幫我們生成的網址，但其中網址名的部分是亂數生成的，可以點選 Change site name 修改。</li>
-<li>step 12：<br>  日後只要本地寫完文章，執行下面三道指令，即可完成自動部署。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">hexo clean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">hexo g</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">hexo d</span></pre></td></tr></table></figure></li>
-</ul>
-
+<h2 id="require、module-exports"><a href="#require、module-exports" class="headerlink" title="require、module exports"></a>require、module exports</h2><p><code>require</code>語法可以載入檔案，反之<code>module.exports</code>則能導出內容。寫法如下：<br>app.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let content &#x3D; require(&#39;.&#x2F;app2&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(content)</span></pre></td></tr></table></figure>
+<p>app2.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let data &#x3D; &#39;node-test&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; data</span></pre></td></tr></table></figure>
+<p>印出<code>&#39;node-test&#39;</code>字串。</p>
+<p>除此之外也能放入物件格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  title: data,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  subTitle: &#39;title-test&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>印出對應的物件。</p>
+<h3 id="相對冷門寫法"><a href="#相對冷門寫法" class="headerlink" title="相對冷門寫法"></a>相對冷門寫法</h3><p>一般導出寫法多採用<code>module.exports</code>，但單純使用<code>exports</code>也能導出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">exports.subContent &#x3D; 123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 這個寫法等於建立一個物件，如下：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    subContent: 123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;除了物件外，也能調用函數</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">exports.call &#x3D; (() &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  return &#39;call!&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<h2 id="http-API"><a href="#http-API" class="headerlink" title="http API"></a>http API</h2><h3 id="createServer"><a href="#createServer" class="headerlink" title="createServer"></a>createServer</h3><p>Node 原生 http API 用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const http &#x3D; require(&#39;http&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; request 使用者發出請求，常縮寫為 req</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; response 回傳結果，常縮寫為 res</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">http.createServer((req, res) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 表頭內容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  res.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text&#x2F;plain&quot; &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 回傳結果內容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  res.write(&#39;Hello Node!&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 結束</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  res.end()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(8081) &#x2F;&#x2F; 監聽 port</span></pre></td></tr></table></figure>
+<h2 id="查詢路徑或檔案名稱"><a href="#查詢路徑或檔案名稱" class="headerlink" title="查詢路徑或檔案名稱"></a>查詢路徑或檔案名稱</h2><p><code>__dirname</code>語法，可以查詢到當前檔案所在的路徑。<br><code>__filename</code>語法，則能檢查當前檔案名稱。</p>
+<h2 id="path"><a href="#path" class="headerlink" title="path"></a>path</h2><p>Node 原生 path API 用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 抓目錄路徑，回傳 &#x2F;Path&#x2F;subNode</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(path.dirname(&#39;&#x2F;Path&#x2F;subNode&#x2F;index.js&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 路徑合併</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">console.log(path.join(__dirname, &#39;&#x2F;Path&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 抓取檔案名稱，回傳 index.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">console.log(path.basename(&#39;&#x2F;Path&#x2F;subNode&#x2F;index.js&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 抓副檔名，回傳 .js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">console.log(path.extname(&#39;&#x2F;Path&#x2F;subNode&#x2F;index.js&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 分析路徑</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">console.log(path.parse(&#39;&#x2F;Path&#x2F;subNode&#x2F;index.js&#39;))</span></pre></td></tr></table></figure>
     </div>
 
     
@@ -279,9 +282,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
-              <a href="/tags/Netlify/" rel="tag"><i class="fa fa-tag"></i> Netlify</a>
-              <a href="/tags/auto-deploy/" rel="tag"><i class="fa fa-tag"></i> auto deploy</a>
+              <a href="/tags/Node/" rel="tag"><i class="fa fa-tag"></i> Node</a>
           </div>
 
         
@@ -290,12 +291,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/01/node-version-fixed/" rel="prev" title="Node & NPM Version Path Fixed">
-      <i class="fa fa-chevron-left"></i> Node & NPM Version Path Fixed
+    <a href="/2019/12/09/nvm-instruction/" rel="prev" title="NVM 常用指令">
+      <i class="fa fa-chevron-left"></i> NVM 常用指令
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/12/02/es6-const-arrow/" rel="next" title="ES6：宣告變數與箭頭函數">
-      ES6：宣告變數與箭頭函數 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/02/09/es6-note/" rel="next" title="ES6：筆記整理">
+      ES6：筆記整理 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -334,6 +335,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#require、module-exports"><span class="nav-number">1.</span> <span class="nav-text">require、module exports</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相對冷門寫法"><span class="nav-number">1.1.</span> <span class="nav-text">相對冷門寫法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-API"><span class="nav-number">2.</span> <span class="nav-text">http API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#createServer"><span class="nav-number">2.1.</span> <span class="nav-text">createServer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查詢路徑或檔案名稱"><span class="nav-number">3.</span> <span class="nav-text">查詢路徑或檔案名稱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path"><span class="nav-number">4.</span> <span class="nav-text">path</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

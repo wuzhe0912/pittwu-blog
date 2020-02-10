@@ -47,18 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="信手寫一些雜談想法，就當做一篇簡單的隨筆。">
-<meta name="keywords" content="隨想">
+  <meta name="description" content="整理散落各方的ES6筆記，方便自己日後查詢。">
+<meta name="keywords" content="ES6">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重新拾筆">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;27&#x2F;firstPost&#x2F;index.html">
+<meta property="og:title" content="ES6：筆記整理">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;09&#x2F;es6-note&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="信手寫一些雜談想法，就當做一篇簡單的隨筆。">
+<meta property="og:description" content="整理散落各方的ES6筆記，方便自己日後查詢。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-30T03:55:47.008Z">
+<meta property="og:updated_time" content="2020-02-10T14:35:48.295Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/27/firstPost/">
+<link rel="canonical" href="http://yoursite.com/2020/02/09/es6-note/">
 
 
 <script id="page-configurations">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>重新拾筆 | Pitt Wu's 隨想筆記</title>
+  <title>ES6：筆記整理 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/27/firstPost/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/09/es6-note/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -218,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          重新拾筆
+          ES6：筆記整理
         </h1>
 
         <div class="post-meta">
@@ -228,14 +228,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-11-27 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-27T00:00:00+08:00">2019-11-27</time>
+              <time title="Created: 2020-02-09 22:05:23" itemprop="dateCreated datePublished" datetime="2020-02-09T22:05:23+08:00">2020-02-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-30 11:55:47" itemprop="dateModified" datetime="2019-11-30T11:55:47+08:00">2019-11-30</time>
+                <time title="Modified: 2020-02-10 22:35:48" itemprop="dateModified" datetime="2020-02-10T22:35:48+08:00">2020-02-10</time>
               </span>
 
           
@@ -256,12 +256,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>信手寫一些雜談想法，就當做一篇簡單的隨筆。</p>
+        <p>整理散落各方的<code>ES6</code>筆記，方便自己日後查詢。</p>
 <a id="more"></a>
-<h2 id="框架選擇"><a href="#框架選擇" class="headerlink" title="框架選擇"></a>框架選擇</h2><p><code>Hexo</code>從2018年開始接觸，期間雖然嘗試寫了幾篇筆記，但終究因為懶，時常無疾而終。雖然後面斷斷續續摸了幾種靜態站點框架，譬如<code>Hugo</code>、<code>Gatsby.js</code>、<code>Gridsome</code>，但始終沒有很順手。</p>
-<p>但不否認，我個人蠻看好<code>Gatsby.js</code>的發展性，不過我目前還是走<code>Vue</code>的路線，對於<code>React</code>仍算陌生，<code>Gatsby.js</code>駕馭起來相當吃力，只能暫時放棄，重新運用<code>Hexo</code>作為Blog支撐，不過也不排除未來會遷移過去，就看後續的學習狀況吧。</p>
-<h2 id="種一棵樹最好的時間是十年前，其次則是現在"><a href="#種一棵樹最好的時間是十年前，其次則是現在" class="headerlink" title="種一棵樹最好的時間是十年前，其次則是現在"></a>種一棵樹最好的時間是十年前，其次則是現在</h2><p>這句話，出自非洲經濟學家 Dambisa Moyo 的《dead aid》，作為書中的結尾言，非常簡短卻發人省思。從當下時間的角度來看，種下理想最好的決心固然是十年前，畢竟現在就能收穫。但既然這已成了往事，那考慮到未來的時間，<code>現在</code>就是未來的十年前。</p>
-<p>勉勵自己，從現在開始認真寫blog吧！</p>
+<h2 id="變數宣告"><a href="#變數宣告" class="headerlink" title="變數宣告"></a>變數宣告</h2><p>傳統變數宣告採用 <code>var</code> 的方式，但容易存在污染環境的問題。因此在 ES6 的語法中，新增兩個變數宣告方式 <code>let、const</code>。</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>使用 const 定義常數，意味著這個變數不作變動，且要求一定要賦值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const a &#x3D; 1</span></pre></td></tr></table></figure>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>和傳統的<code>var</code>相似，側重解決過往的 scope(執行環境)問題。使用<code>let</code>宣告變數時，僅會作用在當前區域，且可以選擇賦值或不賦值，通常以 function 本身為分界。</p>
+<ul>
+<li>var<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    var b &#x3D; 10</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(b) &#x2F;&#x2F; 印出 10</span></pre></td></tr></table></figure></li>
+<li>let<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">if (true) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    let c &#x3D; 20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(c) &#x2F;&#x2F; error，c is not defined</span></pre></td></tr></table></figure>
+<h2 id="樣板字面值-模板字符串-Template-literals"><a href="#樣板字面值-模板字符串-Template-literals" class="headerlink" title="樣板字面值(模板字符串) Template literals"></a>樣板字面值(模板字符串) Template literals</h2>過往<code>ES5</code>寫法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">console.log(&quot;My name is &quot; + name)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出 My name is Pitt</span></pre></td></tr></table></figure>
+修改為<code>ES6</code>時，則需調整寫法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">console.log(&#96;My name is $&#123;name&#125;&#96;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 同樣印出 My name is Pitt</span></pre></td></tr></table></figure>
+最外圍使用倒鉤符號包裹，先用$符號聲明，再用{}包覆變數。<h3 id="多行字串"><a href="#多行字串" class="headerlink" title="多行字串"></a>多行字串</h3><code>ES5</code>寫法中，多行字串使用<code>\n</code>，但在<code>ES6</code>中，若使用倒鉤符號包裹後，自動換行即可，寫法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let msg &#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#96;&lt;span&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Hello World!</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;span&gt;&#96;</span></pre></td></tr></table></figure>
+<h2 id="展開與其餘運算符"><a href="#展開與其餘運算符" class="headerlink" title="展開與其餘運算符"></a>展開與其餘運算符</h2>用法為<code>...</code>，常用於陣列合併或是複製陣列。<br>合併用法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let a &#x3D; [1, 2, 3]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">let b &#x3D; [4, 5, 6]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">let c &#x3D; [...a, ...b]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(c)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出 [1, 2, 3, 4, 5, 6]</span></pre></td></tr></table></figure>
+複製陣列後修改其中的值：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let d &#x3D; [...c]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">d[2] &#x3D; 7</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(d)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出 [1, 2, 7, 4, 5, 6]，而此時的c陣列是不受影響的</span></pre></td></tr></table></figure>
+<h2 id="import-module"><a href="#import-module" class="headerlink" title="import module"></a>import module</h2>在<code>ES6</code>語法中，JS開始原生支援模組系統，用法如下：<br>先建立一個引用的<code>HTML</code>檔案，同時引用js檔案時，需注意<code>type = module</code>，寫法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;.&#x2F;index.js&quot; type&#x3D;&quot;module&quot;&gt;&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+準備一個<code>index.js</code>檔案來載入導出的資料，再準備一個<code>module.js</code>來導出資料<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; index.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">import &#123; data, userData &#125; from &#39;.&#x2F;module.js&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">console.log(data)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">console.log(userData)</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; module.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">export const data &#x3D; [1, 2, 3]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">export const userData &#x3D; [&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#39;id&#39;: &#39;first&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#39;name&#39;: &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;]</span></pre></td></tr></table></figure>
+如此便完成最基礎的<code>import</code>和<code>export</code>。</li>
+</ul>
 
     </div>
 
@@ -272,7 +285,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E9%9A%A8%E6%83%B3/" rel="tag"><i class="fa fa-tag"></i> 隨想</a>
+              <a href="/tags/ES6/" rel="tag"><i class="fa fa-tag"></i> ES6</a>
           </div>
 
         
@@ -280,10 +293,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2019/11/28/next-theme-install-note/" rel="next" title="Next Theme Install Note">
-      Next Theme Install Note <i class="fa fa-chevron-right"></i>
+    <a href="/2020/01/27/node-basic-knowledge/" rel="prev" title="Node 基礎知識">
+      <i class="fa fa-chevron-left"></i> Node 基礎知識
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/09/es6-destructuring/" rel="next" title="ES6：解構賦值">
+      ES6：解構賦值 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -322,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#框架選擇"><span class="nav-number">1.</span> <span class="nav-text">框架選擇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#種一棵樹最好的時間是十年前，其次則是現在"><span class="nav-number">2.</span> <span class="nav-text">種一棵樹最好的時間是十年前，其次則是現在</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#變數宣告"><span class="nav-number">1.</span> <span class="nav-text">變數宣告</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#const"><span class="nav-number">1.1.</span> <span class="nav-text">const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#let"><span class="nav-number">1.2.</span> <span class="nav-text">let</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#樣板字面值-模板字符串-Template-literals"><span class="nav-number">2.</span> <span class="nav-text">樣板字面值(模板字符串) Template literals</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多行字串"><span class="nav-number">2.1.</span> <span class="nav-text">多行字串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展開與其餘運算符"><span class="nav-number">3.</span> <span class="nav-text">展開與其餘運算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import-module"><span class="nav-number">4.</span> <span class="nav-text">import module</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

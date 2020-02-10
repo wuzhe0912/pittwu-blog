@@ -47,18 +47,16 @@
   };
 </script>
 
-  <meta name="description" content="回歸 Hexo 寫技術筆記後，就一直懷念 Gatsby.js 可以透過 Netlify 自動推送部署，花了點時間 Google，終於也找到 Hexo 的自動部署方式，一整個對寫文章非常方便。">
-<meta name="keywords" content="Hexo,Netlify,auto deploy">
-<meta property="og:type" content="article">
-<meta property="og:title" content="GitHub + Netlify &#x3D; Auto Deploy Hexo Post">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;01&#x2F;hexo-auto-deploy&#x2F;index.html">
+  <meta name="description" content="凡是過往，皆為序章">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pitt Wu&#39;s 隨想筆記">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;page&#x2F;2&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="回歸 Hexo 寫技術筆記後，就一直懷念 Gatsby.js 可以透過 Netlify 自動推送部署，花了點時間 Google，終於也找到 Hexo 的自動部署方式，一整個對寫文章非常方便。">
+<meta property="og:description" content="凡是過往，皆為序章">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T14:46:18.832Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/01/hexo-auto-deploy/">
+<link rel="canonical" href="http://yoursite.com/archives/page/2/">
 
 
 <script id="page-configurations">
@@ -66,13 +64,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
+    isPost: false,
     isPage: false,
-    isArchive: false
+    isArchive: true
   };
 </script>
 
-  <title>GitHub + Netlify = Auto Deploy Hexo Post | Pitt Wu's 隨想筆記</title>
+  <title>Archive | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -200,112 +198,72 @@
           <div class="content">
             
 
-  <div class="posts-expand">
-      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/hexo-auto-deploy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Pitt Wu">
-      <meta itemprop="description" content="凡是過往，皆為序章">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pitt Wu's 隨想筆記">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          GitHub + Netlify = Auto Deploy Hexo Post
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-01 22:09:56 / Modified: 22:46:18" itemprop="dateCreated datePublished" datetime="2019-12-01T22:09:56+08:00">2019-12-01</time>
-            </span>
-
-          
-            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">Views: </span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <span class="collection-header">Um..! 12 posts in total. Keep on posting.</span>
+      </div>
 
       
-        <p>回歸 Hexo 寫技術筆記後，就一直懷念 Gatsby.js 可以透過 Netlify 自動推送部署，花了點時間 Google，終於也找到 Hexo 的自動部署方式，一整個對寫文章非常方便。</p>
-<a id="more"></a>
-<ul>
-<li>step 1：<br>  先在 GitHub 建立遠端 repository</li>
-<li>step 2：<br>  copy repository 的 url</li>
-<li>step 3：<br>  回到 project 內，將本地和遠端進行關聯  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;github.com&#x2F;your-githubname&#x2F;your-repository</span></pre></td></tr></table></figure></li>
-<li>step 4：<br>  進行 commit  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git add .&#x2F;</span></pre></td></tr></table></figure>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git commit -m &#39;commit information&#39;</span></pre></td></tr></table></figure></li>
-<li>step 5：<br>  推送到遠端  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span></pre></td></tr></table></figure></li>
-<li>step 6：<br>  打開最上層的<code>_config.yml</code>，修改設定  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">deploy:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  type: git # 部署方式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  repository: https:&#x2F;&#x2F;github.com&#x2F;wuzhe0912&#x2F;pittwu-blog.git # 關聯 github</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  branch: run-page # 部署用 branch</span></pre></td></tr></table></figure>
-  安裝 Hexo 部署插件  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add hexo-deployer-git</span></pre></td></tr></table></figure></li>
-<li>step 7：<br>  執行指令  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">hexo clean  &#x2F;&#x2F; 清除舊的靜態文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">hexo g      &#x2F;&#x2F; 生成新的靜態文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">hexo d      &#x2F;&#x2F; 部署</span></pre></td></tr></table></figure>
-  這時候本地的 Hexo 資料已推送到遠端的 Github repository</li>
-<li>step 8：<br>  接著在<a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a>建立帳號，因為我們要關聯 GitHub，所以選擇第三方登入(使用 GitHub 帳號)</li>
-<li>step 9：<br>  登入後，選擇右側的 New site from Git，再來選關聯 GitHub，授權完成後，選擇對應的 repository</li>
-<li>step 10：<br>  Branch 需選擇剛剛<code>_config.yml</code>輸入的 branch name，下方 command 和 Publish 兩欄則清空，最後點選 Deploy site</li>
-<li>step 11：<br>  很快就能在左上角看到 Netlify 幫我們生成的網址，但其中網址名的部分是亂數生成的，可以點選 Change site name 修改。</li>
-<li>step 12：<br>  日後只要本地寫完文章，執行下面三道指令，即可完成自動部署。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">hexo clean</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">hexo g</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">hexo d</span></pre></td></tr></table></figure></li>
-</ul>
-
+    <div class="collection-year">
+      <h1 class="collection-header">2019</h1>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
-              <a href="/tags/Netlify/" rel="tag"><i class="fa fa-tag"></i> Netlify</a>
-              <a href="/tags/auto-deploy/" rel="tag"><i class="fa fa-tag"></i> auto deploy</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2019-11-28T22:39:13+08:00"
+              content="2019-11-28">
+          11-28
+        </time>
+      </div>
 
-        
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2019/11/28/next-theme-install-note/" itemprop="url">
+            <span itemprop="name">Next Theme Install Note</span>
+          </a>
+      </h2>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/12/01/node-version-fixed/" rel="prev" title="Node & NPM Version Path Fixed">
-      <i class="fa fa-chevron-left"></i> Node & NPM Version Path Fixed
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/12/02/es6-const-arrow/" rel="next" title="ES6：宣告變數與箭頭函數">
-      ES6：宣告變數與箭頭函數 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2019-11-27T00:00:00+08:00"
+              content="2019-11-27">
+          11-27
+        </time>
+      </div>
+
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2019/11/27/firstPost/" itemprop="url">
+            <span itemprop="name">重新拾筆</span>
+          </a>
+      </h2>
+
+    </header>
+  </article>
+
+
+    </div>
+  </div>
   
   
   
 
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
