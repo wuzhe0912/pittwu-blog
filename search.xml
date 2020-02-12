@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>node-interface</title>
+    <url>/2020/02/12/node-interface/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>Vue-cli Init Step</title>
+    <url>/2020/02/12/vue-init-step/</url>
+    <content><![CDATA[<p>前端框架版本迭代太快，更新過程中安裝的版本又容易出現錯誤，單靠記憶不可行，只好記錄自己的操作步驟，隨時更新方便檢查。</p>
+<a id="more"></a>
+<h2 id="全域環境調整-vue-cli-4-0-以上版本"><a href="#全域環境調整-vue-cli-4-0-以上版本" class="headerlink" title="全域環境調整(vue-cli 4.0 以上版本)"></a>全域環境調整(vue-cli 4.0 以上版本)</h2><h3 id="remove-old-version"><a href="#remove-old-version" class="headerlink" title="remove old version"></a>remove old version</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm uninstall vue-cli -g</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn global remove vue-cli</span></pre></td></tr></table></figure>
+<h3 id="install-new-version"><a href="#install-new-version" class="headerlink" title="install new version"></a>install new version</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g @vue&#x2F;cli</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn global add @vue&#x2F;cli</span></pre></td></tr></table></figure>
+<h3 id="check-version"><a href="#check-version" class="headerlink" title="check version"></a>check version</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vue --version</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">vue -V</span></pre></td></tr></table></figure>
+<h2 id="fixed-yarn"><a href="#fixed-yarn" class="headerlink" title="fixed yarn"></a>fixed yarn</h2><h3 id="clean-yarn-cache"><a href="#clean-yarn-cache" class="headerlink" title="clean yarn cache"></a>clean yarn cache</h3><p>yarn 更新至 v1.19.0 後，一度在終端機一直跳提醒，google 到的解法是清除 cache。<br>但目前已是 v1.22.0 已無目前問題。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn update v1.19.0 後，需清除一次 cache，指令如下：</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn cache clean</span></pre></td></tr></table></figure>
+<h2 id="build-project"><a href="#build-project" class="headerlink" title="build project"></a>build project</h2><h3 id="version-not-match-error"><a href="#version-not-match-error" class="headerlink" title="version not match error"></a>version not match error</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">若出現vue的版本為 2.6.9，但套件採用 2.6.10 的 error</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">需升級vue的版本，指令如下：</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn global add vue@2.6.11</span></pre></td></tr></table></figure>
+<h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vue create project-name</span></pre></td></tr></table></figure>
+<h3 id="選擇需要的項目"><a href="#選擇需要的項目" class="headerlink" title="選擇需要的項目"></a>選擇需要的項目</h3><p>官方預設提供的 css 預處理器，存在一些配置上的錯誤，這邊不做使用<br>僅選擇 Router &amp; Vuex(單元測試和 PWA 尚未掌握)<br>Router 採用 History Mode</p>
+<h3 id="進入項目並啟動"><a href="#進入項目並啟動" class="headerlink" title="進入項目並啟動"></a>進入項目並啟動</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd project</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn server</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ES6：解構賦值</title>
     <url>/2020/02/09/es6-destructuring/</url>
     <content><![CDATA[<p>解構賦值簡單來說，就是輕便且快速地取出元素。</p>
