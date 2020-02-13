@@ -1,5 +1,5 @@
 ---
-title: Vue-cli Init Step
+title: Vue-cli 初始化專案操作記錄
 date: 2020-02-12 20:13:27
 tags: Vue.js
 ---
@@ -60,4 +60,55 @@ Router 採用 History Mode
 ```
 cd project
 yarn server
+```
+## install Plugins
+```
+axios
+vue-axios
+```
+--dev
+```
+vue-cli-plugin-pug
+sass
+sass-loader
+```
+## 專案結構
+```
+assets
+components
+pages
+```
+### router
+拆分為 index.js 和 map.js
+當頁面數過多時，將 routes 抽離至 map.js，再載入到 index.js
+### webpack 設定
+建立 vue.config.js
+```
+const path = require('path')
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
+
+module.exports = {
+  publicPath: '',
+  // 調整本地端口
+  devServer: {
+    host: 'localhost',
+    port: 8081,
+    // 設置代理 => 解決跨域問題(調用後端API接口時通常不是同一個域名)
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8081',
+        // websocket 縮寫 => ws
+        ws: false,
+        // 避免在訪問網址時，自動將原點移除
+        changeOrigin: false
+      }
+    }
+  },
+  chainWebpack: (config) => {
+    config.resolve.alias
+      .set('@', resolve('src'))
+  }
+}
 ```
