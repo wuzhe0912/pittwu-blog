@@ -47,18 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="記錄常用 NVM 指令。">
-<meta name="keywords" content="NVM">
+  <meta name="description" content="整理 Vue 的生命週期和用法理解。">
+<meta name="keywords" content="Vue.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NVM 常用指令">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;nvm-instruction&#x2F;index.html">
+<meta property="og:title" content="Vue.js 生命週期簡單理解">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;13&#x2F;vue-life-cycle&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="記錄常用 NVM 指令。">
+<meta property="og:description" content="整理 Vue 的生命週期和用法理解。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-01-27T15:39:06.192Z">
+<meta property="og:updated_time" content="2020-02-13T04:41:03.231Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/09/nvm-instruction/">
+<link rel="canonical" href="http://yoursite.com/2020/02/13/vue-life-cycle/">
 
 
 <script id="page-configurations">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>NVM 常用指令 | Pitt Wu's 隨想筆記</title>
+  <title>Vue.js 生命週期簡單理解 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/09/nvm-instruction/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/vue-life-cycle/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -218,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          NVM 常用指令
+          Vue.js 生命週期簡單理解
         </h1>
 
         <div class="post-meta">
@@ -227,16 +227,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2019-12-09 23:13:01" itemprop="dateCreated datePublished" datetime="2019-12-09T23:13:01+08:00">2019-12-09</time>
+              <time title="Created: 2020-02-13 00:16:03 / Modified: 12:41:03" itemprop="dateCreated datePublished" datetime="2020-02-13T00:16:03+08:00">2020-02-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-01-27 23:39:06" itemprop="dateModified" datetime="2020-01-27T23:39:06+08:00">2020-01-27</time>
-              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -256,12 +250,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>記錄常用 NVM 指令。</p>
+        <p>整理 Vue 的生命週期和用法理解。</p>
 <a id="more"></a>
-<h4 id="查詢遠端可安裝的-node-版本"><a href="#查詢遠端可安裝的-node-版本" class="headerlink" title="查詢遠端可安裝的 node 版本"></a>查詢遠端可安裝的 node 版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">nvm ls-remote</span></pre></td></tr></table></figure>
-<h4 id="安裝所需的版本號"><a href="#安裝所需的版本號" class="headerlink" title="安裝所需的版本號"></a>安裝所需的版本號</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">nvm install v12.14.1</span></pre></td></tr></table></figure>
-<h4 id="切換所需使用的-node-版本"><a href="#切換所需使用的-node-版本" class="headerlink" title="切換所需使用的 node 版本"></a>切換所需使用的 node 版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">nvm use v12.14.1</span></pre></td></tr></table></figure>
-<h4 id="設定預設使用的-node-版本"><a href="#設定預設使用的-node-版本" class="headerlink" title="設定預設使用的 node 版本"></a>設定預設使用的 node 版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">nvm alias default v12.14.1</span></pre></td></tr></table></figure>
+<h2 id="數據變化與更新"><a href="#數據變化與更新" class="headerlink" title="數據變化與更新"></a>數據變化與更新</h2><h3 id="beforeUpdate-amp-updated"><a href="#beforeUpdate-amp-updated" class="headerlink" title="beforeUpdate &amp; updated"></a>beforeUpdate &amp; updated</h3><p>透過 @click 事件來達到數據更新的功能。<br>一開始頁面渲染 data 的初始資料，當點擊時觸發函數執行資料更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; template</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">p &#123;&#123; msg &#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">button(@click&#x3D;&quot;update()&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; data 存放資料的初始值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">data () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    msg: &#39;Hello Vue!&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; methods 存放執行的函數，透過點擊執行函數來更新資料</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  update () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    this.msg &#x3D; &#39;Hello Pitt!&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<h2 id="銷毀"><a href="#銷毀" class="headerlink" title="銷毀"></a>銷毀</h2><h3 id="beforeDestroy-amp-destroyed"><a href="#beforeDestroy-amp-destroyed" class="headerlink" title="beforeDestroy &amp; destroyed"></a>beforeDestroy &amp; destroyed</h3><p>理解銷毀的概念，可以透過 v-if 來理解。當判斷為 false 時，本質上就等於銷毀該 Dom 節點。若預設 data 為 true，一開始頁面渲染時會出現，此時不會觸發 beforeDestroy &amp; destroyed。但當點擊動作觸發轉為 false 時，則會觸發 beforeDestroy &amp; destroyed，這時頁面上被綁定的對象也會消失，即可是為銷毀。</p>
+<h2 id="掛載順序"><a href="#掛載順序" class="headerlink" title="掛載順序"></a>掛載順序</h2><p>在 Vue.js 的生命週期中，當頁面渲染時，透過 console.log，可以看到依序為：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. beforeCreate &#x2F;&#x2F; 在這個階段 $el 和 $data 都尚未掛載 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. created &#x2F;&#x2F; $data 初始資料已載入，$el 尚未 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. beforeMount &#x2F;&#x2F; $el 依然為空 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. mounted &#x2F;&#x2F; $el 完成渲染出現資料</span></pre></td></tr></table></figure>
     </div>
 
     
@@ -271,7 +266,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/NVM/" rel="tag"><i class="fa fa-tag"></i> NVM</a>
+              <a href="/tags/Vue-js/" rel="tag"><i class="fa fa-tag"></i> Vue.js</a>
           </div>
 
         
@@ -280,13 +275,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/02/es6-object/" rel="prev" title="ES6：類別與物件的基本觀念">
-      <i class="fa fa-chevron-left"></i> ES6：類別與物件的基本觀念
+    <a href="/2020/02/12/node-interface/" rel="prev" title="node-interface">
+      <i class="fa fa-chevron-left"></i> node-interface
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/27/node-basic-knowledge/" rel="next" title="Node 基礎知識">
-      Node 基礎知識 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -324,7 +316,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#查詢遠端可安裝的-node-版本"><span class="nav-number">1.</span> <span class="nav-text">查詢遠端可安裝的 node 版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安裝所需的版本號"><span class="nav-number">2.</span> <span class="nav-text">安裝所需的版本號</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切換所需使用的-node-版本"><span class="nav-number">3.</span> <span class="nav-text">切換所需使用的 node 版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#設定預設使用的-node-版本"><span class="nav-number">4.</span> <span class="nav-text">設定預設使用的 node 版本</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#數據變化與更新"><span class="nav-number">1.</span> <span class="nav-text">數據變化與更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeUpdate-amp-updated"><span class="nav-number">1.1.</span> <span class="nav-text">beforeUpdate &amp; updated</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#銷毀"><span class="nav-number">2.</span> <span class="nav-text">銷毀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeDestroy-amp-destroyed"><span class="nav-number">2.1.</span> <span class="nav-text">beforeDestroy &amp; destroyed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#掛載順序"><span class="nav-number">3.</span> <span class="nav-text">掛載順序</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
