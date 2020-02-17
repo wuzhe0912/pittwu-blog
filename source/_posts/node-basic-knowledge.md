@@ -1,7 +1,7 @@
 ---
 title: Node 基礎知識
 date: 2020-01-27 23:35:59
-tags: Node
+tags: Node.js
 ---
 記錄自己學習`node.js`基礎API用法。
 <!--more-->

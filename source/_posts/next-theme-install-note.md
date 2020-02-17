@@ -1,7 +1,9 @@
 ---
 title: Next Theme Install Note
 date: 2019-11-28 22:39:13
-tags: Hexo
+tags:
+  - Hexo
+  - Next Theme
 ---
 安裝 Hexo 的難度不高，但是調整 Hexo Theme 的配置是件不小的工程，記錄一下自己的調整流程。
 <!--more-->

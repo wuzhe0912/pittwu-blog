@@ -160,3 +160,35 @@ peopleRef.orderByChild('weight').equalTo(3000).once('value', (snapshot) => {
   })
 })
 ```
+## 限制筆數
+`limitToFirst()` => 撈取從第一筆資料開始的資料，()內的條件設定預撈取的比數
+`limitToLast()` => 反之，從最後一筆開始撈資料
+```
+peopleRef.orderByChild('weight').startAt(2000).limitToLast(2).once('value', (snapshot) => {
+  snapshot.forEach((node) => {
+    console.log(node.val())
+  })
+})
+```
+## 時間
+先透過 `JS` 原生語法檢查時間：
+```
+let time = new Date()
+console.log(time)
+console.log(time.getFullYear())
+// 在 JS 中，0 = 1月
+console.log(time.getMonth())
+// 週日(禮拜7) = 0、週一(禮拜一) = 1
+console.log(time.getDay())
+console.log(time.getHours())
+console.log(time.getMinutes())
+console.log(time.getSeconds())
+// 1000毫秒 = 1秒
+console.log(time.getMilliseconds())
+```
+### UNIX 時間
+從協調世界時1970年1月1日0時0分0秒起算至今
+```
+let time = new Date()
+time.getTime()  // 拿到總秒數
+```

@@ -2,7 +2,7 @@
 title: Node & NPM Version Path Fixed
 date: 2019-12-01 15:35:57
 tags:
-  - Node
+  - Node.js
   - NPM
   - NVM
 ---
