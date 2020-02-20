@@ -3,7 +3,7 @@ title: Node 基礎知識
 date: 2020-01-27 23:35:59
 tags: Node.js
 ---
-記錄自己學習`node.js`基礎API用法。
+記錄自己學習 Node.js 基礎API用法。
 <!--more-->
 ## require、module exports
 `require`語法可以載入檔案，反之`module.exports`則能導出內容。寫法如下：
