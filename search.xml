@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Quasar(Vue.js Framework)</title>
+    <url>/2020/02/18/UI-Quasar/</url>
+    <content><![CDATA[<p>Quasar Framework 是支援 Vue.js 的 UI 框架，作者設計出發的概念還蠻宏偉的，兼容全平台，實用性與否還有待評估，這邊先按照作者的教學實作看看。</p>
+<a id="more"></a>
+<h2 id="Imstall"><a href="#Imstall" class="headerlink" title="Imstall"></a>Imstall</h2><p><a href="https://quasar.dev/" target="_blank" rel="noopener">官網連結</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn global add @quasar&#x2F;cli</span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line">npm install -g @quasar&#x2F;cli</span></pre></td></tr></table></figure>
+<h3 id="Quasar-Cli"><a href="#Quasar-Cli" class="headerlink" title="Quasar Cli"></a>Quasar Cli</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">quasar create project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd project</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">quasar dev</span></pre></td></tr></table></figure>
+<h3 id="Install-Pug"><a href="#Install-Pug" class="headerlink" title="Install Pug"></a>Install Pug</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add --dev pug pug-plain-loader</span></pre></td></tr></table></figure>
+<h4 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; quasar.conf.js</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">build: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  extendWebpack (cfg) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cfg.module.rules.push(&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      test: &#x2F;\.pug$&#x2F;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      loader: &#39;pug-plain-loader&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<h3 id="Install-Firebase"><a href="#Install-Firebase" class="headerlink" title="Install Firebase"></a>Install Firebase</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add firebase</span></pre></td></tr></table></figure>
+<h2 id="Error-Fixed"><a href="#Error-Fixed" class="headerlink" title="Error Fixed"></a>Error Fixed</h2><p>資料無法正常送出</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">q-btn 若僅加上 type&#x3D;&quot;submit&quot; 無法正常送出 q-form 內的資料</span></pre></td></tr><tr><td class="code"><pre><span class="line">需在 q-btn 本身再補上一個 @click 事件，才能執行 methods</span></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Quasar</tag>
+        <tag>Vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Express 框架運用與理解</title>
     <url>/2020/02/16/node-Express/</url>
     <content><![CDATA[<p>Express 算是比較老牌的輕量級 Node.js Web 框架，透過學習使用 Express 來加深自己對 Node 的理解，同時提高對後端的認知。</p>
@@ -152,7 +171,7 @@
   <entry>
     <title>ES6：筆記整理</title>
     <url>/2020/02/09/es6-note/</url>
-    <content><![CDATA[<p>整理散落各方的<code>ES6</code>筆記，方便自己日後查詢。</p>
+    <content><![CDATA[<p>整理散落各方的 ES6 筆記，方便自己日後查詢。</p>
 <a id="more"></a>
 <h2 id="變數宣告"><a href="#變數宣告" class="headerlink" title="變數宣告"></a>變數宣告</h2><p>傳統變數宣告採用 <code>var</code> 的方式，但容易存在污染環境的問題。因此在 ES6 的語法中，新增兩個變數宣告方式 <code>let、const</code>。</p>
 <h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>使用 const 定義常數，意味著這個變數不作變動，且要求一定要賦值。</p>
@@ -179,7 +198,7 @@
   <entry>
     <title>Node 基礎知識</title>
     <url>/2020/01/27/node-basic-knowledge/</url>
-    <content><![CDATA[<p>記錄自己學習<code>node.js</code>基礎API用法。</p>
+    <content><![CDATA[<p>記錄自己學習 Node.js 基礎API用法。</p>
 <a id="more"></a>
 <h2 id="require、module-exports"><a href="#require、module-exports" class="headerlink" title="require、module exports"></a>require、module exports</h2><p><code>require</code>語法可以載入檔案，反之<code>module.exports</code>則能導出內容。寫法如下：<br>app.js</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let content &#x3D; require(&#39;.&#x2F;app2&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(content)</span></pre></td></tr></table></figure>
