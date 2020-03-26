@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="Git 雖然是基本知識，但有時操作上，還是不免出現一些 Error，記錄當中的解法，方便日後快速排查問題。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T13:37:38.057Z">
+<meta property="og:updated_time" content="2020-03-21T15:11:39.494Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/01/git-command-error-fixed/">
@@ -232,10 +232,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-01 15:24:16 / Modified: 21:37:38" itemprop="dateCreated datePublished" datetime="2019-12-01T15:24:16+08:00">2019-12-01</time>
+              <time title="Created: 2019-12-01 15:24:16" itemprop="dateCreated datePublished" datetime="2019-12-01T15:24:16+08:00">2019-12-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-03-21 23:11:39" itemprop="dateModified" datetime="2020-03-21T23:11:39+08:00">2020-03-21</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -260,6 +266,20 @@
 <h2 id="初始化錯誤"><a href="#初始化錯誤" class="headerlink" title="初始化錯誤"></a>初始化錯誤</h2><p>由於之前習慣性從遠端 clone 下來，所以<code>.git</code>檔案同時會被準備完成，但這次因為嘗試自動部署<code>Hexo</code>，在推送時跳出下面這個錯誤。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">fatal: Not a git repository (or any of the parent directories): .git</span></pre></td></tr></table></figure>
 <p>這個錯誤是說明，要推送的檔案不是一個<code>git</code>的<code>repository</code>，所以<code>git</code>在這個目錄底下會找不到<code>.git</code>檔案。解決方式是，執行指令<code>git init</code>，這樣就等於初始化一個<code>git repo</code>。</p>
+<h2 id="GitLab-推送失敗錯誤"><a href="#GitLab-推送失敗錯誤" class="headerlink" title="GitLab 推送失敗錯誤"></a>GitLab 推送失敗錯誤</h2><p>這邊在 push branch 到 GitLab 時遇到一個問題，狀況如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">GitLab: The project you were looking for could not be found.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span></pre></td></tr></table></figure>
+<p>遠端的 GitLab 找不到我的 repository 位置，這邊會出現兩種可能，第一是還沒加入 SSH Key，第二是 SSH Key 正確，但需要重新更換遠端的名稱，首先輸入下面的指令，檢查本機公鑰有沒有正常加入 GitLab：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh -T git@gitlab.com</span></pre></td></tr></table></figure>
+<p>如果出現 <code>Permission Denied (publickey)</code> 那就需要執行生成 SSH Key，並將公鑰加入 GitLab。</p>
+<ol>
+<li>生成 SSH Key：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR EMAIL&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意生成過程中，會要求設定私人密碼，需要自己記住</span></pre></td></tr></table></figure></li>
+<li>進入 ssh 底下，會看到兩個新的檔案：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">id_rsa &#x3D;&gt; 私鑰</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">id_rsa.pub &#x3D;&gt; 公鑰 &#x2F;&#x2F; 使用 vscode 將公鑰的檔案打開，複製裡面的內容</span></pre></td></tr></table></figure></li>
+<li>回到 GitLab，操作路徑：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">點選右上角圖像&#x2F;setting&#x2F;左側 SSH Keys</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 將剛剛複製的內容貼到中間的輸入框，並點擊下方的 add key</span></pre></td></tr></table></figure></li>
+<li>回到終端機，再次輸入<code>ssh -T git@gitlab.com</code>，這時會要求你輸入剛剛設定的私人密碼，成功後應該會看下面的文字：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Welcome to GitLab, @Your_name!</span></pre></td></tr></table></figure>
+到這邊第一步設定 SSH Keys 完成，但我嘗試重新 push 一次依然失敗：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">remote: The project you were looking for could not be found.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">fatal: repository &#39;https:&#x2F;&#x2F;gitlab.com&#x2F;Your_name&#x2F;Your_project.git&#x2F;&#39; not found</span></pre></td></tr></table></figure></li>
+<li>重新更新並配對一次遠端名稱：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">git remote rename origin old-origin</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">git remote add origin git@gitlab.com:Your_name&#x2F;Your_project.git</span></pre></td></tr></table></figure>
+到此，檔案就能正常推送到遠端了。</li>
+</ol>
 
     </div>
 
@@ -323,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化錯誤"><span class="nav-number">1.</span> <span class="nav-text">初始化錯誤</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化錯誤"><span class="nav-number">1.</span> <span class="nav-text">初始化錯誤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GitLab-推送失敗錯誤"><span class="nav-number">2.</span> <span class="nav-text">GitLab 推送失敗錯誤</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -339,14 +359,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

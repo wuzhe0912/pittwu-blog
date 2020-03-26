@@ -1,16 +1,393 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Quasar(Vue.js Framework)</title>
-    <url>/2020/02/18/UI-Quasar/</url>
+    <title>Nuxt.js II - 開發準備</title>
+    <url>/2020/03/22/nuxt-basic-II/</url>
+    <content><![CDATA[<p>記錄 Nuxt 專案開發與起步的流程。</p>
+<a id="more"></a>
+<h2 id="Nuxt-js-的注意事項"><a href="#Nuxt-js-的注意事項" class="headerlink" title="Nuxt.js 的注意事項"></a>Nuxt.js 的注意事項</h2><p>Nuxt =&gt; 基底語法以 node.js 為主，因此 node 不支援的語法，即便是 Vue 的語法也不可行。</p>
+<ol>
+<li>Nuxt 的 <code>created()</code> =&gt; 不可使用 window、alert、document 等原生屬性。<ul>
+<li>node.js 本身是在 server 端環境運行，而非瀏覽器，自然吃不到瀏覽器的屬性</li>
+</ul>
+</li>
+<li>Nuxt =&gt; 基底語法以 node.js 為主，因此 node 不支援的語法，即便是 Vue 的語法也不可行。</li>
+<li>需優先考慮 node 的執行環境。</li>
+</ol>
+<h3 id="路徑"><a href="#路徑" class="headerlink" title="路徑"></a>路徑</h3><p>Nuxt 本身已經封裝了許多 Vue-cli 功能，譬如 router 本身在 Vue 需要設置，但在 Nuxt 只要建立好頁面，router 就會自動匹配。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li>同 Vue 相同，Nuxt 也是採用 shorthand：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">methods: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  formatter () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="install-scss"><a href="#install-scss" class="headerlink" title="install scss"></a>install scss</h2><p>在 Nuxt 環境中，<code>~</code>、<code>@</code>兩者皆通用，都被指向根目錄。但非 nuxt 結構的 js 檔與 nuxt.config.js 則不吃這個規則，必須使用過往的<code>./</code>尋找。</p>
+<ul>
+<li>install plugin<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add pug pug-plain-loader</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add node-sass sass-loader</span></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Nuxt.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nuxt.js I - 架站與手動部署</title>
+    <url>/2020/03/21/nuxt-basic-I/</url>
+    <content><![CDATA[<p>記錄 Nuxt 前期架站準備工作。</p>
+<a id="more"></a>
+<h2 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h2><ol>
+<li>node =&gt; 已使用 nvm 管理安裝版本。</li>
+<li>git =&gt; homebrew 已安裝。</li>
+<li>GitLab 帳號已申請。</li>
+</ol>
+<h2 id="關於-Nuxt-js"><a href="#關於-Nuxt-js" class="headerlink" title="關於 Nuxt.js"></a>關於 Nuxt.js</h2><ul>
+<li>優點<ul>
+<li>核心要解決 SPA 網站的 SEO 問題</li>
+<li>對於個人開發者來說，如果熟悉 Node.js 可以將前後端整合在同一專案</li>
+<li>促使前端可以處理一部分後端功能，例如緩存資料之類的，使 API 負擔減輕</li>
+<li>Nuxt.js 可以多做一層轉發關於安全性的資訊，對網站安全較佳</li>
+</ul>
+</li>
+<li>缺點<ul>
+<li>沒有 SEO 需求的網站，基本不需要使用 Nuxt.js(例如後台)</li>
+<li>學習 Nuxt.js 需要理解部分後端原理知識，學習成本高</li>
+<li>開發難度增加，Server 的負擔也會變重</li>
+</ul>
+</li>
+</ul>
+<h2 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h2><ul>
+<li>GitLab create new project</li>
+<li>install(這邊嘗試使用 npx)<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx create-nuxt-app project-name</span></pre></td></tr></table></figure></li>
+<li>連接上遠端 repository<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init &#x3D;&gt; 通常現在腳手架工具都會處理好，可省略</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 按照 GitLab 步驟執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">1. git remote add origin https:&#x2F;&#x2F;gitlab.com&#x2F;xxx</span></pre></td></tr><tr><td class="code"><pre><span class="line">2. git add.</span></pre></td></tr><tr><td class="code"><pre><span class="line">3. git commit -m &#39;initial commit&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">4. git branch develop</span></pre></td></tr><tr><td class="code"><pre><span class="line">5. git push -u origin develop</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Push-Error"><a href="#Push-Error" class="headerlink" title="Push Error"></a>Push Error</h3><p>這邊在 push branch 到 GitLab 時遇到一個問題，狀況如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GitLab: The project you were looking for could not be found.</span></pre></td></tr><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span></pre></td></tr></table></figure>
+<p>遠端的 GitLab 找不到我的 repository 位置，這邊會出現兩種可能，第一是還沒加入 SSH Key，第二是 SSH Key 正確，但需要重新更換遠端的名稱，首先輸入下面的指令，檢查本機公鑰有沒有正常加入 GitLab：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -T git@gitlab.com</span></pre></td></tr></table></figure>
+<p>如果出現 <code>Permission Denied (publickey)</code> 那就需要執行生成 SSH Key，並將公鑰加入 GitLab。</p>
+<ol>
+<li>生成 SSH Key：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR EMAIL&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd ~&#x2F;.ssh&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意生成過程中，會要求設定私人密碼，需要自己記住</span></pre></td></tr></table></figure></li>
+<li>進入 ssh 底下，會看到兩個新的檔案：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">id_rsa &#x3D;&gt; 私鑰</span></pre></td></tr><tr><td class="code"><pre><span class="line">id_rsa.pub &#x3D;&gt; 公鑰 &#x2F;&#x2F; 使用 vscode 將公鑰的檔案打開，複製裡面的內容</span></pre></td></tr></table></figure></li>
+<li>回到 GitLab，操作路徑：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">點選右上角圖像&#x2F;setting&#x2F;左側 SSH Keys</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 將剛剛複製的內容貼到中間的輸入框，並點擊下方的 add key</span></pre></td></tr></table></figure></li>
+<li>回到終端機，再次輸入<code>ssh -T git@gitlab.com</code>，這時會要求你輸入剛剛設定的私人密碼，成功後應該會看下面的文字：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Welcome to GitLab, @Your_name!</span></pre></td></tr></table></figure>
+到這邊第一步設定 SSH Keys 完成，但我嘗試重新 push 一次依然失敗：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">remote: The project you were looking for could not be found.</span></pre></td></tr><tr><td class="code"><pre><span class="line">fatal: repository &#39;https:&#x2F;&#x2F;gitlab.com&#x2F;Your_name&#x2F;Your_project.git&#x2F;&#39; not found</span></pre></td></tr></table></figure></li>
+<li>重新更新並配對一次遠端名稱：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rename origin old-origin</span></pre></td></tr><tr><td class="code"><pre><span class="line">git remote add origin git@gitlab.com:Your_name&#x2F;Your_project.git</span></pre></td></tr></table></figure>
+到此，檔案就能正常推送到遠端了。</li>
+</ol>
+<h2 id="架站與部署"><a href="#架站與部署" class="headerlink" title="架站與部署"></a>架站與部署</h2><ol>
+<li>建立 GCP 帳號</li>
+<li>操作路徑：左側 menu/Computer Engine/VM 執行個體/建立</li>
+<li>機器類型 =&gt; g1-small(小型專案)</li>
+<li>開機磁碟 =&gt; Ubuntu 18.04 LTS</li>
+<li>防火牆 =&gt; 允許 HTTP 流量、允許 HTTPS 流量</li>
+</ol>
+<h2 id="登入-Linux-主機"><a href="#登入-Linux-主機" class="headerlink" title="登入 Linux 主機"></a>登入 Linux 主機</h2><ul>
+<li>google gcp 瀏覽器介面登入<br>打開 gcp 專案，專案右側有一個 dropdown 連接 ssh，點擊打開下拉選單，選擇在瀏覽視窗中開啟。</li>
+<li>操作指令<br>大多和 mac 的操作相同，記錄比較少用的指令：<br>下載 url 上的檔案<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget (網址路徑)</span></pre></td></tr></table></figure>
+刪除資料<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm (檔案名稱)</span></pre></td></tr></table></figure>
+刪除資料夾<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rm -r (資料名稱)</span></pre></td></tr></table></figure>
+複製文件到指定路徑<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp 檔案名稱 欲加入的檔案名稱</span></pre></td></tr></table></figure>
+複製資料夾<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cp -r a b</span></pre></td></tr></table></figure>
+建立檔案<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">touch 檔案名稱</span></pre></td></tr></table></figure>
+查看系統記憶體<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">free -h</span></pre></td></tr></table></figure>
+登出 Linux<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">exit</span></pre></td></tr></table></figure>
+重開機 Linux<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo reboot</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="PM2"><a href="#PM2" class="headerlink" title="PM2"></a>PM2</h2><p>一個開源的 Node.js 流程管理器，重開機可以自動重啟 Node，另外也能針對 cpu 進行負載均衡設定。Nuxt 需安裝 nuxt-start 套件來搭配使用 pm2。</p>
+<ul>
+<li>install pm2<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install pm2 -g</span></pre></td></tr><tr><td class="code"><pre><span class="line">or</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn global add pm2</span></pre></td></tr></table></figure></li>
+<li>install nuxt-start<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install nuxt-start</span></pre></td></tr><tr><td class="code"><pre><span class="line">or</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add nuxt-start</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="使用-PM2-架設-Nuxt-站台-本地"><a href="#使用-PM2-架設-Nuxt-站台-本地" class="headerlink" title="使用 PM2 架設 Nuxt 站台(本地)"></a>使用 PM2 架設 Nuxt 站台(本地)</h2><ul>
+<li>生產環境</li>
+</ul>
+<ol>
+<li>pm2 init =&gt; 初始化，產生 ecosystem.config.js<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  apps:[&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;project_name&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    script: &#39;.&#x2F;node_modules&#x2F;nuxt-start&#x2F;bin&#x2F;nuxt-start.js&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    instances: &#39;max&#39;, &#x2F;&#x2F; 負載平衡模式下的 cpu 數量</span></pre></td></tr><tr><td class="code"><pre><span class="line">    exec_mode: &#39;cluster&#39;, &#x2F;&#x2F; 負載平衡模式</span></pre></td></tr><tr><td class="code"><pre><span class="line">    max_memory_restart: &#39;1G&#39;, &#x2F;&#x2F; 緩存了多少記憶體重新整理</span></pre></td></tr><tr><td class="code"><pre><span class="line">    port: 3001 &#x2F;&#x2F; 指定伺服器上的 port </span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;]</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>yarn run build</li>
+<li>pm2 start =&gt; 啟用 ecosystem.config.js 的內容</li>
+</ol>
+<h2 id="pm2-指令"><a href="#pm2-指令" class="headerlink" title="pm2 指令"></a>pm2 指令</h2><p>啟動 pm2 =&gt; ecosystem.config.js</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pm2 start</span></pre></td></tr></table></figure>
+<p>查看目前的 server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pm2 list</span></pre></td></tr></table></figure>
+<p>停用全部 server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pm2 stop all</span></pre></td></tr></table></figure>
+<p>刪除指定 ID 的 server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pm2 delete 4</span></pre></td></tr></table></figure>
+<p>刪除全部 server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pm2 delete all</span></pre></td></tr></table></figure>
+<p>重新整理所有 server =&gt; 使用情境，git pull 後需重新整理 server</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pm2 reload all</span></pre></td></tr></table></figure>
+<p>儲存目前的 pm2 server，重開機後會還原</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pm2 save</span></pre></td></tr></table></figure>
+<p>檢查 pm2 錯誤(使用 log 排查)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pm2 log</span></pre></td></tr></table></figure>
+
+<ul>
+<li>pm2 容易被快取卡住，這時候必須砍掉重新安裝 pm2<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm uninstall pm2 -g</span></pre></td></tr><tr><td class="code"><pre><span class="line">~&#x2F;.pm2   &#x3D;&gt; 這個要整個砍掉(不然會被快取)</span></pre></td></tr><tr><td class="code"><pre><span class="line">npm install pm2 -g</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="GCP-Linux-主機安裝環境-server"><a href="#GCP-Linux-主機安裝環境-server" class="headerlink" title="GCP Linux 主機安裝環境(server)"></a>GCP Linux 主機安裝環境(server)</h2><ol>
+<li>install node.js<ul>
+<li>install nvm<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -qO- https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;nvm-sh&#x2F;nvm&#x2F;v0.35.3&#x2F;install.sh | bash</span></pre></td></tr></table></figure></li>
+<li>安裝後，為了要生效 nvm，需要重新啟動終端機</li>
+<li>nvm ls-remote =&gt; nvm install last-version</li>
+</ul>
+</li>
+<li>install pm2<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install pm2 -g</span></pre></td></tr></table></figure>
+pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切換node版本，會導致pm2失效。</li>
+<li>install git<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span></pre></td></tr><tr><td class="code"><pre><span class="line">sudo apt install git</span></pre></td></tr></table></figure></li>
+<li>install nginx<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt update</span></pre></td></tr><tr><td class="code"><pre><span class="line">sudo apt install nginx</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="git-手動部署-遠端-Linux-操作"><a href="#git-手動部署-遠端-Linux-操作" class="headerlink" title="git 手動部署 + 遠端 Linux 操作"></a>git 手動部署 + 遠端 Linux 操作</h2><ul>
+<li>先將 develop 分支進行 commit<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span></pre></td></tr><tr><td class="code"><pre><span class="line">git commit -m &#39;commit content&#39;</span></pre></td></tr></table></figure></li>
+<li>切回 master 分支，再將 develop merge<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout master</span></pre></td></tr><tr><td class="code"><pre><span class="line">git merge develop</span></pre></td></tr></table></figure></li>
+<li>master 推送到 Gitlab<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin master</span></pre></td></tr></table></figure></li>
+<li>回到 gcp</li>
+</ul>
+<ol>
+<li>瀏覽器打開 Linux 介面</li>
+<li>git clone 專案(注意 gitlab 是否已先切回 master 分支)<ul>
+<li>日後遠端 gitlab 專案若有更新(git pull 進行同步) =&gt; pm2 reload id</li>
+</ul>
+</li>
+<li>cd 專案</li>
+<li>npm install</li>
+<li>npm run build</li>
+<li>啟用 pm2 站台</li>
+</ol>
+<h2 id="網域設定-DNS"><a href="#網域設定-DNS" class="headerlink" title="網域設定 DNS"></a>網域設定 DNS</h2><ul>
+<li>設定 A 記錄</li>
+</ul>
+<ol>
+<li>前往任何網址商購買網址 =&gt; 這邊使用 godady</li>
+<li>購買完成後，打開右上角的 My Products =&gt; 進入自己購買的網址</li>
+<li>選擇要綁定的 Domain，點擊右方的 DNS 進入</li>
+<li>選擇第一列的 A 記錄，右邊可以進行編輯</li>
+<li>複製 gcp 專案的外部 IP，貼到指向欄位(Points to)</li>
+<li>將 gcp 外部 IP 轉為靜態 =&gt; 左側選單/VPC網路/外部IP位址/調整類型</li>
+</ol>
+<h2 id="Nginx-反向代理設定"><a href="#Nginx-反向代理設定" class="headerlink" title="Nginx 反向代理設定"></a>Nginx 反向代理設定</h2><ul>
+<li>nginx =&gt; 一種網頁伺服器，就是架設網頁的軟體，其他還有 IIS、Apache</li>
+</ul>
+<p>一般而言，node.js 為求提高效能，多會採用 nginx 來架站。</p>
+<ol>
+<li>node 使用 pm2 建立後，port 的設定不可低於1024，避免安全性問題。</li>
+<li>架設 nginx server(nginx 監聽 80 port)</li>
+<li>nginx 透過反向代理機制，將來源網址代理到 node 站台</li>
+</ol>
+<ul>
+<li>nginx 指令</li>
+</ul>
+<ol>
+<li>啟動 nginx server<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo nginx</span></pre></td></tr></table></figure></li>
+<li>重新整理 nginx server<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo nginx -s reload</span></pre></td></tr></table></figure></li>
+<li>快速停用 server<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo nginx -s stop</span></pre></td></tr></table></figure></li>
+<li>nginx 位置：/etc/nginx =&gt; 預設</li>
+<li>檢查 nginx log<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nginx log</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="nginx-config-設定"><a href="#nginx-config-設定" class="headerlink" title="nginx config 設定"></a>nginx config 設定</h2><ul>
+<li>第一個入口點 =&gt; nginx.conf</li>
+<li>vi 編輯器 =&gt; 常見的是 vim，這邊使用 nano</li>
+</ul>
+<ol>
+<li>sudo nano /etc/nginx/conf.d/pittwu.fun.conf</li>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  server_name pittwu.fun www.pittwu.fun;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  location &#x2F; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    proxy_pass http:&#x2F;&#x2F;localhost:3001;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="SSL-憑證"><a href="#SSL-憑證" class="headerlink" title="SSL 憑證"></a>SSL 憑證</h2><p>SSL For Free =&gt; 取得免費憑證(憑證機構：Let’s Encypt)，缺點每三個月會過期，為此 Linux 可以透過 certbot 來自動更新憑證。</p>
+<ul>
+<li>install certbot</li>
+</ul>
+<ol>
+<li>指令：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. sudo apt-get update</span></pre></td></tr><tr><td class="code"><pre><span class="line">2. sudo apt-get install software-properties-common &#x2F;&#x2F; 載入 certbot 的 ppa</span></pre></td></tr><tr><td class="code"><pre><span class="line">3. sudo add-apt-repository ppa:certbot&#x2F;certbot</span></pre></td></tr><tr><td class="code"><pre><span class="line">4. sudo apt-get update</span></pre></td></tr><tr><td class="code"><pre><span class="line">5. sudo apt-get install python-certbot-nginx # install python&#39;s certbot for nginx</span></pre></td></tr></table></figure></li>
+<li>產生憑證：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo certbot --nginx</span></pre></td></tr></table></figure></li>
+<li>重新整理 nginx：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo nginx -s reload</span></pre></td></tr></table></figure></li>
+<li>檢查憑證續約狀況<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo certbot renew --dry-run</span></pre></td></tr></table></figure></li>
+<li>執行憑證續約動作<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo certbot renew</span></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Nuxt.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>關於 SEO 簡述</title>
+    <url>/2020/03/18/vue-seo/</url>
+    <content><![CDATA[<p>關於 SEO 方面的一些簡述。</p>
+<a id="more"></a>
+<h2 id="過往的觀點"><a href="#過往的觀點" class="headerlink" title="過往的觀點"></a>過往的觀點</h2><p>雖然以往刻板認知，搜尋引擎無法爬到現代 SPA 網頁的內容，但其實現代瀏覽器已經有能力抓到 JS Render 出來的內容，但還是以靜態為主，ajax 呼叫的內容依然無法。其中又以 Chrome 能更近一步抓到 Render 出來的連結。</p>
+<h2 id="作者的觀點"><a href="#作者的觀點" class="headerlink" title="作者的觀點"></a>作者的觀點</h2><p>尤大大在面對SEO這個問題時，有提出自己的論點，SPA依然側重於實現後台類系統頁面，諸如會員、帳務相關，這些後台頁面，本質上就完全不仰賴SEO，畢竟他們是 for 內部人員使用。</p>
+<p>至於 landing page，此類較無動態資料的網頁，他建議直接寫成靜態頁面，或是將 Vue 專案透過 Prerender 進行轉換。而高度交互或是大量動態資料的網站，則改使用 SSR(Server Side Rendering)。</p>
+<h2 id="如何處理-SEO"><a href="#如何處理-SEO" class="headerlink" title="如何處理 SEO"></a>如何處理 SEO</h2><p>比較早期的做法是使用 Prerender 的插件，但我個人的主觀觀點是，中大型網站隨著 Nuxt 框架越發成熟，大多改用 Nuxt，而小型網站坦白說依賴網站SEO效益，不如經營社群媒體成效更佳。</p>
+<p>另外，這幾年，有另一種針對這種靜態網站的解決方案也被提出來：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">React &#x3D;&gt; Gatsby</span></pre></td></tr><tr><td class="code"><pre><span class="line">Vue &#x3D;&gt; Gridsome</span></pre></td></tr></table></figure>
+<p>這一類的靜態網站解決方案，除了以其封裝的框架為基底，同時也對SEO友好，更支援PWA。部署方面則和近年很夯的 Netlify 相結合，同時將後端服務分散各類雲端sass，形成自有的生態圈，或許會是未來的一個技術方向。</p>
+]]></content>
+      <tags>
+        <tag>Vue.js</tag>
+        <tag>SEO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端自動化測試基礎知識</title>
+    <url>/2020/03/18/test-basic/</url>
+    <content><![CDATA[<p>之前工作的團隊是完全不碰這塊的，所以本身沒有摸過，但考慮到目前整體趨勢上，不少公司的前端正在導入測試，還是記錄一些筆記，方便未來能夠上手。</p>
+<a id="more"></a>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>e.g.<br>許多舊專案的維護，改動不易，且重構成本高昂，且在重構的過程中，可能面臨需求改動，或是重構過中忽略一些歷史因素，導致功能不足前功盡棄。為了降低重構成本，在重構前預先準備測試，這樣在階段性重構的過程，這些測試皆會被調用，若測試沒過，代表重構的程式碼存在問題，第一時間先進行修復，避免出現重構完才發現重構程式存在瑕疵。</p>
+<h3 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h3><p>結構</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- index.html</span></pre></td></tr><tr><td class="code"><pre><span class="line">- math.js</span></pre></td></tr><tr><td class="code"><pre><span class="line">- math.test.js</span></pre></td></tr></table></figure>
+<p>我將 math.js 寫好兩個計算函數並引入 index.html，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function add (a, b) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return a + b</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">function minus (a, b) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 這邊我故意寫錯，將減法寫成除法</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return a &#x2F; b</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>同時準備測試代碼在 <code>math.test.js</code>，當然這邊的結構是無法直接執行測試，所以我們將測試程式丟到瀏覽器上的<code>console</code>測試時，在 run 的過程中因為函數本身有錯誤，這時就會進入 throw，提醒我哪邊發生錯誤了，可以回頭去檢視。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 預先將結果寫出來</span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; add(2, 4)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var expected &#x3D; 6</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">if (result !&#x3D;&#x3D; 6) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; throw 拋出例外狀況</span></pre></td></tr><tr><td class="code"><pre><span class="line">  throw Error(</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#96;2 + 6 應該等於 $&#123;expected&#125;，但結果卻是 $&#123;result&#125;，請檢查add()&#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  )</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var result &#x3D; minus(10, 5)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var expected &#x3D; 5</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">if (result !&#x3D;&#x3D; 5) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  throw Error(</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#96;10 - 5 應該等於 $&#123;expected&#125;，但結果卻是 $&#123;result&#125;，請檢查minus()&#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  )</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>如此一來，未來如果進行擴充新函數時，而我不小心手殘改到舊的函數時，在 run 測試的時候，我也可以獲得提醒，避免發生不必要的 bug。</p>
+<h3 id="封裝"><a href="#封裝" class="headerlink" title="封裝"></a>封裝</h3><p>除了上述寫法，也可以將測試的函數合併在一起。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function expect (result) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(result)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    toBe: function(actual) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      console.log(actual)</span></pre></td></tr><tr><td class="code"><pre><span class="line">      if (result !&#x3D;&#x3D; actual) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        throw new Error(</span></pre></td></tr><tr><td class="code"><pre><span class="line">          &#96;程式碼執行結果和預期結果不同，預期是$&#123;actual&#125;，結果卻是$&#123;result&#125;&#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        )</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 測試描述，方便測試後，更好理解哪一部分出現錯誤</span></pre></td></tr><tr><td class="code"><pre><span class="line">function testDescription(desc, params) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  try &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    params()</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;$&#123;desc&#125; 已通過測試&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  catch(err) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;$&#123;desc&#125; 未通過測試 $&#123;err&#125;&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">testDescription(&#39;測試加法函數&#39;, () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  expect(add(2, 4)).toBe(6)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">testDescription(&#39;測試減法函數&#39;, () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  expect(minus(10, 5)).toBe(5)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>假設我故意將<code>minus()</code>寫成+法，那拿到的 result(函數計算的結果)和 actual(預期的結果)將不會相等，則會拋出 throw。</p>
+<h2 id="Jest"><a href="#Jest" class="headerlink" title="Jest"></a>Jest</h2><ul>
+<li>速度快<ul>
+<li>a、b兩者互不關聯的函數，若僅改a，但b未改動，則b不做測試，節省測試時間。</li>
+</ul>
+</li>
+<li>多項目並行<ul>
+<li>若前後台專案，使用不同框架或是一方使用Vue，另一方使用Node，依然可以並行測試。</li>
+</ul>
+</li>
+</ul>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd project</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn init</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 測試僅需要運行在開發環境</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add jest --dev</span></pre></td></tr></table></figure>
+<h3 id="use"><a href="#use" class="headerlink" title="use"></a>use</h3><p>在<code>Jest</code>中，已經提供了<code>test()</code>和<code>expect()</code>，直接使用即可。</p>
+<ul>
+<li>導出，在<code>math.js</code>中使用<code>module.exports</code>將函數導出。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function add (a, b) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return a + b</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">function minus (a, b) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return a - b</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  add,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  minus</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<li>引入，在<code>math.test.js</code>中將導出的函數引入測試。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const math &#x3D; require(&#39;.&#x2F;math.js&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">const &#123; add, minus &#125; &#x3D; math</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">test(&#39;測試加法函數&#39;, () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  expect(add(2, 4)).toBe(6)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">test(&#39;測試減法函數&#39;, () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  expect(minus(10, 5)).toBe(5)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure></li>
+<li><code>package.json</code>腳本加入運行<code>Jest</code>指令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 這個指令執行後，會去尋找目錄下，以 test.js 結尾的文件，並加以運行</span></pre></td></tr><tr><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;test&quot;: &quot;jest&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+接著在終端機運行<code>yarn run test</code>，就可以看到測試的過程。<br><code>Jest</code>的主要功能在於單元測試與集成測試，但這兩者本質上就是單一模組測試和多模組測試。所以為了配合<code>Jest</code>，必須將既有的函數透過<code>module.exports</code>的方式轉為模組化後，才能讓<code>Jest</code>調用測試。</li>
+<li>測試環境和瀏覽器環境<br>一般來說，在沒有<code>cli</code>之類的工具下，瀏覽器無法自動編譯<code>module</code>，但對測試環境來說需要<code>module</code>，所以需要透過<code>try catch</code>包裹，避免出現紅字錯誤。不過實務上，我們目前開發大多已在腳手架工具內，自動會協助處理編譯，所以其實是不需要<code>try catch</code>包裹。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#39;test&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    add,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    minus</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">catch (err) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(err)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h3><ul>
+<li>指令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn jest --init</span></pre></td></tr></table></figure>
+這道指令的目的，在於啟用<code>node_modules</code>下的<code>Jest</code>進行初始化。執行指令後，接下來會詢問測試環境是<code>Node</code>還是瀏覽器，是否生成覆蓋率報告，測試結束後是否自動清除模擬。這邊選瀏覽器環境，其他則都選y，最後目錄下會生成<code>jest.config.js</code>的檔案。</li>
+<li>jest.config.js<br>在設定檔中，可以看到下面這一行，意思是生成覆蓋率報告時，會自動存放於<code>coverage</code>的資料夾內。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">coverageDirectory: &quot;coverage&quot;</span></pre></td></tr></table></figure>
+同時因為剛剛選擇的是瀏覽器環境，所以預設會註釋<code>browser</code><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; browser: false</span></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>自動化測試</tag>
+        <tag>Jest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JS 基礎知識補充</title>
+    <url>/2020/03/15/js-basic/</url>
+    <content><![CDATA[<p>補強 JS 基礎知識，方便自己隨時複習。</p>
+<a id="more"></a>
+<h2 id="JS-變數類型"><a href="#JS-變數類型" class="headerlink" title="JS 變數類型"></a>JS 變數類型</h2><h3 id="value-type"><a href="#value-type" class="headerlink" title="value type"></a>value type</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 單純的賦值</span></pre></td></tr><tr><td class="code"><pre><span class="line">let a &#x3D; 10</span></pre></td></tr><tr><td class="code"><pre><span class="line">let b &#x3D; 20</span></pre></td></tr><tr><td class="code"><pre><span class="line">a &#x3D; 30</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(b) &#x3D;&gt; ? &#x2F;&#x2F; 20</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let a &#x3D; &#39;test&#39; &#x2F;&#x2F; string</span></pre></td></tr><tr><td class="code"><pre><span class="line">let b &#x3D; 100 &#x2F;&#x2F; number</span></pre></td></tr><tr><td class="code"><pre><span class="line">let c &#x3D; true &#x2F;&#x2F; boolean</span></pre></td></tr><tr><td class="code"><pre><span class="line">let d &#x3D; Symbol(&#39;d&#39;) &#x2F;&#x2F; ES6 新增</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 另外還有 null、undefined、BigInt</span></pre></td></tr></table></figure>
+<h3 id="reference-type"><a href="#reference-type" class="headerlink" title="reference type"></a>reference type</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let a &#x3D; &#123; num: 10 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">let b &#x3D; a</span></pre></td></tr><tr><td class="code"><pre><span class="line">b.num &#x3D; 15</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(a.age) &#x3D;&gt; ? &#x2F;&#x2F; 15</span></pre></td></tr></table></figure>
+<p>不同於前者存放於 Stack(棧)，後者存放於 Heap(堆)，存放於堆的變數，看似賦值，但其實是存在電腦中一個位址，即便賦值兩個變數，但其實都是指向同一個位址，也因此就會造成覆蓋。</p>
+<h4 id="pass-by-sharing"><a href="#pass-by-sharing" class="headerlink" title="pass by sharing"></a>pass by sharing</h4><p>JS 的屬性，當有<code>function</code>時，賦值不影響外部變數，但更新可以改變變數。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 賦值無法影響</span></pre></td></tr><tr><td class="code"><pre><span class="line">let a &#x3D; &#123; num: 10 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">function changeVal(obj) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  obj &#x3D; &#123; num: 50 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">changeVal(a)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(a) &#x3D;&gt; ? &#x2F;&#x2F; &#123; num: 10 &#125;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 更新會改變</span></pre></td></tr><tr><td class="code"><pre><span class="line">let a &#x3D; &#123; num: 10 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">function changeVal(obj) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  obj.num &#x3D; 50</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">changeVal(a)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(a) &#x3D;&gt; ? &#x2F;&#x2F; &#123; num: 50 &#125;</span></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://ithelp.ithome.com.tw/articles/10191057" target="_blank" rel="noopener">重新認識 JavaScript: Day 05 JavaScript 是「傳值」或「傳址」？</a></li>
+<li><a href="https://pjchender.blogspot.com/2016/03/javascriptby-referenceby-value.html" target="_blank" rel="noopener">[筆記] 談談 JavaScript 中 by reference 和 by value 的重要觀念</a></li>
+</ul>
+<h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>檢查 value</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let a &#x3D; &#39;test&#39;      typeof(a)   &#x2F;&#x2F; string</span></pre></td></tr><tr><td class="code"><pre><span class="line">let b &#x3D; 100         typeof(b)   &#x2F;&#x2F; number</span></pre></td></tr><tr><td class="code"><pre><span class="line">let c &#x3D; true        typeof(c)   &#x2F;&#x2F; boolean</span></pre></td></tr><tr><td class="code"><pre><span class="line">let d &#x3D; Symbol(&#39;d&#39;) typeof(d)   &#x2F;&#x2F; Symbol</span></pre></td></tr><tr><td class="code"><pre><span class="line">let e               typeof(e)   &#x2F;&#x2F; undefined</span></pre></td></tr></table></figure>
+<p>檢查 function</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">typeof console.log   &#x2F;&#x2F; &#39;function&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">typeof function()&#123;&#125;  &#x2F;&#x2F; &#39;function&#39;</span></pre></td></tr></table></figure>
+<p>陣列、物件、null 都會被判斷為 object</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">typeof null        &#x2F;&#x2F; object</span></pre></td></tr><tr><td class="code"><pre><span class="line">typeof [1, 2]      &#x2F;&#x2F; object</span></pre></td></tr><tr><td class="code"><pre><span class="line">typeof &#123; num: 2 &#125;  &#x2F;&#x2F; object</span></pre></td></tr></table></figure>
+<!-- ### Deep Clone (深拷貝) -->
+<h3 id="變數計算"><a href="#變數計算" class="headerlink" title="變數計算"></a>變數計算</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let a &#x3D; 10 + 2      &#x2F;&#x2F; 12</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 如果其中有 string 會變成組合 string</span></pre></td></tr><tr><td class="code"><pre><span class="line">let b &#x3D; 10 + &#39;1&#39;    &#x2F;&#x2F; &#39;101&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">let c &#x3D; false + &#39;2&#39; &#x2F;&#x2F; &#39;false2&#39;</span></pre></td></tr></table></figure>
+<h3 id="判斷檢查"><a href="#判斷檢查" class="headerlink" title="判斷檢查"></a>判斷檢查</h3><p><code>==</code>在運算上，會盡可能讓兩側相等，容易出現許多錯誤。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">10 &#x3D;&#x3D; &#39;10&#39;         &#x2F;&#x2F; true</span></pre></td></tr><tr><td class="code"><pre><span class="line">0 &#x3D;&#x3D; &#39;&#39;            &#x2F;&#x2F; true</span></pre></td></tr><tr><td class="code"><pre><span class="line">0 &#x3D;&#x3D; false         &#x2F;&#x2F; true</span></pre></td></tr><tr><td class="code"><pre><span class="line">false &#x3D;&#x3D; &#39;&#39;        &#x2F;&#x2F; true</span></pre></td></tr><tr><td class="code"><pre><span class="line">null &#x3D;&#x3D; undefined  &#x2F;&#x2F; true</span></pre></td></tr></table></figure>
+<p>目前基本都是一律使用<code>===</code>做判斷，不會使用<code>==</code>，但如果為了判斷<code>null</code>，可以使用，但我個人是不使用<code>==</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (a &#x3D;&#x3D; null) &#123;&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 等同於</span></pre></td></tr><tr><td class="code"><pre><span class="line">if (a &#x3D;&#x3D;&#x3D; null || a &#x3D;&#x3D;&#x3D; undefined) &#123;&#125;</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue.js + Firebase 實作即時聊天室</title>
+    <url>/2020/02/26/vue-firebase-chat/</url>
+    <content><![CDATA[<p>使用<code>Vue.js</code>構建前端聊天室頁面，再介接<code>Firebase</code>作為儲存聊天訊息的資料庫。記錄自己的實作流程。</p>
+<a id="more"></a>
+<h2 id="介接-OpenWeather-API"><a href="#介接-OpenWeather-API" class="headerlink" title="介接 OpenWeather API"></a>介接 OpenWeather API</h2><p>由於首頁過於單調，所以接一隻天氣API來豐富一下頁面。<br><a href="https://home.openweathermap.org/" target="_blank" rel="noopener">OpenWeather 官網</a><br>登入後，點選<code>API keys</code>，右側輸入<code>name</code>=&gt;生成金鑰</p>
+]]></content>
+      <tags>
+        <tag>Firebase</tag>
+        <tag>Vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Node.js(建立後端API接口)</title>
+    <url>/2020/02/22/node-interface/</url>
+    <content><![CDATA[<p>嘗試理解 <code>Node.js</code> 如何建立後端API接口，簡略記下自己的建立流程。</p>
+<a id="more"></a>
+<h2 id="Install-plugin"><a href="#Install-plugin" class="headerlink" title="Install plugin"></a>Install plugin</h2><h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p>建立如註冊類的API時，需使用 <code>POST</code>，這邊安裝一個插件來應用。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add body-parser</span></pre></td></tr></table></figure>
+<h3 id="密碼加密"><a href="#密碼加密" class="headerlink" title="密碼加密"></a>密碼加密</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add bcrypt</span></pre></td></tr></table></figure>
+<h3 id="avatar-大頭貼"><a href="#avatar-大頭貼" class="headerlink" title="avatar 大頭貼"></a>avatar 大頭貼</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add gravatar</span></pre></td></tr></table></figure>
+<h3 id="jwt-token"><a href="#jwt-token" class="headerlink" title="jwt token"></a>jwt token</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add jsonwebtoken</span></pre></td></tr></table></figure>
+<h3 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add passport passport-jwt</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 指令記錄</title>
+    <url>/2020/02/21/git-command/</url>
+    <content><![CDATA[<p>前工作的前端團隊都使用 SourceTree 進行版控，相對較少使用指令操作 git，為了方便日後終端機操作，記錄一下指令功能。</p>
+<a id="more"></a>
+<ul>
+<li>初始化git專案<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git init</span></pre></td></tr></table></figure></li>
+<li>將檔案加入版本控制<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span></pre></td></tr></table></figure></li>
+<li>建立 develop 分支<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git branch develop</span></pre></td></tr></table></figure></li>
+<li>切換分支到 develop<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git checkout develop</span></pre></td></tr></table></figure></li>
+<li>推送分支到遠端<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git push -u origin develop</span></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Quasar(Vue.js UI Framework)</title>
+    <url>/2020/02/18/quasar/</url>
     <content><![CDATA[<p>Quasar Framework 是支援 Vue.js 的 UI 框架，作者設計出發的概念還蠻宏偉的，兼容全平台，實用性與否還有待評估，這邊先按照作者的教學實作看看。</p>
 <a id="more"></a>
-<h2 id="Imstall"><a href="#Imstall" class="headerlink" title="Imstall"></a>Imstall</h2><p><a href="https://quasar.dev/" target="_blank" rel="noopener">官網連結</a></p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p><a href="https://quasar.dev/" target="_blank" rel="noopener">官網連結</a></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn global add @quasar&#x2F;cli</span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line">npm install -g @quasar&#x2F;cli</span></pre></td></tr></table></figure>
 <h3 id="Quasar-Cli"><a href="#Quasar-Cli" class="headerlink" title="Quasar Cli"></a>Quasar Cli</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">quasar create project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd project</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">quasar dev</span></pre></td></tr></table></figure>
-<h3 id="Install-Pug"><a href="#Install-Pug" class="headerlink" title="Install Pug"></a>Install Pug</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add --dev pug pug-plain-loader</span></pre></td></tr></table></figure>
-<h4 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; quasar.conf.js</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">build: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  extendWebpack (cfg) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cfg.module.rules.push(&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      test: &#x2F;\.pug$&#x2F;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      loader: &#39;pug-plain-loader&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h3 id="Install-Firebase"><a href="#Install-Firebase" class="headerlink" title="Install Firebase"></a>Install Firebase</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add firebase</span></pre></td></tr></table></figure>
+<h2 id="Install-Pug"><a href="#Install-Pug" class="headerlink" title="Install Pug"></a>Install Pug</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add --dev pug pug-plain-loader</span></pre></td></tr></table></figure>
+<h3 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; quasar.conf.js</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">build: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  extendWebpack (cfg) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cfg.module.rules.push(&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      test: &#x2F;\.pug$&#x2F;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      loader: &#39;pug-plain-loader&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<h2 id="Install-Firebase"><a href="#Install-Firebase" class="headerlink" title="Install Firebase"></a>Install Firebase</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add firebase</span></pre></td></tr></table></figure>
+<p><code>quasar</code> 導入 <code>firebase</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">quasar new boot firebase</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 新生成檔案在 src&#x2F;boot&#x2F;firebase.js</span></pre></td></tr></table></figure>
+<p>設定 <code>quasar.config.js</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">return &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  boot: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#39;firebase&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ],</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<h3 id="firebase-js"><a href="#firebase-js" class="headerlink" title="firebase.js"></a>firebase.js</h3><p>設定內容寫法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; Firebase App (the core Firebase SDK) is always required and must be listed first</span></pre></td></tr><tr><td class="code"><pre><span class="line">import * as firebase from &#39;firebase&#x2F;app&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; If you enabled Analytics in your project, add the Firebase SDK for Analytics</span></pre></td></tr><tr><td class="code"><pre><span class="line">import &#39;firebase&#x2F;analytics&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; Add the Firebase products that you want to use</span></pre></td></tr><tr><td class="code"><pre><span class="line">import &#39;firebase&#x2F;auth&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">import &#39;firebase&#x2F;database&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 下方貼上 SDK 一大串 script</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 初始化需做調整 Initialize Firebase</span></pre></td></tr><tr><td class="code"><pre><span class="line">const firebaseApp &#x3D; firebase.initializeApp(firebaseConfig)</span></pre></td></tr><tr><td class="code"><pre><span class="line">const firebaseAuth &#x3D; firebaseApp.auth()</span></pre></td></tr><tr><td class="code"><pre><span class="line">const firebaseDB &#x3D; firebaseApp.database()</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">export &#123; firebaseAuth, firebaseDB &#125;</span></pre></td></tr></table></figure>
+<p>回到 <code>Vuex</code> 載入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; firebaseAuth, firebaseDB &#125; from &#39;boot&#x2F;firebase&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(1, firebaseAuth)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(2, firebaseDB)</span></pre></td></tr></table></figure>
+<h2 id="quasar-conf-js"><a href="#quasar-conf-js" class="headerlink" title="quasar.conf.js"></a>quasar.conf.js</h2><p>設定 router =&gt; History Mode</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vueRouterMode: &#39;history&#39;</span></pre></td></tr></table></figure>
 <h2 id="Error-Fixed"><a href="#Error-Fixed" class="headerlink" title="Error Fixed"></a>Error Fixed</h2><p>資料無法正常送出</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">q-btn 若僅加上 type&#x3D;&quot;submit&quot; 無法正常送出 q-form 內的資料</span></pre></td></tr><tr><td class="code"><pre><span class="line">需在 q-btn 本身再補上一個 @click 事件，才能執行 methods</span></pre></td></tr></table></figure>
 ]]></content>
@@ -105,7 +482,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue-cli 初始化專案操作記錄</title>
+    <title>Vue-Cli 初始化專案操作記錄</title>
     <url>/2020/02/12/vue-init-step/</url>
     <content><![CDATA[<p>前端框架版本迭代太快，更新過程中安裝的版本又容易出現錯誤，單靠記憶不可行，只好記錄自己的操作步驟，隨時更新方便檢查。</p>
 <a id="more"></a>
@@ -118,10 +495,15 @@
 <h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vue create project-name</span></pre></td></tr></table></figure>
 <h3 id="選擇需要的項目"><a href="#選擇需要的項目" class="headerlink" title="選擇需要的項目"></a>選擇需要的項目</h3><p>官方預設提供的 css 預處理器，存在一些配置上的錯誤，這邊不做使用<br>僅選擇 Router &amp; Vuex(單元測試和 PWA 尚未掌握)<br>Router 採用 History Mode</p>
 <h3 id="進入項目並啟動"><a href="#進入項目並啟動" class="headerlink" title="進入項目並啟動"></a>進入項目並啟動</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd project</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn server</span></pre></td></tr></table></figure>
-<h2 id="install-Plugins"><a href="#install-Plugins" class="headerlink" title="install Plugins"></a>install Plugins</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">axios</span></pre></td></tr><tr><td class="code"><pre><span class="line">vue-axios</span></pre></td></tr></table></figure>
-<p>–dev</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vue-cli-plugin-pug</span></pre></td></tr><tr><td class="code"><pre><span class="line">sass</span></pre></td></tr><tr><td class="code"><pre><span class="line">sass-loader</span></pre></td></tr></table></figure>
-<h2 id="專案結構"><a href="#專案結構" class="headerlink" title="專案結構"></a>專案結構</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assets</span></pre></td></tr><tr><td class="code"><pre><span class="line">components</span></pre></td></tr><tr><td class="code"><pre><span class="line">pages</span></pre></td></tr></table></figure>
+<h2 id="install-Plugins"><a href="#install-Plugins" class="headerlink" title="install Plugins"></a>install Plugins</h2><h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add axios vue-axios</span></pre></td></tr></table></figure>
+<h3 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h3><p><a href="https://github.com/vuelidate/vuelidate" target="_blank" rel="noopener">vuelidate</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add vuelidate</span></pre></td></tr></table></figure>
+<h3 id="拖曳"><a href="#拖曳" class="headerlink" title="拖曳"></a>拖曳</h3><p><a href="https://github.com/SortableJS/Vue.Draggable" target="_blank" rel="noopener">vuedraggable</a></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add vuedraggable</span></pre></td></tr></table></figure>
+<h3 id="預處理器"><a href="#預處理器" class="headerlink" title="預處理器"></a>預處理器</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add vue-cli-plugin-pug --dev</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add vue-cli-plugin-pug sass sass-loader --dev</span></pre></td></tr></table></figure>
+<h2 id="專案結構"><a href="#專案結構" class="headerlink" title="專案結構"></a>專案結構</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assets</span></pre></td></tr><tr><td class="code"><pre><span class="line">components</span></pre></td></tr><tr><td class="code"><pre><span class="line">views</span></pre></td></tr></table></figure>
+<h3 id="scss"><a href="#scss" class="headerlink" title="scss"></a>scss</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assets</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - color.scss &#x3D;&gt; 基礎共用色碼</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - mixin.scss &#x3D;&gt; 基礎共用函數</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - share.scss &#x3D;&gt; @import 上面兩個基礎共用scss，建立共用參數</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - style.scss &#x3D;&gt; @import share.scss &#x3D;&gt; 全域 scss，權重最重，在此處 reset css</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">main.js</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - import &#39;scss&#x2F;style.scss&#39;</span></pre></td></tr></table></figure>
+<h4 id="scss-gt-vue-config-js"><a href="#scss-gt-vue-config-js" class="headerlink" title="scss =&gt; vue.config.js"></a>scss =&gt; vue.config.js</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 調整相對路徑，方便 component 引入樣式</span></pre></td></tr><tr><td class="code"><pre><span class="line">chainWebpack: config &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  config.resolve.alias</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .set(&#39;scss&#39;, resolve(&#39;src&#x2F;assets&#x2F;scss&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <h3 id="router"><a href="#router" class="headerlink" title="router"></a>router</h3><p>拆分為 index.js 和 map.js<br>當頁面數過多時，將 routes 抽離至 map.js，再載入到 index.js</p>
 <h3 id="webpack-設定"><a href="#webpack-設定" class="headerlink" title="webpack 設定"></a>webpack 設定</h3><p>建立 vue.config.js</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">function resolve (dir) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return path.join(__dirname, dir)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  publicPath: &#39;&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 調整本地端口</span></pre></td></tr><tr><td class="code"><pre><span class="line">  devServer: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    host: &#39;localhost&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    port: 8081,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 設置代理 &#x3D;&gt; 解決跨域問題(調用後端API接口時通常不是同一個域名)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    proxy: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#39;&#x2F;api&#39;: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        target: &#39;http:&#x2F;&#x2F;localhost:8081&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F; websocket 縮寫 &#x3D;&gt; ws</span></pre></td></tr><tr><td class="code"><pre><span class="line">        ws: false,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F; 避免在訪問網址時，自動將原點移除</span></pre></td></tr><tr><td class="code"><pre><span class="line">        changeOrigin: false</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  chainWebpack: (config) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    config.resolve.alias</span></pre></td></tr><tr><td class="code"><pre><span class="line">      .set(&#39;@&#39;, resolve(&#39;src&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>]]></content>
@@ -220,6 +602,59 @@
       </tags>
   </entry>
   <entry>
+    <title>常見面試問題：JS</title>
+    <url>/2020/01/16/interview-js/</url>
+    <content><![CDATA[<p>整理 JS 面試問題。</p>
+<a id="more"></a>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue 語法筆記</title>
+    <url>/2020/01/14/vue-basic/</url>
+    <content><![CDATA[<p>Vue 雖然是工作常用，一些熱門語法固然不會忘，但冷門的語法卻很難記住，乾脆大包小包統一整理成筆記。</p>
+<a id="more"></a>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <tags>
+        <tag>Vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常見面試問題：ES6</title>
+    <url>/2020/01/05/interview-es6/</url>
+    <content><![CDATA[<a id="more"></a>
+]]></content>
+      <tags>
+        <tag>ES6</tag>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常見面試問題：CSS</title>
+    <url>/2020/01/04/interview-css/</url>
+    <content><![CDATA[<a id="more"></a>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常見面試問題：HTML</title>
+    <url>/2019/12/23/interview-html/</url>
+    <content><![CDATA[<p>常見的 HTML 面試問題。</p>
+<a id="more"></a>
+<p>- </p>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NVM 常用指令</title>
     <url>/2019/12/09/nvm-instruction/</url>
     <content><![CDATA[<p>記錄常用 NVM 指令。</p>
@@ -230,6 +665,37 @@
 <h4 id="設定預設使用的-node-版本"><a href="#設定預設使用的-node-版本" class="headerlink" title="設定預設使用的 node 版本"></a>設定預設使用的 node 版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm alias default v12.14.1</span></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>NVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常見面試問題</title>
+    <url>/2019/12/03/interview-basic/</url>
+    <content><![CDATA[<p>常見的面試問題。</p>
+<a id="more"></a>
+<h3 id="近期學習了什麼？"><a href="#近期學習了什麼？" class="headerlink" title="近期學習了什麼？"></a>近期學習了什麼？</h3><p>主要在摸索 Nuxt 開發，以及一些架站與 CICD 相關的知識，考慮到未來工作，多少會收到 SEO 的需求，SSR這一塊無可避免會碰觸到，因此抽出一些時間來加以了解。</p>
+<h3 id="喜好的開發環境-作業系統-編輯器或-IDE-瀏覽器-開發工具-…-之類-。"><a href="#喜好的開發環境-作業系統-編輯器或-IDE-瀏覽器-開發工具-…-之類-。" class="headerlink" title="喜好的開發環境 (作業系統, 編輯器或 IDE, 瀏覽器, 開發工具 … 之類)。"></a>喜好的開發環境 (作業系統, 編輯器或 IDE, 瀏覽器, 開發工具 … 之類)。</h3><p>前端開發目前主要使用 mac os 系統，一方面是生態系完整，如果遇到問題，相對容易透過網路資訊排除。早期有使用過一陣子 sublime 和 ATOM，後來因為 vscode 急起直追和插件生態日益豐富完整，最後投入 vscode 懷抱。瀏覽器就是以 Chrome 為開發，畢竟習慣了 Chrome 的開發者工作，偶爾還是會回去摸摸 Firefox，但除錯方面，除了是特定瀏覽器破版問題，否則仍以 Chrome 為主。</p>
+<h3 id="描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？"><a href="#描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？" class="headerlink" title="描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？"></a>描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？</h3><p>漸進漸強：從基本功能開始開發，保證系統在各種瀏覽器環境都可以執行，再逐步增加功能及提升使用者體驗。<br>優美退化：開發系統時，就針對最新最完善的環境來設計，而對於較舊的平台僅提供基本功能，而非完整功能。</p>
+<h3 id="如果今年你能精通一項技術，那會是什麼？"><a href="#如果今年你能精通一項技術，那會是什麼？" class="headerlink" title="如果今年你能精通一項技術，那會是什麼？"></a>如果今年你能精通一項技術，那會是什麼？</h3><p>PWA，基於個人的主觀考慮，以及移動裝置幾乎佔據半壁江山的現狀，希望能透過PWA來實作project，進而達到仿app的操作體驗。</p>
+<h3 id="最熟悉哪一套版本控制系統？"><a href="#最熟悉哪一套版本控制系統？" class="headerlink" title="最熟悉哪一套版本控制系統？"></a>最熟悉哪一套版本控制系統？</h3><p>git，前職的團隊，主要使用 GUI 工具(SourceTree)，方便查看節點，但目前也持續筆記 git 指令，方便未來自己在終端機直接操作。</p>
+<h3 id="什麼是瀏覽器的同源策略？"><a href="#什麼是瀏覽器的同源策略？" class="headerlink" title="什麼是瀏覽器的同源策略？"></a>什麼是瀏覽器的同源策略？</h3><p>當 ajax 發出請求時，瀏覽器會要求當前網頁與 server，基於安全性必須同源。也就是協議(http、https)、域名(abc.com)、端口(8080)，三者皆必須一致，只要任一者不同，就是不同源。</p>
+<p>當然，如果是 cdn 引入 js 的框架，或是 css 引入圖片網址，可以無視這個規則。任何跨域行為，都應該經過 server 端允許，若未經允許即可實現跨域，代表網站本身已存在重大漏洞。</p>
+<h3 id="CORS-是什麼，它解決了什麼問題？"><a href="#CORS-是什麼，它解決了什麼問題？" class="headerlink" title="CORS 是什麼，它解決了什麼問題？"></a>CORS 是什麼，它解決了什麼問題？</h3><p>前端的一種跨域方式，由 server 端設置，前端可以直接使用，也可以只允許特定網址使用。</p>
+<h3 id="Proxy-代理"><a href="#Proxy-代理" class="headerlink" title="Proxy 代理"></a>Proxy 代理</h3><p>得通過 nginx server 的設定來達成，以 Vue 為例，在 vue.config.js 進行設定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  devServer: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    host: &#39;localhost&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    port: 8080,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 當網址攔截到 &#x2F;api</span></pre></td></tr><tr><td class="code"><pre><span class="line">    proxy: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#39;&#x2F;api&#39;: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F; 目標要指向哪個網址</span></pre></td></tr><tr><td class="code"><pre><span class="line">        target: &#39;https:&#x2F;&#x2F;www.xxx.com&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        changeOrigin: true,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;*</span></pre></td></tr><tr><td class="code"><pre><span class="line">          實務上，會遇到n個api，每一隻api路徑皆有所差別</span></pre></td></tr><tr><td class="code"><pre><span class="line">          為了統一攔截，因此虛擬化了一個路徑 &#x2F;api</span></pre></td></tr><tr><td class="code"><pre><span class="line">          但當轉發時，才將這個虛擬化的路徑轉為空</span></pre></td></tr><tr><td class="code"><pre><span class="line">        *&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        pathRewrite: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">          &#39;api&#x2F;&#39;: &#39;&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>代理的安全性較高，可以隱藏後端 server 的來源，同時前後端需要設定的東西也較少。</p>
+<h3 id="有不同的樣式表-stylesheets-，該如何整併到網站？"><a href="#有不同的樣式表-stylesheets-，該如何整併到網站？" class="headerlink" title="有不同的樣式表 (stylesheets)，該如何整併到網站？"></a>有不同的樣式表 (stylesheets)，該如何整併到網站？</h3><p>以 Vue 專案結構為例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- assets</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - color.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - mixin.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - share.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - style.scss</span></pre></td></tr></table></figure>
+<p>將共用顏色和共用函數(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
+<h3 id="描述在開發一個網站時的工作流程"><a href="#描述在開發一個網站時的工作流程" class="headerlink" title="描述在開發一個網站時的工作流程"></a>描述在開發一個網站時的工作流程</h3><p>依循4階段規劃進行開發：<br>分析 =&gt; 規劃 =&gt; 實作 =&gt; 驗證</p>
+<ul>
+<li>分析：需求營運方+UI/UX+前後端+QA進行開會，明確釐清專案訴求為何？</li>
+<li>規劃：專案可能會面臨時程問題，或是技術上目前是否可行，先列出優先度最重要的功能，確保功能面且權重最重者，可以優先上線，後續再針對次要功能與樣式進行優化。</li>
+<li>實作：依據現有技術進行實作開發，倘若開發面臨困難，則提前反饋給主管。反之，若實際開發可行，但程式碼不如預期優雅，則以先不報錯為原則，試寫出第一版，後續再進行重構。</li>
+<li>驗證：因為目前還未掌握自動化測試，目前驗證手法仍以手動驗證為主，大多採用由其他組員進行手動測試，並撰寫測試文件，當測試通過才發PR給主管。另外，若是QA驗證出現錯誤或是上線後發現錯誤，則統一發佈到issues，再依優先度解決。<h3 id="如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？"><a href="#如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？" class="headerlink" title="如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？"></a>如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？</h3>通常若是維護舊專案，會配合既有專案的風格進行開發，但若是新專案，則會討論 coding style 如何處理，不過我個人也是採用 tab。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
       </tags>
   </entry>
   <entry>
@@ -345,6 +811,20 @@
 <h2 id="初始化錯誤"><a href="#初始化錯誤" class="headerlink" title="初始化錯誤"></a>初始化錯誤</h2><p>由於之前習慣性從遠端 clone 下來，所以<code>.git</code>檔案同時會被準備完成，但這次因為嘗試自動部署<code>Hexo</code>，在推送時跳出下面這個錯誤。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fatal: Not a git repository (or any of the parent directories): .git</span></pre></td></tr></table></figure>
 <p>這個錯誤是說明，要推送的檔案不是一個<code>git</code>的<code>repository</code>，所以<code>git</code>在這個目錄底下會找不到<code>.git</code>檔案。解決方式是，執行指令<code>git init</code>，這樣就等於初始化一個<code>git repo</code>。</p>
+<h2 id="GitLab-推送失敗錯誤"><a href="#GitLab-推送失敗錯誤" class="headerlink" title="GitLab 推送失敗錯誤"></a>GitLab 推送失敗錯誤</h2><p>這邊在 push branch 到 GitLab 時遇到一個問題，狀況如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">GitLab: The project you were looking for could not be found.</span></pre></td></tr><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span></pre></td></tr></table></figure>
+<p>遠端的 GitLab 找不到我的 repository 位置，這邊會出現兩種可能，第一是還沒加入 SSH Key，第二是 SSH Key 正確，但需要重新更換遠端的名稱，首先輸入下面的指令，檢查本機公鑰有沒有正常加入 GitLab：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh -T git@gitlab.com</span></pre></td></tr></table></figure>
+<p>如果出現 <code>Permission Denied (publickey)</code> 那就需要執行生成 SSH Key，並將公鑰加入 GitLab。</p>
+<ol>
+<li>生成 SSH Key：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;YOUR EMAIL&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd ~&#x2F;.ssh&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 注意生成過程中，會要求設定私人密碼，需要自己記住</span></pre></td></tr></table></figure></li>
+<li>進入 ssh 底下，會看到兩個新的檔案：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">id_rsa &#x3D;&gt; 私鑰</span></pre></td></tr><tr><td class="code"><pre><span class="line">id_rsa.pub &#x3D;&gt; 公鑰 &#x2F;&#x2F; 使用 vscode 將公鑰的檔案打開，複製裡面的內容</span></pre></td></tr></table></figure></li>
+<li>回到 GitLab，操作路徑：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">點選右上角圖像&#x2F;setting&#x2F;左側 SSH Keys</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 將剛剛複製的內容貼到中間的輸入框，並點擊下方的 add key</span></pre></td></tr></table></figure></li>
+<li>回到終端機，再次輸入<code>ssh -T git@gitlab.com</code>，這時會要求你輸入剛剛設定的私人密碼，成功後應該會看下面的文字：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Welcome to GitLab, @Your_name!</span></pre></td></tr></table></figure>
+到這邊第一步設定 SSH Keys 完成，但我嘗試重新 push 一次依然失敗：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">remote: The project you were looking for could not be found.</span></pre></td></tr><tr><td class="code"><pre><span class="line">fatal: repository &#39;https:&#x2F;&#x2F;gitlab.com&#x2F;Your_name&#x2F;Your_project.git&#x2F;&#39; not found</span></pre></td></tr></table></figure></li>
+<li>重新更新並配對一次遠端名稱：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git remote rename origin old-origin</span></pre></td></tr><tr><td class="code"><pre><span class="line">git remote add origin git@gitlab.com:Your_name&#x2F;Your_project.git</span></pre></td></tr></table></figure>
+到此，檔案就能正常推送到遠端了。</li>
+</ol>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -407,8 +887,30 @@
       </tags>
   </entry>
   <entry>
+    <title>筆記知識彙整</title>
+    <url>/2019/11/16/interview-collection/</url>
+    <content><![CDATA[<p>把不同知識面向的筆記統一進行彙整。</p>
+<a id="more"></a>
+<h2 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h2><ul>
+<li><a href="/2020/01/14/vue-basic/" title="Vue.js 語法筆記">Vue.js 語法筆記</a>
+
+</li>
+</ul>
+<h2 id="面試"><a href="#面試" class="headerlink" title="面試"></a>面試</h2><ul>
+<li><a href="/2019/12/03/interview-basic/" title="常見面試問題">常見面試問題</a></li>
+<li><a href="/2019/12/23/interview-html/" title="常見面試問題：HTML">常見面試問題：HTML</a></li>
+<li><a href="/2020/01/04/interview-css/" title="常見面試問題：CSS">常見面試問題：CSS</a></li>
+<li><a href="/2020/01/16/interview-js/" title="常見面試問題：JS">常見面試問題：JS</a></li>
+<li><a href="/2020/01/05/interview-es6/" title="常見面試問題：ES6">常見面試問題：ES6</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>重新拾筆</title>
-    <url>/2019/11/27/firstPost/</url>
+    <url>/2019/09/27/firstPost/</url>
     <content><![CDATA[<p>信手寫一些雜談想法，就當做一篇簡單的隨筆。</p>
 <a id="more"></a>
 <h2 id="框架選擇"><a href="#框架選擇" class="headerlink" title="框架選擇"></a>框架選擇</h2><p><code>Hexo</code>從2018年開始接觸，期間雖然嘗試寫了幾篇筆記，但終究因為懶，時常無疾而終。雖然後面斷斷續續摸了幾種靜態站點框架，譬如<code>Hugo</code>、<code>Gatsby.js</code>、<code>Gridsome</code>，但始終沒有很順手。</p>
