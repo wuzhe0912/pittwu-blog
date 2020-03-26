@@ -1,5 +1,5 @@
 ---
-title: Vue-cli 初始化專案操作記錄
+title: Vue-Cli 初始化專案操作記錄
 date: 2020-02-12 20:13:27
 tags: Vue.js
 ---
@@ -62,21 +62,54 @@ cd project
 yarn server
 ```
 ## install Plugins
+### API
 ```
-axios
-vue-axios
+yarn add axios vue-axios
 ```
---dev
+### 驗證
+[vuelidate](https://github.com/vuelidate/vuelidate)
 ```
-vue-cli-plugin-pug
-sass
-sass-loader
+yarn add vuelidate
+```
+### 拖曳
+[vuedraggable](https://github.com/SortableJS/Vue.Draggable)
+```
+yarn add vuedraggable
+```
+### 預處理器
+```
+// pug
+yarn add vue-cli-plugin-pug --dev
+
+// scss
+yarn add vue-cli-plugin-pug sass sass-loader --dev
+
 ```
 ## 專案結構
 ```
 assets
 components
-pages
+views
+```
+### scss
+```
+assets
+  - scss
+    - color.scss => 基礎共用色碼
+    - mixin.scss => 基礎共用函數
+    - share.scss => @import 上面兩個基礎共用scss，建立共用參數
+    - style.scss => @import share.scss => 全域 scss，權重最重，在此處 reset css
+
+main.js
+  - import 'scss/style.scss'
+```
+#### scss => vue.config.js
+```
+// 調整相對路徑，方便 component 引入樣式
+chainWebpack: config => {
+  config.resolve.alias
+    .set('scss', resolve('src/assets/scss'))
+}
 ```
 ### router
 拆分為 index.js 和 map.js
