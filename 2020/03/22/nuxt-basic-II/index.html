@@ -47,15 +47,15 @@
   };
 </script>
 
-  <meta name="description" content="記錄 Nuxt 專案開發與起步的流程。">
+  <meta name="description" content="記錄 Nuxt 專案開發與框架基礎觀念。">
 <meta name="keywords" content="Nuxt.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nuxt.js II - 開發準備">
+<meta property="og:title" content="Nuxt.js II - 框架基礎觀念">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;22&#x2F;nuxt-basic-II&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="記錄 Nuxt 專案開發與起步的流程。">
+<meta property="og:description" content="記錄 Nuxt 專案開發與框架基礎觀念。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-26T07:27:11.593Z">
+<meta property="og:updated_time" content="2020-03-29T03:08:48.317Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/03/22/nuxt-basic-II/">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>Nuxt.js II - 開發準備 | Pitt Wu's 隨想筆記</title>
+  <title>Nuxt.js II - 框架基礎觀念 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -223,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Nuxt.js II - 開發準備
+          Nuxt.js II - 框架基礎觀念
         </h1>
 
         <div class="post-meta">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-26 15:27:11" itemprop="dateModified" datetime="2020-03-26T15:27:11+08:00">2020-03-26</time>
+                <time title="Modified: 2020-03-29 11:08:48" itemprop="dateModified" datetime="2020-03-29T11:08:48+08:00">2020-03-29</time>
               </span>
 
           
@@ -261,9 +261,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>記錄 Nuxt 專案開發與起步的流程。</p>
+        <p>記錄 Nuxt 專案開發與框架基礎觀念。</p>
 <a id="more"></a>
-<h2 id="Nuxt-js-的注意事項"><a href="#Nuxt-js-的注意事項" class="headerlink" title="Nuxt.js 的注意事項"></a>Nuxt.js 的注意事項</h2><p>Nuxt =&gt; 基底語法以 node.js 為主，因此 node 不支援的語法，即便是 Vue 的語法也不可行。</p>
+<h2 id="Nuxt-js-的注意事項"><a href="#Nuxt-js-的注意事項" class="headerlink" title="Nuxt.js 的注意事項"></a>Nuxt.js 的注意事項</h2><p>Nuxt =&gt; 基底語法以 node.js 為主，因此 node 不支援的語法，在 Nuxt 中也無法運作。</p>
 <ol>
 <li>Nuxt 的 <code>created()</code> =&gt; 不可使用 window、alert、document 等原生屬性。<ul>
 <li>node.js 本身是在 server 端環境運行，而非瀏覽器，自然吃不到瀏覽器的屬性</li>
@@ -272,7 +272,7 @@
 <li>Nuxt =&gt; 基底語法以 node.js 為主，因此 node 不支援的語法，即便是 Vue 的語法也不可行。</li>
 <li>需優先考慮 node 的執行環境。</li>
 </ol>
-<h3 id="路徑"><a href="#路徑" class="headerlink" title="路徑"></a>路徑</h3><p>Nuxt 本身已經封裝了許多 Vue-cli 功能，譬如 router 本身在 Vue 需要設置，但在 Nuxt 只要建立好頁面，router 就會自動匹配。</p>
+<h3 id="Router-路徑"><a href="#Router-路徑" class="headerlink" title="Router 路徑"></a>Router 路徑</h3><p>Nuxt 本身已經封裝了許多 Vue-cli 功能，譬如 router 本身在 Vue 需要設置，但在 Nuxt 只要建立好頁面，router 就會自動匹配。</p>
 <h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
 <li>同 Vue 相同，Nuxt 也是採用 shorthand：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  formatter () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
@@ -280,7 +280,24 @@
 </ul>
 <h2 id="install-scss"><a href="#install-scss" class="headerlink" title="install scss"></a>install scss</h2><p>在 Nuxt 環境中，<code>~</code>、<code>@</code>兩者皆通用，都被指向根目錄。但非 nuxt 結構的 js 檔與 nuxt.config.js 則不吃這個規則，必須使用過往的<code>./</code>尋找。</p>
 <ul>
-<li>install plugin<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">yarn add pug pug-plain-loader</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">yarn add node-sass sass-loader</span></pre></td></tr></table></figure></li>
+<li>install plugin<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">yarn add pug pug-plain-loader</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">yarn add node-sass sass-loader</span></pre></td></tr></table></figure>
+但是放在靜態資源(static)內的引用規則稍有不同，僅透過<code>/</code>，e.g.：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">link: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#123; rel: &#39;icon&#39;, type: &#39;image&#x2F;x-icon&#39;, href: &#39;&#x2F;favicon.ico&#39; &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="nuxt-config-js-設定"><a href="#nuxt-config-js-設定" class="headerlink" title="nuxt.config.js 設定"></a>nuxt.config.js 設定</h2><ul>
+<li><p>head<br>就是過往 HTML 頁面的 head 區塊，可以調整頁面的 title，或是添加 meta 來改善 SEO。需要稍微注意 static 靜態資源的飲用路徑略有不同僅<code>/</code>。</p>
+</li>
+<li><p>css<br>可以註冊全域 css，方便整個專案調用。</p>
+</li>
+</ul>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><ul>
+<li><p>nuxt 在 css 的環境中，使用 background 載入圖片時，不允許使用 <code>/</code>，正確寫法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">background: url(&quot;~assets&#x2F;images&#x2F;girl.jpg&quot;) no-repeat;</span></pre></td></tr></table></figure>
+<p>這邊也無法用 @ 來載入，唯一只能使用 <code>~</code>。</p>
+</li>
+<li><p>預設若圖片小於 1KB，會被 nuxt 轉為 base 64 編碼，使用 data uri 的形式引入。若需要調整上下限，可以在 nuxt.config.js 中的 build 進行調整。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">build: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  loaders: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    imgUrl: &#123; limit: 10000 &#125; &#x2F;&#x2F; 1000 &#x3D;&gt; 1KB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
 </ul>
 
     </div>
@@ -342,7 +359,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nuxt-js-的注意事項"><span class="nav-number">1.</span> <span class="nav-text">Nuxt.js 的注意事項</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路徑"><span class="nav-number">1.1.</span> <span class="nav-text">路徑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-scss"><span class="nav-number">2.</span> <span class="nav-text">install scss</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nuxt-js-的注意事項"><span class="nav-number">1.</span> <span class="nav-text">Nuxt.js 的注意事項</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-路徑"><span class="nav-number">1.1.</span> <span class="nav-text">Router 路徑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-scss"><span class="nav-number">2.</span> <span class="nav-text">install scss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nuxt-config-js-設定"><span class="nav-number">3.</span> <span class="nav-text">nuxt.config.js 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css"><span class="nav-number">4.</span> <span class="nav-text">css</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

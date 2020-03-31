@@ -47,15 +47,17 @@
   };
 </script>
 
-  <meta name="description" content="即時聊天室(含基本註冊登入)&#x3D;&amp;gt; Demo 1前端 &amp;#x3D;&amp;gt; Vue.js2Database &amp;#x3D;&amp;gt; Firebase3UI &amp;#x3D;&amp;gt; 手刻(Flexbox)  簡易後台 CMS&#x3D;&amp;gt; Demo 1前端 &amp;#x3D;&amp;gt; Vue.js2UI &amp;#x3D;&amp;gt; element ui3後端API &amp;#x3D;&amp;gt; 使用六角學院提供之API">
+  <meta name="description" content="Web App建議手機直接掃描操作 這是一個使用 vue.js 模仿 app layout 的 web 頁面，離真正意義的混合開發還遠得很。但為什麼選擇這樣的呈現方式，而非選擇主流的 rwd，我思考的重點有下述兩點：  在商業模式上，雖然本質都是網頁，但在前職中，連續兩個 rwd 類型專案都沒有順利保留，前者被外包接手，後者則是很快就廢棄。反而第三個這種模仿 app 的專案，起初並不看好，但卻順利">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Demo">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;demo&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="即時聊天室(含基本註冊登入)&#x3D;&amp;gt; Demo 1前端 &amp;#x3D;&amp;gt; Vue.js2Database &amp;#x3D;&amp;gt; Firebase3UI &amp;#x3D;&amp;gt; 手刻(Flexbox)  簡易後台 CMS&#x3D;&amp;gt; Demo 1前端 &amp;#x3D;&amp;gt; Vue.js2UI &amp;#x3D;&amp;gt; element ui3後端API &amp;#x3D;&amp;gt; 使用六角學院提供之API">
+<meta property="og:description" content="Web App建議手機直接掃描操作 這是一個使用 vue.js 模仿 app layout 的 web 頁面，離真正意義的混合開發還遠得很。但為什麼選擇這樣的呈現方式，而非選擇主流的 rwd，我思考的重點有下述兩點：  在商業模式上，雖然本質都是網頁，但在前職中，連續兩個 rwd 類型專案都沒有順利保留，前者被外包接手，後者則是很快就廢棄。反而第三個這種模仿 app 的專案，起初並不看好，但卻順利">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-16T15:16:50.934Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;vue-tools-app.png">
+<meta property="og:updated_time" content="2020-03-31T16:19:27.401Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;vue-tools-app.png">
 
 <link rel="canonical" href="http://yoursite.com/demo/">
 
@@ -228,7 +230,14 @@
       
       
       <div class="post-body">
-          <h2 id="即時聊天室-含基本註冊登入"><a href="#即時聊天室-含基本註冊登入" class="headerlink" title="即時聊天室(含基本註冊登入)"></a>即時聊天室(含基本註冊登入)</h2><p>=&gt; <a href="https://vue-chat-6a66d.firebaseapp.com/" target="_blank" rel="noopener">Demo</a></p>
+          <h2 id="Web-App"><a href="#Web-App" class="headerlink" title="Web App"></a>Web App</h2><p>建議手機直接掃描操作<br><img src="/images/vue-tools-app.png" alt=""></p>
+<p>這是一個使用 vue.js 模仿 app layout 的 web 頁面，離真正意義的混合開發還遠得很。但為什麼選擇這樣的呈現方式，而非選擇主流的 rwd，我思考的重點有下述兩點：</p>
+<ol>
+<li>在商業模式上，雖然本質都是網頁，但在前職中，連續兩個 rwd 類型專案都沒有順利保留，前者被外包接手，後者則是很快就廢棄。反而第三個這種模仿 app 的專案，起初並不看好，但卻順利存活至 2020 年。一方面是對接的客戶是大陸客戶，他們或許已經習慣了這種操作體驗。另一方面，也可能是移動端手機的活躍，改變了人們的操作習慣。</li>
+<li>身邊的朋友，操作電腦的時間比率一直在下滑，尤其是對女性的觀察，這點尤為明顯，甚至可以說，下班時間她們是全然不碰 pc。那在這個環境下，過往的 rwd 佈局設計反而非常不利，因為是向下兼容移動裝置，所以重要的功能 menu 被隱藏，而在 pc 不太重要的 footer，但在 app 當中卻是極重要的 navbar。當網站需要頻繁高度切換子頁面時，rwd 的操作體驗坦白說不太好。</li>
+</ol>
+<p>目前沒有考慮諸如 RN 或是 Flutter 之類的解決方案，應該還是維持摸索 webview 這種偏底層的知識，但權重上可能會往後挪，畢竟還是以未來公司的訴求為主，大概率會需要摸索 Nuxt 來處理 SEO 這部分。</p>
+<h2 id="即時聊天室-含基本註冊登入"><a href="#即時聊天室-含基本註冊登入" class="headerlink" title="即時聊天室(含基本註冊登入)"></a>即時聊天室(含基本註冊登入)</h2><p>=&gt; <a href="https://vue-chat-6a66d.firebaseapp.com/" target="_blank" rel="noopener">Demo</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">前端 &#x3D;&gt; Vue.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Database &#x3D;&gt; Firebase</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">UI &#x3D;&gt; 手刻(Flexbox)</span></pre></td></tr></table></figure>
 
 <h2 id="簡易後台-CMS"><a href="#簡易後台-CMS" class="headerlink" title="簡易後台 CMS"></a>簡易後台 CMS</h2><p>=&gt; <a href="https://vue-shope-admin.netlify.com/" target="_blank" rel="noopener">Demo</a></p>
@@ -272,7 +281,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#即時聊天室-含基本註冊登入"><span class="nav-number">1.</span> <span class="nav-text">即時聊天室(含基本註冊登入)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#簡易後台-CMS"><span class="nav-number">2.</span> <span class="nav-text">簡易後台 CMS</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-App"><span class="nav-number">1.</span> <span class="nav-text">Web App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#即時聊天室-含基本註冊登入"><span class="nav-number">2.</span> <span class="nav-text">即時聊天室(含基本註冊登入)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#簡易後台-CMS"><span class="nav-number">3.</span> <span class="nav-text">簡易後台 CMS</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
