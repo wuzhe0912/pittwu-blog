@@ -63,3 +63,43 @@ build: {
   }
 }
 ```
+
+## 頁面結構
+nuxt 和 vue 相似，router 對應要前往的頁面，且不需要我們來配置，而每個 page 則可以根據需要的 layout 來進行設定，再彙整到 <nuxt />，原理和 vue 的 router-view 雷同。
+
+每個 page 預設父層 layout 直接使用 default.vue，但如果需要客製化，可以根據需求加入不同的 xxx.vue，再到需要的 page 從 export default 導入：
+```
+<script>
+export default {
+  layout: 'xxx'
+}
+</script>
+```
+
+## 錯誤頁面
+根據 nuxt 官方的設定，在 layouts 下建立 error.vue，即可攔截錯誤 router，如果需要自定義頁面，同樣可以加入客製化 layout。
+
+## head
+在 nuxt.config.js，有全域的 head，但如果特定頁面需要調整 head，可以在 page 下的 export default 中放入 head 的格式，但需要注意改為 function 的寫法：
+```
+export default {
+  layout: 'xxx',
+  head () {
+    return {
+      title: this.title,
+      meta: [],
+      script: []
+    }
+  }
+}
+```
+
+## nuxt-link
+和 vue 的 router-link 本質相同，需要特別注意的是，nuxt-link 會提前先幫你預先載入好要連過去頁面的 css 資源。但如果該頁面有大量圖片或是樣式，可能會影響到 loading 速度，如果要關閉這個功能，寫法如下：
+```
+// pug 寫法
+nuxt-link(to="/demo" no-prefetch)
+```
+
+## components
+nuxt 的 component 有一些特點需要注意，在 nuxt 的 .vue 檔案中允許導入 head、asyncData，但這些寫法在 component 中的 .vue 是不允許的，只能寫在 pages 內的 .vue。命名規則上，官方採用開頭大寫書寫格式，但實際上可依團隊 coding style。

@@ -1,5 +1,5 @@
 ---
-title: Nuxt.js I - 架站與手動部署
+title: Nuxt.js I - 架站與手動部署(GCP)
 date: 2020-03-21 17:29:44
 tags: Nuxt.js
 ---
