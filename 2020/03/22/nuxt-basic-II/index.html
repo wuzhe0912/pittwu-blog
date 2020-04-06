@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="記錄 Nuxt 專案開發與框架基礎觀念。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-29T03:08:48.317Z">
+<meta property="og:updated_time" content="2020-04-01T07:27:29.887Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/03/22/nuxt-basic-II/">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-03-29 11:08:48" itemprop="dateModified" datetime="2020-03-29T11:08:48+08:00">2020-03-29</time>
+                <time title="Modified: 2020-04-01 15:27:29" itemprop="dateModified" datetime="2020-04-01T15:27:29+08:00">2020-04-01</time>
               </span>
 
           
@@ -297,8 +297,22 @@
 <p>這邊也無法用 @ 來載入，唯一只能使用 <code>~</code>。</p>
 </li>
 <li><p>預設若圖片小於 1KB，會被 nuxt 轉為 base 64 編碼，使用 data uri 的形式引入。若需要調整上下限，可以在 nuxt.config.js 中的 build 進行調整。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">build: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  loaders: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    imgUrl: &#123; limit: 10000 &#125; &#x2F;&#x2F; 1000 &#x3D;&gt; 1KB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">build: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  loaders: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    imgUrl: &#123; limit: 10000 &#125; &#x2F;&#x2F; 1000 &#x3D;&gt; 1KB</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
 </ul>
+<h2 id="頁面結構"><a href="#頁面結構" class="headerlink" title="頁面結構"></a>頁面結構</h2><p>nuxt 和 vue 相似，router 對應要前往的頁面，且不需要我們來配置，而每個 page 則可以根據需要的 layout 來進行設定，再彙整到 <nuxt />，原理和 vue 的 router-view 雷同。</p>
+<p>每個 page 預設父層 layout 直接使用 default.vue，但如果需要客製化，可以根據需求加入不同的 xxx.vue，再到需要的 page 從 export default 導入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  layout: &#39;xxx&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+
+<h2 id="錯誤頁面"><a href="#錯誤頁面" class="headerlink" title="錯誤頁面"></a>錯誤頁面</h2><p>根據 nuxt 官方的設定，在 layouts 下建立 error.vue，即可攔截錯誤 router，如果需要自定義頁面，同樣可以加入客製化 layout。</p>
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><p>在 nuxt.config.js，有全域的 head，但如果特定頁面需要調整 head，可以在 page 下的 export default 中放入 head 的格式，但需要注意改為 function 的寫法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">export default &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  layout: &#39;xxx&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  head () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      title: this.title,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      meta: [],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      script: []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h2 id="nuxt-link"><a href="#nuxt-link" class="headerlink" title="nuxt-link"></a>nuxt-link</h2><p>和 vue 的 router-link 本質相同，需要特別注意的是，nuxt-link 會提前先幫你預先載入好要連過去頁面的 css 資源。但如果該頁面有大量圖片或是樣式，可能會影響到 loading 速度，如果要關閉這個功能，寫法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pug 寫法</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">nuxt-link(to&#x3D;&quot;&#x2F;demo&quot; no-prefetch)</span></pre></td></tr></table></figure>
+
+<h2 id="components"><a href="#components" class="headerlink" title="components"></a>components</h2><p>nuxt 的 component 有一些特點需要注意，在 nuxt 的 .vue 檔案中允許導入 head、asyncData，但這些寫法在 component 中的 .vue 是不允許的，只能寫在 pages 內的 .vue。命名規則上，官方採用開頭大寫書寫格式，但實際上可依團隊 coding style。</p>
 
     </div>
 
@@ -318,10 +332,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/21/nuxt-basic-I/" rel="prev" title="Nuxt.js I - 架站與手動部署">
-      <i class="fa fa-chevron-left"></i> Nuxt.js I - 架站與手動部署
+    <a href="/2020/03/21/nuxt-basic-I/" rel="prev" title="Nuxt.js I - 架站與手動部署(GCP)">
+      <i class="fa fa-chevron-left"></i> Nuxt.js I - 架站與手動部署(GCP)
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/02/nuxt-blog/" rel="next" title="Nuxt.js 實作 Blog">
+      Nuxt.js 實作 Blog <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -359,7 +376,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nuxt-js-的注意事項"><span class="nav-number">1.</span> <span class="nav-text">Nuxt.js 的注意事項</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-路徑"><span class="nav-number">1.1.</span> <span class="nav-text">Router 路徑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-scss"><span class="nav-number">2.</span> <span class="nav-text">install scss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nuxt-config-js-設定"><span class="nav-number">3.</span> <span class="nav-text">nuxt.config.js 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css"><span class="nav-number">4.</span> <span class="nav-text">css</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nuxt-js-的注意事項"><span class="nav-number">1.</span> <span class="nav-text">Nuxt.js 的注意事項</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Router-路徑"><span class="nav-number">1.1.</span> <span class="nav-text">Router 路徑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法"><span class="nav-number">1.2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-scss"><span class="nav-number">2.</span> <span class="nav-text">install scss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nuxt-config-js-設定"><span class="nav-number">3.</span> <span class="nav-text">nuxt.config.js 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css"><span class="nav-number">4.</span> <span class="nav-text">css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#頁面結構"><span class="nav-number">5.</span> <span class="nav-text">頁面結構</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#錯誤頁面"><span class="nav-number">6.</span> <span class="nav-text">錯誤頁面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head"><span class="nav-number">7.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nuxt-link"><span class="nav-number">8.</span> <span class="nav-text">nuxt-link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#components"><span class="nav-number">9.</span> <span class="nav-text">components</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -375,7 +392,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
