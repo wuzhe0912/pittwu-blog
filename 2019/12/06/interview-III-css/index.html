@@ -55,8 +55,10 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="CSS 面試問題彙整。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-04T17:24:55.574Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;box-sizing.png">
+<meta property="og:updated_time" content="2020-04-09T14:18:44.832Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;box-sizing.png">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/06/interview-III-css/">
 
@@ -240,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-05 01:24:55" itemprop="dateModified" datetime="2020-04-05T01:24:55+08:00">2020-04-05</time>
+                <time title="Modified: 2020-04-09 22:18:44" itemprop="dateModified" datetime="2020-04-09T22:18:44+08:00">2020-04-09</time>
               </span>
 
           
@@ -263,12 +265,46 @@
       
         <p>CSS 面試問題彙整。</p>
 <a id="more"></a>
-<h3 id="請解釋-box-sizing-border-box-，並且說明使用它的好處？"><a href="#請解釋-box-sizing-border-box-，並且說明使用它的好處？" class="headerlink" title="請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？"></a>請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？</h3><p><code>box-sizing</code>：意指，當元素計算寬度和高度時，<code>border</code> &amp; <code>padding</code> 會內含還是外加。<br><code>content-box</code>：預設的屬性，會使 <code>border</code> &amp; <code>padding</code> 添加額外的寬高(外加)。<br><code>border-box</code>：為了改善前面這種不友好的設計，將 <code>border</code> &amp; <code>padding</code> 塞進元素本身(內含)。<br>因此我們通常建議在初始化樣式時，加入到 <code>*</code>。</p>
+<h3 id="基礎語法"><a href="#基礎語法" class="headerlink" title="基礎語法"></a>基礎語法</h3><h4 id="Q：簡單聊聊-box-model"><a href="#Q：簡單聊聊-box-model" class="headerlink" title="Q：簡單聊聊 box-model"></a>Q：簡單聊聊 box-model</h4><p>box-model 可以理解為前端工程師製作網頁的一種工具，透過它可以定義網頁上元素的位置，進而達到排版的目的。從內到外，環繞它身邊有三個語法，padding、border、margin。其中前兩者預設會影響到元素，因此在 box-sizing 會採用另一個模式 border-box，來避免不必要的計算。</p>
+<h4 id="Q：請解釋-box-sizing-border-box-，並且說明使用它的好處？"><a href="#Q：請解釋-box-sizing-border-box-，並且說明使用它的好處？" class="headerlink" title="Q：請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？"></a>Q：請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？</h4><p><img src="/images/box-sizing.png" alt=""><br>box-sizing =&gt; 意指，當元素計算寬度和高度時，border &amp; padding 會內含還是外加。<br>content-box =&gt; 預設的屬性，會使 border &amp; padding 添加額外的寬高(外加)。</p>
+<p>但前述這個設計，會使前端開發時被迫需要一直計算寬高，為了改善這個開發體驗，所以改用以下模式：<br>border-box =&gt; 將 border &amp; padding 塞進元素本身(內含)。<br>因此我們通常建議在初始化樣式時，加入到 <code>*</code>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">* &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  box-sizing: border-box;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://zh-tw.learnlayout.com/box-sizing.html" target="_blank" rel="noopener">圖片詳解</a></li>
+</ul>
+<h3 id="情境處理"><a href="#情境處理" class="headerlink" title="情境處理"></a>情境處理</h3><h4 id="Q：如何處理水平垂直置中？"><a href="#Q：如何處理水平垂直置中？" class="headerlink" title="Q：如何處理水平垂直置中？"></a>Q：如何處理水平垂直置中？</h4><p>在 flexbox 語法中，處理這個需求並不困難：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  display: flex;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  justify-content: center;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  align-items: center;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<h3 id="倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><a href="#倘若有不同的樣式表-stylesheets-，該如何整併到網站？" class="headerlink" title="倘若有不同的樣式表 (stylesheets)，該如何整併到網站？"></a>倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</h3><p>以 Vue 專案結構為例：</p>
+<p>但如果不使用 flexbox 就會比較麻煩，首先水平置中，常用兩種方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  margin: 0 auto;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  text-align: center;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>至於垂直置中的方法有數種，但我這邊只記錄兩種：</p>
+<ol>
+<li>line-height</li>
+<li>vertical-align: middle;</li>
+</ol>
+<p>但基本我個人現在只用 flexbox 語法來處理，未來會再加上 grid。</p>
+<h3 id="專案結構"><a href="#專案結構" class="headerlink" title="專案結構"></a>專案結構</h3><h4 id="Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><a href="#Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？" class="headerlink" title="Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？"></a>Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</h4><p>以 Vue 專案結構為例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">- assets</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    - color.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    - mixin.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    - share.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    - style.scss</span></pre></td></tr></table></figure>
-<p>將共用顏色和共用函數(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
+<p>將共用顏色和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
+<h4 id="Q：如何處理專案-RWD"><a href="#Q：如何處理專案-RWD" class="headerlink" title="Q：如何處理專案 RWD"></a>Q：如何處理專案 RWD</h4><ul>
+<li><p>共用參數<br>假設 UI/UX 為首次合作，因此會先討論網站的色系與主要的共用間距(當然如果是經驗豐富的 UI/UX，這一步可以忽略)，因為斷點、三輔一主的色系、常用間距，需先準備在 scss 作為共用參數。至於斷點，現在市面上，320px 尺寸的手機(iPhone5)，雖然市佔率已經相當低，但目前開發上仍會考慮保留，因此預期我的斷點會設計：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">360 &#x3D;&gt; 兼容小尺寸 android &amp; iPhone5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">480 &#x3D;&gt; 主流手機</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">768 &#x3D;&gt; pad</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">pc &#x3D;&gt; 這個沒有固定，視討論而定，通常1024(但其實也可以用 padPro來命名)</span></pre></td></tr></table></figure>
+</li>
+<li><p>UI Framework<br>主要分為兩種狀況，手刻或者用框架：</p>
+<ul>
+<li>手刻：目前主流是用 flexbox(目前兼容性已經極高了，哪怕是大陸冷門瀏覽器 QQ、UC)，至於 grid 目前來說，對移動裝置的支援還有疑慮，稍微舊一點的版本或是冷門瀏覽器都是不支援居多，還需要一點時間讓瀏覽器廠商跑步前進。<ul>
+<li><a href="https://hackmd.io/tlJAS8MqQ0qqJ0wh3sggsw" target="_blank" rel="noopener">瀏覽器市佔率</a></li>
+</ul>
+</li>
+<li>框架：這就看團隊的技術選型，根據團隊採用不同的前端框架，相應的框架也會有差異，以 Vue 來說，目前海外社群投票最大宗是 Vuetify，其次是 element-ui(但不支援 RWD，主要用於 CMS)，Tailwind CSS 正在追趕，Bootstrap 這我不太確定，需等 v5 之後的版本觀察。<ul>
+<li><a href="https://hackmd.io/mmVT15NkT8KZJTR5octHlA" target="_blank" rel="noopener">Tailwind CSS</a></li>
+</ul>
+</li>
+</ul>
+<p>至於更細節的開發，就視實際的設計稿而定，這邊不再贅述了。</p>
+</li>
+</ul>
 
     </div>
 
@@ -333,7 +369,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#請解釋-box-sizing-border-box-，並且說明使用它的好處？"><span class="nav-number">1.</span> <span class="nav-text">請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><span class="nav-number">2.</span> <span class="nav-text">倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基礎語法"><span class="nav-number">1.</span> <span class="nav-text">基礎語法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：簡單聊聊-box-model"><span class="nav-number">1.1.</span> <span class="nav-text">Q：簡單聊聊 box-model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：請解釋-box-sizing-border-box-，並且說明使用它的好處？"><span class="nav-number">1.2.</span> <span class="nav-text">Q：請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情境處理"><span class="nav-number">2.</span> <span class="nav-text">情境處理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：如何處理水平垂直置中？"><span class="nav-number">2.1.</span> <span class="nav-text">Q：如何處理水平垂直置中？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#專案結構"><span class="nav-number">3.</span> <span class="nav-text">專案結構</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><span class="nav-number">3.1.</span> <span class="nav-text">Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：如何處理專案-RWD"><span class="nav-number">3.2.</span> <span class="nav-text">Q：如何處理專案 RWD</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="網路相關面試題目彙整。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-06T08:19:05.012Z">
+<meta property="og:updated_time" content="2020-04-07T17:26:42.869Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/07/interview-V-https/">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-06 16:19:05" itemprop="dateModified" datetime="2020-04-06T16:19:05+08:00">2020-04-06</time>
+                <time title="Modified: 2020-04-08 01:26:42" itemprop="dateModified" datetime="2020-04-08T01:26:42+08:00">2020-04-08</time>
               </span>
 
           
@@ -263,12 +263,34 @@
       
         <p>網路相關面試題目彙整。</p>
 <a id="more"></a>
+<h2 id="從輸入網址列到渲染畫面，過程經歷了什麼事？"><a href="#從輸入網址列到渲染畫面，過程經歷了什麼事？" class="headerlink" title="從輸入網址列到渲染畫面，過程經歷了什麼事？"></a>從輸入網址列到渲染畫面，過程經歷了什麼事？</h2><ul>
+<li><p>第一階段：確認 IP 地址是否存在<br>我們透過瀏覽器輸入一段網址，瀏覽器會根據這一串網址去呼叫 DNS Server，讓 DNS 去確認這串網址對應的 IP 位置，如果沒找到就 gg，但為了後面的內容，所以這邊是一定要找到的。DNS 找到 IP 後會回傳給瀏覽器，瀏覽器開始連線到這個網址，接著進入第二階段</p>
+</li>
+<li><p>第二階段：網路請求資料<br>這個階段基本可以理解為前端(Client)向後端(Server)拿資料。這個流程挺複雜的，我的理解拆為以下三階段：</p>
+<ul>
+<li>打招呼：俗稱三次握手，Client 向 Server 詢問是否存在，Server 回應我在，接著 Client 宣告我準備要執行傳資料的動作囉。</li>
+<li>傳送資料(req &amp; res)：前端透過某個 method 向後端拿資料，這邊用 get，後端送封包過去後，再傳一組成功的狀態碼(200)給前端。</li>
+<li>結束關閉：Client 向 Server 通知準備關閉，Server 向 Client 說 ok 我也要關閉了，並進行關閉，接著 Client 也進行關閉，這階段俗稱四次揮手。</li>
+</ul>
+</li>
+<li><p>第三階段：取得資料，開始進行頁面渲染<br>首先 HTML 和 CSS 會優先執行，前者開始搭建整個頁面 DOM Tree，後者則是提前準備好所有樣式，接著來到 style 階段，將樣式指到對應的元素，Layout 開始排列頁面位置，最終完成頁面渲染。至於 JS，為了確保使用者最低限度要能看到靜態頁面，所以依慣例我們會將 JS 的執行順序放至 body 底部，確保它最後執行。</p>
+</li>
+<li><p><a href="https://w3c.hexschool.com/blog/8d691e4f" target="_blank" rel="noopener">詳細圖解</a></p>
+</li>
+</ul>
 <h2 id="什麼是瀏覽器的同源策略？另外跨域問題，如何解決？"><a href="#什麼是瀏覽器的同源策略？另外跨域問題，如何解決？" class="headerlink" title="什麼是瀏覽器的同源策略？另外跨域問題，如何解決？"></a>什麼是瀏覽器的同源策略？另外跨域問題，如何解決？</h2><p>當 ajax 發出請求時，瀏覽器會要求當前網頁與 server，基於安全性必須同源，也就是協議(http、https)、域名(abc.com)、端口(8080)，三者皆必須一致，只要任一者不同，就是不同源，倘若三者相同則為同源(符合同源策略)，同源策略僅限瀏覽器，後端(server)無此限制。當然，如果是 cdn 引入 js 的框架，或是 css 引入圖片網址，可以無視這個規則。<br>當非同源時，前端發出請求時，需要進行跨域，而任何跨域行為，理當經過 server 端允許，若未經允許即可實現跨域，代表網站本身已存在重大漏洞。解決方案，主要有三種，JSONP 和 CORS 以及代理，JSONP 透過 script 導入目前比較少使用，CORS 則是由後端處理，前端直接使用，代理則需要特定設置(vue =&gt; vue.config.js)。<br>當然，如果是 cdn 引入 js 的框架，或是 css 引入圖片網址，可以無視這個規則。任何跨域行為，都應該經過 server 端允許，若未經允許即可實現跨域，代表網站本身已存在重大漏洞。</p>
 <h2 id="CORS-是什麼，它解決了什麼問題？"><a href="#CORS-是什麼，它解決了什麼問題？" class="headerlink" title="CORS 是什麼，它解決了什麼問題？"></a>CORS 是什麼，它解決了什麼問題？</h2><p>前端的一種跨域方式，由 server 端設置(通常是由後端設置在 http header)，前端可以直接使用，也可以只允許特定網址使用。</p>
 <h2 id="Proxy-代理"><a href="#Proxy-代理" class="headerlink" title="Proxy 代理"></a>Proxy 代理</h2><p>得通過 nginx server 的設定來達成，以 Vue 為例，在 vue.config.js 進行設定：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  devServer: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    host: &#39;localhost&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    port: 8080,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F; 當網址攔截到 &#x2F;api</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    proxy: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      &#39;&#x2F;api&#39;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        &#x2F;&#x2F; 目標要指向哪個網址</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        target: &#39;https:&#x2F;&#x2F;www.xxx.com&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        changeOrigin: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        &#x2F;*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">          實務上，會遇到n個api，每一隻api路徑皆有所差別</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">          為了統一攔截，因此虛擬化了一個路徑 &#x2F;api</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">          但當轉發路徑時，才將這個虛擬化的路徑轉為空</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        *&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        pathRewrite: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">          &#39;api&#x2F;&#39;: &#39;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>代理的安全性較高，可以隱藏後端 server 的來源，同時前後端需要設定的東西也較少。</p>
-<h2 id="描述-cookies-localStorage-sessionStorage-的差別？"><a href="#描述-cookies-localStorage-sessionStorage-的差別？" class="headerlink" title="描述 cookies/localStorage/sessionStorage 的差別？"></a>描述 cookies/localStorage/sessionStorage 的差別？</h2><p>cookie 早於後兩者，用於瀏覽器 &lt;=&gt; server 之間的溝通，比較早期的做法會被用來暫時借用本地儲存，但隨著 HTML5 的出現，本地儲存資料已改用後兩者。一般來說使用 localStorage 居多，畢竟使用者下次登入網頁時間未知，所以通常會選擇永久儲存，而 sessionStorage 則是關閉網頁即失效。</p>
+<h2 id="描述-cookies-localStorage-sessionStorage-的差別？"><a href="#描述-cookies-localStorage-sessionStorage-的差別？" class="headerlink" title="描述 cookies/localStorage/sessionStorage 的差別？"></a>描述 cookies/localStorage/sessionStorage 的差別？</h2><p>這三者都是前端在瀏覽器儲存的方式，cookie 是比較早期的做法，儲存的容量有限，只有 4KB，預設保存時效是瀏覽器關閉時就失效。一方面是本身儲存的容量小，另一方面因為會攜帶在 http 中，所以太多數據又會影響效能，所以大多不使用 cookie。</p>
+<p>但我個人此前有一個使用場景，業務推廣產品網址會帶有一組推廣碼，營運方希望在客戶成功註冊前，保存這組推廣碼24小時，我的解法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">當客戶透過推廣網址進入時註冊頁面時，立刻觸發保存當前時間(new Date())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">接下來利用 getTime() 來取從紀元時間到當前時間的毫秒數，再往後加上 24 小時的毫秒數</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">等於建立了一個時間戳記，再把它存到 document.cookie 的 expires，達到希望失效時間的目的。</span></pre></td></tr></table></figure>
+
+<p>localStorage 和 sessionStorage 都是從 HTML5 開始提供的 API，儲存的容量大 5MB，也不會對效能產生問題，所以目前已用來取代 cookie，但因為兩者使用 API 相同，前者永久保存除非手動清除，後者則一樣是關閉瀏覽器即失效，因此多用前者居多。除了常見於用來保存 login 的 token，我個人還有用過一個情境在於，當網站透過 i18n 建立多語系功能時，客戶第一次進入網站時，前台會使用後台預設的語系，但當客戶切換語系後，會透過 localStorage 來保存客戶切換的語系，避免下次進入時失效，畢竟我們無法判斷客戶下次登入網站時間，所以這邊採用永久保存會是比較好的做法。</p>
+<ul>
+<li><a href="https://medium.com/@bebebobohaha/cookie-localstorage-sessionstorage-%E5%B7%AE%E7%95%B0-9e1d5df3dd7f" target="_blank" rel="noopener">詳細圖解</a></li>
+</ul>
 <h2 id="請簡單解釋-RESTful-API"><a href="#請簡單解釋-RESTful-API" class="headerlink" title="請簡單解釋 RESTful API"></a>請簡單解釋 RESTful API</h2><p>表現層狀態轉移…嗯，這種不是人話的東西，基本上是看不懂的。當然撰寫 RESTful API 是有固定的風格設計，譬如使用名詞而不盡量不使用動詞之類的。但對前端來說，應該可以拆成三部分來理解，查看後端提供的 API 文件：</p>
 <ol>
 <li>url =&gt; 告訴前端你請求的是什麼，全部的產品列表或是單一商品的細節</li>
@@ -338,7 +360,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什麼是瀏覽器的同源策略？另外跨域問題，如何解決？"><span class="nav-number">1.</span> <span class="nav-text">什麼是瀏覽器的同源策略？另外跨域問題，如何解決？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS-是什麼，它解決了什麼問題？"><span class="nav-number">2.</span> <span class="nav-text">CORS 是什麼，它解決了什麼問題？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proxy-代理"><span class="nav-number">3.</span> <span class="nav-text">Proxy 代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述-cookies-localStorage-sessionStorage-的差別？"><span class="nav-number">4.</span> <span class="nav-text">描述 cookies/localStorage/sessionStorage 的差別？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#請簡單解釋-RESTful-API"><span class="nav-number">5.</span> <span class="nav-text">請簡單解釋 RESTful API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#簡單說幾個常見的-http-狀態碼？"><span class="nav-number">6.</span> <span class="nav-text">簡單說幾個常見的 http 狀態碼？</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#從輸入網址列到渲染畫面，過程經歷了什麼事？"><span class="nav-number">1.</span> <span class="nav-text">從輸入網址列到渲染畫面，過程經歷了什麼事？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什麼是瀏覽器的同源策略？另外跨域問題，如何解決？"><span class="nav-number">2.</span> <span class="nav-text">什麼是瀏覽器的同源策略？另外跨域問題，如何解決？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS-是什麼，它解決了什麼問題？"><span class="nav-number">3.</span> <span class="nav-text">CORS 是什麼，它解決了什麼問題？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proxy-代理"><span class="nav-number">4.</span> <span class="nav-text">Proxy 代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#描述-cookies-localStorage-sessionStorage-的差別？"><span class="nav-number">5.</span> <span class="nav-text">描述 cookies/localStorage/sessionStorage 的差別？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#請簡單解釋-RESTful-API"><span class="nav-number">6.</span> <span class="nav-text">請簡單解釋 RESTful API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#簡單說幾個常見的-http-狀態碼？"><span class="nav-number">7.</span> <span class="nav-text">簡單說幾個常見的 http 狀態碼？</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

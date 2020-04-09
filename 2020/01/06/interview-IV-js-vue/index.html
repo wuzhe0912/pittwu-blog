@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="Vue.js 面試問題彙整。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-05T15:44:51.304Z">
+<meta property="og:updated_time" content="2020-04-09T16:30:16.879Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/01/06/interview-IV-js-vue/">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-05 23:44:51" itemprop="dateModified" datetime="2020-04-05T23:44:51+08:00">2020-04-05</time>
+                <time title="Modified: 2020-04-10 00:30:16" itemprop="dateModified" datetime="2020-04-10T00:30:16+08:00">2020-04-10</time>
               </span>
 
           
@@ -263,7 +263,7 @@
       
         <p>Vue.js 面試問題彙整。</p>
 <a id="more"></a>
-<h3 id="如何理解-MVC-和-MVVM-差異？"><a href="#如何理解-MVC-和-MVVM-差異？" class="headerlink" title="如何理解 MVC 和 MVVM 差異？"></a>如何理解 MVC 和 MVVM 差異？</h3><ul>
+<h3 id="框架原理"><a href="#框架原理" class="headerlink" title="框架原理"></a>框架原理</h3><h4 id="Q：如何理解-MVC-和-MVVM-差異？"><a href="#Q：如何理解-MVC-和-MVVM-差異？" class="headerlink" title="Q：如何理解 MVC 和 MVVM 差異？"></a>Q：如何理解 MVC 和 MVVM 差異？</h4><ul>
 <li><p>MVC</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">view &#x3D;&gt; 前端(切版、套入動畫效果)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">controller &#x3D;&gt; 後端(控制 router)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">model &#x3D;&gt; 後端(database)</span></pre></td></tr></table></figure>
 <p>MVC 開始流行的原因，是為了解決早期程式碼混在一起的困境(義大利麵code)，前後端的程式碼都混在一起。因此 MVC 開始進行職責分工，view 負責畫面顯示，控管 router 和網站行為則由 controller，查詢資料庫的資料，則是 model，在這個時代前端工程師這個職缺才開始浮現出來(負責 view)。也因為 router 交由後端控制，因此這時期的網頁仍是多頁面式的網頁，切換頁面時是真的在切換不同頁面，會有明顯的 loading 時間。</p>
@@ -273,13 +273,116 @@
 <p>進入 MVVM 時代，將原生 JS 操作 DOM 這件事交給框架處理，我們負責改變框架中的資料，驅動資料去改變頁面重新渲染。而對前端來說，處理的是 view 和 viewModel，而 model 則是後端在處理。這個時候已經轉型為 SPA(單頁式應用)，網站頁面切換時，看似切換不同頁面，但本質只是切換同一頁的不同區塊，因此這時網頁的流暢性與使用性會更加流暢。</p>
 </li>
 </ul>
-<h3 id="試說明-Vue-的生命週期"><a href="#試說明-Vue-的生命週期" class="headerlink" title="試說明 Vue 的生命週期"></a>試說明 Vue 的生命週期</h3><ul>
-<li>created 和 mounted 的差異？<br>created 在頁面開始創建前，它會先進行 init data，但這個時候頁面結構是還沒開始渲染的，所以如果是呼叫 api 的資料，多數要等到 mounted 階段，因為這個時候 $el 已經被掛載上去了，頁面也已經渲染完成。</li>
-<li>updated<br>簡單說就是更新 data，常見的案例是，我們透過 @click 事件執行 methods 內的函數，在函數中會去改變 data 內的某個資料來達成頁面更新。</li>
-<li>destroyed<br>我的理解是銷毀節點，常用在 v-if，當狀態改變時，data 中的資料可能由 false =&gt; true 或是相反，這個時候頁面的綁定對象也就要隨之改變。譬如說，我在頁面 init 時 data 的 loading 掛為 false，但我在 created 中先執行一個呼叫 api 的函數，同時在函數中先將 loading 轉為 true，一但資料拿到後，再轉回 false，也就是我在資料取得前，構建了 loading 的節點，等到取得資料後在銷毀它。</li>
+<h4 id="Vue-的雙向綁定原理是如何實現的？"><a href="#Vue-的雙向綁定原理是如何實現的？" class="headerlink" title="Vue 的雙向綁定原理是如何實現的？"></a>Vue 的雙向綁定原理是如何實現的？</h4><p>因為這涉及 Vue 的底層原理，所以我的解釋上，可能會比較制式化，主要拆解為四個步驟：</p>
+<ol>
+<li>首先 vue 會先通過 <code>document.createDocumentFragment()</code> 的方法來建立虛擬 DOM。</li>
+<li>隨著 vue 所監聽的數據出現改變時，會再透過 <code>Object.defineProperty</code> 來進行數據攔截。</li>
+<li>根據數據的變化，再透過訂閱-發布者模式，來觸發 watch，進而改變虛擬 DOM。</li>
+<li>最後，再根據已經改變的虛擬 DOM，重新渲染頁面的 DOM 結構，達到雙向綁定的目的。</li>
+</ol>
+<h3 id="生命週期"><a href="#生命週期" class="headerlink" title="生命週期"></a>生命週期</h3><h4 id="Q：試說明-Vue-的生命週期"><a href="#Q：試說明-Vue-的生命週期" class="headerlink" title="Q：試說明 Vue 的生命週期"></a>Q：試說明 Vue 的生命週期</h4><ul>
+<li><p>beforeCreate &amp; created</p>
+<ul>
+<li>beforeCreated：init 整個 vue 的生命週期，目前個人經驗上，還沒有在這個階段處理過資料。</li>
+<li>created：這個階段，會先進行 init data，這個時候 data 內的初始化資料已經可以調用了，同時也可以進行 call api。</li>
+<li>再進入 mounted 階段前，其實 Vue 會有一個觀察動作，確認 template 上的 el 是否有正確設置好，但因為目前開發都是基於 vue-cli 的基底，所以這部分不太需要擔心。</li>
 </ul>
-<h3 id="簡單解釋一下-Vuex-的原理"><a href="#簡單解釋一下-Vuex-的原理" class="headerlink" title="簡單解釋一下 Vuex 的原理"></a>簡單解釋一下 Vuex 的原理</h3><p>在 Vuex 當中，state 會存放初始化的資料，當 component 呼叫 Vuex 中寫好的函數，首先會到 actions 找對應的函數，這時會去呼叫 api 的資料，當然如果 component 呼叫時有傳入參數，那這個參數就透過 payload 傳入函數。當 api 的資料取得後，除了回傳給 component，也透過 commit 的方式來改變 mutations 內的函數，而 mutations 這時就會將傳來的資料賦值給 state，進而改變狀態。</p>
-<h3 id="什麼情境下，需使用-Vuex？"><a href="#什麼情境下，需使用-Vuex？" class="headerlink" title="什麼情境下，需使用 Vuex？"></a>什麼情境下，需使用 Vuex？</h3><p>Vue 的專案中，通常會有多個 component 組成，尤其專案越大組成結構就越複雜，有些資料會是多個頁面需要共用，這個時候不可能仰賴父子組件傳值，萬一組件和組件之間隔了好幾層，那效益就太差了，這時通常就會抽離到 Vuex 進行狀態管理。舉例來說，常見的使用者帳號狀態，因為涉及到登入登出的情境，login 和 logout，頁面呈現狀態會有所差異，不可能在每一個需要使用 userInfo 的 component 都寫一遍呼叫 api 的函數，所以無論是 init 的資料或是呼叫 api 的函數，這時候就會統一寫在 Vuex，方便要使用的人直接調用。</p>
+</li>
+<li><p>beforeMount &amp; mounted</p>
+<ul>
+<li>beforeMount：這個階段很少用，我個人也沒使用過，位於資料渲染前。</li>
+<li>mounted：頁面已經渲染完成，同時 $el 已經掛載上去了。</li>
+</ul>
+</li>
+<li><p>beforeUpdate &amp; updated<br>簡單說就是更新 data 的資料，促使頁面重新渲染 DOM，譬如透過 @click 事件去執行函式來改變 true 或 false，進而影響 v-bind 綁定的 class 增加或移除，達到樣式改變的目的。</p>
+</li>
+<li><p>beforeDestroy &amp; destroyed<br>vue 生命週期的尾聲，準備要銷毀節點，常見於 v-if。舉例來說，當我們執行 methods 的函式時，可能會將某些初始資料進行狀態改變，當資料在 true 或 false 間轉換時，同時 template 上的 DOM 也會隨之出現或消失，但和 v-show 不同，v-show 的消失，僅是元素採用  css 的 display: none 來隱藏，而 v-if 則是將該元素整個移除，所以被稱為銷毀。不過一般來說，我們不會直接使用 destroyed，官方也不建議我們使用。</p>
+</li>
+<li><p>前職中，call api 時，基本是</p>
+</li>
+</ul>
+<h4 id="Q：created-和-mounted-的差異？"><a href="#Q：created-和-mounted-的差異？" class="headerlink" title="Q：created 和 mounted 的差異？"></a>Q：created 和 mounted 的差異？</h4><p>兩者的最大的差異，還是在於掛載的順序，以及在各階段資料的狀態。</p>
+<ul>
+<li>beforeCreate：在這個階段 $el 和 $data 都尚未掛載 =&gt; undefined</li>
+<li>created：$data 初始資料已載入，$el 尚未 =&gt; undefined</li>
+<li>beforeMount：$el 依然為空 =&gt; undefined</li>
+<li>mounted：$el 完成渲染出現資料</li>
+</ul>
+<h3 id="運作機制"><a href="#運作機制" class="headerlink" title="運作機制"></a>運作機制</h3><h4 id="Q：為什麼說-vue-是單向數據流？"><a href="#Q：為什麼說-vue-是單向數據流？" class="headerlink" title="Q：為什麼說 vue 是單向數據流？"></a>Q：為什麼說 vue 是單向數據流？</h4><p>因為 vue 的父子組件傳值中，父組件可以送資料給子組件，但子組件只能接收不能傳資料給父組件，不過子組件可以透過 @emit 方法，促使父組件執行函式來改變狀態。</p>
+<p>舉例來說，彈窗效果(modal)我們通常會封裝到 component 內，每個頁面需要顯示彈窗內容都會有差異，譬如 title 可能就有落差，那 title 的資料就得透過父組件傳過去。但是如果我們想要關閉彈窗，代表我們想改變狀態，這時候 modal 就可以透過 <code>@emit=&quot;boxSwitch&quot;</code> 往上傳，父組件拿到後就會執行 methods 來改變當前的狀態，達到關閉彈窗的效果。</p>
+<h3 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue-Router"></a>Vue-Router</h3><h4 id="Q：簡單聊一下-Vue-Router"><a href="#Q：簡單聊一下-Vue-Router" class="headerlink" title="Q：簡單聊一下 Vue-Router"></a>Q：簡單聊一下 Vue-Router</h4><p>主要兩種 mode，hash(default 加 #)，history(基於 HTML5 的 History 模式)。不過 history mode 需要和後端溝通，在對應的語言下，設定 rewrite，具體內容會直接參考官方文件。此外，為了避免無法找到錯誤頁面，同時也為了阻止客戶亂打url，最底層需加一組 path: ‘*’ 來進行轉址，至於轉址到哪一頁，則看需求方。</p>
+<p>基本配置就是 path 設定要前往的路徑，component 載入要進入的頁面，通常還會加上 name，方便 router-link 的 to 可以直接調用。動態路由則使用冒號做開頭，通常可以在結尾加上?，方便如果沒有找到頁面時，會直接動態路由的上一層，例如：<code>list/:id?</code>。</p>
+<h4 id="Q：Vue-路由的跳轉方式？"><a href="#Q：Vue-路由的跳轉方式？" class="headerlink" title="Q：Vue 路由的跳轉方式？"></a>Q：Vue 路由的跳轉方式？</h4><p>主要有兩種：</p>
+<ul>
+<li>router-link，本質上就是 a 標籤，在 template 中使用這個方式。</li>
+<li>router.push，主要透過 methods 來執行跳轉到對應頁面，同時也可以在其中的 query 埋下參數，方便跳轉後的頁面直接調用。</li>
+</ul>
+<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3><h4 id="Q：簡單解釋一下-Vuex-的原理"><a href="#Q：簡單解釋一下-Vuex-的原理" class="headerlink" title="Q：簡單解釋一下 Vuex 的原理"></a>Q：簡單解釋一下 Vuex 的原理</h4><p>在 Vuex 當中，state 會存放初始化的資料，當 component 呼叫 Vuex 中寫好的函式，首先會到 actions 找對應的函式，這時會去呼叫 api 的資料，當然如果 component 呼叫時有傳入參數，那這個參數就透過 payload 傳入函式。當 api 的資料取得後，除了回傳給 component，也透過 commit 的方式來改變 mutations 內的函式，而 mutations 這時就會將傳來的資料賦值給 state，進而改變狀態。</p>
+<h4 id="Q：什麼情境下，需使用-Vuex？"><a href="#Q：什麼情境下，需使用-Vuex？" class="headerlink" title="Q：什麼情境下，需使用 Vuex？"></a>Q：什麼情境下，需使用 Vuex？</h4><p>Vue 的專案中，通常會有多個 component 組成，尤其專案越大組成結構就越複雜，有些資料會是多個頁面需要共用，這個時候不可能仰賴父子組件傳值，萬一組件和組件之間隔了好幾層，那效益就太差了，這時通常就會抽離到 Vuex 進行狀態管理。</p>
+<p>舉例來說，常見的使用者帳號資料 userInfo，在 login 和 logout 兩種狀態下，頁面需要顯示的內容會有所差異，不可能在每一個需要使用 userInfo 的 component 都寫一遍呼叫 api 的函式，所以無論是初始的資料或是呼叫 api 的函式，這時候就會統一寫在 Vuex，方便直接 commit 更新 state，需要使用的 component 再透過 mapState 去載入。</p>
+<h3 id="進階用法"><a href="#進階用法" class="headerlink" title="進階用法"></a>進階用法</h3><h4 id="keep-alive-的用法"><a href="#keep-alive-的用法" class="headerlink" title="keep-alive 的用法"></a>keep-alive 的用法</h4><p>可以理解為一種暫存資料的方式，假設後台有一些表單需要填寫時，可能使用者會需要來回切換不同區塊，這時候會導致原先填寫到一半的資料消失，透過 keep-alive 去包裹，可以暫時存放資料，優化使用體驗。</p>
+<h4 id="簡單說一下-slot-是什麼？"><a href="#簡單說一下-slot-是什麼？" class="headerlink" title="簡單說一下 slot 是什麼？"></a>簡單說一下 slot 是什麼？</h4><p>基本操作和 component 雷同，載入需要插入的 component，再透過父子組件傳值，差別在於，接受傳值的子組件需要在 template 上使用 slot 標籤，這個標籤內的內容，則會渲染父組件傳過來的子內容或子節點，內容在父組件會使用 <p>Vue.js 面試問題彙整。</p>
+<!--more-->
+<h3 id="框架原理"><a href="#框架原理" class="headerlink" title="框架原理"></a>框架原理</h3><h4 id="Q：如何理解-MVC-和-MVVM-差異？"><a href="#Q：如何理解-MVC-和-MVVM-差異？" class="headerlink" title="Q：如何理解 MVC 和 MVVM 差異？"></a>Q：如何理解 MVC 和 MVVM 差異？</h4><ul>
+<li><p>MVC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">view &#x3D;&gt; 前端(切版、套入動畫效果)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">controller &#x3D;&gt; 後端(控制 router)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">model &#x3D;&gt; 後端(database)</span></pre></td></tr></table></figure>
+<p>MVC 開始流行的原因，是為了解決早期程式碼混在一起的困境(義大利麵code)，前後端的程式碼都混在一起。因此 MVC 開始進行職責分工，view 負責畫面顯示，控管 router 和網站行為則由 controller，查詢資料庫的資料，則是 model，在這個時代前端工程師這個職缺才開始浮現出來(負責 view)。也因為 router 交由後端控制，因此這時期的網頁仍是多頁面式的網頁，切換頁面時是真的在切換不同頁面，會有明顯的 loading 時間。</p>
+</li>
+<li><p>MVVM</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">view &#x3D;&gt; 依然是前端(控制使用者看到的渲染頁面)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">model &#x3D;&gt; 後端</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">viewModel &#x3D;&gt; 前端(改由前端控制 router)</span></pre></td></tr></table></figure>
+<p>進入 MVVM 時代，將原生 JS 操作 DOM 這件事交給框架處理，我們負責改變框架中的資料，驅動資料去改變頁面重新渲染。而對前端來說，處理的是 view 和 viewModel，而 model 則是後端在處理。這個時候已經轉型為 SPA(單頁式應用)，網站頁面切換時，看似切換不同頁面，但本質只是切換同一頁的不同區塊，因此這時網頁的流暢性與使用性會更加流暢。</p>
+</li>
+</ul>
+<h4 id="Vue-的雙向綁定原理是如何實現的？"><a href="#Vue-的雙向綁定原理是如何實現的？" class="headerlink" title="Vue 的雙向綁定原理是如何實現的？"></a>Vue 的雙向綁定原理是如何實現的？</h4><p>因為這涉及 Vue 的底層原理，所以我的解釋上，可能會比較制式化，主要拆解為四個步驟：</p>
+<ol>
+<li>首先 vue 會先通過 <code>document.createDocumentFragment()</code> 的方法來建立虛擬 DOM。</li>
+<li>隨著 vue 所監聽的數據出現改變時，會再透過 <code>Object.defineProperty</code> 來進行數據攔截。</li>
+<li>根據數據的變化，再透過訂閱-發布者模式，來觸發 watch，進而改變虛擬 DOM。</li>
+<li>最後，再根據已經改變的虛擬 DOM，重新渲染頁面的 DOM 結構，達到雙向綁定的目的。</li>
+</ol>
+<h3 id="生命週期"><a href="#生命週期" class="headerlink" title="生命週期"></a>生命週期</h3><h4 id="Q：試說明-Vue-的生命週期"><a href="#Q：試說明-Vue-的生命週期" class="headerlink" title="Q：試說明 Vue 的生命週期"></a>Q：試說明 Vue 的生命週期</h4><ul>
+<li><p>beforeCreate &amp; created</p>
+<ul>
+<li>beforeCreated：init 整個 vue 的生命週期，目前個人經驗上，還沒有在這個階段處理過資料。</li>
+<li>created：這個階段，會先進行 init data，這個時候 data 內的初始化資料已經可以調用了，同時也可以進行 call api。</li>
+<li>再進入 mounted 階段前，其實 Vue 會有一個觀察動作，確認 template 上的 el 是否有正確設置好，但因為目前開發都是基於 vue-cli 的基底，所以這部分不太需要擔心。</li>
+</ul>
+</li>
+<li><p>beforeMount &amp; mounted</p>
+<ul>
+<li>beforeMount：這個階段很少用，我個人也沒使用過，位於資料渲染前。</li>
+<li>mounted：頁面已經渲染完成，同時 $el 已經掛載上去了。</li>
+</ul>
+</li>
+<li><p>beforeUpdate &amp; updated<br>簡單說就是更新 data 的資料，促使頁面重新渲染 DOM，譬如透過 @click 事件去執行函式來改變 true 或 false，進而影響 v-bind 綁定的 class 增加或移除，達到樣式改變的目的。</p>
+</li>
+<li><p>beforeDestroy &amp; destroyed<br>vue 生命週期的尾聲，準備要銷毀節點，常見於 v-if。舉例來說，當我們執行 methods 的函式時，可能會將某些初始資料進行狀態改變，當資料在 true 或 false 間轉換時，同時 template 上的 DOM 也會隨之出現或消失，但和 v-show 不同，v-show 的消失，僅是元素採用  css 的 display: none 來隱藏，而 v-if 則是將該元素整個移除，所以被稱為銷毀。不過一般來說，我們不會直接使用 destroyed，官方也不建議我們使用。</p>
+</li>
+<li><p>前職中，call api 時，基本是</p>
+</li>
+</ul>
+<h4 id="Q：created-和-mounted-的差異？"><a href="#Q：created-和-mounted-的差異？" class="headerlink" title="Q：created 和 mounted 的差異？"></a>Q：created 和 mounted 的差異？</h4><p>兩者的最大的差異，還是在於掛載的順序，以及在各階段資料的狀態。</p>
+<ul>
+<li>beforeCreate：在這個階段 $el 和 $data 都尚未掛載 =&gt; undefined</li>
+<li>created：$data 初始資料已載入，$el 尚未 =&gt; undefined</li>
+<li>beforeMount：$el 依然為空 =&gt; undefined</li>
+<li>mounted：$el 完成渲染出現資料</li>
+</ul>
+<h3 id="運作機制"><a href="#運作機制" class="headerlink" title="運作機制"></a>運作機制</h3><h4 id="Q：為什麼說-vue-是單向數據流？"><a href="#Q：為什麼說-vue-是單向數據流？" class="headerlink" title="Q：為什麼說 vue 是單向數據流？"></a>Q：為什麼說 vue 是單向數據流？</h4><p>因為 vue 的父子組件傳值中，父組件可以送資料給子組件，但子組件只能接收不能傳資料給父組件，不過子組件可以透過 @emit 方法，促使父組件執行函式來改變狀態。</p>
+<p>舉例來說，彈窗效果(modal)我們通常會封裝到 component 內，每個頁面需要顯示彈窗內容都會有差異，譬如 title 可能就有落差，那 title 的資料就得透過父組件傳過去。但是如果我們想要關閉彈窗，代表我們想改變狀態，這時候 modal 就可以透過 <code>@emit=&quot;boxSwitch&quot;</code> 往上傳，父組件拿到後就會執行 methods 來改變當前的狀態，達到關閉彈窗的效果。</p>
+<h3 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue-Router"></a>Vue-Router</h3><h4 id="Q：簡單聊一下-Vue-Router"><a href="#Q：簡單聊一下-Vue-Router" class="headerlink" title="Q：簡單聊一下 Vue-Router"></a>Q：簡單聊一下 Vue-Router</h4><p>主要兩種 mode，hash(default 加 #)，history(基於 HTML5 的 History 模式)。不過 history mode 需要和後端溝通，在對應的語言下，設定 rewrite，具體內容會直接參考官方文件。此外，為了避免無法找到錯誤頁面，同時也為了阻止客戶亂打url，最底層需加一組 path: ‘*’ 來進行轉址，至於轉址到哪一頁，則看需求方。</p>
+<p>基本配置就是 path 設定要前往的路徑，component 載入要進入的頁面，通常還會加上 name，方便 router-link 的 to 可以直接調用。動態路由則使用冒號做開頭，通常可以在結尾加上?，方便如果沒有找到頁面時，會直接動態路由的上一層，例如：<code>list/:id?</code>。</p>
+<h4 id="Q：Vue-路由的跳轉方式？"><a href="#Q：Vue-路由的跳轉方式？" class="headerlink" title="Q：Vue 路由的跳轉方式？"></a>Q：Vue 路由的跳轉方式？</h4><p>主要有兩種：</p>
+<ul>
+<li>router-link，本質上就是 a 標籤，在 template 中使用這個方式。</li>
+<li>router.push，主要透過 methods 來執行跳轉到對應頁面，同時也可以在其中的 query 埋下參數，方便跳轉後的頁面直接調用。</li>
+</ul>
+<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3><h4 id="Q：簡單解釋一下-Vuex-的原理"><a href="#Q：簡單解釋一下-Vuex-的原理" class="headerlink" title="Q：簡單解釋一下 Vuex 的原理"></a>Q：簡單解釋一下 Vuex 的原理</h4><p>在 Vuex 當中，state 會存放初始化的資料，當 component 呼叫 Vuex 中寫好的函式，首先會到 actions 找對應的函式，這時會去呼叫 api 的資料，當然如果 component 呼叫時有傳入參數，那這個參數就透過 payload 傳入函式。當 api 的資料取得後，除了回傳給 component，也透過 commit 的方式來改變 mutations 內的函式，而 mutations 這時就會將傳來的資料賦值給 state，進而改變狀態。</p>
+<h4 id="Q：什麼情境下，需使用-Vuex？"><a href="#Q：什麼情境下，需使用-Vuex？" class="headerlink" title="Q：什麼情境下，需使用 Vuex？"></a>Q：什麼情境下，需使用 Vuex？</h4><p>Vue 的專案中，通常會有多個 component 組成，尤其專案越大組成結構就越複雜，有些資料會是多個頁面需要共用，這個時候不可能仰賴父子組件傳值，萬一組件和組件之間隔了好幾層，那效益就太差了，這時通常就會抽離到 Vuex 進行狀態管理。</p>
+<p>舉例來說，常見的使用者帳號資料 userInfo，在 login 和 logout 兩種狀態下，頁面需要顯示的內容會有所差異，不可能在每一個需要使用 userInfo 的 component 都寫一遍呼叫 api 的函式，所以無論是初始的資料或是呼叫 api 的函式，這時候就會統一寫在 Vuex，方便直接 commit 更新 state，需要使用的 component 再透過 mapState 去載入。</p>
+<h3 id="進階用法"><a href="#進階用法" class="headerlink" title="進階用法"></a>進階用法</h3><h4 id="keep-alive-的用法"><a href="#keep-alive-的用法" class="headerlink" title="keep-alive 的用法"></a>keep-alive 的用法</h4><p>可以理解為一種暫存資料的方式，假設後台有一些表單需要填寫時，可能使用者會需要來回切換不同區塊，這時候會導致原先填寫到一半的資料消失，透過 keep-alive 去包裹，可以暫時存放資料，優化使用體驗。</p>
+<h4 id="簡單說一下-slot-是什麼？"><a href="#簡單說一下-slot-是什麼？" class="headerlink" title="簡單說一下 slot 是什麼？"></a>簡單說一下 slot 是什麼？</h4><p>基本操作和 component 雷同，載入需要插入的 component，再透過父子組件傳值，差別在於，接受傳值的子組件需要在 template 上使用 slot 標籤，這個標籤內的內容，則會渲染父組件傳過來的子內容或子節點，內容在父組件會使用 {{ content }} 包裹。當然如果父組件沒有傳值，也可以直接使用子組件的資料來顯示。</p>
+ 包裹。當然如果父組件沒有傳值，也可以直接使用子組件的資料來顯示。</p>
 
     </div>
 
@@ -344,7 +447,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何理解-MVC-和-MVVM-差異？"><span class="nav-number">1.</span> <span class="nav-text">如何理解 MVC 和 MVVM 差異？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#試說明-Vue-的生命週期"><span class="nav-number">2.</span> <span class="nav-text">試說明 Vue 的生命週期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#簡單解釋一下-Vuex-的原理"><span class="nav-number">3.</span> <span class="nav-text">簡單解釋一下 Vuex 的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什麼情境下，需使用-Vuex？"><span class="nav-number">4.</span> <span class="nav-text">什麼情境下，需使用 Vuex？</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#框架原理"><span class="nav-number">1.</span> <span class="nav-text">框架原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：如何理解-MVC-和-MVVM-差異？"><span class="nav-number">1.1.</span> <span class="nav-text">Q：如何理解 MVC 和 MVVM 差異？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-的雙向綁定原理是如何實現的？"><span class="nav-number">1.2.</span> <span class="nav-text">Vue 的雙向綁定原理是如何實現的？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命週期"><span class="nav-number">2.</span> <span class="nav-text">生命週期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：試說明-Vue-的生命週期"><span class="nav-number">2.1.</span> <span class="nav-text">Q：試說明 Vue 的生命週期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：created-和-mounted-的差異？"><span class="nav-number">2.2.</span> <span class="nav-text">Q：created 和 mounted 的差異？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#運作機制"><span class="nav-number">3.</span> <span class="nav-text">運作機制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：為什麼說-vue-是單向數據流？"><span class="nav-number">3.1.</span> <span class="nav-text">Q：為什麼說 vue 是單向數據流？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-Router"><span class="nav-number">4.</span> <span class="nav-text">Vue-Router</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：簡單聊一下-Vue-Router"><span class="nav-number">4.1.</span> <span class="nav-text">Q：簡單聊一下 Vue-Router</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：Vue-路由的跳轉方式？"><span class="nav-number">4.2.</span> <span class="nav-text">Q：Vue 路由的跳轉方式？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuex"><span class="nav-number">5.</span> <span class="nav-text">Vuex</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：簡單解釋一下-Vuex-的原理"><span class="nav-number">5.1.</span> <span class="nav-text">Q：簡單解釋一下 Vuex 的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：什麼情境下，需使用-Vuex？"><span class="nav-number">5.2.</span> <span class="nav-text">Q：什麼情境下，需使用 Vuex？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進階用法"><span class="nav-number">6.</span> <span class="nav-text">進階用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#keep-alive-的用法"><span class="nav-number">6.1.</span> <span class="nav-text">keep-alive 的用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#簡單說一下-slot-是什麼？"><span class="nav-number">6.2.</span> <span class="nav-text">簡單說一下 slot 是什麼？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架原理"><span class="nav-number">7.</span> <span class="nav-text">框架原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：如何理解-MVC-和-MVVM-差異？"><span class="nav-number">7.1.</span> <span class="nav-text">Q：如何理解 MVC 和 MVVM 差異？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue-的雙向綁定原理是如何實現的？"><span class="nav-number">7.2.</span> <span class="nav-text">Vue 的雙向綁定原理是如何實現的？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命週期"><span class="nav-number">8.</span> <span class="nav-text">生命週期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：試說明-Vue-的生命週期"><span class="nav-number">8.1.</span> <span class="nav-text">Q：試說明 Vue 的生命週期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：created-和-mounted-的差異？"><span class="nav-number">8.2.</span> <span class="nav-text">Q：created 和 mounted 的差異？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#運作機制"><span class="nav-number">9.</span> <span class="nav-text">運作機制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：為什麼說-vue-是單向數據流？"><span class="nav-number">9.1.</span> <span class="nav-text">Q：為什麼說 vue 是單向數據流？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-Router"><span class="nav-number">10.</span> <span class="nav-text">Vue-Router</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：簡單聊一下-Vue-Router"><span class="nav-number">10.1.</span> <span class="nav-text">Q：簡單聊一下 Vue-Router</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：Vue-路由的跳轉方式？"><span class="nav-number">10.2.</span> <span class="nav-text">Q：Vue 路由的跳轉方式？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vuex"><span class="nav-number">11.</span> <span class="nav-text">Vuex</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：簡單解釋一下-Vuex-的原理"><span class="nav-number">11.1.</span> <span class="nav-text">Q：簡單解釋一下 Vuex 的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：什麼情境下，需使用-Vuex？"><span class="nav-number">11.2.</span> <span class="nav-text">Q：什麼情境下，需使用 Vuex？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#進階用法"><span class="nav-number">12.</span> <span class="nav-text">進階用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#keep-alive-的用法"><span class="nav-number">12.1.</span> <span class="nav-text">keep-alive 的用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#簡單說一下-slot-是什麼？"><span class="nav-number">12.2.</span> <span class="nav-text">簡單說一下 slot 是什麼？</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
