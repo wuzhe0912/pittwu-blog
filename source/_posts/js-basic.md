@@ -115,10 +115,10 @@ function b() {
 }
 b()
 ```
-雖然在 b() 當中重新對 val 進行賦值，但因為前述靜態作用域的特性，不會觸發這個改變後的賦值，而會選擇維持調用全域的變數。但如果今天這個是動態作用域，則結果相反，會等到函數執行後，取最新的變數。
+雖然在 b() 當中重新對 val 進行賦值，但因為前述靜態作用域的特性，不會觸發這個改變後的賦值，而會選擇維持調用全域的變數。但如果今天這個是動態作用域，則結果相反，會等到函式執行後，取最新的變數。
 
 ## 範圍鍊
-承前述，在函數內如果沒有變數，那倘若要印出變數，這個時候會向外尋找，先找到父層的函數，再沒有則往全域尋找，這樣的過程可以理解為一個範圍鍊。
+承前述，在函式內如果沒有變數，那倘若要印出變數，這個時候會向外尋找，先找到父層的函式，再沒有則往全域尋找，這樣的過程可以理解為一個範圍鍊。
 ```
 var person = 'Pitt'
 
@@ -140,100 +140,9 @@ function second () {
 first()
 second()
 ```
-第一次執行 first() 時，因為這個函數內沒有變數 person，所以會向全域尋找，賦值為 Pitt，接著執行 second()，這時函數內 person 已經有值為 Nini 了，所以會印出 Nini，但這時再次執行 first()，因為靜態作用域的特性，所以 second() 的變數不會影響到 first()，因此仍會向全域尋找印出 Pitt。最後則是執行 third()，因為 third() 內同樣有變數，所以會印出 Yumi。
+第一次執行 first() 時，因為這個函式內沒有變數 person，所以會向全域尋找，賦值為 Pitt，接著執行 second()，這時函式內 person 已經有值為 Nini 了，所以會印出 Nini，但這時再次執行 first()，因為靜態作用域的特性，所以 second() 的變數不會影響到 first()，因此仍會向全域尋找印出 Pitt。最後則是執行 third()，因為 third() 內同樣有變數，所以會印出 Yumi。
 
 倘若我將 third() 中的變數註釋掉，那 third() 會先向父層 second() 尋找印出 Nini，如果 second() 也被註釋掉則會尋找全域變數印出 Pitt。
-
-## 提升
-JS 的運行可以拆解為兩階段，分別是創造與執行：
-```
-var name = 'Pitt'
-console.log(name) // 印出 Pitt
-```
-在變數中，上面這段 code 在實際運作上，需要理解為
-```
-// 創造
-var name
-
-// 執行
-name = 'Pitt'
-console.log(name)
-```
-而函數又和變數不同，在創造階段就會指給記憶體，陳述式如下：
-```
-getName()
-function getName () {
-  console.log('string')
-}
-```
-上面這段之所以能正常運行印出 console.log，而不會報錯，在於以下邏輯
-```
-// 創造
-function getName () {
-  console.log('string')
-}
-
-// 執行
-getName()
-```
-但需要注意的是，這種 JS 提升的性質，在表達式時需要注意撰寫順序問題
-創造階段 => 函數優先，其次才是變數
-- success
-```
-name = 'Pitt'
-console.log(name) // 印出 Pitt
-var name
-
-相等於
-
-// 創造
-var name
-
-// 執行
-name = 'Pitt'
-console.log(name) // 印出 Pitt
-```
-- error
-```
-console.log(name) // 印出 undefined
-var name = 'Pitt'
-
-相等於
-
-// 創造
-var name
-
-// 執行
-console.log(name) // 印出 undefined，還未拿到賦值，只拿到預設的 undefined
-name = 'Pitt'
-```
-- e.g.
-```
-whoseName()
-function whoseName () {
-  if (name) {
-    name = 'Nini'
-  }
-}
-var name = 'Pitt'
-console.log(name)
-
-相等於
-
-// 創造
-function whoseName () {
-  console.log(1, name) // => 拿到預設的 undefined，因此不往下走判斷
-  if (name) {
-    name = 'Nini'
-  }
-}
-var name
-
-// 執行
-whoseName()
-name = 'Pitt'
-console.log(name) // 印出 Pitt
-```
 
 ## Event queue
 JS 本身是單執行緒，因此非同步的事件在 JS 的執行過程中，會被放置到事件等待序列中，直到其他同步事件先被執行完成，才會被執行。
@@ -315,38 +224,3 @@ delete b
 console.log(window.a) // 10
 console.log(window.b) // undefined
 ```
-
-## 閉包
-什麼是閉包？簡單說，就是當 JS 的 function 因為GC(垃圾回收)機制觸發，導致函數執行完後，內部作用域內容會被銷毀。這時可以透過子函數來保存我們需要的變數或內容。
-```
-function deposit () {
-  var cash = 100
-  return function (coin) {
-    cash = cash + coin
-    return cash
-  }
-}
-```
-因為子函數沒有被銷毀，加上範圍鍊的原則，子函數調用外面父函數的變數 cash，因此父函數作用域在閉包的狀況下被保存下來，同時後續宣告不同變數時，也可以獨立調用這一組函數而不用擔心互相污染。
-```
-function deposit () {
-  var cash = 100
-  return function (coin) {
-    cash = cash + coin
-    return cash
-  }
-}
-
-var PittPay = deposit()
-console.log(PittPay(100)) // 200
-console.log(PittPay(100)) // 300
-console.log(PittPay(100)) // 400
-
-var KimiPay = deposit()
-console.log(KimiPay(200)) // 300
-console.log(KimiPay(200)) // 500
-console.log(KimiPay(200)) // 700
-```
-
-## Promise
-ES6 的新方法，本質上是一個物件，用來處理非同步的方法。

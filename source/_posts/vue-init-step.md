@@ -96,7 +96,7 @@ views
 assets
   - scss
     - color.scss => 基礎共用色碼
-    - mixin.scss => 基礎共用函數
+    - mixin.scss => 基礎共用函式
     - share.scss => @import 上面兩個基礎共用scss，建立共用參數
     - style.scss => @import share.scss => 全域 scss，權重最重，在此處 reset css
 

@@ -39,7 +39,7 @@ module.exports = {
     subContent: 123
 }
 
-//除了物件外，也能調用函數
+//除了物件外，也能調用函式
 exports.call = (() => {
   return 'call!'
 })

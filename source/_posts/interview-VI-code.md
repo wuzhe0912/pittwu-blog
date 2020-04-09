@@ -19,7 +19,7 @@ number + string => string 呈現，若兩者都是 number，則進行計算。
 plus(2, 5); // 7
 add(2)(5); // 7
 ```
-第一題是一般函數的計算
+第一題是一般函式的計算
 ```
 function plus (val, val2) {
   return val + val2
@@ -96,11 +96,11 @@ var foo = "Hello";
 
 alert(foo + bar);
 ```
-第一次 alert 的結果正常，因為 foo 可以找到全域變數，而 bar 則使用函數作用域內的變數。
+第一次 alert 的結果正常，因為 foo 可以找到全域變數，而 bar 則使用函式作用域內的變數。
 ```
 Hello World
 ```
-第二次 alert 時，foo 全域變數仍然存在，但是 bar 在函數內的變數已被銷毀，所以會變成 bar is not defined
+第二次 alert 時，foo 全域變數仍然存在，但是 bar 在函式內的變數已被銷毀，所以會變成 bar is not defined
 ```
 bar is not defined
 ```

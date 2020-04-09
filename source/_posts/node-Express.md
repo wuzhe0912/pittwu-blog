@@ -83,7 +83,7 @@ app.use((req, res, next) => {
 ```
 `use()` 方法，除了提示找不到頁面，若是程式碼本身有錯，也可以提醒，通常狀態碼為 500。
 ```
-// 這邊使用了一個未定義的函數，除了出現 not defined 的 error
+// 這邊使用了一個未定義的函式，除了出現 not defined 的 error
 // 也會回傳 500 的狀態碼
 app.use((req, res, next) => {
   test()

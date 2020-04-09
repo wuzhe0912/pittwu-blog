@@ -8,7 +8,7 @@ tags: Vue.js
 ## 數據變化與更新
 ### beforeUpdate & updated
 透過 @click 事件來達到數據更新的功能。
-一開始頁面渲染 data 的初始資料，當點擊時觸發函數執行資料更新。
+一開始頁面渲染 data 的初始資料，當點擊時觸發函式執行資料更新。
 ```
 // template
 p {{ msg }}
@@ -21,7 +21,7 @@ data () {
   }
 },
 
-// methods 存放執行的函數，透過點擊執行函數來更新資料
+// methods 存放執行的函式，透過點擊執行函式來更新資料
 methods: {
   update () {
     this.msg = 'Hello Pitt!'

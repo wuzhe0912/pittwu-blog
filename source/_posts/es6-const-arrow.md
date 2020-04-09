@@ -1,5 +1,5 @@
 ---
-title: ES6：宣告變數與箭頭函數
+title: ES6：宣告變數與箭頭函式
 date: 2019-12-02 11:17:16
 tags: ES6
 ---
@@ -65,26 +65,26 @@ const a = 1
 console.log(a)
 ```
 除了精簡程式碼，也讓寫法變得更輕鬆。
-## Arrow Function (箭頭函數)
+## Arrow Function (箭頭函式)
 ### 第一種：(參數列表) => (回傳值)
-#### 傳統函數寫法
+#### 傳統函式寫法
 ```
 let add = function (n1, n2) {
     return n1+n2;
 };
 ```
-#### 箭頭函數寫法
+#### 箭頭函式寫法
 ```
 let add = (n1, n2) => (n1+n2)
 ```
-### 第二種：(參數列表) => {函數內部程式}
-#### 傳統函數寫法
+### 第二種：(參數列表) => {函式內部程式}
+#### 傳統函式寫法
 ```
 let add = function (n1, n2) {
     return n1+n2;
 };
 ```
-#### 箭頭函數寫法
+#### 箭頭函式寫法
 ```
 let add = (n1, n2) => {
     return n1+n2
@@ -108,14 +108,14 @@ f("Hello, Pitt");
 
 // 印出 Hello, Pitt
 ```
-### 匿名函數
+### 匿名函式
 #### 傳統寫法
 ```
 setTimeout(function(){
     console.log("過了5秒");
 }, 5000);
 ```
-#### 箭頭函數寫法
+#### 箭頭函式寫法
 ```
 setTimeout(() => {
     console.log("過了5秒");
@@ -134,7 +134,7 @@ function show(message) {
 show("Pitt"); // 顯示 Pitt
 show(); // 顯示 default
 ```
-#### 箭頭函數寫法
+#### 箭頭函式寫法
 ```
 // 若未給定參數資料，則直接採用等號後的賦值
 
@@ -154,7 +154,7 @@ function multiply(n1, n2=2) {
 multiply(2, 3); // 回傳 6
 multiply(); // 回傳 4
 ```
-##### 範例一：箭頭函數寫法
+##### 範例一：箭頭函式寫法
 ```
 let multiply=(n1, n2=2) => (n1+n2);
 

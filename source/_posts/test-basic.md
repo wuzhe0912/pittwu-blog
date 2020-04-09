@@ -17,7 +17,7 @@ e.g.
 - math.js
 - math.test.js
 ```
-我將 math.js 寫好兩個計算函數並引入 index.html，如下：
+我將 math.js 寫好兩個計算函式並引入 index.html，如下：
 ```
 function add (a, b) {
   return a + b
@@ -28,7 +28,7 @@ function minus (a, b) {
   return a / b
 }
 ```
-同時準備測試代碼在 `math.test.js`，當然這邊的結構是無法直接執行測試，所以我們將測試程式丟到瀏覽器上的`console`測試時，在 run 的過程中因為函數本身有錯誤，這時就會進入 throw，提醒我哪邊發生錯誤了，可以回頭去檢視。
+同時準備測試代碼在 `math.test.js`，當然這邊的結構是無法直接執行測試，所以我們將測試程式丟到瀏覽器上的`console`測試時，在 run 的過程中因為函式本身有錯誤，這時就會進入 throw，提醒我哪邊發生錯誤了，可以回頭去檢視。
 ```
 // 預先將結果寫出來
 var result = add(2, 4)
@@ -50,9 +50,9 @@ if (result !== 5) {
   )
 }
 ```
-如此一來，未來如果進行擴充新函數時，而我不小心手殘改到舊的函數時，在 run 測試的時候，我也可以獲得提醒，避免發生不必要的 bug。
+如此一來，未來如果進行擴充新函式時，而我不小心手殘改到舊的函式時，在 run 測試的時候，我也可以獲得提醒，避免發生不必要的 bug。
 ### 封裝
-除了上述寫法，也可以將測試的函數合併在一起。
+除了上述寫法，也可以將測試的函式合併在一起。
 ```
 function expect (result) {
   console.log(result)
@@ -79,18 +79,18 @@ function testDescription(desc, params) {
   }
 }
 
-testDescription('測試加法函數', () => {
+testDescription('測試加法函式', () => {
   expect(add(2, 4)).toBe(6)
 })
 
-testDescription('測試減法函數', () => {
+testDescription('測試減法函式', () => {
   expect(minus(10, 5)).toBe(5)
 })
 ```
-假設我故意將`minus()`寫成+法，那拿到的 result(函數計算的結果)和 actual(預期的結果)將不會相等，則會拋出 throw。
+假設我故意將`minus()`寫成+法，那拿到的 result(函式計算的結果)和 actual(預期的結果)將不會相等，則會拋出 throw。
 ## Jest
 - 速度快
-  - a、b兩者互不關聯的函數，若僅改a，但b未改動，則b不做測試，節省測試時間。
+  - a、b兩者互不關聯的函式，若僅改a，但b未改動，則b不做測試，節省測試時間。
 - 多項目並行
   - 若前後台專案，使用不同框架或是一方使用Vue，另一方使用Node，依然可以並行測試。
 
@@ -105,7 +105,7 @@ yarn add jest --dev
 ```
 ### use
 在`Jest`中，已經提供了`test()`和`expect()`，直接使用即可。
-- 導出，在`math.js`中使用`module.exports`將函數導出。
+- 導出，在`math.js`中使用`module.exports`將函式導出。
 ```
 function add (a, b) {
   return a + b
@@ -120,16 +120,16 @@ module.exports = {
   minus
 }
 ```
-- 引入，在`math.test.js`中將導出的函數引入測試。
+- 引入，在`math.test.js`中將導出的函式引入測試。
 ```
 const math = require('./math.js')
 const { add, minus } = math
 
-test('測試加法函數', () => {
+test('測試加法函式', () => {
   expect(add(2, 4)).toBe(6)
 })
 
-test('測試減法函數', () => {
+test('測試減法函式', () => {
   expect(minus(10, 5)).toBe(5)
 })
 ```
@@ -141,7 +141,7 @@ test('測試減法函數', () => {
 }
 ```
 接著在終端機運行`yarn run test`，就可以看到測試的過程。
-`Jest`的主要功能在於單元測試與集成測試，但這兩者本質上就是單一模組測試和多模組測試。所以為了配合`Jest`，必須將既有的函數透過`module.exports`的方式轉為模組化後，才能讓`Jest`調用測試。
+`Jest`的主要功能在於單元測試與集成測試，但這兩者本質上就是單一模組測試和多模組測試。所以為了配合`Jest`，必須將既有的函式透過`module.exports`的方式轉為模組化後，才能讓`Jest`調用測試。
 - 測試環境和瀏覽器環境
 一般來說，在沒有`cli`之類的工具下，瀏覽器無法自動編譯`module`，但對測試環境來說需要`module`，所以需要透過`try catch`包裹，避免出現紅字錯誤。不過實務上，我們目前開發大多已在腳手架工具內，自動會協助處理編譯，所以其實是不需要`try catch`包裹。
 ```
