@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="通用性面試問題彙整。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-09T02:00:50.865Z">
+<meta property="og:updated_time" content="2020-04-16T14:47:37.689Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/03/interview-I-general/">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-09 10:00:50" itemprop="dateModified" datetime="2020-04-09T10:00:50+08:00">2020-04-09</time>
+                <time title="Modified: 2020-04-16 22:47:37" itemprop="dateModified" datetime="2020-04-16T22:47:37+08:00">2020-04-16</time>
               </span>
 
           
@@ -276,6 +276,20 @@
 </ul>
 <h4 id="Q：如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？"><a href="#Q：如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？" class="headerlink" title="Q：如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？"></a>Q：如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？</h4><p>通常若是維護舊專案，會配合既有專案的風格進行開發，但若是新專案，則會討論 coding style 如何處理，不過我個人也是採用 tab。</p>
 <h3 id="網站優化"><a href="#網站優化" class="headerlink" title="網站優化"></a>網站優化</h3><h4 id="Q：描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？"><a href="#Q：描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？" class="headerlink" title="Q：描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？"></a>Q：描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？</h4><p>漸進漸強：從基本功能開始開發，保證系統在各種瀏覽器環境都可以執行，再逐步增加功能及提升使用者體驗。<br>優美退化：開發系統時，就針對最新最完善的環境來設計，而對於較舊的平台僅提供基本功能，而非完整功能。<br>但目前實務上，專案只碰過漸進增強的理念，因為通常專案時程規劃，大都蠻不友善的XD，在有限的時間內，通常是優先讓功能面先上線，後續再逐步優化。</p>
+<h4 id="Q：前端效能優化可以怎麼做？"><a href="#Q：前端效能優化可以怎麼做？" class="headerlink" title="Q：前端效能優化可以怎麼做？"></a>Q：前端效能優化可以怎麼做？</h4><p>受限於現代網站載入的資源體積越來越大，因此若要著手優化網站的效能，大概要先從載入資源大小、畫面渲染兩方面來著手。</p>
+<ol>
+<li><p>載入資源</p>
+<ul>
+<li>壓縮並醜化檔案，無論是 css 的 minify，或是 JS 的 uglify，都可以大幅縮減檔案體積，不過目前處理這些工作，大都丟給 webpack 一並處理。</li>
+<li>壓縮圖片檔案大小，此前是使用 tinypng 工具。</li>
+</ul>
+</li>
+<li><p>畫面渲染</p>
+<ul>
+<li>盡可能將 css 抽離出來，不要和 JS 混在一起。在 webpack 中使用 extract-text-webpack-plugin。這麼做的目的，當然是為了利用瀏覽器本身的緩存的特性，因此能用 css 處理的地方就不使用 JS，這樣可以節省開啟頁面的時間。</li>
+</ul>
+</li>
+</ol>
 <h4 id="Q：優化網頁讀取速度的方法-感覺上的速度或是真正的讀取時間-。"><a href="#Q：優化網頁讀取速度的方法-感覺上的速度或是真正的讀取時間-。" class="headerlink" title="Q：優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。"></a>Q：優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。</h4>
     </div>
 
@@ -339,7 +353,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#技術學習"><span class="nav-number">1.</span> <span class="nav-text">技術學習</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：近期學習了什麼？"><span class="nav-number">1.1.</span> <span class="nav-text">Q：近期學習了什麼？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：如果今年你能精通一項技術，那會是什麼？-2020"><span class="nav-number">1.2.</span> <span class="nav-text">Q：如果今年你能精通一項技術，那會是什麼？(2020)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#專案開發"><span class="nav-number">2.</span> <span class="nav-text">專案開發</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：喜好的開發環境-作業系統-編輯器或-IDE-瀏覽器-開發工具-…-之類-。"><span class="nav-number">2.1.</span> <span class="nav-text">Q：喜好的開發環境 (作業系統, 編輯器或 IDE, 瀏覽器, 開發工具 … 之類)。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：最熟悉哪一套版本控制系統？"><span class="nav-number">2.2.</span> <span class="nav-text">Q：最熟悉哪一套版本控制系統？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：可以描述前一份工作在開發一個網站時的流程是？"><span class="nav-number">2.3.</span> <span class="nav-text">Q：可以描述前一份工作在開發一個網站時的流程是？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？"><span class="nav-number">2.4.</span> <span class="nav-text">Q：如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#網站優化"><span class="nav-number">3.</span> <span class="nav-text">網站優化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？"><span class="nav-number">3.1.</span> <span class="nav-text">Q：描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：優化網頁讀取速度的方法-感覺上的速度或是真正的讀取時間-。"><span class="nav-number">3.2.</span> <span class="nav-text">Q：優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#技術學習"><span class="nav-number">1.</span> <span class="nav-text">技術學習</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：近期學習了什麼？"><span class="nav-number">1.1.</span> <span class="nav-text">Q：近期學習了什麼？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：如果今年你能精通一項技術，那會是什麼？-2020"><span class="nav-number">1.2.</span> <span class="nav-text">Q：如果今年你能精通一項技術，那會是什麼？(2020)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#專案開發"><span class="nav-number">2.</span> <span class="nav-text">專案開發</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：喜好的開發環境-作業系統-編輯器或-IDE-瀏覽器-開發工具-…-之類-。"><span class="nav-number">2.1.</span> <span class="nav-text">Q：喜好的開發環境 (作業系統, 編輯器或 IDE, 瀏覽器, 開發工具 … 之類)。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：最熟悉哪一套版本控制系統？"><span class="nav-number">2.2.</span> <span class="nav-text">Q：最熟悉哪一套版本控制系統？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：可以描述前一份工作在開發一個網站時的流程是？"><span class="nav-number">2.3.</span> <span class="nav-text">Q：可以描述前一份工作在開發一個網站時的流程是？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？"><span class="nav-number">2.4.</span> <span class="nav-text">Q：如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#網站優化"><span class="nav-number">3.</span> <span class="nav-text">網站優化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？"><span class="nav-number">3.1.</span> <span class="nav-text">Q：描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：前端效能優化可以怎麼做？"><span class="nav-number">3.2.</span> <span class="nav-text">Q：前端效能優化可以怎麼做？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：優化網頁讀取速度的方法-感覺上的速度或是真正的讀取時間-。"><span class="nav-number">3.3.</span> <span class="nav-text">Q：優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -355,14 +369,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

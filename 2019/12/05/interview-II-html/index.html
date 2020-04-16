@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="HTML 面試問題彙整。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-05T01:34:36.897Z">
+<meta property="og:updated_time" content="2020-04-16T14:31:14.826Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/05/interview-II-html/">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-05 09:34:36" itemprop="dateModified" datetime="2020-04-05T09:34:36+08:00">2020-04-05</time>
+                <time title="Modified: 2020-04-16 22:31:14" itemprop="dateModified" datetime="2020-04-16T22:31:14+08:00">2020-04-16</time>
               </span>
 
           
@@ -263,13 +263,25 @@
       
         <p>HTML 面試問題彙整。</p>
 <a id="more"></a>
-<h3 id="HTML5-特色"><a href="#HTML5-特色" class="headerlink" title="HTML5 特色"></a>HTML5 特色</h3><p>廣義而言，新增了相當多不同領域功能的 tag，語意化，諸如 header、main、section 之類的語易化標籤，善用這些標籤能對網站 SEO 能更加友善。多媒體，隨著 HTML5 開始支援播放影片音樂，也成了壓垮 flash 的最後一根稻草。Canvas 除了讓網頁直接繪出圖形，也讓許多遊戲產業獲得更好的發展。其他則還有支援移動裝置的 touch 事件、地理資訊紀錄以及雙向溝通的 websocket(但存有安全性疑慮)。</p>
-<h3 id="doctype-做什麼用的？"><a href="#doctype-做什麼用的？" class="headerlink" title="doctype 做什麼用的？"></a><code>doctype</code> 做什麼用的？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">用來定義網頁編寫的 HTML 採用什麼版本。</span></pre></td></tr></table></figure>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><h4 id="Q：doctype-做什麼用的？"><a href="#Q：doctype-做什麼用的？" class="headerlink" title="Q：doctype 做什麼用的？"></a>Q：<code>doctype</code> 做什麼用的？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">用來定義網頁編寫的 HTML 採用什麼版本。</span></pre></td></tr></table></figure>
 
-<h3 id="有用過-HTML-樣板語言（template-languages）嗎？"><a href="#有用過-HTML-樣板語言（template-languages）嗎？" class="headerlink" title="有用過 HTML 樣板語言（template languages）嗎？"></a>有用過 HTML 樣板語言（template languages）嗎？</h3><p>目前使用 <code>pug</code>，除了減少閉合標籤，也能讓 template 更為簡潔。</p>
-<h3 id="性能優化"><a href="#性能優化" class="headerlink" title="性能優化"></a>性能優化</h3><ul>
-<li>前端效能優化可以怎麼做？<br>壓縮文件大小，除了 webpack 本身的打包壓縮，圖片可以透過 tinypng 來壓縮圖片大小，另外顏色豐富的圖片或較大的圖片，優先考慮 jpg。如果要針對性地去優化，可能要使用開發工具中的 performance 來檢查。</li>
+<h4 id="Q：有用過-HTML-樣板語言（template-languages）嗎？"><a href="#Q：有用過-HTML-樣板語言（template-languages）嗎？" class="headerlink" title="Q：有用過 HTML 樣板語言（template languages）嗎？"></a>Q：有用過 HTML 樣板語言（template languages）嗎？</h4><p>目前使用 <code>pug</code>，除了減少閉合標籤，也能讓 template 更為簡潔。</p>
+<h3 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h3><h4 id="Q：簡單說明-HTML5-的特色"><a href="#Q：簡單說明-HTML5-的特色" class="headerlink" title="Q：簡單說明 HTML5 的特色"></a>Q：簡單說明 HTML5 的特色</h4><ul>
+<li>語意化：諸如 header、main、section 之類的語意化標籤，善用這些標籤能對網站 SEO 能更加友善。</li>
+<li>多媒體：隨著 HTML5 開始支援播放影片音樂，成為壓垮 flash 的主因之一。Canvas 除了讓網頁直接繪出圖形，也讓許多遊戲產業獲得更好的發展。</li>
+<li>API：增加許多 API 方法，諸如支援移動裝置的 touch 事件、地理資訊紀錄(Geolocation)以及雙向溝通的 websocket(但存有安全性疑慮)。</li>
 </ul>
+<h4 id="Q：可以簡單列舉常用的-HTML5-語意標籤嗎？"><a href="#Q：可以簡單列舉常用的-HTML5-語意標籤嗎？" class="headerlink" title="Q：可以簡單列舉常用的 HTML5 語意標籤嗎？"></a>Q：可以簡單列舉常用的 HTML5 語意標籤嗎？</h4><ol>
+<li>header  =&gt; 網頁的標題，通常放置網站的 logo 或 navbar</li>
+<li>nav     =&gt; 網站的選單與導覽列</li>
+<li>main    =&gt; 網頁的主要內容</li>
+<li>aside   =&gt; 側邊欄或是一些附加內容</li>
+<li>section =&gt; 自定義的區塊內容</li>
+<li>article =&gt; 一篇文章的內容</li>
+<li>footer  =&gt; 網頁的底部，版權宣告或聯絡方式</li>
+<li>mark    =&gt; 特殊強調</li>
+<li>time    =&gt; 顯示日期時間</li>
+</ol>
 
     </div>
 
@@ -334,7 +346,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5-特色"><span class="nav-number">1.</span> <span class="nav-text">HTML5 特色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#doctype-做什麼用的？"><span class="nav-number">2.</span> <span class="nav-text">doctype 做什麼用的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有用過-HTML-樣板語言（template-languages）嗎？"><span class="nav-number">3.</span> <span class="nav-text">有用過 HTML 樣板語言（template languages）嗎？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能優化"><span class="nav-number">4.</span> <span class="nav-text">性能優化</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：doctype-做什麼用的？"><span class="nav-number">1.1.</span> <span class="nav-text">Q：doctype 做什麼用的？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：有用過-HTML-樣板語言（template-languages）嗎？"><span class="nav-number">1.2.</span> <span class="nav-text">Q：有用過 HTML 樣板語言（template languages）嗎？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML5"><span class="nav-number">2.</span> <span class="nav-text">HTML5</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：簡單說明-HTML5-的特色"><span class="nav-number">2.1.</span> <span class="nav-text">Q：簡單說明 HTML5 的特色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Q：可以簡單列舉常用的-HTML5-語意標籤嗎？"><span class="nav-number">2.2.</span> <span class="nav-text">Q：可以簡單列舉常用的 HTML5 語意標籤嗎？</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -350,14 +362,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

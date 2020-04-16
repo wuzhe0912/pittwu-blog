@@ -47,15 +47,15 @@
   };
 </script>
 
-  <meta name="description" content="使用Vue.js構建前端聊天室頁面，再介接Firebase作為儲存聊天訊息的資料庫。記錄自己的實作流程。">
-<meta name="keywords" content="Firebase,Vue.js">
+  <meta name="description" content="使用 Vue.js 構建前端聊天室頁面，再介接 Firebase 作為儲存聊天訊息的資料庫，記錄自己的實作流程。">
+<meta name="keywords" content="Vue.js,Firebase">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.js + Firebase 實作即時聊天室">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;26&#x2F;vue-firebase-chat&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="使用Vue.js構建前端聊天室頁面，再介接Firebase作為儲存聊天訊息的資料庫。記錄自己的實作流程。">
+<meta property="og:description" content="使用 Vue.js 構建前端聊天室頁面，再介接 Firebase 作為儲存聊天訊息的資料庫，記錄自己的實作流程。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-02-26T07:05:36.154Z">
+<meta property="og:updated_time" content="2020-04-13T06:17:41.103Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/02/26/vue-firebase-chat/">
@@ -232,10 +232,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-02-26 14:59:58 / Modified: 15:05:36" itemprop="dateCreated datePublished" datetime="2020-02-26T14:59:58+08:00">2020-02-26</time>
+              <time title="Created: 2020-02-26 14:59:58" itemprop="dateCreated datePublished" datetime="2020-02-26T14:59:58+08:00">2020-02-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-13 14:17:41" itemprop="dateModified" datetime="2020-04-13T14:17:41+08:00">2020-04-13</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -255,9 +261,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>使用<code>Vue.js</code>構建前端聊天室頁面，再介接<code>Firebase</code>作為儲存聊天訊息的資料庫。記錄自己的實作流程。</p>
+        <p>使用 Vue.js 構建前端聊天室頁面，再介接 Firebase 作為儲存聊天訊息的資料庫，記錄自己的實作流程。</p>
 <a id="more"></a>
-<h2 id="介接-OpenWeather-API"><a href="#介接-OpenWeather-API" class="headerlink" title="介接 OpenWeather API"></a>介接 OpenWeather API</h2><p>由於首頁過於單調，所以接一隻天氣API來豐富一下頁面。<br><a href="https://home.openweathermap.org/" target="_blank" rel="noopener">OpenWeather 官網</a><br>登入後，點選<code>API keys</code>，右側輸入<code>name</code>=&gt;生成金鑰</p>
+<p>這邊需要重寫過架構內容。</p>
 
     </div>
 
@@ -268,8 +274,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Firebase/" rel="tag"><i class="fa fa-tag"></i> Firebase</a>
               <a href="/tags/Vue-js/" rel="tag"><i class="fa fa-tag"></i> Vue.js</a>
+              <a href="/tags/Firebase/" rel="tag"><i class="fa fa-tag"></i> Firebase</a>
           </div>
 
         
@@ -322,7 +328,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介接-OpenWeather-API"><span class="nav-number">1.</span> <span class="nav-text">介接 OpenWeather API</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -338,14 +343,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

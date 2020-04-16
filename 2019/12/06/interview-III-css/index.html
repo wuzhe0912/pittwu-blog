@@ -56,7 +56,7 @@
 <meta property="og:description" content="CSS 面試問題彙整。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;box-sizing.png">
-<meta property="og:updated_time" content="2020-04-09T14:18:44.832Z">
+<meta property="og:updated_time" content="2020-04-09T22:30:45.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;box-sizing.png">
 
@@ -242,7 +242,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-09 22:18:44" itemprop="dateModified" datetime="2020-04-09T22:18:44+08:00">2020-04-09</time>
+                <time title="Modified: 2020-04-10 06:30:45" itemprop="dateModified" datetime="2020-04-10T06:30:45+08:00">2020-04-10</time>
               </span>
 
           
@@ -286,7 +286,7 @@
 <p>但基本我個人現在只用 flexbox 語法來處理，未來會再加上 grid。</p>
 <h3 id="專案結構"><a href="#專案結構" class="headerlink" title="專案結構"></a>專案結構</h3><h4 id="Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><a href="#Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？" class="headerlink" title="Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？"></a>Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</h4><p>以 Vue 專案結構為例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">- assets</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    - color.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    - mixin.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    - share.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    - style.scss</span></pre></td></tr></table></figure>
-<p>將共用顏色和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
+<p>將共用顏色(color)和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
 <h4 id="Q：如何處理專案-RWD"><a href="#Q：如何處理專案-RWD" class="headerlink" title="Q：如何處理專案 RWD"></a>Q：如何處理專案 RWD</h4><ul>
 <li><p>共用參數<br>假設 UI/UX 為首次合作，因此會先討論網站的色系與主要的共用間距(當然如果是經驗豐富的 UI/UX，這一步可以忽略)，因為斷點、三輔一主的色系、常用間距，需先準備在 scss 作為共用參數。至於斷點，現在市面上，320px 尺寸的手機(iPhone5)，雖然市佔率已經相當低，但目前開發上仍會考慮保留，因此預期我的斷點會設計：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">360 &#x3D;&gt; 兼容小尺寸 android &amp; iPhone5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">480 &#x3D;&gt; 主流手機</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">768 &#x3D;&gt; pad</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">pc &#x3D;&gt; 這個沒有固定，視討論而定，通常1024(但其實也可以用 padPro來命名)</span></pre></td></tr></table></figure>
@@ -385,14 +385,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

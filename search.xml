@@ -1,6 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Webpack 設定與理解</title>
+    <url>/2020/04/15/webpack-config/</url>
+    <content><![CDATA[<p>雖然到 vue-cli 3.0 之後，其實 vue 官方已經將 webpack 進行封裝，希望開發者專注在開發而非設定上，但還是需要理解基本的設定，以及細節的理解。</p>
+<a id="more"></a>
+<h3 id="模組化"><a href="#模組化" class="headerlink" title="模組化"></a>模組化</h3><p>現代開發專案的複雜度，容易面臨維護上的不易。為了更有效的管理專案開發，模塊化、組件化的思想蔚為風潮，而在 Node.js 中模塊化的思想自然也是重中之重。require 引入 &amp; module.exports 導出，被頻繁用來抽換模塊。但對瀏覽器來說，原生不支援這種 CommonJS 標準，所以我們仰賴 webpack 這種工具將程式碼進行打包(類似早期的 browserify)。同時 webpack 已經預先將 babel 此類工具封裝好，在處理 ES6 之類的語法時，會自動進行轉換，可以讓我們省下不少工。</p>
+<h3 id="使用-webpack-的理由？"><a href="#使用-webpack-的理由？" class="headerlink" title="使用 webpack 的理由？"></a>使用 webpack 的理由？</h3><ol>
+<li>透過 webpack 幫助我們針對檔案進行壓縮(uglify)和輕量化(minify)。</li>
+<li>圖片或 CSS 都能以資源的方式引入。</li>
+<li>如果想要安裝 npm 上的第三方套件，會更為輕鬆容易。</li>
+</ol>
+<h3 id="常用的-loader-有哪些？"><a href="#常用的-loader-有哪些？" class="headerlink" title="常用的 loader 有哪些？"></a>常用的 loader 有哪些？</h3><ul>
+<li>樣式類：style-loader、css-loader、sass-loader</li>
+<li>自動編譯：babel-loader、ts-loader</li>
+<li>文件相關：raw-loader、file-loader、url-loader</li>
+<li>自動測試或書寫規範：eslint-loader、jshint-loader、mocha-loader<br>e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; sass-loader &#x3D;&gt; 將 sass 轉為 css</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; css-loader &#x3D;&gt; 解析並處理 @import || url() 的用法</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; style-loader &#x3D;&gt; 協助建立 style 標籤，並將 css 檔案載入到 html</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  module: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    rules: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">          test: &#x2F;\.scss$&#x2F;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">          use:[</span></pre></td></tr><tr><td class="code"><pre><span class="line">              &#123;loader:&#39;style-loader&#39;&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">              &#123;loader:&#39;css-loader&#39;,options:&#123;sourceMap:true,modules:true&#125;&#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">              &#123;loader:&#39;sass-loader&#39;,options:&#123;sourceMap:true&#125;&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">          ],</span></pre></td></tr><tr><td class="code"><pre><span class="line">          exclude:&#x2F;node_modules&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="有使用過哪些插件？"><a href="#有使用過哪些插件？" class="headerlink" title="有使用過哪些插件？"></a>有使用過哪些插件？</h3><p>許多常用的 plugins 都已被 cli 腳手架封裝進去，譬如自動壓縮程式碼 UglifyJsPlugin，即時熱更新 HotModuleReplacementPlugin。</p>
+<h4 id="DefinePlugin"><a href="#DefinePlugin" class="headerlink" title="DefinePlugin"></a>DefinePlugin</h4><p>因為可以在編譯改變全域的變數，因此可以修改設定來達到生產環境和開發環境的差異，但我目前還沒實際設定過。</p>
+<h4 id="IgnorePlugin"><a href="#IgnorePlugin" class="headerlink" title="IgnorePlugin"></a>IgnorePlugin</h4><p>可以用於忽略特定的模塊或文件，例如特定較大的 library，可能需要在打包時進行忽略，進而縮減專案體積。</p>
+<!-- ### module chunk bundle 差別
+- module
+  - 在 webpack 當中，一切都是模組，module 等同於源碼文件 -->
+
+<h3 id="所以為何要使用-build？"><a href="#所以為何要使用-build？" class="headerlink" title="所以為何要使用 build？"></a>所以為何要使用 build？</h3><p>承前面的問題，透過這一類的打包工具(gulp || webpack)，來進行打包優化，並將程式碼轉為瀏覽器可以理解並支援的語法，如此才能在瀏覽器上運行。</p>
+<h3 id="vue-config-js"><a href="#vue-config-js" class="headerlink" title="vue.config.js"></a>vue.config.js</h3><h4 id="publicPath"><a href="#publicPath" class="headerlink" title="publicPath"></a>publicPath</h4><p>只要專案內有設定二級 router，就必須設定 publicPath，但除非你希望調整 url 出現的路徑，否則一般都使用 <code>/</code>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 寫在 module.exports 內任一處即可</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  publicPath: &#39;&#x2F;&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h4 id="outputDir"><a href="#outputDir" class="headerlink" title="outputDir"></a>outputDir</h4><p>設定 Vue 打包後的資料，要生成到那個資料夾內，可任意改成你想要的資料夾名稱，預設為 dist：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  publicPath: &#39;&#x2F;&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  outputDir: &#39;dist&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h4 id="indexPath"><a href="#indexPath" class="headerlink" title="indexPath"></a>indexPath</h4><p>指定打包後生成的 html 檔案名稱，無需特別變動。</p>
+<h4 id="filenameHashing"><a href="#filenameHashing" class="headerlink" title="filenameHashing"></a>filenameHashing</h4><p>瀏覽器基本上都會有緩存的問題，所以如果都是同一個檔案名的狀況下，譬如都是 app.js，那假定我更新一個版本，結果瀏覽器緩存，導致它拉到 app.js 是上一個版本，那就尷尬了。所以透過 hash 的方式，來生成獨一無二的檔案名，避免被緩存卡住，預設為 true，不需要調整。</p>
+<h4 id="lintOnSave"><a href="#lintOnSave" class="headerlink" title="lintOnSave"></a>lintOnSave</h4><p>檢查 code 有沒有符合 eslint 規範，預設開啟，但也不需要特別調整，畢竟現在開發都會遵循 eslint，至於採用哪種風格，則是依照團隊 coding style。</p>
+<h4 id="chainWebpack"><a href="#chainWebpack" class="headerlink" title="chainWebpack"></a>chainWebpack</h4><p>根據自己的需求，進行客製化調整，譬如希望修改網頁上方標題：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chainWebpack: (config) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  config</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .plugin(&#39;html&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .tap((args) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      args[0].title &#x3D; &#39;Tiger Coding Blog&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      return args</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue &amp; React 簡單的對比</title>
+    <url>/2020/04/15/vue-react-compare/</url>
+    <content><![CDATA[<p>雖然還沒有實務上開發 React 的經驗，但還是可以先簡單理解一下，這兩個框架間的差異與雷同處。</p>
+<a id="more"></a>
+<h3 id="兩個框架的相同處"><a href="#兩個框架的相同處" class="headerlink" title="兩個框架的相同處"></a>兩個框架的相同處</h3><ol>
+<li>現代前端開發基本上，都是組件化的形式，所以本質上都是由 component 所組成，自然也都是支持組件化。</li>
+<li>再者，兩個都是 MVVM 框架，所以也都是透過數據變化，進而重新渲染畫面。</li>
+<li>都使用虛擬 DOM(vdom) 來操作 DOM。</li>
+</ol>
+<h3 id="語法差異"><a href="#語法差異" class="headerlink" title="語法差異"></a>語法差異</h3><ul>
+<li><p>React</p>
+<ul>
+<li>使用 JSX 語法來撰寫 JS</li>
+<li>React 本質上就是在寫 JS，只是透過 JSX 這種類似語法糖來寫(副檔名自然也都是 .js)</li>
+<li>React 相對來說，會更為自由，但框架本身提供的幫助就比較少，需要靠開發者自力更生去實現功能</li>
+<li>舉裡來說，如果要循環一組 array，React 這邊必須使用 JS 操作陣列的方式</li>
+</ul>
+</li>
+<li><p>Vue</p>
+<ul>
+<li>透過 template 來呈現 html</li>
+<li>vue 會更像是寫一個獨立的語法，需要遵循一定的官方書寫規則</li>
+<li>vue 的官方則是提前準備一些可能的開發情境，或是需要的語法，方便開發者直接使用，而不需要自己處理</li>
+<li>同樣是循環陣列，vue 就提供了 v-for 可以快速上手</li>
+</ul>
+</li>
+<li><p>客觀來說，我確實比較喜歡 Vue 的 template，可能受限於我個人對讀 code 的速度，vue 等於是將邏輯和畫面視圖的部分進行拆分。但 JSX 會將邏輯和視圖耦合在一起，如果寫得太自由的話，後面的維護者可能會不理解前一個開發者在寫什麼。</p>
+</li>
+</ul>
+<h3 id="函數式編程"><a href="#函數式編程" class="headerlink" title="函數式編程"></a>函數式編程</h3><p>React 本身就是函數式編程，這不需多言。比較需要注意的是，Vue 預期在 3.0 的版本中，也要將 JS 的部分採用函數式編程，除了寫法上有所改變，component 的編寫也會更加靈活(官方說法)，但具體如何使用，等未來摸到時，才能有更細節的理解。</p>
+]]></content>
+      <tags>
+        <tag>Vue.js</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>實作 Blog 前後台(BootstrapVue + Firebase)</title>
+    <url>/2020/04/13/vue-firebase-blog/</url>
+    <content><![CDATA[<p>沒有使用過 UI Framework 來實作，先嘗試套一個 BootstrapVue 來練習，選擇這個框架的原因，是因為 Bootstrap 依然是蠻多網站的選擇，如果有需要維護同類型的產品，銜接起來相對容易。但是單純的 component 應用就不做記錄了，僅記錄之前未使用過，或是自己少用的用法。</p>
+<a id="more"></a>
+<ul>
+<li><a href="https://bootstrap-vue.js.org/docs" target="_blank" rel="noopener">BootstrapVue 官網</a></li>
+</ul>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add vue bootstrap-vue bootstrap</span></pre></td></tr></table></figure>
+
+<h3 id="Use"><a href="#Use" class="headerlink" title="Use"></a>Use</h3><ul>
+<li>註冊到 main.js<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#123; BootstrapVue, IconsPlugin &#125; from &#39;bootstrap-vue&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; styles</span></pre></td></tr><tr><td class="code"><pre><span class="line">import &#39;bootstrap&#x2F;dist&#x2F;css&#x2F;bootstrap.css&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">import &#39;bootstrap-vue&#x2F;dist&#x2F;bootstrap-vue.css&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">Vue.use(BootstrapVue)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Vue.use(IconsPlugin)</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h3><p>之前工作採用 axios 套件，但現在 JS 原生語法中已經提供 fetch() 的用法了，而且 fetch 的好處是預設用 promise 包裹，如果有需要就可以直接使用 async/await。而且檢查 can i use，fetch 目前來看兼容性也已經相當高了，所以這個專案開始改用 fetch。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fetch(url).then((res) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 回傳的檔案若為 JSON 格式，需要解析處理</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return res.json()</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;).then((result) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(result)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.articleData &#x3D; result.data</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;).catch((err) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(err)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Vue.js</tag>
+        <tag>Firebase</tag>
+        <tag>BootstrapVue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Nuxt.js 實作 Blog</title>
     <url>/2020/04/02/nuxt-blog/</url>
     <content><![CDATA[<p>實作 nuxt 的 blog，記錄操作流程，方邊日後可以參照部分流程。</p>
@@ -439,13 +541,13 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   <entry>
     <title>Vue.js + Firebase 實作即時聊天室</title>
     <url>/2020/02/26/vue-firebase-chat/</url>
-    <content><![CDATA[<p>使用<code>Vue.js</code>構建前端聊天室頁面，再介接<code>Firebase</code>作為儲存聊天訊息的資料庫。記錄自己的實作流程。</p>
+    <content><![CDATA[<p>使用 Vue.js 構建前端聊天室頁面，再介接 Firebase 作為儲存聊天訊息的資料庫，記錄自己的實作流程。</p>
 <a id="more"></a>
-<h2 id="介接-OpenWeather-API"><a href="#介接-OpenWeather-API" class="headerlink" title="介接 OpenWeather API"></a>介接 OpenWeather API</h2><p>由於首頁過於單調，所以接一隻天氣API來豐富一下頁面。<br><a href="https://home.openweathermap.org/" target="_blank" rel="noopener">OpenWeather 官網</a><br>登入後，點選<code>API keys</code>，右側輸入<code>name</code>=&gt;生成金鑰</p>
+<p>這邊需要重寫過架構內容。</p>
 ]]></content>
       <tags>
-        <tag>Firebase</tag>
         <tag>Vue.js</tag>
+        <tag>Firebase</tag>
       </tags>
   </entry>
   <entry>
@@ -1096,7 +1198,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <p>但基本我個人現在只用 flexbox 語法來處理，未來會再加上 grid。</p>
 <h3 id="專案結構"><a href="#專案結構" class="headerlink" title="專案結構"></a>專案結構</h3><h4 id="Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><a href="#Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？" class="headerlink" title="Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？"></a>Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</h4><p>以 Vue 專案結構為例：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- assets</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - color.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - mixin.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - share.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - style.scss</span></pre></td></tr></table></figure>
-<p>將共用顏色和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
+<p>將共用顏色(color)和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
 <h4 id="Q：如何處理專案-RWD"><a href="#Q：如何處理專案-RWD" class="headerlink" title="Q：如何處理專案 RWD"></a>Q：如何處理專案 RWD</h4><ul>
 <li><p>共用參數<br>假設 UI/UX 為首次合作，因此會先討論網站的色系與主要的共用間距(當然如果是經驗豐富的 UI/UX，這一步可以忽略)，因為斷點、三輔一主的色系、常用間距，需先準備在 scss 作為共用參數。至於斷點，現在市面上，320px 尺寸的手機(iPhone5)，雖然市佔率已經相當低，但目前開發上仍會考慮保留，因此預期我的斷點會設計：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">360 &#x3D;&gt; 兼容小尺寸 android &amp; iPhone5</span></pre></td></tr><tr><td class="code"><pre><span class="line">480 &#x3D;&gt; 主流手機</span></pre></td></tr><tr><td class="code"><pre><span class="line">768 &#x3D;&gt; pad</span></pre></td></tr><tr><td class="code"><pre><span class="line">pc &#x3D;&gt; 這個沒有固定，視討論而定，通常1024(但其實也可以用 padPro來命名)</span></pre></td></tr></table></figure>
@@ -1126,13 +1228,25 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
     <url>/2019/12/05/interview-II-html/</url>
     <content><![CDATA[<p>HTML 面試問題彙整。</p>
 <a id="more"></a>
-<h3 id="HTML5-特色"><a href="#HTML5-特色" class="headerlink" title="HTML5 特色"></a>HTML5 特色</h3><p>廣義而言，新增了相當多不同領域功能的 tag，語意化，諸如 header、main、section 之類的語易化標籤，善用這些標籤能對網站 SEO 能更加友善。多媒體，隨著 HTML5 開始支援播放影片音樂，也成了壓垮 flash 的最後一根稻草。Canvas 除了讓網頁直接繪出圖形，也讓許多遊戲產業獲得更好的發展。其他則還有支援移動裝置的 touch 事件、地理資訊紀錄以及雙向溝通的 websocket(但存有安全性疑慮)。</p>
-<h3 id="doctype-做什麼用的？"><a href="#doctype-做什麼用的？" class="headerlink" title="doctype 做什麼用的？"></a><code>doctype</code> 做什麼用的？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用來定義網頁編寫的 HTML 採用什麼版本。</span></pre></td></tr></table></figure>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><h4 id="Q：doctype-做什麼用的？"><a href="#Q：doctype-做什麼用的？" class="headerlink" title="Q：doctype 做什麼用的？"></a>Q：<code>doctype</code> 做什麼用的？</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用來定義網頁編寫的 HTML 採用什麼版本。</span></pre></td></tr></table></figure>
 
-<h3 id="有用過-HTML-樣板語言（template-languages）嗎？"><a href="#有用過-HTML-樣板語言（template-languages）嗎？" class="headerlink" title="有用過 HTML 樣板語言（template languages）嗎？"></a>有用過 HTML 樣板語言（template languages）嗎？</h3><p>目前使用 <code>pug</code>，除了減少閉合標籤，也能讓 template 更為簡潔。</p>
-<h3 id="性能優化"><a href="#性能優化" class="headerlink" title="性能優化"></a>性能優化</h3><ul>
-<li>前端效能優化可以怎麼做？<br>壓縮文件大小，除了 webpack 本身的打包壓縮，圖片可以透過 tinypng 來壓縮圖片大小，另外顏色豐富的圖片或較大的圖片，優先考慮 jpg。如果要針對性地去優化，可能要使用開發工具中的 performance 來檢查。</li>
+<h4 id="Q：有用過-HTML-樣板語言（template-languages）嗎？"><a href="#Q：有用過-HTML-樣板語言（template-languages）嗎？" class="headerlink" title="Q：有用過 HTML 樣板語言（template languages）嗎？"></a>Q：有用過 HTML 樣板語言（template languages）嗎？</h4><p>目前使用 <code>pug</code>，除了減少閉合標籤，也能讓 template 更為簡潔。</p>
+<h3 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h3><h4 id="Q：簡單說明-HTML5-的特色"><a href="#Q：簡單說明-HTML5-的特色" class="headerlink" title="Q：簡單說明 HTML5 的特色"></a>Q：簡單說明 HTML5 的特色</h4><ul>
+<li>語意化：諸如 header、main、section 之類的語意化標籤，善用這些標籤能對網站 SEO 能更加友善。</li>
+<li>多媒體：隨著 HTML5 開始支援播放影片音樂，成為壓垮 flash 的主因之一。Canvas 除了讓網頁直接繪出圖形，也讓許多遊戲產業獲得更好的發展。</li>
+<li>API：增加許多 API 方法，諸如支援移動裝置的 touch 事件、地理資訊紀錄(Geolocation)以及雙向溝通的 websocket(但存有安全性疑慮)。</li>
 </ul>
+<h4 id="Q：可以簡單列舉常用的-HTML5-語意標籤嗎？"><a href="#Q：可以簡單列舉常用的-HTML5-語意標籤嗎？" class="headerlink" title="Q：可以簡單列舉常用的 HTML5 語意標籤嗎？"></a>Q：可以簡單列舉常用的 HTML5 語意標籤嗎？</h4><ol>
+<li>header  =&gt; 網頁的標題，通常放置網站的 logo 或 navbar</li>
+<li>nav     =&gt; 網站的選單與導覽列</li>
+<li>main    =&gt; 網頁的主要內容</li>
+<li>aside   =&gt; 側邊欄或是一些附加內容</li>
+<li>section =&gt; 自定義的區塊內容</li>
+<li>article =&gt; 一篇文章的內容</li>
+<li>footer  =&gt; 網頁的底部，版權宣告或聯絡方式</li>
+<li>mark    =&gt; 特殊強調</li>
+<li>time    =&gt; 顯示日期時間</li>
+</ol>
 ]]></content>
       <tags>
         <tag>Interview</tag>
@@ -1157,6 +1271,20 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 </ul>
 <h4 id="Q：如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？"><a href="#Q：如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？" class="headerlink" title="Q：如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？"></a>Q：如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？</h4><p>通常若是維護舊專案，會配合既有專案的風格進行開發，但若是新專案，則會討論 coding style 如何處理，不過我個人也是採用 tab。</p>
 <h3 id="網站優化"><a href="#網站優化" class="headerlink" title="網站優化"></a>網站優化</h3><h4 id="Q：描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？"><a href="#Q：描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？" class="headerlink" title="Q：描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？"></a>Q：描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？</h4><p>漸進漸強：從基本功能開始開發，保證系統在各種瀏覽器環境都可以執行，再逐步增加功能及提升使用者體驗。<br>優美退化：開發系統時，就針對最新最完善的環境來設計，而對於較舊的平台僅提供基本功能，而非完整功能。<br>但目前實務上，專案只碰過漸進增強的理念，因為通常專案時程規劃，大都蠻不友善的XD，在有限的時間內，通常是優先讓功能面先上線，後續再逐步優化。</p>
+<h4 id="Q：前端效能優化可以怎麼做？"><a href="#Q：前端效能優化可以怎麼做？" class="headerlink" title="Q：前端效能優化可以怎麼做？"></a>Q：前端效能優化可以怎麼做？</h4><p>受限於現代網站載入的資源體積越來越大，因此若要著手優化網站的效能，大概要先從載入資源大小、畫面渲染兩方面來著手。</p>
+<ol>
+<li><p>載入資源</p>
+<ul>
+<li>壓縮並醜化檔案，無論是 css 的 minify，或是 JS 的 uglify，都可以大幅縮減檔案體積，不過目前處理這些工作，大都丟給 webpack 一並處理。</li>
+<li>壓縮圖片檔案大小，此前是使用 tinypng 工具。</li>
+</ul>
+</li>
+<li><p>畫面渲染</p>
+<ul>
+<li>盡可能將 css 抽離出來，不要和 JS 混在一起。在 webpack 中使用 extract-text-webpack-plugin。這麼做的目的，當然是為了利用瀏覽器本身的緩存的特性，因此能用 css 處理的地方就不使用 JS，這樣可以節省開啟頁面的時間。</li>
+</ul>
+</li>
+</ol>
 <h4 id="Q：優化網頁讀取速度的方法-感覺上的速度或是真正的讀取時間-。"><a href="#Q：優化網頁讀取速度的方法-感覺上的速度或是真正的讀取時間-。" class="headerlink" title="Q：優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。"></a>Q：優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。</h4>]]></content>
       <tags>
         <tag>Interview</tag>
