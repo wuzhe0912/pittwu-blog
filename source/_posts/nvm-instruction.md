@@ -11,13 +11,13 @@ nvm ls-remote
 ```
 #### 安裝所需的版本號
 ```
-nvm install v12.14.1
+nvm install v12.16.2
 ```
 #### 切換所需使用的 node 版本
 ```
-nvm use v12.14.1
+nvm use v12.16.2
 ```
 #### 設定預設使用的 node 版本
 ```
-nvm alias default v12.14.1
+nvm alias default v12.16.2
 ```
