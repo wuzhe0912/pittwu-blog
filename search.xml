@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>關於 Parcel：基礎實作</title>
+    <url>/2020/04/21/parcel/</url>
+    <content><![CDATA[<p>Parcel 相較於 webpack 是更新的打包工具，主打兩大賣點，設定簡化 &amp; 打包快速。恰好，最近想幫朋友寫一些簡單的 Landing Page，所以來嘗試 Parcel。</p>
+<a id="more"></a>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><ul>
+<li><a href="https://chihting.netlify.app/" target="_blank" rel="noopener">Landing Page 連結</a></li>
+</ul>
+<p>寫在前面，簡單應用一下 Parcel 這個新的打包工具，實作一個 RWD 的單頁 Landing Page。</p>
+<p>第一次嘗試套用 video tag 應用在 background，但效能實在不太好，頁面進入後，從靜態頁面到完成讀取轉為動態影片，需要花不少時間。後續找時間來優化一下效能，看看能不能讓影片讀取速度更快。</p>
+<h3 id="global-install"><a href="#global-install" class="headerlink" title="global install"></a>global install</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn global add parcel-bundler</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">npm install -g parcel-bundler</span></pre></td></tr></table></figure>
+
+<h3 id="local-install"><a href="#local-install" class="headerlink" title="local install"></a>local install</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd project</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn init</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add parcel-bundler --dev</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">npm install parcel-bundler --save-dev</span></pre></td></tr></table></figure>
+<h4 id="package-json-scripts-setting"><a href="#package-json-scripts-setting" class="headerlink" title="package.json scripts setting"></a>package.json scripts setting</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; --open &#x3D;&gt; auto open browser</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &quot;dev&quot;: &quot;parcel src&#x2F;index.pug --open&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &quot;build&quot;: &quot;parcel build src&#x2F;index.pug&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<h4 id="test-run"><a href="#test-run" class="headerlink" title="test run"></a>test run</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn dev &#x3D;&gt; 檢查頁面有無正常開啟</span></pre></td></tr></table></figure>
+
+<h3 id="SCSS"><a href="#SCSS" class="headerlink" title="SCSS"></a>SCSS</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add -D sass</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">npm install -D sass</span></pre></td></tr></table></figure>
+<h4 id="資料結構"><a href="#資料結構" class="headerlink" title="資料結構"></a>資料結構</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- src</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - style.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - color.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - js</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - index.js</span></pre></td></tr><tr><td class="code"><pre><span class="line">- index.pug</span></pre></td></tr></table></figure>
+<p>引用方式，將共用 color 或後續的共用函數，透過 @import 載入 style.scss，再把 style.scss 註冊到 index.js。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &#39;..&#x2F;scss&#x2F;style.scss&#39;</span></pre></td></tr></table></figure>
+
+<h3 id="PostCSS-處理前綴詞"><a href="#PostCSS-處理前綴詞" class="headerlink" title="PostCSS 處理前綴詞"></a>PostCSS 處理前綴詞</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; mkdir .postcssrc</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - src</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - .postcssrc</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; content</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;plugins&quot;: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &quot;autoprefixer&quot;: true</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; install commend</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add -D autoprefixer</span></pre></td></tr></table></figure>
+
+<h4 id="支援版本"><a href="#支援版本" class="headerlink" title="支援版本"></a>支援版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; mkdir .browserslistrc</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - src</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - .browserslistrc</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; content</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">last 4 versions</span></pre></td></tr></table></figure>
+
+<h3 id="集成-jQuery"><a href="#集成-jQuery" class="headerlink" title="集成 jQuery"></a>集成 jQuery</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; install commend</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add jquery</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import $ from &#39;jquery&#39;</span></pre></td></tr></table></figure>
+
+<h3 id="集成-Bootstrap"><a href="#集成-Bootstrap" class="headerlink" title="集成 Bootstrap"></a>集成 Bootstrap</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; install commend</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add bootstrap</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; style.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">@import &quot;~bootstrap&#x2F;scss&#x2F;bootstrap&quot;;</span></pre></td></tr></table></figure>
+
+<h3 id="Clear-old-data-dist"><a href="#Clear-old-data-dist" class="headerlink" title="Clear old data(dist)"></a>Clear old data(dist)</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; plugins</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add -D parcel-plugin-clean-dist</span></pre></td></tr></table></figure>
+<p>運行前會清除一次 dist</p>
+<h3 id="調整生產模式路徑-build"><a href="#調整生產模式路徑-build" class="headerlink" title="調整生產模式路徑(build)"></a>調整生產模式路徑(build)</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;scripts&quot;: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &quot;build&quot;: &quot;parcel build src&#x2F;index.pug --public-url .&#x2F;&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>避免打包出來的路徑出現錯誤</p>
+]]></content>
+      <tags>
+        <tag>Parcel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>關於 Gulp</title>
+    <url>/2020/04/21/gulp/</url>
+    <content><![CDATA[<p>前端的工具的進化速度，蠻令人感慨的，2017 年甫入行時，Gulp 已經相對式微了，webpack 逐漸站穩舞台。</p>
+<p>但即便如此，倘若是做一些輕量頁面或專案，或許 Gulp 仍是不錯的選擇，也或者可能會維護到一些舊專案。因此這邊簡單記錄一些關於 Gulp 的筆記。</p>
+<a id="more"></a>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><p>全域環境安裝 gulp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn global add gulp</span></pre></td></tr></table></figure>
+
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn init</span></pre></td></tr></table></figure>
+
+<h3 id="local-install"><a href="#local-install" class="headerlink" title="local install"></a>local install</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp --save</span></pre></td></tr></table></figure>
+
+<h3 id="簡易任務指令"><a href="#簡易任務指令" class="headerlink" title="簡易任務指令"></a>簡易任務指令</h3><p>建立兩個測試檔案</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - source</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - index.html</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - gulpfile.js</span></pre></td></tr></table></figure>
+<p>gulpfile.js 建立任務</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const gulp &#x3D; require(&#39;gulp&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; gulp.task &#x3D;&gt; gulp 任務</span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;copyHTML&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;* </span></pre></td></tr><tr><td class="code"><pre><span class="line">    gulp.src &#x3D;&gt; 資料來源</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;雙星號&#x2F;*.html &#x3D;&gt; 抓出 source 底下所有 html 檔案</span></pre></td></tr><tr><td class="code"><pre><span class="line">  *&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;**&#x2F;*.html&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;&#39;))  &#x2F;&#x2F; 輸出資料到指定資料夾</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>終端機運行 gulp copyHTML，建立 public 資料夾，導入 html 文件</p>
+<h3 id="gulp-pug"><a href="#gulp-pug" class="headerlink" title="gulp-pug"></a>gulp-pug</h3><p>install command</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-pug --save</span></pre></td></tr></table></figure>
+<p>gulpfile.js =&gt; build task</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const pug &#x3D; require(&#39;gulp-pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;pug&#39;, function buildHTML() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;**&#x2F;*.pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  .pipe(pug(&#123;&#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">  .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>run</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp pug</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 可以看到 public 底下建立一個編譯後的 html 文件</span></pre></td></tr></table></figure>
+
+<h3 id="gulp-sass"><a href="#gulp-sass" class="headerlink" title="gulp-sass"></a>gulp-sass</h3><p>install command</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-sass --save</span></pre></td></tr></table></figure>
+<p>資料夾結構</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - source</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">      - style.scss</span></pre></td></tr></table></figure>
+<p>gulpfile.js =&gt; build task</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const sass &#x3D; require(&#39;gulp-sass&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;sass&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(sass().on(&#39;error&#39;, sass.logError))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;css&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>使用 watch 方法來監聽 scss 的變化進行編譯。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;watch&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  gulp.watch(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;, gulp.series(&#39;sass&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+
+<h3 id="4-0-版本的寫法改變"><a href="#4-0-版本的寫法改變" class="headerlink" title="4.0 版本的寫法改變"></a>4.0 版本的寫法改變</h3><p>gulp 在 4.0 版本後，調整了部分寫法：<br>gulp.series  // 按照順序執行<br>gulp.paralle // 並行執行</p>
+<p>合併任務寫法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;default&#39;, gulp.series(&#39;pug&#39;, &#39;sass&#39;, &#39;watch&#39;))</span></pre></td></tr></table></figure>
+
+<h3 id="gulp-postcss"><a href="#gulp-postcss" class="headerlink" title="gulp-postcss"></a>gulp-postcss</h3><p>透過後處理器，來進一步強化 css，譬如 autoprefixer 可以自動加入前綴詞來兼容舊瀏覽器<br>install commend</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-postcss autoprefixer --save</span></pre></td></tr></table></figure>
+<p>gulpfile.js =&gt; build task</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const postcss &#x3D; require(&#39;gulp-postcss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">const autoprefixer &#x3D; require(&#39;autoprefixer&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;sass&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  const plugins &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    autoprefixer()</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(sass().on(&#39;error&#39;, sass.logError))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(postcss(plugins))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;css&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>build .browserslistrc</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - .browserslistrc</span></pre></td></tr></table></figure>
+<p>內容寫入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Browsers that we support</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">last 5 version</span></pre></td></tr><tr><td class="code"><pre><span class="line">&gt; 1%</span></pre></td></tr><tr><td class="code"><pre><span class="line">IE 10 # sorry</span></pre></td></tr></table></figure>
+
+<h3 id="gulp-load-plugins"><a href="#gulp-load-plugins" class="headerlink" title="gulp-load-plugins"></a>gulp-load-plugins</h3><p>優化 gulp 相關套件，節省程式碼</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-load-plugins --save</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">const $ &#x3D; require(&#39;gulp-load-plugins&#39;)()</span></pre></td></tr></table></figure>
+<p>使用 gulp-load-plugins 後，只要是 gulp- 開頭的套件，都可以無需特別 require，僅只要在對應名稱前面加上 $，範例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.pipe($.pug(&#123;&#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">.pipe($.postcss(plugins))</span></pre></td></tr></table></figure>
+<p>刪除原先的程式碼，促使專案更為精簡</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const pug &#x3D; require(&#39;gulp-pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const sass &#x3D; require(&#39;gulp-sass&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const postcss &#x3D; require(&#39;gulp-postcss&#39;)</span></pre></td></tr></table></figure>
+
+<h3 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h3><p>install commend</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install --save gulp-sourcemaps gulp-babel gulp-concat @babel&#x2F;core @babel&#x2F;preset-env</span></pre></td></tr></table></figure>
+<p>gulpfile.js =&gt; build task</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;babel&#39;, async () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  gulp.src(&#39;.&#x2F;source&#x2F;js&#x2F;**&#x2F;*.js&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; .pipe(sourcemaps.init())</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe($.babel(&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      presets: [&#39;@babel&#x2F;env&#39;]</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe($.concat(&#39;all.js&#39;))  &#x2F;&#x2F; 將所有 js 檔進行合併</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; .pipe(sourcemaps.write(&#39;.&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;js&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Gulp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Webpack 設定與理解</title>
     <url>/2020/04/15/webpack-config/</url>
     <content><![CDATA[<p>雖然到 vue-cli 3.0 之後，其實 vue 官方已經將 webpack 進行封裝，希望開發者專注在開發而非設定上，但還是需要理解基本的設定，以及細節的理解。</p>
@@ -97,68 +203,73 @@
 <h3 id="fetch"><a href="#fetch" class="headerlink" title="fetch"></a>fetch</h3><p>之前工作採用 axios 套件，但現在 JS 原生語法中已經提供 fetch() 的用法了，而且 fetch 的好處是預設用 promise 包裹，如果有需要就可以直接使用 async/await。而且檢查 can i use，fetch 目前來看兼容性也已經相當高了，所以這個專案開始改用 fetch。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fetch(url).then((res) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 回傳的檔案若為 JSON 格式，需要解析處理</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return res.json()</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;).then((result) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(result)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.articleData &#x3D; result.data</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;).catch((err) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(err)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>Vue.js</tag>
         <tag>Firebase</tag>
+        <tag>Vue.js</tag>
         <tag>BootstrapVue</tag>
       </tags>
   </entry>
   <entry>
     <title>Nuxt.js 實作 Blog</title>
     <url>/2020/04/02/nuxt-blog/</url>
-    <content><![CDATA[<p>實作 nuxt 的 blog，記錄操作流程，方邊日後可以參照部分流程。</p>
+    <content><![CDATA[<p>寫在前面，為了理解 Nuxt 的基礎運用，動手實作一個簡易的 Blog，同時記錄下目前的流程，方便後續可以參照比對。</p>
 <a id="more"></a>
-<h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx create-nuxt-app nuxt-blog</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd nuxt-blog</span></pre></td></tr></table></figure>
+<p>受限於目前還未掌握 Node 開發後端的能力，因此直接採用官方建議的 CMS 系統(storyblok)。不過樣式就不特別處理，簡單的 RWD。另外渲染 markdown 的部分，v-html 要改的樣式太多，只能以後有時間再來慢慢處理。部署仍是萬年的 netlify 不變。</p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><ul>
+<li><a href="https://activello-nuxt-blog.netlify.com/" target="_blank" rel="noopener">Nuxt.js Blog 連結</a></li>
+</ul>
+<p>待優化的部分：</p>
+<ul>
+<li>API 呼叫等待時間，加入 Loading 樣式</li>
+<li>關於 nuxt store 的部分還沒觸碰</li>
+<li>專案複雜度太低，仍有許多潛在的雷點還未踩到</li>
+<li>nuxt 的基礎是 node，除了補強 node 知識，可能要考慮用 node 實作後端</li>
+<li>高交互的頁面，可能會需要掌握多種 layout</li>
+</ul>
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx create-nuxt-app nuxt-blog</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd nuxt-blog</span></pre></td></tr></table></figure>
 <p>除了 axios 其他都採用預設默認。</p>
-<h2 id="install-plugin"><a href="#install-plugin" class="headerlink" title="install plugin"></a>install plugin</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add pug pug-plain-loader</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add node-sass sass-loader</span></pre></td></tr></table></figure>
+<h3 id="install-plugin"><a href="#install-plugin" class="headerlink" title="install plugin"></a>install plugin</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add pug pug-plain-loader</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn add node-sass sass-loader</span></pre></td></tr></table></figure>
 <p>run 一下測試是否正常</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn run dev</span></pre></td></tr></table></figure>
 
-<h2 id="架構設計"><a href="#架構設計" class="headerlink" title="架構設計"></a>架構設計</h2><ul>
+<h3 id="架構設計"><a href="#架構設計" class="headerlink" title="架構設計"></a>架構設計</h3><ul>
 <li>共用樣式統一由 assets 控管。</li>
 <li>盡可能多使用 html5 語義化標籤。</li>
 </ul>
-<h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><ul>
+<h3 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h3><ul>
 <li>因為功能相對較少，僅採用 default layout，主體拆成三個區塊，header、main(nuxt)、footer。</li>
 <li>HomePage 的文章列表抽成 component 形式。</li>
 </ul>
-<h2 id="nuxt-link"><a href="#nuxt-link" class="headerlink" title="nuxt-link"></a>nuxt-link</h2><ul>
+<h3 id="nuxt-link"><a href="#nuxt-link" class="headerlink" title="nuxt-link"></a>nuxt-link</h3><ul>
 <li>active 樣式使用官方預設的 class =&gt; .nuxt-link-exact-active</li>
 </ul>
-<h2 id="Headless-CMS"><a href="#Headless-CMS" class="headerlink" title="Headless CMS"></a>Headless CMS</h2><ul>
+<h3 id="Headless-CMS"><a href="#Headless-CMS" class="headerlink" title="Headless CMS"></a>Headless CMS</h3><ul>
 <li>先試用 storyblok，未來再試試看 Strapi</li>
 <li>本地安裝對應套件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add storyblok-nuxt</span></pre></td></tr></table></figure></li>
 <li>引入格式：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">modules: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">  [&#39;storyblok-nuxt&#39;, &#123; accessToken: &#39;xxxxxxxxx&#39;, cacheProvider: &#39;memory&#39; &#125;]</span></pre></td></tr><tr><td class="code"><pre><span class="line">],</span></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h2 id="asyncData"><a href="#asyncData" class="headerlink" title="asyncData()"></a>asyncData()</h2><p>在 MVC 架構下，網站的運作是由前端向後端發出請求，拿到頁面的 url 的同時，也由後端 return html 給前端。但到了 MVVM 架構下，router 改由前端處理，後端只負責給數據，頁面的渲染生成統一由前端負責，也因此爬蟲這種基於 server 端的技術，無法抓到頁面，也就無法達到 SEO 的效果。nuxt 中的 asyncData() 可以理解為在後端做處理，因為是在 server 端所以也不存在跨域問題。</p>
-<h2 id="動態-router"><a href="#動態-router" class="headerlink" title="動態 router"></a>動態 router</h2><p>nuxt 的動態路由，需透過 _ 下底線來自動生成：</p>
+<h3 id="asyncData"><a href="#asyncData" class="headerlink" title="asyncData()"></a>asyncData()</h3><p>在 MVC 架構下，網站的運作是由前端向後端發出請求，拿到頁面的 url 的同時，也由後端 return html 給前端。但到了 MVVM 架構下，router 改由前端處理，後端只負責給數據，頁面的渲染生成統一由前端負責，也因此爬蟲這種基於 server 端的技術，無法抓到頁面，也就無法達到 SEO 的效果。nuxt 中的 asyncData() 可以理解為在後端做處理，因為是在 server 端所以也不存在跨域問題。</p>
+<h3 id="動態-router"><a href="#動態-router" class="headerlink" title="動態 router"></a>動態 router</h3><p>nuxt 的動態路由，需透過 _ 下底線來自動生成：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- pages</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - _postId</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; &#x2F;:postId</span></pre></td></tr></table></figure>
 
-<h2 id="解析-markdown-格式"><a href="#解析-markdown-格式" class="headerlink" title="解析 markdown 格式"></a>解析 markdown 格式</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add marked</span></pre></td></tr></table></figure>
+<h3 id="解析-markdown-格式"><a href="#解析-markdown-格式" class="headerlink" title="解析 markdown 格式"></a>解析 markdown 格式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add marked</span></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import marked from &#39;marked&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">marked(res.data.story.content.content)</span></pre></td></tr></table></figure>
 
-<h2 id="v-html-style"><a href="#v-html-style" class="headerlink" title="v-html style"></a>v-html style</h2><p>在 scoped 屬性下，v-html 無法直接修改樣式，但如果移除 scoped 可能會污染全域樣式，除了透過特殊命名外，還有一種方法可以修改樣式，就是透過 deep scoped，而且也不會影響到全域，寫法如下：</p>
+<h3 id="v-html-style"><a href="#v-html-style" class="headerlink" title="v-html style"></a>v-html style</h3><p>在 scoped 屬性下，v-html 無法直接修改樣式，但如果移除 scoped 可能會污染全域樣式，除了透過特殊命名外，還有一種方法可以修改樣式，就是透過 deep scoped，而且也不會影響到全域，寫法如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.post-content &#x2F;deep&#x2F; pre &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  background-color: #f7f7f7;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">.post-content &#x2F;deep&#x2F; h2,h3 &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  margin: 8px 0;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<h2 id="fetch-API"><a href="#fetch-API" class="headerlink" title="fetch API"></a>fetch API</h2><p>同 asyncData，因為他們都是在組件初始化之前就已經執行的方法，這個時候 this 是無法指向我們需要的對象，會導致無法取得值，因此 fetch api 在 nuxt 中不可以使用 this。</p>
-<h2 id="component-name"><a href="#component-name" class="headerlink" title="component name"></a>component name</h2><p>組件名稱通常是方便我們使用 chrome 插件的 vue dev tools 時，可以快速查詢，但和 Vue 不同，nuxt 預設的 eslint 規則中，名稱首字必須大寫。</p>
-<h2 id="Nuxt-生命週期"><a href="#Nuxt-生命週期" class="headerlink" title="Nuxt 生命週期"></a>Nuxt 生命週期</h2><p>承前述，Nuxt 的 <a href="https://zh.nuxtjs.org/guide/" target="_blank" rel="noopener">lifecycle</a> 如下：<br>起步進入 =&gt; </p>
+<h3 id="fetch-API"><a href="#fetch-API" class="headerlink" title="fetch API"></a>fetch API</h3><p>同 asyncData，因為他們都是在組件初始化之前就已經執行的方法，這個時候 this 是無法指向我們需要的對象，會導致無法取得值，因此 fetch api 在 nuxt 中不可以使用 this。</p>
+<h3 id="component-name"><a href="#component-name" class="headerlink" title="component name"></a>component name</h3><p>組件名稱通常是方便我們使用 chrome 插件的 vue dev tools 時，可以快速查詢，但和 Vue 不同，nuxt 預設的 eslint 規則中，名稱首字必須大寫。</p>
+<h3 id="Nuxt-生命週期"><a href="#Nuxt-生命週期" class="headerlink" title="Nuxt 生命週期"></a>Nuxt 生命週期</h3><p>承前述，Nuxt 的 <a href="https://zh.nuxtjs.org/guide/" target="_blank" rel="noopener">lifecycle</a> 如下：<br>起步進入 =&gt; </p>
 <ol>
 <li>檢查 Nuxt 專案內的 store(類似 Vuex)是否有需要執行的內容</li>
 <li>進入中間件(middleware)，並且做三件事，檢查全域設定(nuxt.config.js)，在檢查配對的 Layout，配對要進入的頁面</li>
 <li>驗證進入的頁面是否存在，是 =&gt; 進入該頁面，否 =&gt; 轉往 404 頁面</li>
 <li>初始化之前，先將 server端 資料取回</li>
-<li>開始渲染頁面<br>當點擊前往其他頁面時，重新回到第二步開始執行</li>
+<li>開始渲染頁面</li>
 </ol>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>=&gt; <a href="https://activello-nuxt-blog.netlify.com/" target="_blank" rel="noopener">Blog Demo</a></p>
-<p>仍有待補強的部分：</p>
-<ul>
-<li>關於 store 的部分還沒觸碰</li>
-<li>專案複雜度太低，仍有許多潛在的雷點還未踩到</li>
-<li>nuxt 的基礎是 node，除了補強 node 知識，最好能用 node 實作後端。</li>
-<li>高交互的頁面，可能會需要掌握多種 layout</li>
-</ul>
+<p>當點擊前往其他頁面時，重新回到第二步開始執行</p>
 ]]></content>
       <tags>
         <tag>Nuxt.js</tag>
@@ -539,15 +650,72 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
       </tags>
   </entry>
   <entry>
-    <title>Vue.js + Firebase 實作即時聊天室</title>
+    <title>Vue.js &amp; Firebase 實作即時聊天室</title>
     <url>/2020/02/26/vue-firebase-chat/</url>
-    <content><![CDATA[<p>使用 Vue.js 構建前端聊天室頁面，再介接 Firebase 作為儲存聊天訊息的資料庫，記錄自己的實作流程。</p>
+    <content><![CDATA[<p>首次嘗試套用 Vue.js + Firebase 來實作一個聊天室 Demo，但因為沒有透過後端轉發，安全性上大概是0吧(苦笑)。考慮到後續還要摸 Nuxt.js，學習 Node.js 這一塊是躲不掉了。</p>
 <a id="more"></a>
-<p>這邊需要重寫過架構內容。</p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><ul>
+<li><p><a href="https://vue-chat-6a66d.firebaseapp.com/" target="_blank" rel="noopener">Vue Chat 連結</a></p>
+</li>
+<li><p>結構：</p>
+<ul>
+<li>前端框架：Vue.js</li>
+<li>UI：手刻(Flexbox)<ul>
+<li>Layout：App 風格</li>
+</ul>
+</li>
+<li>Database：Firebase</li>
+</ul>
+</li>
+</ul>
+<h3 id="預期重構"><a href="#預期重構" class="headerlink" title="預期重構"></a>預期重構</h3><h4 id="優化"><a href="#優化" class="headerlink" title="優化"></a>優化</h4><ul>
+<li>聊天室輸入內容時，可以添加檔案或圖片</li>
+<li>添加標情符號欄位</li>
+<li>玩家可以自創私人聊天室(類似群組)</li>
+</ul>
+<h4 id="修正"><a href="#修正" class="headerlink" title="修正"></a>修正</h4><ul>
+<li>在多人註冊的狀況下，聊天內容會產生傳送誤判，需要檢查資料結構，若無解的話，可能需要採用 socket.io</li>
+</ul>
+<h3 id="開發流程"><a href="#開發流程" class="headerlink" title="開發流程"></a>開發流程</h3><p>此處內容待重寫ing…</p>
+]]></content>
+      <tags>
+        <tag>Firebase</tag>
+        <tag>Vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>實作 Vue.js Web App 簡單工具</title>
+    <url>/2020/02/26/web-app-vue/</url>
+    <content><![CDATA[<p>寫在前頭，這個 Demo 看似 Web App，但本質上並不是，畢竟我自己還沒有碰過 Hybrid App。但因為前職其中一項專案產品，其 Layout 佈局採用 Web App 的風格來實作，並且成功存活。因此自己也來試寫一個小型 Demo。</p>
+<p>也因為沒有搭配後端，所以僅有接幾個 API 來呈現資料內容，並套用了 i18n 來處理多語系功能。</p>
+<a id="more"></a>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p>建議手機直接掃描操作進入網址。<br><img src="/images/vue-tools-app.png" alt=""></p>
+<ul>
+<li><p>結構：</p>
+<ul>
+<li>前端框架：Vue.js</li>
+<li>UI：手刻(Flexbox)<ul>
+<li>Layout：App 風格</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>待優化：</p>
+<ul>
+<li>需要調整 UserStory</li>
+<li>加入會員系統</li>
+<li>另建一個專案來設定後台(有空的話…)</li>
+</ul>
+</li>
+<li><p>Layout：<br>和過往的 RWD 設計佈局不同，出現 footer vs navbar 的情境，在 RWD 的 footer，多數是不具備實質功能的，若非版權宣告，就是條列網站的一些聲明文字或連結。</p>
+<p>相反的 navbar 卻是重心之一，當使用者在手機或平板操作時，navbar 可以讓客戶快速切換自己想前往的頁面，而非上下滾動來尋找目錄。但這種 Web App 在 PC 的介面時，則會奇醜無比，目前尚未看到兼容兩者的方案。</p>
+</li>
+</ul>
+<h3 id="開發流程"><a href="#開發流程" class="headerlink" title="開發流程"></a>開發流程</h3><p>待重構優化後，重新撰寫~</p>
 ]]></content>
       <tags>
         <tag>Vue.js</tag>
-        <tag>Firebase</tag>
+        <tag>Web App</tag>
       </tags>
   </entry>
   <entry>
@@ -580,6 +748,28 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 ]]></content>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>實作 Element UI CMS</title>
+    <url>/2020/02/21/vue-element-cms-shop/</url>
+    <content><![CDATA[<a id="more"></a>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p><a href="https://vue-shope-admin.netlify.com/" target="_blank" rel="noopener">Element UI CMS 連結</a></p>
+<ul>
+<li><p>結構：</p>
+<ul>
+<li>前端：Vue.js</li>
+<li>UI：Element UI</li>
+<li>後端：六角學院提供 API</li>
+</ul>
+</li>
+<li><p>待修正 &amp; 優化<br>這個 Demo 主要是因之前工作都寫前台居多，沒有參與後台維護與開發，簡單練手寫一個後台，但整體來說寫得不好，蠻多細節需要重新調整，同時也考慮日後自己寫 API，視情況重構或是另起爐灶。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Vue.js</tag>
+        <tag>Element UI</tag>
       </tags>
   </entry>
   <entry>
@@ -993,33 +1183,33 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
       </tags>
   </entry>
   <entry>
-    <title>常見面試問題：Vanilla JS</title>
+    <title>常見面試問題：JS</title>
     <url>/2019/12/27/interview-IV-JavaScript/</url>
     <content><![CDATA[<p>JavaScript 面試問題彙整。</p>
 <a id="more"></a>
-<h3 id="基礎原理"><a href="#基礎原理" class="headerlink" title="基礎原理"></a>基礎原理</h3><h4 id="Q：什麼是-DOM"><a href="#Q：什麼是-DOM" class="headerlink" title="Q：什麼是 DOM ?"></a>Q：什麼是 DOM ?</h4><p>我們所撰寫的 HTML 文件，瀏覽器會解析成樹狀結構，父層包覆子層形成一個 document 文件，每一個元素都可以理解為物件，DOM 操作就是透過 JS 去操作這些物件去執行行為。同時為了避免操作過程中，污染相同屬性的元素，譬如兩個 p 標籤，所以我們會透過 id 或 class 來指定操作：</p>
+<h4 id="什麼是-DOM"><a href="#什麼是-DOM" class="headerlink" title="什麼是 DOM ?"></a>什麼是 DOM ?</h4><p>我們所撰寫的 HTML 文件，瀏覽器會解析成樹狀結構，父層包覆子層形成一個 document 文件，每一個元素都可以理解為物件，DOM 操作就是透過 JS 去操作這些物件去執行行為。同時為了避免操作過程中，污染相同屬性的元素，譬如兩個 p 標籤，所以我們會透過 id 或 class 來指定操作：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.getElementById(id)</span></pre></td></tr><tr><td class="code"><pre><span class="line">document.querySelector(.className)</span></pre></td></tr></table></figure>
 
-<h4 id="Q：請問什麼是-this？"><a href="#Q：請問什麼是-this？" class="headerlink" title="Q：請問什麼是 this？"></a>Q：請問什麼是 this？</h4><p>this 雖然簡單來說就是函式內的執行情境(function context)，但需要拆成 ES5 和 ES6 兩種狀況來解釋。 </p>
+<h4 id="請問什麼是-this？"><a href="#請問什麼是-this？" class="headerlink" title="請問什麼是 this？"></a>請問什麼是 this？</h4><p>this 雖然簡單來說就是函式內的執行情境(function context)，但需要拆成 ES5 和 ES6 兩種狀況來解釋。 </p>
 <p>在 ES5 的時候，是根據 function 內的動作來決定 this 指向的對象，如果 function 沒有做其他處理，那就會自動往外尋找全域變數。e.g.：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var myName &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(this.name) &#x2F;&#x2F; 這邊的 this 向函式外尋找變數</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">myName() &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure>
 <p>但如果 function 被賦值給物件，那就會向物件內尋找變數。e.g：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var myName &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(this.name)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var newName &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  name: &#39;Nini&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">newName.myName &#x3D; myName</span></pre></td></tr><tr><td class="code"><pre><span class="line">newName.myName() &#x2F;&#x2F; 印出 Nini</span></pre></td></tr></table></figure>
 <p>但如果 function 的執行被綁在 DOM 元素上，譬如 click 事件，那麼 this 就會被指向 DOM 上面相同名稱的變數。</p>
 <p>但到了 ES6 的環境下，this 的指向不再這麼複雜，透過 arrow function 的自動綁定的特性，this 一律指向全域變數(window)。</p>
-<h4 id="Q：簡單說明立即函式-IIFE"><a href="#Q：簡單說明立即函式-IIFE" class="headerlink" title="Q：簡單說明立即函式(IIFE)"></a>Q：簡單說明立即函式(IIFE)</h4><p>寫法格式如下，用小括號包裹，並在最後額外加上一個 ()。</p>
+<h4 id="簡單說明立即函式-IIFE"><a href="#簡單說明立即函式-IIFE" class="headerlink" title="簡單說明立即函式(IIFE)"></a>簡單說明立即函式(IIFE)</h4><p>寫法格式如下，用小括號包裹，並在最後額外加上一個 ()。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 兩種寫法都可以</span></pre></td></tr><tr><td class="code"><pre><span class="line">(function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(1)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;())</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">(function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(2)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)()</span></pre></td></tr></table></figure>
 <p>他有兩個特點，一是會被立即執行，二是不管對立即函式是否命名，它都無法在函式再次被執行。基於函式作用域會銷毀變數的特性，立即函式執行完畢後，也不會保留其作用域內的變數，因此常用於限制變數的作用域。立即函式可以透過結尾 () 傳參，再加上其也是表達式的特性，因此也可以透過變數，接受它 return 的結果。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var test &#x3D; (function (val) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return val</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)(&#39;params&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(test) &#x2F;&#x2F; 印出 params</span></pre></td></tr></table></figure>
 <p>另外，因為立即函式的特性，連續兩個立即函式，會造成 ASI(自動補全分號)的規則沒有運作。因此在連續兩組立即函式的狀況下，需要自己補上分號。立即函式在一般開發比較少見，以我個人開發經驗是完全沒用過，但在框架的底層程式碼中，立即函式是有被使用的，通常用於保證變數有被正常掛載到全域變數上。</p>
-<h4 id="Q：簡單聊一下-JS-的事件傳遞機制"><a href="#Q：簡單聊一下-JS-的事件傳遞機制" class="headerlink" title="Q：簡單聊一下 JS 的事件傳遞機制"></a>Q：簡單聊一下 JS 的事件傳遞機制</h4><h3 id="JS-基礎三座大山之一：原型與原型鍊"><a href="#JS-基礎三座大山之一：原型與原型鍊" class="headerlink" title="JS 基礎三座大山之一：原型與原型鍊"></a>JS 基礎三座大山之一：原型與原型鍊</h3><h4 id="Q：請簡單說明-JS-的原型"><a href="#Q：請簡單說明-JS-的原型" class="headerlink" title="Q：請簡單說明 JS 的原型"></a>Q：請簡單說明 JS 的原型</h4><p>我們使用原型的目的，在於建立一個樣板或者說藍圖，透過這個樣板，我們放入屬性或方法，這樣可以快速建立 instance(實體)，e.g.：</p>
+<h4 id="請簡單說明-JS-的原型"><a href="#請簡單說明-JS-的原型" class="headerlink" title="請簡單說明 JS 的原型"></a>請簡單說明 JS 的原型</h4><p>我們使用原型的目的，在於建立一個樣板或者說藍圖，透過這個樣板，我們放入屬性或方法，這樣可以快速建立 instance(實體)，e.g.：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr></table></figure>
 <p>另外，prototype 也可以優化 function 佔用的記憶體空間，e.g.：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.say &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;$&#123;this.name&#125; is a $&#123;this.type&#125; say Hi!&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(boy.say &#x3D;&#x3D;&#x3D; girl.say) &#x2F;&#x2F; false</span></pre></td></tr></table></figure>
 <p>雖然他們呼叫同一個函式，但卻各自佔用一個空間，在專案小的時候，可能差異不大，但大型專案或多或少會影響效能，因此可以透過 function prototype 來優化</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">Person.prototype.say &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#96;$&#123;this.name&#125; is a $&#123;this.type&#125; say Hi!&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(boy.say &#x3D;&#x3D;&#x3D; girl.say) &#x2F;&#x2F; true</span></pre></td></tr></table></figure>
 
-<h4 id="Q：簡單聊一下繼承"><a href="#Q：簡單聊一下繼承" class="headerlink" title="Q：簡單聊一下繼承"></a>Q：簡單聊一下繼承</h4><ul>
+<h4 id="簡單聊一下繼承"><a href="#簡單聊一下繼承" class="headerlink" title="簡單聊一下繼承"></a>簡單聊一下繼承</h4><ul>
 <li>ES5 的寫法，使用 Object.create() e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var man &#x3D; Object.create(boy)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(man)</span></pre></td></tr></table></figure>
 對 man 這個變數來說，它繼承到的原型 Person 只是一個空物件，但因為原型練的特性，他會向上找 <code>__proto__</code> 的內容，這時候就會找到屬性與方法，e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(man.name) &#x2F;&#x2F; pitt</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(man.type) &#x2F;&#x2F; boy</span></pre></td></tr></table></figure></li>
 <li>在 ES6 中引入新的寫法 class，e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Player &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用 function constructor (建構式)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (playerName, hp) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.playerName &#x3D; playerName</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.hp &#x3D; hp</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  playerStatus () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;玩家名稱：$&#123;this.playerName&#125;，玩家血量：$&#123;this.hp&#125;&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var Pitt &#x3D; new Player(&#39;Pitt&#39;, 200)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Pitt.playerStatus()</span></pre></td></tr></table></figure></li>
@@ -1028,12 +1218,12 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 
 </li>
 </ul>
-<h3 id="JS-基礎三座大山之二：閉包"><a href="#JS-基礎三座大山之二：閉包" class="headerlink" title="JS 基礎三座大山之二：閉包"></a>JS 基礎三座大山之二：閉包</h3><h4 id="Q：閉包"><a href="#Q：閉包" class="headerlink" title="Q：閉包"></a>Q：閉包</h4><p>什麼是閉包？簡單說，就是當 JS 的 function 因為GC(垃圾回收)機制觸發，導致函式執行完後，內部作用域內容會被銷毀。這時可以透過子函式來保存我們需要的變數或內容。</p>
+<h4 id="閉包"><a href="#閉包" class="headerlink" title="閉包"></a>閉包</h4><p>什麼是閉包？簡單說，就是當 JS 的 function 因為GC(垃圾回收)機制觸發，導致函式執行完後，內部作用域內容會被銷毀。這時可以透過子函式來保存我們需要的變數或內容。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function deposit () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  var cash &#x3D; 100</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return function (coin) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cash &#x3D; cash + coin</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return cash</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>因為子函式沒有被銷毀，加上範圍鍊的原則，子函式調用外面父函式的變數 cash，因此父函式作用域在閉包的狀況下被保存下來，同時後續宣告不同變數時，也可以獨立調用這一組函式而不用擔心互相污染。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function deposit () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  var cash &#x3D; 100</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return function (coin) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cash &#x3D; cash + coin</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return cash</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var PittPay &#x3D; deposit()</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 200</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 300</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 400</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var KimiPay &#x3D; deposit()</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 300</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 500</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 700</span></pre></td></tr></table></figure>
 
-<h4 id="Q：簡單說明-Hoisting？"><a href="#Q：簡單說明-Hoisting？" class="headerlink" title="Q：簡單說明 Hoisting？"></a>Q：簡單說明 Hoisting？</h4><p>JS 的運行可以拆解為兩階段，分別是創造與執行：</p>
+<h4 id="簡單說明-Hoisting？"><a href="#簡單說明-Hoisting？" class="headerlink" title="簡單說明 Hoisting？"></a>簡單說明 Hoisting？</h4><p>JS 的運行可以拆解為兩階段，分別是創造與執行：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure>
 <p>在變數中，上面這段 code 在實際運作上，需要理解為</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name)</span></pre></td></tr></table></figure>
@@ -1049,13 +1239,15 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 
 </li>
 </ul>
-<h3 id="JS-基礎三座大山之三：同步與非同步"><a href="#JS-基礎三座大山之三：同步與非同步" class="headerlink" title="JS 基礎三座大山之三：同步與非同步"></a>JS 基礎三座大山之三：同步與非同步</h3><h4 id="Q：簡單說明-JavaScript-為何需要非同步？簡單聊一下對-call-stack-跟-event-loop-的理解"><a href="#Q：簡單說明-JavaScript-為何需要非同步？簡單聊一下對-call-stack-跟-event-loop-的理解" class="headerlink" title="Q：簡單說明 JavaScript 為何需要非同步？簡單聊一下對 call stack 跟 event loop 的理解"></a>Q：簡單說明 JavaScript 為何需要非同步？簡單聊一下對 call stack 跟 event loop 的理解</h4><p>JS 的本質是單線程的語言，因為它的工作之一就是修改瀏覽器的 DOM 結構，如果多線程但同時修改同一個節點，會讓整體情況變得相當複雜，所以為了避免複雜的狀況發生，因此才會採用單線程。而非同步就是因應單線程的背景，假設某個動作需要等待 2 秒，瀏覽器當然不可能等在原地 2 秒，因此會先執行所有同步性的工作，而所有非同步性的工作則先放到 task queue(任務等待序列)。瀏覽器先執行同步性工作的環境，可以理解為包在 call stack 區間，瀏覽器先依序把 call stack 內的工作執行完畢，當它檢查到 call stack 為空時，接著前往 task queue 中將等待序列的工作丟到 call stack 依序執行。</p>
+<h4 id="簡單說明-JavaScript-為何需要非同步？簡單聊一下對-call-stack-跟-event-loop-的理解"><a href="#簡單說明-JavaScript-為何需要非同步？簡單聊一下對-call-stack-跟-event-loop-的理解" class="headerlink" title="簡單說明 JavaScript 為何需要非同步？簡單聊一下對 call stack 跟 event loop 的理解"></a>簡單說明 JavaScript 為何需要非同步？簡單聊一下對 call stack 跟 event loop 的理解</h4><p>JS 的本質是單線程的語言，因為它的工作之一就是修改瀏覽器的 DOM 結構，如果多線程但同時修改同一個節點，會讓整體情況變得相當複雜，所以為了避免複雜的狀況發生，因此才會採用單線程。而非同步就是因應單線程的背景，假設某個動作需要等待 2 秒，瀏覽器當然不可能等在原地 2 秒，因此會先執行所有同步性的工作，而所有非同步性的工作則先放到 task queue(任務等待序列)。瀏覽器先執行同步性工作的環境，可以理解為包在 call stack 區間，瀏覽器先依序把 call stack 內的工作執行完畢，當它檢查到 call stack 為空時，接著前往 task queue 中將等待序列的工作丟到 call stack 依序執行。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">瀏覽器檢查 call stack 是否為空</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x3D;&gt; 否 &#x3D;&gt; 回到 call stack 繼續執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x3D;&gt; 是 &#x3D;&gt; 進入 task queue 開始將非同步工作丟到 call stack 執行</span></pre></td></tr></table></figure>
 <p>這樣不斷循環的過程就是 event loop。e.g.：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">setTimeout(function() &#123; &#x2F;&#x2F; &#x3D;&gt; 這種非同步的函式就是 callback</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;, 0);</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(3);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 依序印出 1 3 2</span></pre></td></tr></table></figure>
 
-<h3 id="原生-API"><a href="#原生-API" class="headerlink" title="原生 API"></a>原生 API</h3><h4 id="Q：如何用-JS-原生方法實作回上頁的功能？"><a href="#Q：如何用-JS-原生方法實作回上頁的功能？" class="headerlink" title="Q：如何用 JS 原生方法實作回上頁的功能？"></a>Q：如何用 JS 原生方法實作回上頁的功能？</h4><p>可以使用下述這兩種方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. window.history.back &#x2F;&#x2F; 回到上一頁</span></pre></td></tr><tr><td class="code"><pre><span class="line">2. window.history.go(-1) &#x2F;&#x2F; 指定回到上一頁，若傳入參數為 -2，則指定回到上二頁</span></pre></td></tr></table></figure>]]></content>
+<h4 id="如何用-JS-原生方法實作回上頁的功能？"><a href="#如何用-JS-原生方法實作回上頁的功能？" class="headerlink" title="如何用 JS 原生方法實作回上頁的功能？"></a>如何用 JS 原生方法實作回上頁的功能？</h4><p>可以使用下述這兩種方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. window.history.back &#x2F;&#x2F; 回到上一頁</span></pre></td></tr><tr><td class="code"><pre><span class="line">2. window.history.go(-1) &#x2F;&#x2F; 指定回到上一頁，若傳入參數為 -2，則指定回到上二頁</span></pre></td></tr></table></figure>
+
+<h4 id="簡單聊一下-JS-的事件傳遞機制"><a href="#簡單聊一下-JS-的事件傳遞機制" class="headerlink" title="簡單聊一下 JS 的事件傳遞機制"></a>簡單聊一下 JS 的事件傳遞機制</h4>]]></content>
       <tags>
         <tag>Interview</tag>
         <tag>JavaScript</tag>
@@ -1121,9 +1313,9 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
     <content><![CDATA[<p>記錄常用 NVM 指令。</p>
 <a id="more"></a>
 <h4 id="查詢遠端可安裝的-node-版本"><a href="#查詢遠端可安裝的-node-版本" class="headerlink" title="查詢遠端可安裝的 node 版本"></a>查詢遠端可安裝的 node 版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm ls-remote</span></pre></td></tr></table></figure>
-<h4 id="安裝所需的版本號"><a href="#安裝所需的版本號" class="headerlink" title="安裝所需的版本號"></a>安裝所需的版本號</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm install v12.14.1</span></pre></td></tr></table></figure>
-<h4 id="切換所需使用的-node-版本"><a href="#切換所需使用的-node-版本" class="headerlink" title="切換所需使用的 node 版本"></a>切換所需使用的 node 版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm use v12.14.1</span></pre></td></tr></table></figure>
-<h4 id="設定預設使用的-node-版本"><a href="#設定預設使用的-node-版本" class="headerlink" title="設定預設使用的 node 版本"></a>設定預設使用的 node 版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm alias default v12.14.1</span></pre></td></tr></table></figure>]]></content>
+<h4 id="安裝所需的版本號"><a href="#安裝所需的版本號" class="headerlink" title="安裝所需的版本號"></a>安裝所需的版本號</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm install v12.16.2</span></pre></td></tr></table></figure>
+<h4 id="切換所需使用的-node-版本"><a href="#切換所需使用的-node-版本" class="headerlink" title="切換所需使用的 node 版本"></a>切換所需使用的 node 版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm use v12.16.2</span></pre></td></tr></table></figure>
+<h4 id="設定預設使用的-node-版本"><a href="#設定預設使用的-node-版本" class="headerlink" title="設定預設使用的 node 版本"></a>設定預設使用的 node 版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm alias default v12.16.2</span></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>NVM</tag>
       </tags>

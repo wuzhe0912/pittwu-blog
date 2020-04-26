@@ -47,15 +47,15 @@
   };
 </script>
 
-  <meta name="description" content="使用 Vue.js 構建前端聊天室頁面，再介接 Firebase 作為儲存聊天訊息的資料庫，記錄自己的實作流程。">
-<meta name="keywords" content="Vue.js,Firebase">
+  <meta name="description" content="首次嘗試套用 Vue.js + Firebase 來實作一個聊天室 Demo，但因為沒有透過後端轉發，安全性上大概是0吧(苦笑)。考慮到後續還要摸 Nuxt.js，學習 Node.js 這一塊是躲不掉了。">
+<meta name="keywords" content="Firebase,Vue.js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue.js + Firebase 實作即時聊天室">
+<meta property="og:title" content="Vue.js &amp; Firebase 實作即時聊天室">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;26&#x2F;vue-firebase-chat&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="使用 Vue.js 構建前端聊天室頁面，再介接 Firebase 作為儲存聊天訊息的資料庫，記錄自己的實作流程。">
+<meta property="og:description" content="首次嘗試套用 Vue.js + Firebase 來實作一個聊天室 Demo，但因為沒有透過後端轉發，安全性上大概是0吧(苦笑)。考慮到後續還要摸 Nuxt.js，學習 Node.js 這一塊是躲不掉了。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-13T06:17:41.103Z">
+<meta property="og:updated_time" content="2020-04-26T04:15:44.388Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/02/26/vue-firebase-chat/">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>Vue.js + Firebase 實作即時聊天室 | Pitt Wu's 隨想筆記</title>
+  <title>Vue.js & Firebase 實作即時聊天室 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -223,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vue.js + Firebase 實作即時聊天室
+          Vue.js & Firebase 實作即時聊天室
         </h1>
 
         <div class="post-meta">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-13 14:17:41" itemprop="dateModified" datetime="2020-04-13T14:17:41+08:00">2020-04-13</time>
+                <time title="Modified: 2020-04-26 12:15:44" itemprop="dateModified" datetime="2020-04-26T12:15:44+08:00">2020-04-26</time>
               </span>
 
           
@@ -261,9 +261,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>使用 Vue.js 構建前端聊天室頁面，再介接 Firebase 作為儲存聊天訊息的資料庫，記錄自己的實作流程。</p>
+        <p>首次嘗試套用 Vue.js + Firebase 來實作一個聊天室 Demo，但因為沒有透過後端轉發，安全性上大概是0吧(苦笑)。考慮到後續還要摸 Nuxt.js，學習 Node.js 這一塊是躲不掉了。</p>
 <a id="more"></a>
-<p>這邊需要重寫過架構內容。</p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><ul>
+<li><p><a href="https://vue-chat-6a66d.firebaseapp.com/" target="_blank" rel="noopener">Vue Chat 連結</a></p>
+</li>
+<li><p>結構：</p>
+<ul>
+<li>前端框架：Vue.js</li>
+<li>UI：手刻(Flexbox)<ul>
+<li>Layout：App 風格</li>
+</ul>
+</li>
+<li>Database：Firebase</li>
+</ul>
+</li>
+</ul>
+<h3 id="預期重構"><a href="#預期重構" class="headerlink" title="預期重構"></a>預期重構</h3><h4 id="優化"><a href="#優化" class="headerlink" title="優化"></a>優化</h4><ul>
+<li>聊天室輸入內容時，可以添加檔案或圖片</li>
+<li>添加標情符號欄位</li>
+<li>玩家可以自創私人聊天室(類似群組)</li>
+</ul>
+<h4 id="修正"><a href="#修正" class="headerlink" title="修正"></a>修正</h4><ul>
+<li>在多人註冊的狀況下，聊天內容會產生傳送誤判，需要檢查資料結構，若無解的話，可能需要採用 socket.io</li>
+</ul>
+<h3 id="開發流程"><a href="#開發流程" class="headerlink" title="開發流程"></a>開發流程</h3><p>此處內容待重寫ing…</p>
 
     </div>
 
@@ -274,8 +296,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Vue-js/" rel="tag"><i class="fa fa-tag"></i> Vue.js</a>
               <a href="/tags/Firebase/" rel="tag"><i class="fa fa-tag"></i> Firebase</a>
+              <a href="/tags/Vue-js/" rel="tag"><i class="fa fa-tag"></i> Vue.js</a>
           </div>
 
         
@@ -284,8 +306,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/22/node-interface/" rel="prev" title="Node.js(建立後端API接口)">
-      <i class="fa fa-chevron-left"></i> Node.js(建立後端API接口)
+    <a href="/2020/02/26/web-app-vue/" rel="prev" title="實作 Vue.js Web App 簡單工具">
+      <i class="fa fa-chevron-left"></i> 實作 Vue.js Web App 簡單工具
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/03/15/js-basic/" rel="next" title="JS 基礎知識補充">
@@ -328,6 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo"><span class="nav-number">1.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#預期重構"><span class="nav-number">2.</span> <span class="nav-text">預期重構</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#優化"><span class="nav-number">2.1.</span> <span class="nav-text">優化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修正"><span class="nav-number">2.2.</span> <span class="nav-text">修正</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#開發流程"><span class="nav-number">3.</span> <span class="nav-text">開發流程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -343,14 +366,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

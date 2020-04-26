@@ -47,15 +47,15 @@
   };
 </script>
 
-  <meta name="description" content="實作 nuxt 的 blog，記錄操作流程，方邊日後可以參照部分流程。">
+  <meta name="description" content="寫在前面，為了理解 Nuxt 的基礎運用，動手實作一個簡易的 Blog，同時記錄下目前的流程，方便後續可以參照比對。">
 <meta name="keywords" content="Nuxt.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nuxt.js 實作 Blog">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;04&#x2F;02&#x2F;nuxt-blog&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="實作 nuxt 的 blog，記錄操作流程，方邊日後可以參照部分流程。">
+<meta property="og:description" content="寫在前面，為了理解 Nuxt 的基礎運用，動手實作一個簡易的 Blog，同時記錄下目前的流程，方便後續可以參照比對。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-06T01:24:41.123Z">
+<meta property="og:updated_time" content="2020-04-26T04:16:03.522Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/04/02/nuxt-blog/">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-06 09:24:41" itemprop="dateModified" datetime="2020-04-06T09:24:41+08:00">2020-04-06</time>
+                <time title="Modified: 2020-04-26 12:16:03" itemprop="dateModified" datetime="2020-04-26T12:16:03+08:00">2020-04-26</time>
               </span>
 
           
@@ -261,60 +261,65 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>實作 nuxt 的 blog，記錄操作流程，方邊日後可以參照部分流程。</p>
+        <p>寫在前面，為了理解 Nuxt 的基礎運用，動手實作一個簡易的 Blog，同時記錄下目前的流程，方便後續可以參照比對。</p>
 <a id="more"></a>
-<h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npx create-nuxt-app nuxt-blog</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">cd nuxt-blog</span></pre></td></tr></table></figure>
+<p>受限於目前還未掌握 Node 開發後端的能力，因此直接採用官方建議的 CMS 系統(storyblok)。不過樣式就不特別處理，簡單的 RWD。另外渲染 markdown 的部分，v-html 要改的樣式太多，只能以後有時間再來慢慢處理。部署仍是萬年的 netlify 不變。</p>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><ul>
+<li><a href="https://activello-nuxt-blog.netlify.com/" target="_blank" rel="noopener">Nuxt.js Blog 連結</a></li>
+</ul>
+<p>待優化的部分：</p>
+<ul>
+<li>API 呼叫等待時間，加入 Loading 樣式</li>
+<li>關於 nuxt store 的部分還沒觸碰</li>
+<li>專案複雜度太低，仍有許多潛在的雷點還未踩到</li>
+<li>nuxt 的基礎是 node，除了補強 node 知識，可能要考慮用 node 實作後端</li>
+<li>高交互的頁面，可能會需要掌握多種 layout</li>
+</ul>
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npx create-nuxt-app nuxt-blog</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">cd nuxt-blog</span></pre></td></tr></table></figure>
 <p>除了 axios 其他都採用預設默認。</p>
-<h2 id="install-plugin"><a href="#install-plugin" class="headerlink" title="install plugin"></a>install plugin</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">yarn add pug pug-plain-loader</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">yarn add node-sass sass-loader</span></pre></td></tr></table></figure>
+<h3 id="install-plugin"><a href="#install-plugin" class="headerlink" title="install plugin"></a>install plugin</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">yarn add pug pug-plain-loader</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">yarn add node-sass sass-loader</span></pre></td></tr></table></figure>
 <p>run 一下測試是否正常</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn run dev</span></pre></td></tr></table></figure>
 
-<h2 id="架構設計"><a href="#架構設計" class="headerlink" title="架構設計"></a>架構設計</h2><ul>
+<h3 id="架構設計"><a href="#架構設計" class="headerlink" title="架構設計"></a>架構設計</h3><ul>
 <li>共用樣式統一由 assets 控管。</li>
 <li>盡可能多使用 html5 語義化標籤。</li>
 </ul>
-<h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><ul>
+<h3 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h3><ul>
 <li>因為功能相對較少，僅採用 default layout，主體拆成三個區塊，header、main(nuxt)、footer。</li>
 <li>HomePage 的文章列表抽成 component 形式。</li>
 </ul>
-<h2 id="nuxt-link"><a href="#nuxt-link" class="headerlink" title="nuxt-link"></a>nuxt-link</h2><ul>
+<h3 id="nuxt-link"><a href="#nuxt-link" class="headerlink" title="nuxt-link"></a>nuxt-link</h3><ul>
 <li>active 樣式使用官方預設的 class =&gt; .nuxt-link-exact-active</li>
 </ul>
-<h2 id="Headless-CMS"><a href="#Headless-CMS" class="headerlink" title="Headless CMS"></a>Headless CMS</h2><ul>
+<h3 id="Headless-CMS"><a href="#Headless-CMS" class="headerlink" title="Headless CMS"></a>Headless CMS</h3><ul>
 <li>先試用 storyblok，未來再試試看 Strapi</li>
 <li>本地安裝對應套件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add storyblok-nuxt</span></pre></td></tr></table></figure></li>
 <li>引入格式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">modules: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  [&#39;storyblok-nuxt&#39;, &#123; accessToken: &#39;xxxxxxxxx&#39;, cacheProvider: &#39;memory&#39; &#125;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">],</span></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h2 id="asyncData"><a href="#asyncData" class="headerlink" title="asyncData()"></a>asyncData()</h2><p>在 MVC 架構下，網站的運作是由前端向後端發出請求，拿到頁面的 url 的同時，也由後端 return html 給前端。但到了 MVVM 架構下，router 改由前端處理，後端只負責給數據，頁面的渲染生成統一由前端負責，也因此爬蟲這種基於 server 端的技術，無法抓到頁面，也就無法達到 SEO 的效果。nuxt 中的 asyncData() 可以理解為在後端做處理，因為是在 server 端所以也不存在跨域問題。</p>
-<h2 id="動態-router"><a href="#動態-router" class="headerlink" title="動態 router"></a>動態 router</h2><p>nuxt 的動態路由，需透過 _ 下底線來自動生成：</p>
+<h3 id="asyncData"><a href="#asyncData" class="headerlink" title="asyncData()"></a>asyncData()</h3><p>在 MVC 架構下，網站的運作是由前端向後端發出請求，拿到頁面的 url 的同時，也由後端 return html 給前端。但到了 MVVM 架構下，router 改由前端處理，後端只負責給數據，頁面的渲染生成統一由前端負責，也因此爬蟲這種基於 server 端的技術，無法抓到頁面，也就無法達到 SEO 的效果。nuxt 中的 asyncData() 可以理解為在後端做處理，因為是在 server 端所以也不存在跨域問題。</p>
+<h3 id="動態-router"><a href="#動態-router" class="headerlink" title="動態 router"></a>動態 router</h3><p>nuxt 的動態路由，需透過 _ 下底線來自動生成：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">- pages</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  - _postId</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; &#x2F;:postId</span></pre></td></tr></table></figure>
 
-<h2 id="解析-markdown-格式"><a href="#解析-markdown-格式" class="headerlink" title="解析 markdown 格式"></a>解析 markdown 格式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add marked</span></pre></td></tr></table></figure>
+<h3 id="解析-markdown-格式"><a href="#解析-markdown-格式" class="headerlink" title="解析 markdown 格式"></a>解析 markdown 格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add marked</span></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import marked from &#39;marked&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">marked(res.data.story.content.content)</span></pre></td></tr></table></figure>
 
-<h2 id="v-html-style"><a href="#v-html-style" class="headerlink" title="v-html style"></a>v-html style</h2><p>在 scoped 屬性下，v-html 無法直接修改樣式，但如果移除 scoped 可能會污染全域樣式，除了透過特殊命名外，還有一種方法可以修改樣式，就是透過 deep scoped，而且也不會影響到全域，寫法如下：</p>
+<h3 id="v-html-style"><a href="#v-html-style" class="headerlink" title="v-html style"></a>v-html style</h3><p>在 scoped 屬性下，v-html 無法直接修改樣式，但如果移除 scoped 可能會污染全域樣式，除了透過特殊命名外，還有一種方法可以修改樣式，就是透過 deep scoped，而且也不會影響到全域，寫法如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">.post-content &#x2F;deep&#x2F; pre &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  background-color: #f7f7f7;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">.post-content &#x2F;deep&#x2F; h2,h3 &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  margin: 8px 0;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 
-<h2 id="fetch-API"><a href="#fetch-API" class="headerlink" title="fetch API"></a>fetch API</h2><p>同 asyncData，因為他們都是在組件初始化之前就已經執行的方法，這個時候 this 是無法指向我們需要的對象，會導致無法取得值，因此 fetch api 在 nuxt 中不可以使用 this。</p>
-<h2 id="component-name"><a href="#component-name" class="headerlink" title="component name"></a>component name</h2><p>組件名稱通常是方便我們使用 chrome 插件的 vue dev tools 時，可以快速查詢，但和 Vue 不同，nuxt 預設的 eslint 規則中，名稱首字必須大寫。</p>
-<h2 id="Nuxt-生命週期"><a href="#Nuxt-生命週期" class="headerlink" title="Nuxt 生命週期"></a>Nuxt 生命週期</h2><p>承前述，Nuxt 的 <a href="https://zh.nuxtjs.org/guide/" target="_blank" rel="noopener">lifecycle</a> 如下：<br>起步進入 =&gt; </p>
+<h3 id="fetch-API"><a href="#fetch-API" class="headerlink" title="fetch API"></a>fetch API</h3><p>同 asyncData，因為他們都是在組件初始化之前就已經執行的方法，這個時候 this 是無法指向我們需要的對象，會導致無法取得值，因此 fetch api 在 nuxt 中不可以使用 this。</p>
+<h3 id="component-name"><a href="#component-name" class="headerlink" title="component name"></a>component name</h3><p>組件名稱通常是方便我們使用 chrome 插件的 vue dev tools 時，可以快速查詢，但和 Vue 不同，nuxt 預設的 eslint 規則中，名稱首字必須大寫。</p>
+<h3 id="Nuxt-生命週期"><a href="#Nuxt-生命週期" class="headerlink" title="Nuxt 生命週期"></a>Nuxt 生命週期</h3><p>承前述，Nuxt 的 <a href="https://zh.nuxtjs.org/guide/" target="_blank" rel="noopener">lifecycle</a> 如下：<br>起步進入 =&gt; </p>
 <ol>
 <li>檢查 Nuxt 專案內的 store(類似 Vuex)是否有需要執行的內容</li>
 <li>進入中間件(middleware)，並且做三件事，檢查全域設定(nuxt.config.js)，在檢查配對的 Layout，配對要進入的頁面</li>
 <li>驗證進入的頁面是否存在，是 =&gt; 進入該頁面，否 =&gt; 轉往 404 頁面</li>
 <li>初始化之前，先將 server端 資料取回</li>
-<li>開始渲染頁面<br>當點擊前往其他頁面時，重新回到第二步開始執行</li>
+<li>開始渲染頁面</li>
 </ol>
-<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>=&gt; <a href="https://activello-nuxt-blog.netlify.com/" target="_blank" rel="noopener">Blog Demo</a></p>
-<p>仍有待補強的部分：</p>
-<ul>
-<li>關於 store 的部分還沒觸碰</li>
-<li>專案複雜度太低，仍有許多潛在的雷點還未踩到</li>
-<li>nuxt 的基礎是 node，除了補強 node 知識，最好能用 node 實作後端。</li>
-<li>高交互的頁面，可能會需要掌握多種 layout</li>
-</ul>
+<p>當點擊前往其他頁面時，重新回到第二步開始執行</p>
 
     </div>
 
@@ -378,7 +383,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#init"><span class="nav-number">1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#install-plugin"><span class="nav-number">2.</span> <span class="nav-text">install plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架構設計"><span class="nav-number">3.</span> <span class="nav-text">架構設計</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Layout"><span class="nav-number">4.</span> <span class="nav-text">Layout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nuxt-link"><span class="nav-number">5.</span> <span class="nav-text">nuxt-link</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Headless-CMS"><span class="nav-number">6.</span> <span class="nav-text">Headless CMS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#asyncData"><span class="nav-number">7.</span> <span class="nav-text">asyncData()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#動態-router"><span class="nav-number">8.</span> <span class="nav-text">動態 router</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析-markdown-格式"><span class="nav-number">9.</span> <span class="nav-text">解析 markdown 格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-html-style"><span class="nav-number">10.</span> <span class="nav-text">v-html style</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fetch-API"><span class="nav-number">11.</span> <span class="nav-text">fetch API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#component-name"><span class="nav-number">12.</span> <span class="nav-text">component name</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nuxt-生命週期"><span class="nav-number">13.</span> <span class="nav-text">Nuxt 生命週期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">14.</span> <span class="nav-text">Demo</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo"><span class="nav-number">1.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#init"><span class="nav-number">2.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#install-plugin"><span class="nav-number">3.</span> <span class="nav-text">install plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架構設計"><span class="nav-number">4.</span> <span class="nav-text">架構設計</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layout"><span class="nav-number">5.</span> <span class="nav-text">Layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nuxt-link"><span class="nav-number">6.</span> <span class="nav-text">nuxt-link</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Headless-CMS"><span class="nav-number">7.</span> <span class="nav-text">Headless CMS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#asyncData"><span class="nav-number">8.</span> <span class="nav-text">asyncData()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#動態-router"><span class="nav-number">9.</span> <span class="nav-text">動態 router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析-markdown-格式"><span class="nav-number">10.</span> <span class="nav-text">解析 markdown 格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-html-style"><span class="nav-number">11.</span> <span class="nav-text">v-html style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fetch-API"><span class="nav-number">12.</span> <span class="nav-text">fetch API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#component-name"><span class="nav-number">13.</span> <span class="nav-text">component name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nuxt-生命週期"><span class="nav-number">14.</span> <span class="nav-text">Nuxt 生命週期</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -394,14 +399,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
