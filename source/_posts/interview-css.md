@@ -7,11 +7,10 @@ tags:
 ---
 CSS 面試問題彙整。
 <!--more-->
-### 基礎語法
-#### Q：簡單聊聊 box-model
+### 簡單聊聊 box-model
 box-model 可以理解為前端工程師製作網頁的一種工具，透過它可以定義網頁上元素的位置，進而達到排版的目的。從內到外，環繞它身邊有三個語法，padding、border、margin。其中前兩者預設會影響到元素，因此在 box-sizing 會採用另一個模式 border-box，來避免不必要的計算。
 
-#### Q：請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？
+### 請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？
 ![](/images/box-sizing.png)
 box-sizing => 意指，當元素計算寬度和高度時，border & padding 會內含還是外加。
 content-box => 預設的屬性，會使 border & padding 添加額外的寬高(外加)。
@@ -26,8 +25,7 @@ border-box => 將 border & padding 塞進元素本身(內含)。
 ```
 - [圖片詳解](https://zh-tw.learnlayout.com/box-sizing.html)
 
-### 情境處理
-#### Q：如何處理水平垂直置中？
+### 如何處理水平垂直置中？
 在 flexbox 語法中，處理這個需求並不困難：
 ```
 div {
@@ -54,8 +52,7 @@ div {
 
 但基本我個人現在只用 flexbox 語法來處理，未來會再加上 grid。
 
-### 專案結構
-#### Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？ 
+### 倘若有不同的樣式表 (stylesheets)，該如何整併到網站？ 
 以 Vue 專案結構為例：
 ```
 - assets
@@ -67,7 +64,7 @@ div {
 ```
 將共用顏色(color)和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。
 
-#### Q：如何處理專案 RWD
+### 如何處理專案 RWD
 - 共用參數
 假設 UI/UX 為首次合作，因此會先討論網站的色系與主要的共用間距(當然如果是經驗豐富的 UI/UX，這一步可以忽略)，因為斷點、三輔一主的色系、常用間距，需先準備在 scss 作為共用參數。至於斷點，現在市面上，320px 尺寸的手機(iPhone5)，雖然市佔率已經相當低，但目前開發上仍會考慮保留，因此預期我的斷點會設計：
 ```
@@ -85,3 +82,50 @@ pc => 這個沒有固定，視討論而定，通常1024(但其實也可以用 pa
     - [Tailwind CSS](https://hackmd.io/mmVT15NkT8KZJTR5octHlA)
 
   至於更細節的開發，就視實際的設計稿而定，這邊不再贅述了。
+
+### 比較 CSS1、CSS2、CSS3 的區別？
+- 規範：
+  CSS1 年代比較偏向是為了更好維護 HTML 結構，將樣式抽離 tag，並賦予一些基礎屬性可以改變，譬如文字、文章內容、字體、顏色等等。
+  CSS2 改變了樣式表的概念，不在單純使用 table td 等元素，開始使用 div 或是 ul li 之類的 tag 來建立結構後，再透過 CSS 改變樣式。
+  CSS3 除了導入新的特性，也開始要求模組化的機制。
+
+- 選擇器方面：
+  CSS1 屬於簡單選擇器，也就是 id、class 之類的。
+
+  CSS2 開始添加偽元素(before、after)。
+  
+  CSS3 開始組合選擇器，後代與子選擇器，可以指定某個元素下的所有元素，或是同層級所有元素(使用 +)，又或者是通用兄弟選擇器(使用 ~)，另外新增屬性選擇器。
+
+- 字體：
+  在 1、2 的時候，多半只能使用安全字體，也就是通用型字體，但到了 3 開始可以引用一些特殊字體。
+
+- 文章內容：
+  到了 3 開始提供自動斷行功能，讓文章中的文字可以自行換行。
+
+- 網頁設計：
+  border-radius 之類圓角設計，開始在 3 的時代出現，另外也開始加入動畫特效。
+
+### float 如何置中？
+```
+// pug
+.wrap
+  .main
+    ul
+      li.box.blue
+      li.box.green
+
+// css
+.wrap {
+  float: left;
+  position: relative;
+  left: 50%;
+}
+
+.main {
+  float: left;
+  position: relative;
+  left: -50%;
+}
+```
+
+另外，在 CSS 規範中，父元素設定 flex 屬性後，子元素的 float 即會失效，另一方面，兩者也不應該共用。
