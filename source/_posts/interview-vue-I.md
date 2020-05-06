@@ -1,11 +1,11 @@
 ---
-title: Vue.js 面試題目彙整 I
-date: 2020-01-27 14:12:29
+title: 面試問題：Vue.js - I
+date: 2019-6-8 08:12:29
 tags:
-  - Vue.js
   - Interview
+  - Vue.js
 ---
-Vue.js 面試問題彙整。
+Vue.js 相關面試問題彙整 I。
 <!--more-->
 ### 如何理解 MVC 和 MVVM 差異？
   - MVC
@@ -47,14 +47,14 @@ Vue.js 面試問題彙整。
 - beforeDestroy & destroyed
   vue 生命週期的尾聲，準備要銷毀節點，常見於 v-if。舉例來說，當我們執行 methods 的函式時，可能會將某些初始資料進行狀態改變，當資料在 true 或 false 間轉換時，同時 template 上的 DOM 也會隨之出現或消失，但和 v-show 不同，v-show 的消失，僅是元素採用  css 的 display: none 來隱藏，而 v-if 則是將該元素整個移除，所以被稱為銷毀。不過一般來說，我們不會直接使用 destroyed，官方也不建議我們使用。
 
-- 前職中，call api 時，基本是
+<!-- - 前職中，call api 時，基本是 -->
 
 ### created 和 mounted 的差異？
 兩者的最大的差異，還是在於掛載的順序，以及在各階段資料的狀態。
 - beforeCreate：在這個階段 $el 和 $data 都尚未掛載 => undefined
-- created：$data 初始資料已載入，$el 尚未 => undefined
+- created：$data 初始資料已載入，$el 尚未掛載成功 => undefined
 - beforeMount：$el 依然為空 => undefined
-- mounted：$el 完成渲染出現資料
+- mounted：$el 掛載完成，渲染出現資料
 
 ### 為什麼說 vue 是單向數據流？
 因為 vue 的父子組件傳值中，父組件可以送資料給子組件，但子組件只能接收不能傳資料給父組件，不過子組件可以透過 @emit 方法，促使父組件執行函式來改變狀態。
@@ -116,7 +116,7 @@ Vue 的專案中，通常會有多個 component 組成，尤其專案越大組�
   - jQuery：在 jquery 的時代，雖然已經簡化了對 DOM 操作的寫法，但依然需要頻繁操作 DOM 來改變頁面狀態。
   - Vue：但對 Vue 來說，一方面過往的 DOM 操作已改由框架來處理，另一方面結合模板語法，data 和 template 可以分離的很乾淨，當我透過 methods 改變 data 內的資料時，template 也就隨之重新渲染，再配合語法糖綁上 v-bind，當狀態改變時，也可以隨之改動 css 樣式。更重要的是，寫法上有固定的格式，依循官方的規則，這樣對團隊來說，更容易維護與上手。
 
-- 歷史沈澱：但這並不代表，jQuery 沒有優點，畢竟它本身有漫長的歷史積累，所以如果是撰寫 Landing Page 之類的宣傳頁面，需要使用各種特效或動畫時，jQuery 有非常多成熟的解決方案，這是 Vue 現階段無法比得上的，再加上 SEO 的考慮因素下，這一類型宣傳頁面反而不適合使用 Vue。
+- 歷史沉澱：但這並不代表，jQuery 沒有優點，畢竟它本身有漫長的歷史積累，所以如果是撰寫 Landing Page 之類的宣傳頁面，需要使用各種特效或動畫時，jQuery 有非常多成熟的解決方案，這是 Vue 現階段無法比得上的，再加上 SEO 的考慮因素下，這一類型宣傳頁面反而不適合使用 Vue。
 
 ### Angular vs React vs Vue 差異性？
 - 結構：雖然三者都被稱為框架，但從嚴謹角度來看，Angular 可以被稱為框架，google 的團隊提供了各種內置 API，包含表單驗證、狀態管理、路由等等功能，而另外兩者更接近為 Library，React 早期幾乎是什麼都沒有提供，後來 React Router、Redux 都是社群貢獻的，Vue 則是提供一部分，包括狀態管理、路由。
@@ -124,9 +124,6 @@ Vue 的專案中，通常會有多個 component 組成，尤其專案越大組�
 - 語法：Angular 除了有自己的指令外，加上使用 TypeScript，目前查到開發經驗，似乎寫起來很繁瑣(我自己本身沒寫過)。React 有一大特色使用 JSX 語法，我自己下班時間練手有寫過一段時間，坦白說非常不適應，因為揉合了 HTML、CSS、JS，讓程式碼的縮排與括號變成非常大串，這對已經習慣 pug + template 分離的我來說，非常需要適應。相對於 React 對 ES6 掌握要很熟練，Vue 的開發允許 ES5 混合 ES6，再加上 Vue 的官方提供了相當數量的指令，很多時候更像是用 Vue 在做功能而非 JS。
 
 - 學習成本：Vue 是遠勝過後兩者，React 固然最自由，但幾乎多數功能都要求開發者自行處理，因此非常考驗開發者功力，而 angular 則是受限於自身體積龐大，需要相當的時間來掌握使用。
-
-### 冷門的 Vue 組件通訊方式
-Vue 的父子組件中，還有一種不特別推薦的通訊方式，父組件通過 $children 可以改變子組件的 data，相反的，子組件可以透過 $parent 來改變父組件的 data。但官方建議少用這種方式，應該是要避免數據流動被搞混。
 
 ### 如何實作 Vue Router 切換頁面時加入 Loading 效果？
 先準備 v-loading 的 component，接著在 Vuex 存放 Loading 預設初始值(false)，回到 vue-router 在 beforeEach 和 afterEach 都對 vuex 的 mutations 進行 commit，並透過 payload 先後傳 true 和 false(可以設一點延遲時間)，最後回到 app.vue 將 component 掛上去。

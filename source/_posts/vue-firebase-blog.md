@@ -1,5 +1,5 @@
 ---
-title: 實作 Blog 前後台(BootstrapVue + Firebase)
+title: 實作 Blog 前後台(BootstrapVue & Firebase)
 date: 2020-04-13 13:56:40
 tags:
   - Vue.js
