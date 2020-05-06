@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>實作遊戲介紹網站(Nuxt.js &amp; Tailwind CSS)</title>
+    <url>/2020/04/29/nuxt-video-game/</url>
+    <content><![CDATA[<p>Tailwind CSS 是一個結合設計規範的 UI Framework，近年在海外的社群極速竄紅，相較於 BootStrap 之類框架，它更像是先和設計師約定好預期的設計內容，並據此設定好變數，方便後續調用。恰好它也是 Nuxt.js 官方預設腳手架中的 UI 框架之一，因此來練習實作看看。</p>
+<a id="more"></a>]]></content>
+      <tags>
+        <tag>Nuxt.js</tag>
+        <tag>Tailwind CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>關於 Parcel：基礎實作</title>
     <url>/2020/04/21/parcel/</url>
     <content><![CDATA[<p>Parcel 相較於 webpack 是更新的打包工具，主打兩大賣點，設定簡化 &amp; 打包快速。恰好，最近想幫朋友寫一些簡單的 Landing Page，所以來嘗試 Parcel。</p>
@@ -45,68 +55,6 @@
       </tags>
   </entry>
   <entry>
-    <title>關於 Gulp</title>
-    <url>/2020/04/21/gulp/</url>
-    <content><![CDATA[<p>前端的工具的進化速度，蠻令人感慨的，2017 年甫入行時，Gulp 已經相對式微了，webpack 逐漸站穩舞台。</p>
-<p>但即便如此，倘若是做一些輕量頁面或專案，或許 Gulp 仍是不錯的選擇，也或者可能會維護到一些舊專案。因此這邊簡單記錄一些關於 Gulp 的筆記。</p>
-<a id="more"></a>
-<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><p>全域環境安裝 gulp</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn global add gulp</span></pre></td></tr></table></figure>
-
-<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn init</span></pre></td></tr></table></figure>
-
-<h3 id="local-install"><a href="#local-install" class="headerlink" title="local install"></a>local install</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp --save</span></pre></td></tr></table></figure>
-
-<h3 id="簡易任務指令"><a href="#簡易任務指令" class="headerlink" title="簡易任務指令"></a>簡易任務指令</h3><p>建立兩個測試檔案</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - source</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - index.html</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - gulpfile.js</span></pre></td></tr></table></figure>
-<p>gulpfile.js 建立任務</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const gulp &#x3D; require(&#39;gulp&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; gulp.task &#x3D;&gt; gulp 任務</span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;copyHTML&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;* </span></pre></td></tr><tr><td class="code"><pre><span class="line">    gulp.src &#x3D;&gt; 資料來源</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;雙星號&#x2F;*.html &#x3D;&gt; 抓出 source 底下所有 html 檔案</span></pre></td></tr><tr><td class="code"><pre><span class="line">  *&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;**&#x2F;*.html&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;&#39;))  &#x2F;&#x2F; 輸出資料到指定資料夾</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<p>終端機運行 gulp copyHTML，建立 public 資料夾，導入 html 文件</p>
-<h3 id="gulp-pug"><a href="#gulp-pug" class="headerlink" title="gulp-pug"></a>gulp-pug</h3><p>install command</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-pug --save</span></pre></td></tr></table></figure>
-<p>gulpfile.js =&gt; build task</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const pug &#x3D; require(&#39;gulp-pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;pug&#39;, function buildHTML() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;**&#x2F;*.pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  .pipe(pug(&#123;&#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">  .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<p>run</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp pug</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 可以看到 public 底下建立一個編譯後的 html 文件</span></pre></td></tr></table></figure>
-
-<h3 id="gulp-sass"><a href="#gulp-sass" class="headerlink" title="gulp-sass"></a>gulp-sass</h3><p>install command</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-sass --save</span></pre></td></tr></table></figure>
-<p>資料夾結構</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - source</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">      - style.scss</span></pre></td></tr></table></figure>
-<p>gulpfile.js =&gt; build task</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const sass &#x3D; require(&#39;gulp-sass&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;sass&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(sass().on(&#39;error&#39;, sass.logError))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;css&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<p>使用 watch 方法來監聽 scss 的變化進行編譯。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;watch&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  gulp.watch(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;, gulp.series(&#39;sass&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-
-<h3 id="4-0-版本的寫法改變"><a href="#4-0-版本的寫法改變" class="headerlink" title="4.0 版本的寫法改變"></a>4.0 版本的寫法改變</h3><p>gulp 在 4.0 版本後，調整了部分寫法：<br>gulp.series  // 按照順序執行<br>gulp.paralle // 並行執行</p>
-<p>合併任務寫法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;default&#39;, gulp.series(&#39;pug&#39;, &#39;sass&#39;, &#39;watch&#39;))</span></pre></td></tr></table></figure>
-
-<h3 id="gulp-postcss"><a href="#gulp-postcss" class="headerlink" title="gulp-postcss"></a>gulp-postcss</h3><p>透過後處理器，來進一步強化 css，譬如 autoprefixer 可以自動加入前綴詞來兼容舊瀏覽器<br>install commend</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-postcss autoprefixer --save</span></pre></td></tr></table></figure>
-<p>gulpfile.js =&gt; build task</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const postcss &#x3D; require(&#39;gulp-postcss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">const autoprefixer &#x3D; require(&#39;autoprefixer&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;sass&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  const plugins &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    autoprefixer()</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(sass().on(&#39;error&#39;, sass.logError))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(postcss(plugins))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;css&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<p>build .browserslistrc</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - .browserslistrc</span></pre></td></tr></table></figure>
-<p>內容寫入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Browsers that we support</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">last 5 version</span></pre></td></tr><tr><td class="code"><pre><span class="line">&gt; 1%</span></pre></td></tr><tr><td class="code"><pre><span class="line">IE 10 # sorry</span></pre></td></tr></table></figure>
-
-<h3 id="gulp-load-plugins"><a href="#gulp-load-plugins" class="headerlink" title="gulp-load-plugins"></a>gulp-load-plugins</h3><p>優化 gulp 相關套件，節省程式碼</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-load-plugins --save</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">const $ &#x3D; require(&#39;gulp-load-plugins&#39;)()</span></pre></td></tr></table></figure>
-<p>使用 gulp-load-plugins 後，只要是 gulp- 開頭的套件，都可以無需特別 require，僅只要在對應名稱前面加上 $，範例如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.pipe($.pug(&#123;&#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">.pipe($.postcss(plugins))</span></pre></td></tr></table></figure>
-<p>刪除原先的程式碼，促使專案更為精簡</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const pug &#x3D; require(&#39;gulp-pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const sass &#x3D; require(&#39;gulp-sass&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const postcss &#x3D; require(&#39;gulp-postcss&#39;)</span></pre></td></tr></table></figure>
-
-<h3 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h3><p>install commend</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install --save gulp-sourcemaps gulp-babel gulp-concat @babel&#x2F;core @babel&#x2F;preset-env</span></pre></td></tr></table></figure>
-<p>gulpfile.js =&gt; build task</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;babel&#39;, async () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  gulp.src(&#39;.&#x2F;source&#x2F;js&#x2F;**&#x2F;*.js&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; .pipe(sourcemaps.init())</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe($.babel(&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      presets: [&#39;@babel&#x2F;env&#39;]</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe($.concat(&#39;all.js&#39;))  &#x2F;&#x2F; 將所有 js 檔進行合併</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; .pipe(sourcemaps.write(&#39;.&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;js&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Gulp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Webpack 設定與理解</title>
     <url>/2020/04/15/webpack-config/</url>
     <content><![CDATA[<p>雖然到 vue-cli 3.0 之後，其實 vue 官方已經將 webpack 進行封裝，希望開發者專注在開發而非設定上，但還是需要理解基本的設定，以及細節的理解。</p>
@@ -143,7 +91,8 @@
 <h4 id="filenameHashing"><a href="#filenameHashing" class="headerlink" title="filenameHashing"></a>filenameHashing</h4><p>瀏覽器基本上都會有緩存的問題，所以如果都是同一個檔案名的狀況下，譬如都是 app.js，那假定我更新一個版本，結果瀏覽器緩存，導致它拉到 app.js 是上一個版本，那就尷尬了。所以透過 hash 的方式，來生成獨一無二的檔案名，避免被緩存卡住，預設為 true，不需要調整。</p>
 <h4 id="lintOnSave"><a href="#lintOnSave" class="headerlink" title="lintOnSave"></a>lintOnSave</h4><p>檢查 code 有沒有符合 eslint 規範，預設開啟，但也不需要特別調整，畢竟現在開發都會遵循 eslint，至於採用哪種風格，則是依照團隊 coding style。</p>
 <h4 id="chainWebpack"><a href="#chainWebpack" class="headerlink" title="chainWebpack"></a>chainWebpack</h4><p>根據自己的需求，進行客製化調整，譬如希望修改網頁上方標題：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chainWebpack: (config) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  config</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .plugin(&#39;html&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .tap((args) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      args[0].title &#x3D; &#39;Tiger Coding Blog&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      return args</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chainWebpack: (config) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  config</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .plugin(&#39;html&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .tap((args) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      args[0].title &#x3D; &#39;Tiger Coding Blog&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      return args</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+]]></content>
       <tags>
         <tag>Webpack</tag>
       </tags>
@@ -186,7 +135,7 @@
       </tags>
   </entry>
   <entry>
-    <title>實作 Blog 前後台(BootstrapVue + Firebase)</title>
+    <title>實作 Blog 前後台(BootstrapVue &amp; Firebase)</title>
     <url>/2020/04/13/vue-firebase-blog/</url>
     <content><![CDATA[<p>沒有使用過 UI Framework 來實作，先嘗試套一個 BootstrapVue 來練習，選擇這個框架的原因，是因為 Bootstrap 依然是蠻多網站的選擇，如果有需要維護同類型的產品，銜接起來相對容易。但是單純的 component 應用就不做記錄了，僅記錄之前未使用過，或是自己少用的用法。</p>
 <a id="more"></a>
@@ -1007,24 +956,65 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
       </tags>
   </entry>
   <entry>
-    <title>筆記彙整</title>
-    <url>/2020/01/16/interview-collection/</url>
-    <content><![CDATA[<p>把不同知識面向的筆記統一進行彙整。</p>
+    <title>關於 Gulp</title>
+    <url>/2020/01/21/gulp/</url>
+    <content><![CDATA[<p>前端的工具的進化速度，蠻令人感慨的，2017 年甫入行時，Gulp 已經相對式微了，webpack 逐漸站穩舞台。</p>
+<p>但即便如此，倘若是做一些輕量頁面或專案，或許 Gulp 仍是不錯的選擇，也或者可能會維護到一些舊專案。因此這邊簡單記錄一些關於 Gulp 的筆記。</p>
 <a id="more"></a>
-<h2 id="面試"><a href="#面試" class="headerlink" title="面試"></a>面試</h2><ul>
-<li><a href="/2019/12/03/interview-I-general/" title="常見面試問題：通用">常見面試問題：通用</a></li>
-<li><a href="/2019/12/05/interview-II-html/" title="常見面試問題：HTML">常見面試問題：HTML</a></li>
-<li><a href="/2019/12/06/interview-III-css/" title="常見面試問題：CSS">常見面試問題：CSS</a></li>
-<li><a href="/2019/12/27/interview-IV-JavaScript/" title="常見面試問題：Vanilla JS">常見面試問題：Vanilla JS</a></li>
-<li><a href="/2019/12/25/interview-IV-js-es6/" title="常見面試問題：ES6">常見面試問題：ES6</a></li>
-<li><a href="/2020/01/06/interview-IV-js-vue/" title="常見面試問題：Vue.js">常見面試問題：Vue.js</a></li>
-<li><a href="/2019/12/07/interview-V-https/" title="常見面試問題：網路相關">常見面試問題：網路相關</a></li>
-<li><a href="/2019/12/11/interview-VI-code/" title="常見面試問題：程式碼">常見面試問題：程式碼</a>
-</li>
-</ul>
-]]></content>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><p>全域環境安裝 gulp</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn global add gulp</span></pre></td></tr></table></figure>
+
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mkdir project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd project-name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn init</span></pre></td></tr></table></figure>
+
+<h3 id="local-install"><a href="#local-install" class="headerlink" title="local install"></a>local install</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp --save</span></pre></td></tr></table></figure>
+
+<h3 id="簡易任務指令"><a href="#簡易任務指令" class="headerlink" title="簡易任務指令"></a>簡易任務指令</h3><p>建立兩個測試檔案</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - source</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - index.html</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - gulpfile.js</span></pre></td></tr></table></figure>
+<p>gulpfile.js 建立任務</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const gulp &#x3D; require(&#39;gulp&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; gulp.task &#x3D;&gt; gulp 任務</span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;copyHTML&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;* </span></pre></td></tr><tr><td class="code"><pre><span class="line">    gulp.src &#x3D;&gt; 資料來源</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;雙星號&#x2F;*.html &#x3D;&gt; 抓出 source 底下所有 html 檔案</span></pre></td></tr><tr><td class="code"><pre><span class="line">  *&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;**&#x2F;*.html&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;&#39;))  &#x2F;&#x2F; 輸出資料到指定資料夾</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>終端機運行 gulp copyHTML，建立 public 資料夾，導入 html 文件</p>
+<h3 id="gulp-pug"><a href="#gulp-pug" class="headerlink" title="gulp-pug"></a>gulp-pug</h3><p>install command</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-pug --save</span></pre></td></tr></table></figure>
+<p>gulpfile.js =&gt; build task</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const pug &#x3D; require(&#39;gulp-pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;pug&#39;, function buildHTML() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;**&#x2F;*.pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  .pipe(pug(&#123;&#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">  .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>run</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp pug</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 可以看到 public 底下建立一個編譯後的 html 文件</span></pre></td></tr></table></figure>
+
+<h3 id="gulp-sass"><a href="#gulp-sass" class="headerlink" title="gulp-sass"></a>gulp-sass</h3><p>install command</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-sass --save</span></pre></td></tr></table></figure>
+<p>資料夾結構</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - source</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">      - style.scss</span></pre></td></tr></table></figure>
+<p>gulpfile.js =&gt; build task</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const sass &#x3D; require(&#39;gulp-sass&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;sass&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(sass().on(&#39;error&#39;, sass.logError))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;css&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>使用 watch 方法來監聽 scss 的變化進行編譯。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;watch&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  gulp.watch(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;, gulp.series(&#39;sass&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+
+<h3 id="4-0-版本的寫法改變"><a href="#4-0-版本的寫法改變" class="headerlink" title="4.0 版本的寫法改變"></a>4.0 版本的寫法改變</h3><p>gulp 在 4.0 版本後，調整了部分寫法：<br>gulp.series  // 按照順序執行<br>gulp.paralle // 並行執行</p>
+<p>合併任務寫法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;default&#39;, gulp.series(&#39;pug&#39;, &#39;sass&#39;, &#39;watch&#39;))</span></pre></td></tr></table></figure>
+
+<h3 id="gulp-postcss"><a href="#gulp-postcss" class="headerlink" title="gulp-postcss"></a>gulp-postcss</h3><p>透過後處理器，來進一步強化 css，譬如 autoprefixer 可以自動加入前綴詞來兼容舊瀏覽器<br>install commend</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-postcss autoprefixer --save</span></pre></td></tr></table></figure>
+<p>gulpfile.js =&gt; build task</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const postcss &#x3D; require(&#39;gulp-postcss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">const autoprefixer &#x3D; require(&#39;autoprefixer&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">gulp.task(&#39;sass&#39;, function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  const plugins &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    autoprefixer()</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return gulp.src(&#39;.&#x2F;source&#x2F;scss&#x2F;**&#x2F;*.scss&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(sass().on(&#39;error&#39;, sass.logError))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(postcss(plugins))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;css&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
+<p>build .browserslistrc</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">project</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - .browserslistrc</span></pre></td></tr></table></figure>
+<p>內容寫入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Browsers that we support</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">last 5 version</span></pre></td></tr><tr><td class="code"><pre><span class="line">&gt; 1%</span></pre></td></tr><tr><td class="code"><pre><span class="line">IE 10 # sorry</span></pre></td></tr></table></figure>
+
+<h3 id="gulp-load-plugins"><a href="#gulp-load-plugins" class="headerlink" title="gulp-load-plugins"></a>gulp-load-plugins</h3><p>優化 gulp 相關套件，節省程式碼</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install gulp-load-plugins --save</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">const $ &#x3D; require(&#39;gulp-load-plugins&#39;)()</span></pre></td></tr></table></figure>
+<p>使用 gulp-load-plugins 後，只要是 gulp- 開頭的套件，都可以無需特別 require，僅只要在對應名稱前面加上 $，範例如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.pipe($.pug(&#123;&#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">.pipe($.postcss(plugins))</span></pre></td></tr></table></figure>
+<p>刪除原先的程式碼，促使專案更為精簡</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const pug &#x3D; require(&#39;gulp-pug&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const sass &#x3D; require(&#39;gulp-sass&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; const postcss &#x3D; require(&#39;gulp-postcss&#39;)</span></pre></td></tr></table></figure>
+
+<h3 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a>Babel</h3><p>install commend</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install --save gulp-sourcemaps gulp-babel gulp-concat @babel&#x2F;core @babel&#x2F;preset-env</span></pre></td></tr></table></figure>
+<p>gulpfile.js =&gt; build task</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&#39;babel&#39;, async () &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  gulp.src(&#39;.&#x2F;source&#x2F;js&#x2F;**&#x2F;*.js&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; .pipe(sourcemaps.init())</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe($.babel(&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      presets: [&#39;@babel&#x2F;env&#39;]</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe($.concat(&#39;all.js&#39;))  &#x2F;&#x2F; 將所有 js 檔進行合併</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; .pipe(sourcemaps.write(&#39;.&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    .pipe(gulp.dest(&#39;.&#x2F;public&#x2F;js&#39;))</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>Interview</tag>
+        <tag>Gulp</tag>
       </tags>
   </entry>
   <entry>
@@ -1052,262 +1042,6 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
       </tags>
   </entry>
   <entry>
-    <title>常見面試問題：Vue.js</title>
-    <url>/2020/01/06/interview-IV-js-vue/</url>
-    <content><![CDATA[<p>Vue.js 面試問題彙整。</p>
-<a id="more"></a>
-<h3 id="框架原理"><a href="#框架原理" class="headerlink" title="框架原理"></a>框架原理</h3><h4 id="Q：如何理解-MVC-和-MVVM-差異？"><a href="#Q：如何理解-MVC-和-MVVM-差異？" class="headerlink" title="Q：如何理解 MVC 和 MVVM 差異？"></a>Q：如何理解 MVC 和 MVVM 差異？</h4><ul>
-<li><p>MVC</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">view &#x3D;&gt; 前端(切版、套入動畫效果)</span></pre></td></tr><tr><td class="code"><pre><span class="line">controller &#x3D;&gt; 後端(控制 router)</span></pre></td></tr><tr><td class="code"><pre><span class="line">model &#x3D;&gt; 後端(database)</span></pre></td></tr></table></figure>
-<p>MVC 開始流行的原因，是為了解決早期程式碼混在一起的困境(義大利麵code)，前後端的程式碼都混在一起。因此 MVC 開始進行職責分工，view 負責畫面顯示，控管 router 和網站行為則由 controller，查詢資料庫的資料，則是 model，在這個時代前端工程師這個職缺才開始浮現出來(負責 view)。也因為 router 交由後端控制，因此這時期的網頁仍是多頁面式的網頁，切換頁面時是真的在切換不同頁面，會有明顯的 loading 時間。</p>
-</li>
-<li><p>MVVM</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">view &#x3D;&gt; 依然是前端(控制使用者看到的渲染頁面)</span></pre></td></tr><tr><td class="code"><pre><span class="line">model &#x3D;&gt; 後端</span></pre></td></tr><tr><td class="code"><pre><span class="line">viewModel &#x3D;&gt; 前端(改由前端控制 router)</span></pre></td></tr></table></figure>
-<p>進入 MVVM 時代，將原生 JS 操作 DOM 這件事交給框架處理，我們負責改變框架中的資料，驅動資料去改變頁面重新渲染。而對前端來說，處理的是 view 和 viewModel，而 model 則是後端在處理。這個時候已經轉型為 SPA(單頁式應用)，網站頁面切換時，看似切換不同頁面，但本質只是切換同一頁的不同區塊，因此這時網頁的流暢性與使用性會更加流暢。</p>
-</li>
-</ul>
-<h4 id="Vue-的雙向綁定原理是如何實現的？"><a href="#Vue-的雙向綁定原理是如何實現的？" class="headerlink" title="Vue 的雙向綁定原理是如何實現的？"></a>Vue 的雙向綁定原理是如何實現的？</h4><p>因為這涉及 Vue 的底層原理，所以我的解釋上，可能會比較制式化，主要拆解為四個步驟：</p>
-<ol>
-<li>首先 vue 會先通過 <code>document.createDocumentFragment()</code> 的方法來建立虛擬 DOM。</li>
-<li>隨著 vue 所監聽的數據出現改變時，會再透過 <code>Object.defineProperty</code> 來進行數據攔截。</li>
-<li>根據數據的變化，再透過訂閱-發布者模式，來觸發 watch，進而改變虛擬 DOM。</li>
-<li>最後，再根據已經改變的虛擬 DOM，重新渲染頁面的 DOM 結構，達到雙向綁定的目的。</li>
-</ol>
-<h3 id="生命週期"><a href="#生命週期" class="headerlink" title="生命週期"></a>生命週期</h3><h4 id="Q：試說明-Vue-的生命週期"><a href="#Q：試說明-Vue-的生命週期" class="headerlink" title="Q：試說明 Vue 的生命週期"></a>Q：試說明 Vue 的生命週期</h4><ul>
-<li><p>beforeCreate &amp; created</p>
-<ul>
-<li>beforeCreated：init 整個 vue 的生命週期，目前個人經驗上，還沒有在這個階段處理過資料。</li>
-<li>created：這個階段，會先進行 init data，這個時候 data 內的初始化資料已經可以調用了，同時也可以進行 call api。</li>
-<li>再進入 mounted 階段前，其實 Vue 會有一個觀察動作，確認 template 上的 el 是否有正確設置好，但因為目前開發都是基於 vue-cli 的基底，所以這部分不太需要擔心。</li>
-</ul>
-</li>
-<li><p>beforeMount &amp; mounted</p>
-<ul>
-<li>beforeMount：這個階段很少用，我個人也沒使用過，位於資料渲染前。</li>
-<li>mounted：頁面已經渲染完成，同時 $el 已經掛載上去了。</li>
-</ul>
-</li>
-<li><p>beforeUpdate &amp; updated<br>簡單說就是更新 data 的資料，促使頁面重新渲染 DOM，譬如透過 @click 事件去執行函式來改變 true 或 false，進而影響 v-bind 綁定的 class 增加或移除，達到樣式改變的目的。</p>
-</li>
-<li><p>beforeDestroy &amp; destroyed<br>vue 生命週期的尾聲，準備要銷毀節點，常見於 v-if。舉例來說，當我們執行 methods 的函式時，可能會將某些初始資料進行狀態改變，當資料在 true 或 false 間轉換時，同時 template 上的 DOM 也會隨之出現或消失，但和 v-show 不同，v-show 的消失，僅是元素採用  css 的 display: none 來隱藏，而 v-if 則是將該元素整個移除，所以被稱為銷毀。不過一般來說，我們不會直接使用 destroyed，官方也不建議我們使用。</p>
-</li>
-<li><p>前職中，call api 時，基本是</p>
-</li>
-</ul>
-<h4 id="Q：created-和-mounted-的差異？"><a href="#Q：created-和-mounted-的差異？" class="headerlink" title="Q：created 和 mounted 的差異？"></a>Q：created 和 mounted 的差異？</h4><p>兩者的最大的差異，還是在於掛載的順序，以及在各階段資料的狀態。</p>
-<ul>
-<li>beforeCreate：在這個階段 $el 和 $data 都尚未掛載 =&gt; undefined</li>
-<li>created：$data 初始資料已載入，$el 尚未 =&gt; undefined</li>
-<li>beforeMount：$el 依然為空 =&gt; undefined</li>
-<li>mounted：$el 完成渲染出現資料</li>
-</ul>
-<h3 id="運作機制"><a href="#運作機制" class="headerlink" title="運作機制"></a>運作機制</h3><h4 id="Q：為什麼說-vue-是單向數據流？"><a href="#Q：為什麼說-vue-是單向數據流？" class="headerlink" title="Q：為什麼說 vue 是單向數據流？"></a>Q：為什麼說 vue 是單向數據流？</h4><p>因為 vue 的父子組件傳值中，父組件可以送資料給子組件，但子組件只能接收不能傳資料給父組件，不過子組件可以透過 @emit 方法，促使父組件執行函式來改變狀態。</p>
-<p>舉例來說，彈窗效果(modal)我們通常會封裝到 component 內，每個頁面需要顯示彈窗內容都會有差異，譬如 title 可能就有落差，那 title 的資料就得透過父組件傳過去。但是如果我們想要關閉彈窗，代表我們想改變狀態，這時候 modal 就可以透過 <code>@emit=&quot;boxSwitch&quot;</code> 往上傳，父組件拿到後就會執行 methods 來改變當前的狀態，達到關閉彈窗的效果。</p>
-<h3 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue-Router"></a>Vue-Router</h3><h4 id="Q：簡單聊一下-Vue-Router"><a href="#Q：簡單聊一下-Vue-Router" class="headerlink" title="Q：簡單聊一下 Vue-Router"></a>Q：簡單聊一下 Vue-Router</h4><p>主要兩種 mode，hash(default 加 #)，history(基於 HTML5 的 History 模式)。不過 history mode 需要和後端溝通，在對應的語言下，設定 rewrite，具體內容會直接參考官方文件。此外，為了避免無法找到錯誤頁面，同時也為了阻止客戶亂打url，最底層需加一組 path: ‘*’ 來進行轉址，至於轉址到哪一頁，則看需求方。</p>
-<p>基本配置就是 path 設定要前往的路徑，component 載入要進入的頁面，通常還會加上 name，方便 router-link 的 to 可以直接調用。動態路由則使用冒號做開頭，通常可以在結尾加上?，方便如果沒有找到頁面時，會直接動態路由的上一層，例如：<code>list/:id?</code>。</p>
-<h4 id="Q：Vue-路由的跳轉方式？"><a href="#Q：Vue-路由的跳轉方式？" class="headerlink" title="Q：Vue 路由的跳轉方式？"></a>Q：Vue 路由的跳轉方式？</h4><p>主要有兩種：</p>
-<ul>
-<li>router-link，本質上就是 a 標籤，在 template 中使用這個方式。</li>
-<li>router.push，主要透過 methods 來執行跳轉到對應頁面，同時也可以在其中的 query 埋下參數，方便跳轉後的頁面直接調用。</li>
-</ul>
-<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3><h4 id="Q：簡單解釋一下-Vuex-的原理"><a href="#Q：簡單解釋一下-Vuex-的原理" class="headerlink" title="Q：簡單解釋一下 Vuex 的原理"></a>Q：簡單解釋一下 Vuex 的原理</h4><p>在 Vuex 當中，state 會存放初始化的資料，當 component 呼叫 Vuex 中寫好的函式，首先會到 actions 找對應的函式，這時會去呼叫 api 的資料，當然如果 component 呼叫時有傳入參數，那這個參數就透過 payload 傳入函式。當 api 的資料取得後，除了回傳給 component，也透過 commit 的方式來改變 mutations 內的函式，而 mutations 這時就會將傳來的資料賦值給 state，進而改變狀態。</p>
-<h4 id="Q：什麼情境下，需使用-Vuex？"><a href="#Q：什麼情境下，需使用-Vuex？" class="headerlink" title="Q：什麼情境下，需使用 Vuex？"></a>Q：什麼情境下，需使用 Vuex？</h4><p>Vue 的專案中，通常會有多個 component 組成，尤其專案越大組成結構就越複雜，有些資料會是多個頁面需要共用，這個時候不可能仰賴父子組件傳值，萬一組件和組件之間隔了好幾層，那效益就太差了，這時通常就會抽離到 Vuex 進行狀態管理。</p>
-<p>舉例來說，常見的使用者帳號資料 userInfo，在 login 和 logout 兩種狀態下，頁面需要顯示的內容會有所差異，不可能在每一個需要使用 userInfo 的 component 都寫一遍呼叫 api 的函式，所以無論是初始的資料或是呼叫 api 的函式，這時候就會統一寫在 Vuex，方便直接 commit 更新 state，需要使用的 component 再透過 mapState 去載入。</p>
-<h3 id="進階用法"><a href="#進階用法" class="headerlink" title="進階用法"></a>進階用法</h3><h4 id="keep-alive-的用法"><a href="#keep-alive-的用法" class="headerlink" title="keep-alive 的用法"></a>keep-alive 的用法</h4><p>可以理解為一種暫存資料的方式，假設後台有一些表單需要填寫時，可能使用者會需要來回切換不同區塊，這時候會導致原先填寫到一半的資料消失，透過 keep-alive 去包裹，可以暫時存放資料，優化使用體驗。</p>
-<h4 id="簡單說一下-slot-是什麼？"><a href="#簡單說一下-slot-是什麼？" class="headerlink" title="簡單說一下 slot 是什麼？"></a>簡單說一下 slot 是什麼？</h4><p>基本操作和 component 雷同，載入需要插入的 component，再透過父子組件傳值，差別在於，接受傳值的子組件需要在 template 上使用 slot 標籤，這個標籤內的內容，則會渲染父組件傳過來的子內容或子節點，內容在父組件會使用 <p>Vue.js 面試問題彙整。</p>
-<!--more-->
-<h3 id="框架原理"><a href="#框架原理" class="headerlink" title="框架原理"></a>框架原理</h3><h4 id="Q：如何理解-MVC-和-MVVM-差異？"><a href="#Q：如何理解-MVC-和-MVVM-差異？" class="headerlink" title="Q：如何理解 MVC 和 MVVM 差異？"></a>Q：如何理解 MVC 和 MVVM 差異？</h4><ul>
-<li><p>MVC</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">view &#x3D;&gt; 前端(切版、套入動畫效果)</span></pre></td></tr><tr><td class="code"><pre><span class="line">controller &#x3D;&gt; 後端(控制 router)</span></pre></td></tr><tr><td class="code"><pre><span class="line">model &#x3D;&gt; 後端(database)</span></pre></td></tr></table></figure>
-<p>MVC 開始流行的原因，是為了解決早期程式碼混在一起的困境(義大利麵code)，前後端的程式碼都混在一起。因此 MVC 開始進行職責分工，view 負責畫面顯示，控管 router 和網站行為則由 controller，查詢資料庫的資料，則是 model，在這個時代前端工程師這個職缺才開始浮現出來(負責 view)。也因為 router 交由後端控制，因此這時期的網頁仍是多頁面式的網頁，切換頁面時是真的在切換不同頁面，會有明顯的 loading 時間。</p>
-</li>
-<li><p>MVVM</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">view &#x3D;&gt; 依然是前端(控制使用者看到的渲染頁面)</span></pre></td></tr><tr><td class="code"><pre><span class="line">model &#x3D;&gt; 後端</span></pre></td></tr><tr><td class="code"><pre><span class="line">viewModel &#x3D;&gt; 前端(改由前端控制 router)</span></pre></td></tr></table></figure>
-<p>進入 MVVM 時代，將原生 JS 操作 DOM 這件事交給框架處理，我們負責改變框架中的資料，驅動資料去改變頁面重新渲染。而對前端來說，處理的是 view 和 viewModel，而 model 則是後端在處理。這個時候已經轉型為 SPA(單頁式應用)，網站頁面切換時，看似切換不同頁面，但本質只是切換同一頁的不同區塊，因此這時網頁的流暢性與使用性會更加流暢。</p>
-</li>
-</ul>
-<h4 id="Vue-的雙向綁定原理是如何實現的？"><a href="#Vue-的雙向綁定原理是如何實現的？" class="headerlink" title="Vue 的雙向綁定原理是如何實現的？"></a>Vue 的雙向綁定原理是如何實現的？</h4><p>因為這涉及 Vue 的底層原理，所以我的解釋上，可能會比較制式化，主要拆解為四個步驟：</p>
-<ol>
-<li>首先 vue 會先通過 <code>document.createDocumentFragment()</code> 的方法來建立虛擬 DOM。</li>
-<li>隨著 vue 所監聽的數據出現改變時，會再透過 <code>Object.defineProperty</code> 來進行數據攔截。</li>
-<li>根據數據的變化，再透過訂閱-發布者模式，來觸發 watch，進而改變虛擬 DOM。</li>
-<li>最後，再根據已經改變的虛擬 DOM，重新渲染頁面的 DOM 結構，達到雙向綁定的目的。</li>
-</ol>
-<h3 id="生命週期"><a href="#生命週期" class="headerlink" title="生命週期"></a>生命週期</h3><h4 id="Q：試說明-Vue-的生命週期"><a href="#Q：試說明-Vue-的生命週期" class="headerlink" title="Q：試說明 Vue 的生命週期"></a>Q：試說明 Vue 的生命週期</h4><ul>
-<li><p>beforeCreate &amp; created</p>
-<ul>
-<li>beforeCreated：init 整個 vue 的生命週期，目前個人經驗上，還沒有在這個階段處理過資料。</li>
-<li>created：這個階段，會先進行 init data，這個時候 data 內的初始化資料已經可以調用了，同時也可以進行 call api。</li>
-<li>再進入 mounted 階段前，其實 Vue 會有一個觀察動作，確認 template 上的 el 是否有正確設置好，但因為目前開發都是基於 vue-cli 的基底，所以這部分不太需要擔心。</li>
-</ul>
-</li>
-<li><p>beforeMount &amp; mounted</p>
-<ul>
-<li>beforeMount：這個階段很少用，我個人也沒使用過，位於資料渲染前。</li>
-<li>mounted：頁面已經渲染完成，同時 $el 已經掛載上去了。</li>
-</ul>
-</li>
-<li><p>beforeUpdate &amp; updated<br>簡單說就是更新 data 的資料，促使頁面重新渲染 DOM，譬如透過 @click 事件去執行函式來改變 true 或 false，進而影響 v-bind 綁定的 class 增加或移除，達到樣式改變的目的。</p>
-</li>
-<li><p>beforeDestroy &amp; destroyed<br>vue 生命週期的尾聲，準備要銷毀節點，常見於 v-if。舉例來說，當我們執行 methods 的函式時，可能會將某些初始資料進行狀態改變，當資料在 true 或 false 間轉換時，同時 template 上的 DOM 也會隨之出現或消失，但和 v-show 不同，v-show 的消失，僅是元素採用  css 的 display: none 來隱藏，而 v-if 則是將該元素整個移除，所以被稱為銷毀。不過一般來說，我們不會直接使用 destroyed，官方也不建議我們使用。</p>
-</li>
-<li><p>前職中，call api 時，基本是</p>
-</li>
-</ul>
-<h4 id="Q：created-和-mounted-的差異？"><a href="#Q：created-和-mounted-的差異？" class="headerlink" title="Q：created 和 mounted 的差異？"></a>Q：created 和 mounted 的差異？</h4><p>兩者的最大的差異，還是在於掛載的順序，以及在各階段資料的狀態。</p>
-<ul>
-<li>beforeCreate：在這個階段 $el 和 $data 都尚未掛載 =&gt; undefined</li>
-<li>created：$data 初始資料已載入，$el 尚未 =&gt; undefined</li>
-<li>beforeMount：$el 依然為空 =&gt; undefined</li>
-<li>mounted：$el 完成渲染出現資料</li>
-</ul>
-<h3 id="運作機制"><a href="#運作機制" class="headerlink" title="運作機制"></a>運作機制</h3><h4 id="Q：為什麼說-vue-是單向數據流？"><a href="#Q：為什麼說-vue-是單向數據流？" class="headerlink" title="Q：為什麼說 vue 是單向數據流？"></a>Q：為什麼說 vue 是單向數據流？</h4><p>因為 vue 的父子組件傳值中，父組件可以送資料給子組件，但子組件只能接收不能傳資料給父組件，不過子組件可以透過 @emit 方法，促使父組件執行函式來改變狀態。</p>
-<p>舉例來說，彈窗效果(modal)我們通常會封裝到 component 內，每個頁面需要顯示彈窗內容都會有差異，譬如 title 可能就有落差，那 title 的資料就得透過父組件傳過去。但是如果我們想要關閉彈窗，代表我們想改變狀態，這時候 modal 就可以透過 <code>@emit=&quot;boxSwitch&quot;</code> 往上傳，父組件拿到後就會執行 methods 來改變當前的狀態，達到關閉彈窗的效果。</p>
-<h3 id="Vue-Router"><a href="#Vue-Router" class="headerlink" title="Vue-Router"></a>Vue-Router</h3><h4 id="Q：簡單聊一下-Vue-Router"><a href="#Q：簡單聊一下-Vue-Router" class="headerlink" title="Q：簡單聊一下 Vue-Router"></a>Q：簡單聊一下 Vue-Router</h4><p>主要兩種 mode，hash(default 加 #)，history(基於 HTML5 的 History 模式)。不過 history mode 需要和後端溝通，在對應的語言下，設定 rewrite，具體內容會直接參考官方文件。此外，為了避免無法找到錯誤頁面，同時也為了阻止客戶亂打url，最底層需加一組 path: ‘*’ 來進行轉址，至於轉址到哪一頁，則看需求方。</p>
-<p>基本配置就是 path 設定要前往的路徑，component 載入要進入的頁面，通常還會加上 name，方便 router-link 的 to 可以直接調用。動態路由則使用冒號做開頭，通常可以在結尾加上?，方便如果沒有找到頁面時，會直接動態路由的上一層，例如：<code>list/:id?</code>。</p>
-<h4 id="Q：Vue-路由的跳轉方式？"><a href="#Q：Vue-路由的跳轉方式？" class="headerlink" title="Q：Vue 路由的跳轉方式？"></a>Q：Vue 路由的跳轉方式？</h4><p>主要有兩種：</p>
-<ul>
-<li>router-link，本質上就是 a 標籤，在 template 中使用這個方式。</li>
-<li>router.push，主要透過 methods 來執行跳轉到對應頁面，同時也可以在其中的 query 埋下參數，方便跳轉後的頁面直接調用。</li>
-</ul>
-<h3 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h3><h4 id="Q：簡單解釋一下-Vuex-的原理"><a href="#Q：簡單解釋一下-Vuex-的原理" class="headerlink" title="Q：簡單解釋一下 Vuex 的原理"></a>Q：簡單解釋一下 Vuex 的原理</h4><p>在 Vuex 當中，state 會存放初始化的資料，當 component 呼叫 Vuex 中寫好的函式，首先會到 actions 找對應的函式，這時會去呼叫 api 的資料，當然如果 component 呼叫時有傳入參數，那這個參數就透過 payload 傳入函式。當 api 的資料取得後，除了回傳給 component，也透過 commit 的方式來改變 mutations 內的函式，而 mutations 這時就會將傳來的資料賦值給 state，進而改變狀態。</p>
-<h4 id="Q：什麼情境下，需使用-Vuex？"><a href="#Q：什麼情境下，需使用-Vuex？" class="headerlink" title="Q：什麼情境下，需使用 Vuex？"></a>Q：什麼情境下，需使用 Vuex？</h4><p>Vue 的專案中，通常會有多個 component 組成，尤其專案越大組成結構就越複雜，有些資料會是多個頁面需要共用，這個時候不可能仰賴父子組件傳值，萬一組件和組件之間隔了好幾層，那效益就太差了，這時通常就會抽離到 Vuex 進行狀態管理。</p>
-<p>舉例來說，常見的使用者帳號資料 userInfo，在 login 和 logout 兩種狀態下，頁面需要顯示的內容會有所差異，不可能在每一個需要使用 userInfo 的 component 都寫一遍呼叫 api 的函式，所以無論是初始的資料或是呼叫 api 的函式，這時候就會統一寫在 Vuex，方便直接 commit 更新 state，需要使用的 component 再透過 mapState 去載入。</p>
-<h3 id="進階用法"><a href="#進階用法" class="headerlink" title="進階用法"></a>進階用法</h3><h4 id="keep-alive-的用法"><a href="#keep-alive-的用法" class="headerlink" title="keep-alive 的用法"></a>keep-alive 的用法</h4><p>可以理解為一種暫存資料的方式，假設後台有一些表單需要填寫時，可能使用者會需要來回切換不同區塊，這時候會導致原先填寫到一半的資料消失，透過 keep-alive 去包裹，可以暫時存放資料，優化使用體驗。</p>
-<h4 id="簡單說一下-slot-是什麼？"><a href="#簡單說一下-slot-是什麼？" class="headerlink" title="簡單說一下 slot 是什麼？"></a>簡單說一下 slot 是什麼？</h4><p>基本操作和 component 雷同，載入需要插入的 component，再透過父子組件傳值，差別在於，接受傳值的子組件需要在 template 上使用 slot 標籤，這個標籤內的內容，則會渲染父組件傳過來的子內容或子節點，內容在父組件會使用 {{ content }} 包裹。當然如果父組件沒有傳值，也可以直接使用子組件的資料來顯示。</p>
- 包裹。當然如果父組件沒有傳值，也可以直接使用子組件的資料來顯示。</p>
-]]></content>
-      <tags>
-        <tag>Interview</tag>
-        <tag>Vue.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常見面試問題：JS</title>
-    <url>/2019/12/27/interview-IV-JavaScript/</url>
-    <content><![CDATA[<p>JavaScript 面試問題彙整。</p>
-<a id="more"></a>
-<h4 id="什麼是-DOM"><a href="#什麼是-DOM" class="headerlink" title="什麼是 DOM ?"></a>什麼是 DOM ?</h4><p>我們所撰寫的 HTML 文件，瀏覽器會解析成樹狀結構，父層包覆子層形成一個 document 文件，每一個元素都可以理解為物件，DOM 操作就是透過 JS 去操作這些物件去執行行為。同時為了避免操作過程中，污染相同屬性的元素，譬如兩個 p 標籤，所以我們會透過 id 或 class 來指定操作：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.getElementById(id)</span></pre></td></tr><tr><td class="code"><pre><span class="line">document.querySelector(.className)</span></pre></td></tr></table></figure>
-
-<h4 id="請問什麼是-this？"><a href="#請問什麼是-this？" class="headerlink" title="請問什麼是 this？"></a>請問什麼是 this？</h4><p>this 雖然簡單來說就是函式內的執行情境(function context)，但需要拆成 ES5 和 ES6 兩種狀況來解釋。 </p>
-<p>在 ES5 的時候，是根據 function 內的動作來決定 this 指向的對象，如果 function 沒有做其他處理，那就會自動往外尋找全域變數。e.g.：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var myName &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(this.name) &#x2F;&#x2F; 這邊的 this 向函式外尋找變數</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">myName() &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure>
-<p>但如果 function 被賦值給物件，那就會向物件內尋找變數。e.g：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var myName &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(this.name)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var newName &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  name: &#39;Nini&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">newName.myName &#x3D; myName</span></pre></td></tr><tr><td class="code"><pre><span class="line">newName.myName() &#x2F;&#x2F; 印出 Nini</span></pre></td></tr></table></figure>
-<p>但如果 function 的執行被綁在 DOM 元素上，譬如 click 事件，那麼 this 就會被指向 DOM 上面相同名稱的變數。</p>
-<p>但到了 ES6 的環境下，this 的指向不再這麼複雜，透過 arrow function 的自動綁定的特性，this 一律指向全域變數(window)。</p>
-<h4 id="簡單說明立即函式-IIFE"><a href="#簡單說明立即函式-IIFE" class="headerlink" title="簡單說明立即函式(IIFE)"></a>簡單說明立即函式(IIFE)</h4><p>寫法格式如下，用小括號包裹，並在最後額外加上一個 ()。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 兩種寫法都可以</span></pre></td></tr><tr><td class="code"><pre><span class="line">(function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(1)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;())</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">(function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(2)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)()</span></pre></td></tr></table></figure>
-<p>他有兩個特點，一是會被立即執行，二是不管對立即函式是否命名，它都無法在函式再次被執行。基於函式作用域會銷毀變數的特性，立即函式執行完畢後，也不會保留其作用域內的變數，因此常用於限制變數的作用域。立即函式可以透過結尾 () 傳參，再加上其也是表達式的特性，因此也可以透過變數，接受它 return 的結果。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var test &#x3D; (function (val) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return val</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)(&#39;params&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(test) &#x2F;&#x2F; 印出 params</span></pre></td></tr></table></figure>
-<p>另外，因為立即函式的特性，連續兩個立即函式，會造成 ASI(自動補全分號)的規則沒有運作。因此在連續兩組立即函式的狀況下，需要自己補上分號。立即函式在一般開發比較少見，以我個人開發經驗是完全沒用過，但在框架的底層程式碼中，立即函式是有被使用的，通常用於保證變數有被正常掛載到全域變數上。</p>
-<h4 id="請簡單說明-JS-的原型"><a href="#請簡單說明-JS-的原型" class="headerlink" title="請簡單說明 JS 的原型"></a>請簡單說明 JS 的原型</h4><p>我們使用原型的目的，在於建立一個樣板或者說藍圖，透過這個樣板，我們放入屬性或方法，這樣可以快速建立 instance(實體)，e.g.：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr></table></figure>
-<p>另外，prototype 也可以優化 function 佔用的記憶體空間，e.g.：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.say &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;$&#123;this.name&#125; is a $&#123;this.type&#125; say Hi!&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(boy.say &#x3D;&#x3D;&#x3D; girl.say) &#x2F;&#x2F; false</span></pre></td></tr></table></figure>
-<p>雖然他們呼叫同一個函式，但卻各自佔用一個空間，在專案小的時候，可能差異不大，但大型專案或多或少會影響效能，因此可以透過 function prototype 來優化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">Person.prototype.say &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#96;$&#123;this.name&#125; is a $&#123;this.type&#125; say Hi!&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(boy.say &#x3D;&#x3D;&#x3D; girl.say) &#x2F;&#x2F; true</span></pre></td></tr></table></figure>
-
-<h4 id="簡單聊一下繼承"><a href="#簡單聊一下繼承" class="headerlink" title="簡單聊一下繼承"></a>簡單聊一下繼承</h4><ul>
-<li>ES5 的寫法，使用 Object.create() e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var man &#x3D; Object.create(boy)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(man)</span></pre></td></tr></table></figure>
-對 man 這個變數來說，它繼承到的原型 Person 只是一個空物件，但因為原型練的特性，他會向上找 <code>__proto__</code> 的內容，這時候就會找到屬性與方法，e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(man.name) &#x2F;&#x2F; pitt</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(man.type) &#x2F;&#x2F; boy</span></pre></td></tr></table></figure></li>
-<li>在 ES6 中引入新的寫法 class，e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Player &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用 function constructor (建構式)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (playerName, hp) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.playerName &#x3D; playerName</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.hp &#x3D; hp</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  playerStatus () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;玩家名稱：$&#123;this.playerName&#125;，玩家血量：$&#123;this.hp&#125;&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var Pitt &#x3D; new Player(&#39;Pitt&#39;, 200)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Pitt.playerStatus()</span></pre></td></tr></table></figure></li>
-<li>子類別也可以透過 extends &amp;&amp; super 去繼承父類別的方法與屬性，e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; father</span></pre></td></tr><tr><td class="code"><pre><span class="line">class Player &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用 function constructor (建構式)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (playerName, hp) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.playerName &#x3D; playerName</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.hp &#x3D; hp</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  playerStatus () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;玩家名稱：$&#123;this.playerName&#125;，玩家血量：$&#123;this.hp&#125;&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">var Pitt &#x3D; new Player(&#39;Pitt&#39;, 200)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Pitt.playerStatus()</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; son</span></pre></td></tr><tr><td class="code"><pre><span class="line">class BeginnerPlayer extends Player &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (playerName, hp, job) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    super(playerName, hp)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.job &#x3D; job</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  playerJob () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;玩家：$&#123;this.playerName&#125;，血量：$&#123;this.hp&#125;，初始職業為$&#123;this.job&#125;&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var Lisa &#x3D; new BeginnerPlayer(&#39;Lisa&#39;, 300, &#39;初心者&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Lisa.playerJob()</span></pre></td></tr></table></figure>
-但我在前職中幾乎沒有使用過。不過在 React 這個寫法是極其普遍的：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Board extends React.Components &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (props) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    super(props)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="閉包"><a href="#閉包" class="headerlink" title="閉包"></a>閉包</h4><p>什麼是閉包？簡單說，就是當 JS 的 function 因為GC(垃圾回收)機制觸發，導致函式執行完後，內部作用域內容會被銷毀。這時可以透過子函式來保存我們需要的變數或內容。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function deposit () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  var cash &#x3D; 100</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return function (coin) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cash &#x3D; cash + coin</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return cash</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>因為子函式沒有被銷毀，加上範圍鍊的原則，子函式調用外面父函式的變數 cash，因此父函式作用域在閉包的狀況下被保存下來，同時後續宣告不同變數時，也可以獨立調用這一組函式而不用擔心互相污染。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function deposit () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  var cash &#x3D; 100</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return function (coin) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cash &#x3D; cash + coin</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return cash</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var PittPay &#x3D; deposit()</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 200</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 300</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 400</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var KimiPay &#x3D; deposit()</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 300</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 500</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 700</span></pre></td></tr></table></figure>
-
-<h4 id="簡單說明-Hoisting？"><a href="#簡單說明-Hoisting？" class="headerlink" title="簡單說明 Hoisting？"></a>簡單說明 Hoisting？</h4><p>JS 的運行可以拆解為兩階段，分別是創造與執行：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure>
-<p>在變數中，上面這段 code 在實際運作上，需要理解為</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name)</span></pre></td></tr></table></figure>
-<p>而函式又和變數不同，在創造階段就會指給記憶體，陳述式如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">getName()</span></pre></td></tr><tr><td class="code"><pre><span class="line">function getName () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#39;string&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>上面這段之所以能正常運行印出 console.log，而不會報錯，在於以下邏輯</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">function getName () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#39;string&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">getName()</span></pre></td></tr></table></figure>
-<p>但需要注意的是，這種 JS 提升的性質，在表達式時需要注意撰寫順序問題<br>創造階段 =&gt; 函式優先，其次才是變數</p>
-<ul>
-<li>success<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">相等於</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure></li>
-<li>error<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 undefined</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">相等於</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 undefined，還未拿到賦值，只拿到預設的 undefined</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr></table></figure></li>
-<li>e.g.<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">whoseName()</span></pre></td></tr><tr><td class="code"><pre><span class="line">function whoseName () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  if (name) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name &#x3D; &#39;Nini&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">相等於</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">function whoseName () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(1, name) &#x2F;&#x2F; &#x3D;&gt; 拿到預設的 undefined，因此不往下走判斷</span></pre></td></tr><tr><td class="code"><pre><span class="line">  if (name) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name &#x3D; &#39;Nini&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">whoseName()</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="簡單說明-JavaScript-為何需要非同步？簡單聊一下對-call-stack-跟-event-loop-的理解"><a href="#簡單說明-JavaScript-為何需要非同步？簡單聊一下對-call-stack-跟-event-loop-的理解" class="headerlink" title="簡單說明 JavaScript 為何需要非同步？簡單聊一下對 call stack 跟 event loop 的理解"></a>簡單說明 JavaScript 為何需要非同步？簡單聊一下對 call stack 跟 event loop 的理解</h4><p>JS 的本質是單線程的語言，因為它的工作之一就是修改瀏覽器的 DOM 結構，如果多線程但同時修改同一個節點，會讓整體情況變得相當複雜，所以為了避免複雜的狀況發生，因此才會採用單線程。而非同步就是因應單線程的背景，假設某個動作需要等待 2 秒，瀏覽器當然不可能等在原地 2 秒，因此會先執行所有同步性的工作，而所有非同步性的工作則先放到 task queue(任務等待序列)。瀏覽器先執行同步性工作的環境，可以理解為包在 call stack 區間，瀏覽器先依序把 call stack 內的工作執行完畢，當它檢查到 call stack 為空時，接著前往 task queue 中將等待序列的工作丟到 call stack 依序執行。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">瀏覽器檢查 call stack 是否為空</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x3D;&gt; 否 &#x3D;&gt; 回到 call stack 繼續執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x3D;&gt; 是 &#x3D;&gt; 進入 task queue 開始將非同步工作丟到 call stack 執行</span></pre></td></tr></table></figure>
-<p>這樣不斷循環的過程就是 event loop。e.g.：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">setTimeout(function() &#123; &#x2F;&#x2F; &#x3D;&gt; 這種非同步的函式就是 callback</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;, 0);</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(3);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 依序印出 1 3 2</span></pre></td></tr></table></figure>
-
-<h4 id="如何用-JS-原生方法實作回上頁的功能？"><a href="#如何用-JS-原生方法實作回上頁的功能？" class="headerlink" title="如何用 JS 原生方法實作回上頁的功能？"></a>如何用 JS 原生方法實作回上頁的功能？</h4><p>可以使用下述這兩種方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. window.history.back &#x2F;&#x2F; 回到上一頁</span></pre></td></tr><tr><td class="code"><pre><span class="line">2. window.history.go(-1) &#x2F;&#x2F; 指定回到上一頁，若傳入參數為 -2，則指定回到上二頁</span></pre></td></tr></table></figure>
-
-<h4 id="簡單聊一下-JS-的事件傳遞機制"><a href="#簡單聊一下-JS-的事件傳遞機制" class="headerlink" title="簡單聊一下 JS 的事件傳遞機制"></a>簡單聊一下 JS 的事件傳遞機制</h4>]]></content>
-      <tags>
-        <tag>Interview</tag>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常見面試問題：ES6</title>
-    <url>/2019/12/25/interview-IV-js-es6/</url>
-    <content><![CDATA[<p>ES6 面試問題彙整。</p>
-<a id="more"></a>
-<h2 id="定義-var、let、const"><a href="#定義-var、let、const" class="headerlink" title="定義 var、let、const"></a>定義 var、let、const</h2><p>在 ES6 中，新增了兩種變數宣告方式 let、const，傳統的 var 容易污染到全域變數，因此在 ES6 調整了變數應用在作用域的範圍，通常是以 function 為分界，使用 let 在 function 內宣告變數後，可以避免離開 function 仍被污染，另一方面也可以再次賦值。const 定義為常數，不能重複賦值，而且也要求一定要賦值。</p>
-<h2 id="請簡單說明-arrow-function？"><a href="#請簡單說明-arrow-function？" class="headerlink" title="請簡單說明 arrow function？"></a>請簡單說明 arrow function？</h2><p>最簡單的說法，更簡短的函式宣告方式，省略了 function 改用 =&gt; 取代，但除了這點外，語法特性上，若參數僅有一個的情況下可以省略()，另外若 return 只有一行的狀況下可以省略 {}，但這邊是看團隊的 coding style，我個人不習慣太省略的寫法。</p>
-<p>另外需要注意，在 ES6 中使用 arrow function 的狀況下，this 會被全部指向全域變數(window)。</p>
-]]></content>
-      <tags>
-        <tag>ES6</tag>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常見面試問題：程式碼相關</title>
-    <url>/2019/12/11/interview-VI-code/</url>
-    <content><![CDATA[<p>程式碼相關面試問題彙整</p>
-<a id="more"></a>
-<h3 id="foo-的值是什麼？"><a href="#foo-的值是什麼？" class="headerlink" title="foo 的值是什麼？"></a>foo 的值是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var foo &#x3D; 10 + &#39;20&#39;;</span></pre></td></tr></table></figure>
-<p>number + string =&gt; string 呈現，若兩者都是 number，則進行計算。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1020</span></pre></td></tr></table></figure>
-
-<h3 id="實作符合下面的函式"><a href="#實作符合下面的函式" class="headerlink" title="實作符合下面的函式"></a>實作符合下面的函式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">plus(2, 5); &#x2F;&#x2F; 7</span></pre></td></tr><tr><td class="code"><pre><span class="line">add(2)(5); &#x2F;&#x2F; 7</span></pre></td></tr></table></figure>
-<p>第一題是一般函式的計算</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function plus (val, val2) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return val + val2</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(plus(2, 5))</span></pre></td></tr></table></figure>
-<p>第二題不是一般的寫法，解法需使用到閉包的部分</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function add (val) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return function (subVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return val + subVal</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(add(2)(5))</span></pre></td></tr></table></figure>
-
-<h3 id="下面的-statement-陳述式-會回傳什麼？"><a href="#下面的-statement-陳述式-會回傳什麼？" class="headerlink" title="下面的 statement(陳述式) 會回傳什麼？"></a>下面的 statement(陳述式) 會回傳什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;Hello World!&quot;.split(&quot;&quot;).reverse().join(&quot;&quot;);</span></pre></td></tr></table></figure>
-<p>split() 會將 string 進行分割，若有給定參數，則會根據該參數進行拆分並重組成陣列，譬如空格或是逗號，但因為這邊沒有，所以會根據每個字元拆，得到拆完的結果後，透過 reverse() 將陣列中的資料進行反轉，最後再透過 join() 將陣列中所有元素加入一個 string。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;!dlroW olleH&quot;</span></pre></td></tr></table></figure>
-
-<h3 id="window-foo-的值是什麼？"><a href="#window-foo-的值是什麼？" class="headerlink" title="window.foo 的值是什麼？"></a>window.foo 的值是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">( window.foo || ( window.foo &#x3D; &quot;bar&quot; ) );</span></pre></td></tr></table></figure>
-<p>window.foo 在邏輯運算中，僅有一側被賦值，自然使用 bar，除非兩側都賦值，|| 判斷才會使用第一組。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bar</span></pre></td></tr></table></figure>
-
-<h3 id="下面-foo-length-的值是什麼？"><a href="#下面-foo-length-的值是什麼？" class="headerlink" title="下面 foo.length 的值是什麼？"></a>下面 foo.length 的值是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var foo &#x3D; [];</span></pre></td></tr><tr><td class="code"><pre><span class="line">foo.push(1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">foo.push(2);</span></pre></td></tr></table></figure>
-<p>宣告空陣列，依序透過 push() 塞值，array 中會拿到兩個元素，長度為2</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(foo)        &#x2F;&#x2F; [1, 2]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(foo.length) &#x2F;&#x2F; 2</span></pre></td></tr></table></figure>
-
-<h3 id="下面這段會印出什麼？"><a href="#下面這段會印出什麼？" class="headerlink" title="下面這段會印出什麼？"></a>下面這段會印出什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(&#39;one&#39;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">setTimeout(function() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#39;two&#39;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;, 0);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(&#39;three&#39;);</span></pre></td></tr></table></figure>
-<p>JS 本身為單執行緒，遇到同步工作時會依序執行，但非同步工作則會先丟到 task queue(任務等待序列)中，直到瀏覽器所有工作執行完，才會回頭來檢視 task queue。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">one</span></pre></td></tr><tr><td class="code"><pre><span class="line">three</span></pre></td></tr><tr><td class="code"><pre><span class="line">two</span></pre></td></tr></table></figure>
-
-<h3 id="下面的兩個-alerts-的結果會是什麼？"><a href="#下面的兩個-alerts-的結果會是什麼？" class="headerlink" title="下面的兩個 alerts 的結果會是什麼？"></a>下面的兩個 alerts 的結果會是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var foo &#x3D; &quot;Hello&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">(function() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  var bar &#x3D; &quot; World&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  alert(foo + bar);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">alert(foo + bar);</span></pre></td></tr></table></figure>
-<p>第一次 alert 的結果正常，因為 foo 可以找到全域變數，而 bar 則使用函式作用域內的變數。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Hello World</span></pre></td></tr></table></figure>
-<p>第二次 alert 時，foo 全域變數仍然存在，但是 bar 在函式內的變數已被銷毀，所以會變成 bar is not defined</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bar is not defined</span></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NVM 常用指令</title>
     <url>/2019/12/09/nvm-instruction/</url>
     <content><![CDATA[<p>記錄常用 NVM 指令。</p>
@@ -1318,168 +1052,6 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <h4 id="設定預設使用的-node-版本"><a href="#設定預設使用的-node-版本" class="headerlink" title="設定預設使用的 node 版本"></a>設定預設使用的 node 版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm alias default v12.16.2</span></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>NVM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常見面試問題：網路相關</title>
-    <url>/2019/12/07/interview-V-https/</url>
-    <content><![CDATA[<p>網路相關面試題目彙整。</p>
-<a id="more"></a>
-<h2 id="從輸入網址列到渲染畫面，過程經歷了什麼事？"><a href="#從輸入網址列到渲染畫面，過程經歷了什麼事？" class="headerlink" title="從輸入網址列到渲染畫面，過程經歷了什麼事？"></a>從輸入網址列到渲染畫面，過程經歷了什麼事？</h2><ul>
-<li><p>第一階段：確認 IP 地址是否存在<br>我們透過瀏覽器輸入一段網址，瀏覽器會根據這一串網址去呼叫 DNS Server，讓 DNS 去確認這串網址對應的 IP 位置，如果沒找到就 gg，但為了後面的內容，所以這邊是一定要找到的。DNS 找到 IP 後會回傳給瀏覽器，瀏覽器開始連線到這個網址，接著進入第二階段</p>
-</li>
-<li><p>第二階段：網路請求資料<br>這個階段基本可以理解為前端(Client)向後端(Server)拿資料。這個流程挺複雜的，我的理解拆為以下三階段：</p>
-<ul>
-<li>打招呼：俗稱三次握手，Client 向 Server 詢問是否存在，Server 回應我在，接著 Client 宣告我準備要執行傳資料的動作囉。</li>
-<li>傳送資料(req &amp; res)：前端透過某個 method 向後端拿資料，這邊用 get，後端送封包過去後，再傳一組成功的狀態碼(200)給前端。</li>
-<li>結束關閉：Client 向 Server 通知準備關閉，Server 向 Client 說 ok 我也要關閉了，並進行關閉，接著 Client 也進行關閉，這階段俗稱四次揮手。</li>
-</ul>
-</li>
-<li><p>第三階段：取得資料，開始進行頁面渲染<br>首先 HTML 和 CSS 會優先執行，前者開始搭建整個頁面 DOM Tree，後者則是提前準備好所有樣式，接著來到 style 階段，將樣式指到對應的元素，Layout 開始排列頁面位置，最終完成頁面渲染。至於 JS，為了確保使用者最低限度要能看到靜態頁面，所以依慣例我們會將 JS 的執行順序放至 body 底部，確保它最後執行。</p>
-</li>
-<li><p><a href="https://w3c.hexschool.com/blog/8d691e4f" target="_blank" rel="noopener">詳細圖解</a></p>
-</li>
-</ul>
-<h2 id="什麼是瀏覽器的同源策略？另外跨域問題，如何解決？"><a href="#什麼是瀏覽器的同源策略？另外跨域問題，如何解決？" class="headerlink" title="什麼是瀏覽器的同源策略？另外跨域問題，如何解決？"></a>什麼是瀏覽器的同源策略？另外跨域問題，如何解決？</h2><p>當 ajax 發出請求時，瀏覽器會要求當前網頁與 server，基於安全性必須同源，也就是協議(http、https)、域名(abc.com)、端口(8080)，三者皆必須一致，只要任一者不同，就是不同源，倘若三者相同則為同源(符合同源策略)，同源策略僅限瀏覽器，後端(server)無此限制。當然，如果是 cdn 引入 js 的框架，或是 css 引入圖片網址，可以無視這個規則。<br>當非同源時，前端發出請求時，需要進行跨域，而任何跨域行為，理當經過 server 端允許，若未經允許即可實現跨域，代表網站本身已存在重大漏洞。解決方案，主要有三種，JSONP 和 CORS 以及代理，JSONP 透過 script 導入目前比較少使用，CORS 則是由後端處理，前端直接使用，代理則需要特定設置(vue =&gt; vue.config.js)。<br>當然，如果是 cdn 引入 js 的框架，或是 css 引入圖片網址，可以無視這個規則。任何跨域行為，都應該經過 server 端允許，若未經允許即可實現跨域，代表網站本身已存在重大漏洞。</p>
-<h2 id="CORS-是什麼，它解決了什麼問題？"><a href="#CORS-是什麼，它解決了什麼問題？" class="headerlink" title="CORS 是什麼，它解決了什麼問題？"></a>CORS 是什麼，它解決了什麼問題？</h2><p>前端的一種跨域方式，由 server 端設置(通常是由後端設置在 http header)，前端可以直接使用，也可以只允許特定網址使用。</p>
-<h2 id="Proxy-代理"><a href="#Proxy-代理" class="headerlink" title="Proxy 代理"></a>Proxy 代理</h2><p>得通過 nginx server 的設定來達成，以 Vue 為例，在 vue.config.js 進行設定：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  devServer: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    host: &#39;localhost&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    port: 8080,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 當網址攔截到 &#x2F;api</span></pre></td></tr><tr><td class="code"><pre><span class="line">    proxy: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#39;&#x2F;api&#39;: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F; 目標要指向哪個網址</span></pre></td></tr><tr><td class="code"><pre><span class="line">        target: &#39;https:&#x2F;&#x2F;www.xxx.com&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        changeOrigin: true,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;*</span></pre></td></tr><tr><td class="code"><pre><span class="line">          實務上，會遇到n個api，每一隻api路徑皆有所差別</span></pre></td></tr><tr><td class="code"><pre><span class="line">          為了統一攔截，因此虛擬化了一個路徑 &#x2F;api</span></pre></td></tr><tr><td class="code"><pre><span class="line">          但當轉發路徑時，才將這個虛擬化的路徑轉為空</span></pre></td></tr><tr><td class="code"><pre><span class="line">        *&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        pathRewrite: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">          &#39;api&#x2F;&#39;: &#39;&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>代理的安全性較高，可以隱藏後端 server 的來源，同時前後端需要設定的東西也較少。</p>
-<h2 id="描述-cookies-localStorage-sessionStorage-的差別？"><a href="#描述-cookies-localStorage-sessionStorage-的差別？" class="headerlink" title="描述 cookies/localStorage/sessionStorage 的差別？"></a>描述 cookies/localStorage/sessionStorage 的差別？</h2><p>這三者都是前端在瀏覽器儲存的方式，cookie 是比較早期的做法，儲存的容量有限，只有 4KB，預設保存時效是瀏覽器關閉時就失效。一方面是本身儲存的容量小，另一方面因為會攜帶在 http 中，所以太多數據又會影響效能，所以大多不使用 cookie。</p>
-<p>但我個人此前有一個使用場景，業務推廣產品網址會帶有一組推廣碼，營運方希望在客戶成功註冊前，保存這組推廣碼24小時，我的解法是：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">當客戶透過推廣網址進入時註冊頁面時，立刻觸發保存當前時間(new Date())</span></pre></td></tr><tr><td class="code"><pre><span class="line">接下來利用 getTime() 來取從紀元時間到當前時間的毫秒數，再往後加上 24 小時的毫秒數</span></pre></td></tr><tr><td class="code"><pre><span class="line">等於建立了一個時間戳記，再把它存到 document.cookie 的 expires，達到希望失效時間的目的。</span></pre></td></tr></table></figure>
-
-<p>localStorage 和 sessionStorage 都是從 HTML5 開始提供的 API，儲存的容量大 5MB，也不會對效能產生問題，所以目前已用來取代 cookie，但因為兩者使用 API 相同，前者永久保存除非手動清除，後者則一樣是關閉瀏覽器即失效，因此多用前者居多。除了常見於用來保存 login 的 token，我個人還有用過一個情境在於，當網站透過 i18n 建立多語系功能時，客戶第一次進入網站時，前台會使用後台預設的語系，但當客戶切換語系後，會透過 localStorage 來保存客戶切換的語系，避免下次進入時失效，畢竟我們無法判斷客戶下次登入網站時間，所以這邊採用永久保存會是比較好的做法。</p>
-<ul>
-<li><a href="https://medium.com/@bebebobohaha/cookie-localstorage-sessionstorage-%E5%B7%AE%E7%95%B0-9e1d5df3dd7f" target="_blank" rel="noopener">詳細圖解</a></li>
-</ul>
-<h2 id="請簡單解釋-RESTful-API"><a href="#請簡單解釋-RESTful-API" class="headerlink" title="請簡單解釋 RESTful API"></a>請簡單解釋 RESTful API</h2><p>表現層狀態轉移…嗯，這種不是人話的東西，基本上是看不懂的。當然撰寫 RESTful API 是有固定的風格設計，譬如使用名詞而不盡量不使用動詞之類的。但對前端來說，應該可以拆成三部分來理解，查看後端提供的 API 文件：</p>
-<ol>
-<li>url =&gt; 告訴前端你請求的是什麼，全部的產品列表或是單一商品的細節</li>
-<li>method =&gt; 使用哪一種方法，get(獲取)，post(送出增加)，delete(刪除)，put(更改)</li>
-<li>status code =&gt; 拿到的 api 結果為何？成功或失敗，細部原因是什麼</li>
-</ol>
-<h2 id="簡單說幾個常見的-http-狀態碼？"><a href="#簡單說幾個常見的-http-狀態碼？" class="headerlink" title="簡單說幾個常見的 http 狀態碼？"></a>簡單說幾個常見的 http 狀態碼？</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">200 &#x3D;&gt; success</span></pre></td></tr><tr><td class="code"><pre><span class="line">400 &#x3D;&gt; 前端送錯 request，後端無法處理</span></pre></td></tr><tr><td class="code"><pre><span class="line">401 &#x3D;&gt; 少 token</span></pre></td></tr><tr><td class="code"><pre><span class="line">403 &#x3D;&gt; 沒有權限</span></pre></td></tr><tr><td class="code"><pre><span class="line">404 &#x3D;&gt; 找不到資源</span></pre></td></tr><tr><td class="code"><pre><span class="line">500 &#x3D;&gt; server 端掛了</span></pre></td></tr><tr><td class="code"><pre><span class="line">502 &#x3D;&gt; server 端某個功能爆了</span></pre></td></tr><tr><td class="code"><pre><span class="line">503 &#x3D;&gt; 維修</span></pre></td></tr><tr><td class="code"><pre><span class="line">504 &#x3D;&gt; api 請求超時</span></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常見面試問題：CSS</title>
-    <url>/2019/12/06/interview-III-css/</url>
-    <content><![CDATA[<p>CSS 面試問題彙整。</p>
-<a id="more"></a>
-<h3 id="基礎語法"><a href="#基礎語法" class="headerlink" title="基礎語法"></a>基礎語法</h3><h4 id="Q：簡單聊聊-box-model"><a href="#Q：簡單聊聊-box-model" class="headerlink" title="Q：簡單聊聊 box-model"></a>Q：簡單聊聊 box-model</h4><p>box-model 可以理解為前端工程師製作網頁的一種工具，透過它可以定義網頁上元素的位置，進而達到排版的目的。從內到外，環繞它身邊有三個語法，padding、border、margin。其中前兩者預設會影響到元素，因此在 box-sizing 會採用另一個模式 border-box，來避免不必要的計算。</p>
-<h4 id="Q：請解釋-box-sizing-border-box-，並且說明使用它的好處？"><a href="#Q：請解釋-box-sizing-border-box-，並且說明使用它的好處？" class="headerlink" title="Q：請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？"></a>Q：請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？</h4><p><img src="/images/box-sizing.png" alt=""><br>box-sizing =&gt; 意指，當元素計算寬度和高度時，border &amp; padding 會內含還是外加。<br>content-box =&gt; 預設的屬性，會使 border &amp; padding 添加額外的寬高(外加)。</p>
-<p>但前述這個設計，會使前端開發時被迫需要一直計算寬高，為了改善這個開發體驗，所以改用以下模式：<br>border-box =&gt; 將 border &amp; padding 塞進元素本身(內含)。<br>因此我們通常建議在初始化樣式時，加入到 <code>*</code>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  box-sizing: border-box;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<ul>
-<li><a href="https://zh-tw.learnlayout.com/box-sizing.html" target="_blank" rel="noopener">圖片詳解</a></li>
-</ul>
-<h3 id="情境處理"><a href="#情境處理" class="headerlink" title="情境處理"></a>情境處理</h3><h4 id="Q：如何處理水平垂直置中？"><a href="#Q：如何處理水平垂直置中？" class="headerlink" title="Q：如何處理水平垂直置中？"></a>Q：如何處理水平垂直置中？</h4><p>在 flexbox 語法中，處理這個需求並不困難：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  display: flex;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  justify-content: center;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  align-items: center;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>但如果不使用 flexbox 就會比較麻煩，首先水平置中，常用兩種方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  margin: 0 auto;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  text-align: center;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-
-<p>至於垂直置中的方法有數種，但我這邊只記錄兩種：</p>
-<ol>
-<li>line-height</li>
-<li>vertical-align: middle;</li>
-</ol>
-<p>但基本我個人現在只用 flexbox 語法來處理，未來會再加上 grid。</p>
-<h3 id="專案結構"><a href="#專案結構" class="headerlink" title="專案結構"></a>專案結構</h3><h4 id="Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><a href="#Q：倘若有不同的樣式表-stylesheets-，該如何整併到網站？" class="headerlink" title="Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？"></a>Q：倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</h4><p>以 Vue 專案結構為例：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- assets</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - color.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - mixin.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - share.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - style.scss</span></pre></td></tr></table></figure>
-<p>將共用顏色(color)和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
-<h4 id="Q：如何處理專案-RWD"><a href="#Q：如何處理專案-RWD" class="headerlink" title="Q：如何處理專案 RWD"></a>Q：如何處理專案 RWD</h4><ul>
-<li><p>共用參數<br>假設 UI/UX 為首次合作，因此會先討論網站的色系與主要的共用間距(當然如果是經驗豐富的 UI/UX，這一步可以忽略)，因為斷點、三輔一主的色系、常用間距，需先準備在 scss 作為共用參數。至於斷點，現在市面上，320px 尺寸的手機(iPhone5)，雖然市佔率已經相當低，但目前開發上仍會考慮保留，因此預期我的斷點會設計：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">360 &#x3D;&gt; 兼容小尺寸 android &amp; iPhone5</span></pre></td></tr><tr><td class="code"><pre><span class="line">480 &#x3D;&gt; 主流手機</span></pre></td></tr><tr><td class="code"><pre><span class="line">768 &#x3D;&gt; pad</span></pre></td></tr><tr><td class="code"><pre><span class="line">pc &#x3D;&gt; 這個沒有固定，視討論而定，通常1024(但其實也可以用 padPro來命名)</span></pre></td></tr></table></figure>
-</li>
-<li><p>UI Framework<br>主要分為兩種狀況，手刻或者用框架：</p>
-<ul>
-<li>手刻：目前主流是用 flexbox(目前兼容性已經極高了，哪怕是大陸冷門瀏覽器 QQ、UC)，至於 grid 目前來說，對移動裝置的支援還有疑慮，稍微舊一點的版本或是冷門瀏覽器都是不支援居多，還需要一點時間讓瀏覽器廠商跑步前進。<ul>
-<li><a href="https://hackmd.io/tlJAS8MqQ0qqJ0wh3sggsw" target="_blank" rel="noopener">瀏覽器市佔率</a></li>
-</ul>
-</li>
-<li>框架：這就看團隊的技術選型，根據團隊採用不同的前端框架，相應的框架也會有差異，以 Vue 來說，目前海外社群投票最大宗是 Vuetify，其次是 element-ui(但不支援 RWD，主要用於 CMS)，Tailwind CSS 正在追趕，Bootstrap 這我不太確定，需等 v5 之後的版本觀察。<ul>
-<li><a href="https://hackmd.io/mmVT15NkT8KZJTR5octHlA" target="_blank" rel="noopener">Tailwind CSS</a></li>
-</ul>
-</li>
-</ul>
-<p>至於更細節的開發，就視實際的設計稿而定，這邊不再贅述了。</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Interview</tag>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常見面試問題：HTML</title>
-    <url>/2019/12/05/interview-II-html/</url>
-    <content><![CDATA[<p>HTML 面試問題彙整。</p>
-<a id="more"></a>
-<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><h4 id="Q：doctype-做什麼用的？"><a href="#Q：doctype-做什麼用的？" class="headerlink" title="Q：doctype 做什麼用的？"></a>Q：<code>doctype</code> 做什麼用的？</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用來定義網頁編寫的 HTML 採用什麼版本。</span></pre></td></tr></table></figure>
-
-<h4 id="Q：有用過-HTML-樣板語言（template-languages）嗎？"><a href="#Q：有用過-HTML-樣板語言（template-languages）嗎？" class="headerlink" title="Q：有用過 HTML 樣板語言（template languages）嗎？"></a>Q：有用過 HTML 樣板語言（template languages）嗎？</h4><p>目前使用 <code>pug</code>，除了減少閉合標籤，也能讓 template 更為簡潔。</p>
-<h3 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h3><h4 id="Q：簡單說明-HTML5-的特色"><a href="#Q：簡單說明-HTML5-的特色" class="headerlink" title="Q：簡單說明 HTML5 的特色"></a>Q：簡單說明 HTML5 的特色</h4><ul>
-<li>語意化：諸如 header、main、section 之類的語意化標籤，善用這些標籤能對網站 SEO 能更加友善。</li>
-<li>多媒體：隨著 HTML5 開始支援播放影片音樂，成為壓垮 flash 的主因之一。Canvas 除了讓網頁直接繪出圖形，也讓許多遊戲產業獲得更好的發展。</li>
-<li>API：增加許多 API 方法，諸如支援移動裝置的 touch 事件、地理資訊紀錄(Geolocation)以及雙向溝通的 websocket(但存有安全性疑慮)。</li>
-</ul>
-<h4 id="Q：可以簡單列舉常用的-HTML5-語意標籤嗎？"><a href="#Q：可以簡單列舉常用的-HTML5-語意標籤嗎？" class="headerlink" title="Q：可以簡單列舉常用的 HTML5 語意標籤嗎？"></a>Q：可以簡單列舉常用的 HTML5 語意標籤嗎？</h4><ol>
-<li>header  =&gt; 網頁的標題，通常放置網站的 logo 或 navbar</li>
-<li>nav     =&gt; 網站的選單與導覽列</li>
-<li>main    =&gt; 網頁的主要內容</li>
-<li>aside   =&gt; 側邊欄或是一些附加內容</li>
-<li>section =&gt; 自定義的區塊內容</li>
-<li>article =&gt; 一篇文章的內容</li>
-<li>footer  =&gt; 網頁的底部，版權宣告或聯絡方式</li>
-<li>mark    =&gt; 特殊強調</li>
-<li>time    =&gt; 顯示日期時間</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Interview</tag>
-        <tag>HTML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常見面試問題：通用</title>
-    <url>/2019/12/03/interview-I-general/</url>
-    <content><![CDATA[<p>通用性面試問題彙整。</p>
-<a id="more"></a>
-<h3 id="技術學習"><a href="#技術學習" class="headerlink" title="技術學習"></a>技術學習</h3><h4 id="Q：近期學習了什麼？"><a href="#Q：近期學習了什麼？" class="headerlink" title="Q：近期學習了什麼？"></a>Q：近期學習了什麼？</h4><p>主要在摸索 Nuxt 開發，以及一些架站與 CICD 相關的知識，考慮到未來工作，必須認真看待(前職沒有這個需求) SEO 的需求，SSR 這一塊無可避免會碰觸到，因此抽出一些時間來加以了解。</p>
-<h4 id="Q：如果今年你能精通一項技術，那會是什麼？-2020"><a href="#Q：如果今年你能精通一項技術，那會是什麼？-2020" class="headerlink" title="Q：如果今年你能精通一項技術，那會是什麼？(2020)"></a>Q：如果今年你能精通一項技術，那會是什麼？(2020)</h4><p>主要希望能將 Nuxt 掌握到熟稔程度，能順利上手開發，但因爲 Nuxt 又是以 Node 為基底，所以 Node 的基礎知識與運用也必須補上。</p>
-<h3 id="專案開發"><a href="#專案開發" class="headerlink" title="專案開發"></a>專案開發</h3><h4 id="Q：喜好的開發環境-作業系統-編輯器或-IDE-瀏覽器-開發工具-…-之類-。"><a href="#Q：喜好的開發環境-作業系統-編輯器或-IDE-瀏覽器-開發工具-…-之類-。" class="headerlink" title="Q：喜好的開發環境 (作業系統, 編輯器或 IDE, 瀏覽器, 開發工具 … 之類)。"></a>Q：喜好的開發環境 (作業系統, 編輯器或 IDE, 瀏覽器, 開發工具 … 之類)。</h4><p>前端開發目前主要使用 mac os 系統，一方面是生態系完整，如果遇到問題，相對容易透過網路資訊排除。早期有使用過一陣子 sublime 和 ATOM，後來因為 vscode 急起直追和插件生態日益豐富完整，最後投入 vscode 懷抱。瀏覽器就是以 Chrome 為開發，畢竟習慣了 Chrome 的開發者工作，偶爾還是會回去摸摸 Firefox，但除錯方面，除了是特定瀏覽器破版問題，否則仍以 Chrome 為主。</p>
-<h4 id="Q：最熟悉哪一套版本控制系統？"><a href="#Q：最熟悉哪一套版本控制系統？" class="headerlink" title="Q：最熟悉哪一套版本控制系統？"></a>Q：最熟悉哪一套版本控制系統？</h4><p>git，前職的團隊，主要使用 GUI 工具(SourceTree)，方便查看節點，但目前也持續筆記 git 指令，方便未來自己在終端機直接操作。</p>
-<h4 id="Q：可以描述前一份工作在開發一個網站時的流程是？"><a href="#Q：可以描述前一份工作在開發一個網站時的流程是？" class="headerlink" title="Q：可以描述前一份工作在開發一個網站時的流程是？"></a>Q：可以描述前一份工作在開發一個網站時的流程是？</h4><p>依循 4 階段規劃進行開發：分析 =&gt; 規劃 =&gt; 實作 =&gt; 驗證</p>
-<ul>
-<li>分析：需求營運方+UI/UX+前後端+QA進行開會，明確釐清專案訴求為何？</li>
-<li>規劃：專案可能會面臨時程問題，或是技術上目前是否可行，先列出優先度最重要的功能，確保功能面且權重最重者，可以優先上線，後續再針對次要功能與樣式進行優化。</li>
-<li>實作：依據現有技術進行實作開發，倘若開發面臨困難，則提前反饋給主管。反之，若實際開發可行，但程式碼不如預期優雅，則以先不報錯為原則，試寫出第一版，後續再進行重構。</li>
-<li>驗證：因為目前還未掌握自動化測試，目前驗證手法仍以手動驗證為主，大多採用由其他組員進行手動測試，並撰寫測試文件，當測試通過才發PR給主管。另外，若是QA驗證出現錯誤或是上線後發現錯誤，則統一發佈到issues，再依優先度解決。</li>
-</ul>
-<h4 id="Q：如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？"><a href="#Q：如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？" class="headerlink" title="Q：如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？"></a>Q：如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？</h4><p>通常若是維護舊專案，會配合既有專案的風格進行開發，但若是新專案，則會討論 coding style 如何處理，不過我個人也是採用 tab。</p>
-<h3 id="網站優化"><a href="#網站優化" class="headerlink" title="網站優化"></a>網站優化</h3><h4 id="Q：描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？"><a href="#Q：描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？" class="headerlink" title="Q：描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？"></a>Q：描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？</h4><p>漸進漸強：從基本功能開始開發，保證系統在各種瀏覽器環境都可以執行，再逐步增加功能及提升使用者體驗。<br>優美退化：開發系統時，就針對最新最完善的環境來設計，而對於較舊的平台僅提供基本功能，而非完整功能。<br>但目前實務上，專案只碰過漸進增強的理念，因為通常專案時程規劃，大都蠻不友善的XD，在有限的時間內，通常是優先讓功能面先上線，後續再逐步優化。</p>
-<h4 id="Q：前端效能優化可以怎麼做？"><a href="#Q：前端效能優化可以怎麼做？" class="headerlink" title="Q：前端效能優化可以怎麼做？"></a>Q：前端效能優化可以怎麼做？</h4><p>受限於現代網站載入的資源體積越來越大，因此若要著手優化網站的效能，大概要先從載入資源大小、畫面渲染兩方面來著手。</p>
-<ol>
-<li><p>載入資源</p>
-<ul>
-<li>壓縮並醜化檔案，無論是 css 的 minify，或是 JS 的 uglify，都可以大幅縮減檔案體積，不過目前處理這些工作，大都丟給 webpack 一並處理。</li>
-<li>壓縮圖片檔案大小，此前是使用 tinypng 工具。</li>
-</ul>
-</li>
-<li><p>畫面渲染</p>
-<ul>
-<li>盡可能將 css 抽離出來，不要和 JS 混在一起。在 webpack 中使用 extract-text-webpack-plugin。這麼做的目的，當然是為了利用瀏覽器本身的緩存的特性，因此能用 css 處理的地方就不使用 JS，這樣可以節省開啟頁面的時間。</li>
-</ul>
-</li>
-</ol>
-<h4 id="Q：優化網頁讀取速度的方法-感覺上的速度或是真正的讀取時間-。"><a href="#Q：優化網頁讀取速度的方法-感覺上的速度或是真正的讀取時間-。" class="headerlink" title="Q：優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。"></a>Q：優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。</h4>]]></content>
-      <tags>
-        <tag>Interview</tag>
       </tags>
   </entry>
   <entry>
@@ -1671,8 +1243,611 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
       </tags>
   </entry>
   <entry>
+    <title>面試問題：Webpack</title>
+    <url>/2019/06/09/interview-webpack/</url>
+    <content><![CDATA[<p>Webpack 是目前近兩年最熱門的打包工具，功能強大與客製化程度高，與之相對的，在設定上有很多眉角。另一方面，因為工作上使用 Vue cli 已經預設好相當多功能，反而對 Webpack 的認識不足。之後，需要練習使用純 webpack 來搭建環境而不使用框架。</p>
+<a id="more"></a>
+<h3 id="webpack-中-babel-如何設定？"><a href="#webpack-中-babel-如何設定？" class="headerlink" title="webpack 中 babel 如何設定？"></a>webpack 中 babel 如何設定？</h3><ul>
+<li><p>plugins install –dev</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@babel&#x2F;cli</span></pre></td></tr><tr><td class="code"><pre><span class="line">@babel&#x2F;core</span></pre></td></tr><tr><td class="code"><pre><span class="line">@babel&#x2F;preset-env</span></pre></td></tr></table></figure>
+<p>基本設定寫在 .babelrc 的檔案中：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;presets&quot;: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    [</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &quot;@babel&#x2F;preset-env&quot;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ],</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;plugins&quot;: []</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>@babel/preset-env，通常會用來放一些常用的語法解析，預設 babel 官方已經有提供 ES6 語法解析。babel 本身主要專注在解析語法，但新的 API 會被忽略，因此需要 polyfill 來輔助。</p>
+</li>
+<li><p>babel-polyfill</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@babel&#x2F;polyfill</span></pre></td></tr></table></figure>
+<p>babel-polyfill 就是延伸早期的 polyfill 方案，再結合 core-js 和 regenerator 形成強大的集合，幫助開發者將所有的新的語法打上補丁，讓他們可以在低版本的瀏覽器正常運作。但 babel 官方 7.4 版本後，建議直接使用 core-js 和 regenerator。但因為 babel-polyfill 本身體積蠻大的，畢竟是集合解析所有語法，所以需要在 .babelrc 調整設定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;presets&quot;: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    [</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &quot;@babel&#x2F;preset-env&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;useBuiltIns&quot;: &quot;usage&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;corejs&quot;: 3</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ],</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;plugins&quot;: []</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>usage 即可以只引入專案中有用到的語法，3 則是當前 core-js 版本號。</p>
+</li>
+<li><p>babel-runtime</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@babel&#x2F;runtime</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; dev</span></pre></td></tr><tr><td class="code"><pre><span class="line">@babel&#x2F;plugin-transform-runtime</span></pre></td></tr></table></figure>
+<p>babel-polyfill 本身會有污染全域的問題，所以需要透過 babel-runtime 來處理，安裝完插件後，設定如下(直接照官方預設設定)：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;presets&quot;: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    [</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &quot;@babel&#x2F;preset-env&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;useBuiltIns&quot;: &quot;usage&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;corejs&quot;: 3</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ],</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &quot;plugins&quot;: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">    [</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &quot;@babel&#x2F;plugin-transform-runtime&quot;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;absoluteRuntime: false,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;corejs&quot;: 3,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;helpers&quot;: true,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;regenerator&quot;: true,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &quot;useESModules&quot;: false</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>Webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：Vue.js - II</title>
+    <url>/2019/06/08/interview-vue-II/</url>
+    <content><![CDATA[<p>Vue.js 相關面試問題彙整 II。</p>
+<a id="more"></a>
+<h3 id="聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。"><a href="#聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。" class="headerlink" title="聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。"></a>聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。</h3><p>Vue 的父子組件中，還有一種不特別推薦的通訊方式，父組件通過 $children 可以改變子組件的 data，相反的，子組件可以透過 $parent 來改變父組件的 data。但官方建議少用這種方式，應該是要避免數據流動被搞混。</p>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>Vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：Vue.js - I</title>
+    <url>/2019/06/08/interview-vue-I/</url>
+    <content><![CDATA[<p>Vue.js 相關面試問題彙整 I。</p>
+<a id="more"></a>
+<h3 id="如何理解-MVC-和-MVVM-差異？"><a href="#如何理解-MVC-和-MVVM-差異？" class="headerlink" title="如何理解 MVC 和 MVVM 差異？"></a>如何理解 MVC 和 MVVM 差異？</h3><ul>
+<li><p>MVC</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">view &#x3D;&gt; 前端(切版、套入動畫效果)</span></pre></td></tr><tr><td class="code"><pre><span class="line">controller &#x3D;&gt; 後端(控制 router)</span></pre></td></tr><tr><td class="code"><pre><span class="line">model &#x3D;&gt; 後端(database)</span></pre></td></tr></table></figure>
+<p>MVC 開始流行的原因，是為了解決早期程式碼混在一起的困境(義大利麵code)，前後端的程式碼都混在一起。因此 MVC 開始進行職責分工，view 負責畫面顯示，控管 router 和網站行為則由 controller，查詢資料庫的資料，則是 model，在這個時代前端工程師這個職缺才開始浮現出來(負責 view)。也因為 router 交由後端控制，因此這時期的網頁仍是多頁面式的網頁，切換頁面時是真的在切換不同頁面，會有明顯的 loading 時間。</p>
+</li>
+<li><p>MVVM</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">view &#x3D;&gt; 依然是前端(控制使用者看到的渲染頁面)</span></pre></td></tr><tr><td class="code"><pre><span class="line">model &#x3D;&gt; 後端</span></pre></td></tr><tr><td class="code"><pre><span class="line">viewModel &#x3D;&gt; 前端(改由前端控制 router)</span></pre></td></tr></table></figure>
+<p>進入 MVVM 時代，將原生 JS 操作 DOM 這件事交給框架處理，我們負責改變框架中的資料，驅動資料去改變頁面重新渲染。而對前端來說，處理的是 view 和 viewModel，而 model 則是後端在處理。這個時候已經轉型為 SPA(單頁式應用)，網站頁面切換時，看似切換不同頁面，但本質只是切換同一頁的不同區塊，因此這時網頁的流暢性與使用性會更加流暢。</p>
+</li>
+</ul>
+<h3 id="Vue-的雙向綁定原理是如何實現的？"><a href="#Vue-的雙向綁定原理是如何實現的？" class="headerlink" title="Vue 的雙向綁定原理是如何實現的？"></a>Vue 的雙向綁定原理是如何實現的？</h3><p>因為這涉及 Vue 的底層原理，所以我的解釋上，可能會比較制式化，主要拆解為四個步驟：</p>
+<ol>
+<li>首先 vue 會先通過 <code>document.createDocumentFragment()</code> 的方法來建立虛擬 DOM。</li>
+<li>隨著 vue 所監聽的數據出現改變時，會再透過 <code>Object.defineProperty</code> 來進行數據攔截。</li>
+<li>根據數據的變化，再透過訂閱-發布者模式，來觸發 watch，進而改變虛擬 DOM。</li>
+<li>最後，再根據已經改變的虛擬 DOM，重新渲染頁面的 DOM 結構，達到雙向綁定的目的。</li>
+</ol>
+<h3 id="試說明-Vue-的生命週期"><a href="#試說明-Vue-的生命週期" class="headerlink" title="試說明 Vue 的生命週期"></a>試說明 Vue 的生命週期</h3><ul>
+<li><p>beforeCreate &amp; created</p>
+<ul>
+<li>beforeCreated：init 整個 vue 的生命週期，目前個人經驗上，還沒有在這個階段處理過資料。</li>
+<li>created：這個階段，會先進行 init data，這個時候 data 內的初始化資料已經可以調用了，同時也可以進行 call api。</li>
+<li>再進入 mounted 階段前，其實 Vue 會有一個觀察動作，確認 template 上的 el 是否有正確設置好，但因為目前開發都是基於 vue-cli 的基底，所以這部分不太需要擔心。</li>
+</ul>
+</li>
+<li><p>beforeMount &amp; mounted</p>
+<ul>
+<li>beforeMount：這個階段很少用，我個人也沒使用過，位於資料渲染前。</li>
+<li>mounted：頁面已經渲染完成，同時 $el 已經掛載上去了。</li>
+</ul>
+</li>
+<li><p>beforeUpdate &amp; updated<br>簡單說就是更新 data 的資料，促使頁面重新渲染 DOM，譬如透過 @click 事件去執行函式來改變 true 或 false，進而影響 v-bind 綁定的 class 增加或移除，達到樣式改變的目的。</p>
+</li>
+<li><p>beforeDestroy &amp; destroyed<br>vue 生命週期的尾聲，準備要銷毀節點，常見於 v-if。舉例來說，當我們執行 methods 的函式時，可能會將某些初始資料進行狀態改變，當資料在 true 或 false 間轉換時，同時 template 上的 DOM 也會隨之出現或消失，但和 v-show 不同，v-show 的消失，僅是元素採用  css 的 display: none 來隱藏，而 v-if 則是將該元素整個移除，所以被稱為銷毀。不過一般來說，我們不會直接使用 destroyed，官方也不建議我們使用。</p>
+</li>
+</ul>
+<!-- - 前職中，call api 時，基本是 -->
+
+<h3 id="created-和-mounted-的差異？"><a href="#created-和-mounted-的差異？" class="headerlink" title="created 和 mounted 的差異？"></a>created 和 mounted 的差異？</h3><p>兩者的最大的差異，還是在於掛載的順序，以及在各階段資料的狀態。</p>
+<ul>
+<li>beforeCreate：在這個階段 $el 和 $data 都尚未掛載 =&gt; undefined</li>
+<li>created：$data 初始資料已載入，$el 尚未掛載成功 =&gt; undefined</li>
+<li>beforeMount：$el 依然為空 =&gt; undefined</li>
+<li>mounted：$el 掛載完成，渲染出現資料</li>
+</ul>
+<h3 id="為什麼說-vue-是單向數據流？"><a href="#為什麼說-vue-是單向數據流？" class="headerlink" title="為什麼說 vue 是單向數據流？"></a>為什麼說 vue 是單向數據流？</h3><p>因為 vue 的父子組件傳值中，父組件可以送資料給子組件，但子組件只能接收不能傳資料給父組件，不過子組件可以透過 @emit 方法，促使父組件執行函式來改變狀態。</p>
+<p>舉例來說，彈窗效果(modal)我們通常會封裝到 component 內，每個頁面需要顯示彈窗內容都會有差異，譬如 title 可能就有落差，那 title 的資料就得透過父組件傳過去。但是如果我們想要關閉彈窗，代表我們想改變狀態，這時候 modal 就可以透過 <code>@emit=&quot;boxSwitch&quot;</code> 往上傳，父組件拿到後就會執行 methods 來改變當前的狀態，達到關閉彈窗的效果。</p>
+<h3 id="簡單聊一下-Vue-Router"><a href="#簡單聊一下-Vue-Router" class="headerlink" title="簡單聊一下 Vue-Router"></a>簡單聊一下 Vue-Router</h3><p>主要兩種 mode，hash(default 加 #)，history(基於 HTML5 的 History 模式)。不過 history mode 需要和後端溝通，在對應的語言下，設定 rewrite，具體內容會直接參考官方文件。此外，為了避免無法找到錯誤頁面，同時也為了阻止客戶亂打url，最底層需加一組 path: ‘*’ 來進行轉址，至於轉址到哪一頁，則看需求方。</p>
+<p>基本配置就是 path 設定要前往的路徑，component 載入要進入的頁面，通常還會加上 name，方便 router-link 的 to 可以直接調用。動態路由則使用冒號做開頭，通常可以在結尾加上?，方便如果沒有找到頁面時，會直接動態路由的上一層，例如：<code>list/:id?</code>。</p>
+<h3 id="Vue-Router-如何達到-SPA-效果？"><a href="#Vue-Router-如何達到-SPA-效果？" class="headerlink" title="Vue Router 如何達到 SPA 效果？"></a>Vue Router 如何達到 SPA 效果？</h3><p>SPA 的重點就在於由前端來模擬路由，讓使用者看似在切換頁面，實際上只是切換組件。而 Vue Router 就是透過 router-view 的方法來包裝顯示組件，再透過 router-link 或是 router.push() 等方法來進出頁面。看起來雖然像是從 A 頁面進入 B 頁面，但實際上卻是將 A 組件改為顯示 B 組件。</p>
+<h3 id="Vue-路由的跳轉方式？"><a href="#Vue-路由的跳轉方式？" class="headerlink" title="Vue 路由的跳轉方式？"></a>Vue 路由的跳轉方式？</h3><p>主要有兩種：</p>
+<ul>
+<li>router-link，本質上就是 a 標籤，在 template 中使用這個方式。</li>
+<li>router.push，主要透過 methods 來執行跳轉到對應頁面，同時也可以在其中的 query 埋下參數，方便跳轉後的頁面直接調用。</li>
+</ul>
+<h3 id="簡單解釋一下-Vuex-的原理"><a href="#簡單解釋一下-Vuex-的原理" class="headerlink" title="簡單解釋一下 Vuex 的原理"></a>簡單解釋一下 Vuex 的原理</h3><p>在 Vuex 當中，state 會存放初始化的資料，當 component 呼叫 Vuex 中寫好的函式，首先會到 actions 找對應的函式，這時會去呼叫 api 的資料，當然如果 component 呼叫時有傳入參數，那這個參數就透過 payload 傳入函式。當 api 的資料取得後，除了回傳給 component，也透過 commit 的方式來改變 mutations 內的函式，而 mutations 這時就會將傳來的資料賦值給 state，進而改變狀態。</p>
+<h3 id="什麼情境下，需使用-Vuex？"><a href="#什麼情境下，需使用-Vuex？" class="headerlink" title="什麼情境下，需使用 Vuex？"></a>什麼情境下，需使用 Vuex？</h3><p>Vue 的專案中，通常會有多個 component 組成，尤其專案越大組成結構就越複雜，有些資料會是多個頁面需要共用，這個時候不可能仰賴父子組件傳值，萬一組件和組件之間隔了好幾層，那效益就太差了，這時通常就會抽離到 Vuex 進行狀態管理。</p>
+<p>舉例來說，常見的使用者帳號資料 userInfo，在 login 和 logout 兩種狀態下，頁面需要顯示的內容會有所差異，不可能在每一個需要使用 userInfo 的 component 都寫一遍呼叫 api 的函式，所以無論是初始的資料或是呼叫 api 的函式，這時候就會統一寫在 Vuex，方便直接 commit 更新 state，需要使用的 component 再透過 mapState 去載入。</p>
+<h3 id="Vuex-適合存放怎樣的資料？"><a href="#Vuex-適合存放怎樣的資料？" class="headerlink" title="Vuex 適合存放怎樣的資料？"></a>Vuex 適合存放怎樣的資料？</h3><p>平台商可能接入多種遊戲商，每家遊戲商的做法不同，有些可能有開放試玩，有些可能沒有，因此在使用者帳號資訊中，就會存在三種狀態情境，登入、未登入、試玩，無論是遊戲商頁面、會員首頁的錢包顯示，這些頁面都要判斷登入顯示什麼，未登入顯示什麼。</p>
+<p>如果每頁都呼叫一次使用者資訊的 API，那就顯得太過缺乏效率，所以我們會把使用者帳號的資料狀態存放在 Vuex，當用戶進行註冊登入時，則更新 Vuex 的狀態，這樣全域有調用該狀態的 component 也就自動隨之更新。</p>
+<h3 id="keep-alive-的用法"><a href="#keep-alive-的用法" class="headerlink" title="keep-alive 的用法"></a>keep-alive 的用法</h3><p>可以理解為一種暫存資料的方式，假設後台有一些表單需要填寫時，可能使用者會需要來回切換不同區塊，這時候會導致原先填寫到一半的資料消失，透過 keep-alive 去包裹，可以暫時存放資料，優化使用體驗。</p>
+<h3 id="簡單說一下-slot-是什麼？"><a href="#簡單說一下-slot-是什麼？" class="headerlink" title="簡單說一下 slot 是什麼？"></a>簡單說一下 slot 是什麼？</h3><p>基本操作和 component 雷同，載入需要插入的 component，再透過父子組件傳值，差別在於，接受傳值的子組件需要在 template 上使用 slot 標籤，這個標籤內的內容，則會渲染父組件傳過來的子內容或子節點，內容在父組件會使用雙花括號包裹。當然如果父組件沒有傳值，也可以直接使用子組件的資料來顯示。</p>
+<h3 id="如果在-v-for-中不設-key-會發生什麼問題？"><a href="#如果在-v-for-中不設-key-會發生什麼問題？" class="headerlink" title="如果在 v-for 中不設 key 會發生什麼問題？"></a>如果在 v-for 中不設 key 會發生什麼問題？</h3><p>因為對於程式來說，它們的思考是很死板的，如果沒有設定唯一值的 Key，當我們對陣列進行操作時，就會造成實際結果和預期結果完全不同。譬如說：A array 中有三種水果，依序為蘋果、西瓜、葡萄，我刪除了西瓜的位置，index 上固然是 1、3，但對 vue 來說，在遍歷中它只會認為是目錄2被改成3，同時元素又因為沒有被刪除，在就地複用的原則下，就變成 1: 蘋果、3: 西瓜。所以透過唯一值的 Key，讓 v-for 在遍歷中，若要進行操作可以正常執行。</p>
+<p>另外，key 作為唯一值時，對 vue 的底層虛擬 DOM 渲染也有幫助(涉及 diff 演算法)，當擁有唯一值時，即便陣列或物件中加入新的資料，vue 可以避免重複渲染的問題，對效能提升有幫助。</p>
+<h3 id="component-之間有哪些傳遞資料的方式？"><a href="#component-之間有哪些傳遞資料的方式？" class="headerlink" title="component 之間有哪些傳遞資料的方式？"></a>component 之間有哪些傳遞資料的方式？</h3><p>狹義來說主要是父子組件傳值、同層級傳值、全域管理：</p>
+<ul>
+<li>父子組件，通過 props 接收父組件傳下來的資料，同時也能透過 @emit 來呼叫父組件執行函式。</li>
+<li>兄弟組件，同層級組件可以透過 EventBus 傳遞資料。</li>
+<li>Vuex 是常見的專案狀態管理，如果有多個組件需要複用的狀態或是函式，可以統一由 Vuex 來管理。</li>
+</ul>
+<p>廣義來說，我會認為還有兩種狀況也算是傳遞資料的方式：</p>
+<ul>
+<li>localStorage 或是 sessionStorage 存放的資料，組件間也是能調用。</li>
+<li>router.push 中例如 query 或是 params 也是可以帶入參數，等同是傳遞資料給進入的下一個組件。</li>
+</ul>
+<h3 id="什麼是-Vue-use"><a href="#什麼是-Vue-use" class="headerlink" title="什麼是 Vue.use()?"></a>什麼是 Vue.use()?</h3><p>如果我們有安裝依賴在 Vue 的套件，可以透過 Vue.use() 的方法，把套件註冊到全域環境，讓其他 component 可以直接使用，而不需要每頁都 import 該插件。</p>
+<h3 id="Vue-amp-jQuery-兩者間的差異性？"><a href="#Vue-amp-jQuery-兩者間的差異性？" class="headerlink" title="Vue &amp; jQuery 兩者間的差異性？"></a>Vue &amp; jQuery 兩者間的差異性？</h3><ul>
+<li><p>DOM 操作：</p>
+<ul>
+<li>jQuery：在 jquery 的時代，雖然已經簡化了對 DOM 操作的寫法，但依然需要頻繁操作 DOM 來改變頁面狀態。</li>
+<li>Vue：但對 Vue 來說，一方面過往的 DOM 操作已改由框架來處理，另一方面結合模板語法，data 和 template 可以分離的很乾淨，當我透過 methods 改變 data 內的資料時，template 也就隨之重新渲染，再配合語法糖綁上 v-bind，當狀態改變時，也可以隨之改動 css 樣式。更重要的是，寫法上有固定的格式，依循官方的規則，這樣對團隊來說，更容易維護與上手。</li>
+</ul>
+</li>
+<li><p>歷史沉澱：但這並不代表，jQuery 沒有優點，畢竟它本身有漫長的歷史積累，所以如果是撰寫 Landing Page 之類的宣傳頁面，需要使用各種特效或動畫時，jQuery 有非常多成熟的解決方案，這是 Vue 現階段無法比得上的，再加上 SEO 的考慮因素下，這一類型宣傳頁面反而不適合使用 Vue。</p>
+</li>
+</ul>
+<h3 id="Angular-vs-React-vs-Vue-差異性？"><a href="#Angular-vs-React-vs-Vue-差異性？" class="headerlink" title="Angular vs React vs Vue 差異性？"></a>Angular vs React vs Vue 差異性？</h3><ul>
+<li><p>結構：雖然三者都被稱為框架，但從嚴謹角度來看，Angular 可以被稱為框架，google 的團隊提供了各種內置 API，包含表單驗證、狀態管理、路由等等功能，而另外兩者更接近為 Library，React 早期幾乎是什麼都沒有提供，後來 React Router、Redux 都是社群貢獻的，Vue 則是提供一部分，包括狀態管理、路由。</p>
+</li>
+<li><p>語法：Angular 除了有自己的指令外，加上使用 TypeScript，目前查到開發經驗，似乎寫起來很繁瑣(我自己本身沒寫過)。React 有一大特色使用 JSX 語法，我自己下班時間練手有寫過一段時間，坦白說非常不適應，因為揉合了 HTML、CSS、JS，讓程式碼的縮排與括號變成非常大串，這對已經習慣 pug + template 分離的我來說，非常需要適應。相對於 React 對 ES6 掌握要很熟練，Vue 的開發允許 ES5 混合 ES6，再加上 Vue 的官方提供了相當數量的指令，很多時候更像是用 Vue 在做功能而非 JS。</p>
+</li>
+<li><p>學習成本：Vue 是遠勝過後兩者，React 固然最自由，但幾乎多數功能都要求開發者自行處理，因此非常考驗開發者功力，而 angular 則是受限於自身體積龐大，需要相當的時間來掌握使用。</p>
+</li>
+</ul>
+<h3 id="如何實作-Vue-Router-切換頁面時加入-Loading-效果？"><a href="#如何實作-Vue-Router-切換頁面時加入-Loading-效果？" class="headerlink" title="如何實作 Vue Router 切換頁面時加入 Loading 效果？"></a>如何實作 Vue Router 切換頁面時加入 Loading 效果？</h3><p>先準備 v-loading 的 component，接著在 Vuex 存放 Loading 預設初始值(false)，回到 vue-router 在 beforeEach 和 afterEach 都對 vuex 的 mutations 進行 commit，並透過 payload 先後傳 true 和 false(可以設一點延遲時間)，最後回到 app.vue 將 component 掛上去。</p>
+<h3 id="曾經-Vue-遇到的難點以及如何解決？"><a href="#曾經-Vue-遇到的難點以及如何解決？" class="headerlink" title="曾經 Vue 遇到的難點以及如何解決？"></a>曾經 Vue 遇到的難點以及如何解決？</h3><p>需求為顯示用戶的金流進出明細，是一個三層嵌套的下拉選單，第三方套件已經找到，但是後端只願意給一個物件，裡面包了所有金流明細的數字代碼。</p>
+<p>第一階段，因為開發時間不足，所以採用最笨的方法，一個個抽出來，再重新 push 進對應的陣列。<br>第二階段，進行重構，先透過 for in 的方式遍歷 object 轉為 array，再透過 map() 方法，重組並建立好第二層陣列的結構，接著在其中重組並建立好第三層陣列，再回到第二層處理陣列，並把整理好的第三層陣列放入第二層的 children 中，最後回到第一層，把第二層陣列放到第一層的 children。</p>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>Vue.js</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：程式碼實作</title>
+    <url>/2019/06/07/interview-code/</url>
+    <content><![CDATA[<p>程式碼實作考題，基本上是躲不了，但有些情境可能在考試當下，會出現大腦當機的狀況，所以就只能多練習相關題型，才能順利解題。不過 LeetCode 這一塊我還太弱，只能慢慢補。</p>
+<a id="more"></a>
+<h3 id="foo-的值是什麼？"><a href="#foo-的值是什麼？" class="headerlink" title="foo 的值是什麼？"></a>foo 的值是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var foo &#x3D; 10 + &#39;20&#39;;</span></pre></td></tr></table></figure>
+<p>答案：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1020</span></pre></td></tr></table></figure>
+<p>解法：<br>number + string =&gt; string 呈現，若兩者都是 number，則進行計算。</p>
+<h3 id="實作符合下面的函式"><a href="#實作符合下面的函式" class="headerlink" title="實作符合下面的函式"></a>實作符合下面的函式</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">plus(2, 5); &#x2F;&#x2F; 7</span></pre></td></tr><tr><td class="code"><pre><span class="line">add(2)(5); &#x2F;&#x2F; 7</span></pre></td></tr></table></figure>
+<p>第一題是一般函式的計算</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function plus (val, val2) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return val + val2</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(plus(2, 5))</span></pre></td></tr></table></figure>
+<p>第二題不是一般的寫法，解法需使用到閉包的部分</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function add (val) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return function (subVal) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return val + subVal</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(add(2)(5))</span></pre></td></tr></table></figure>
+
+<h3 id="下面的-statement-陳述式-會回傳什麼？"><a href="#下面的-statement-陳述式-會回傳什麼？" class="headerlink" title="下面的 statement(陳述式) 會回傳什麼？"></a>下面的 statement(陳述式) 會回傳什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;Hello World!&quot;.split(&quot;&quot;).reverse().join(&quot;&quot;);</span></pre></td></tr></table></figure>
+<p>答案：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;!dlroW olleH&quot;</span></pre></td></tr></table></figure>
+<p>解法：<br>split() 會將 string 進行分割，若有給定參數，則會根據該參數進行拆分並重組成陣列，譬如空格或是逗號，但因為這邊沒有，所以會根據每個字元拆，得到拆完的結果後，透過 reverse() 將陣列中的資料進行反轉，最後再透過 join() 將陣列中所有元素加入一個 string。</p>
+<h3 id="window-foo-的值是什麼？"><a href="#window-foo-的值是什麼？" class="headerlink" title="window.foo 的值是什麼？"></a>window.foo 的值是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">( window.foo || ( window.foo &#x3D; &quot;bar&quot; ) );</span></pre></td></tr></table></figure>
+<p>答案：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bar</span></pre></td></tr></table></figure>
+<p>解法：<br>window.foo 在邏輯運算中，僅有一側被賦值，自然使用 bar，除非兩側都賦值，|| 判斷才會使用第一組。</p>
+<h3 id="下面-foo-length-的值是什麼？"><a href="#下面-foo-length-的值是什麼？" class="headerlink" title="下面 foo.length 的值是什麼？"></a>下面 foo.length 的值是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var foo &#x3D; [];</span></pre></td></tr><tr><td class="code"><pre><span class="line">foo.push(1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">foo.push(2);</span></pre></td></tr></table></figure>
+<p>答案：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2</span></pre></td></tr></table></figure>
+<p>解法：<br>宣告空陣列，依序透過 push() 塞值，array 中會拿到兩個元素，長度為2</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(foo)        &#x2F;&#x2F; [1, 2]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(foo.length) &#x2F;&#x2F; 2</span></pre></td></tr></table></figure>
+
+<h3 id="下面這段會印出什麼？"><a href="#下面這段會印出什麼？" class="headerlink" title="下面這段會印出什麼？"></a>下面這段會印出什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(&#39;one&#39;);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">setTimeout(function() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#39;two&#39;);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;, 0);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(&#39;three&#39;);</span></pre></td></tr></table></figure>
+<p>答案：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">one</span></pre></td></tr><tr><td class="code"><pre><span class="line">three</span></pre></td></tr><tr><td class="code"><pre><span class="line">two</span></pre></td></tr></table></figure>
+<p>解法：<br>JS 本身為單執行緒，遇到同步工作時會依序執行，但非同步工作則會先丟到 task queue(任務等待序列)中，直到瀏覽器所有工作執行完，才會回頭來檢視 task queue。</p>
+<h3 id="下面的兩個-alert-的結果會是什麼？"><a href="#下面的兩個-alert-的結果會是什麼？" class="headerlink" title="下面的兩個 alert 的結果會是什麼？"></a>下面的兩個 alert 的結果會是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var foo &#x3D; &quot;Hello&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">(function() &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  var bar &#x3D; &quot; World&quot;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  alert(foo + bar);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)();</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">alert(foo + bar);</span></pre></td></tr></table></figure>
+<p>答案：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Hello World &#x2F;&#x2F; 第一個 alert</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">bar is not defined &#x2F;&#x2F; 第二個 alert</span></pre></td></tr></table></figure>
+<p>解法：<br>第一個 alert 的結果正常，因為 foo 可以找到全域變數，而 bar 則使用函式作用域內的變數。<br>第二個 alert 時，foo 全域變數仍然存在，但是 bar 在函式內的變數已被銷毀，所以會變成 bar is not defined。</p>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：網際網路協議</title>
+    <url>/2019/06/06/interview-https/</url>
+    <content><![CDATA[<p>網際網路協議相關的問題，其實會比較偏向計算機原理，雖然表面上看前端開發沒有直接關係，但實際上網站的運作與效能，都脫離不了網路協議，所以自然也躲不掉相關的考題。</p>
+<a id="more"></a>
+<h3 id="從輸入網址列到渲染畫面，過程經歷了什麼事？"><a href="#從輸入網址列到渲染畫面，過程經歷了什麼事？" class="headerlink" title="從輸入網址列到渲染畫面，過程經歷了什麼事？"></a>從輸入網址列到渲染畫面，過程經歷了什麼事？</h3><ul>
+<li><p>第一階段：確認 IP 地址是否存在<br>我們透過瀏覽器輸入一段網址，瀏覽器會根據這一串網址去呼叫 DNS Server，讓 DNS 去確認這串網址對應的 IP 位置，如果沒找到就 gg，但為了後面的內容，所以這邊是一定要找到的。DNS 找到 IP 後會回傳給瀏覽器，瀏覽器開始連線到這個網址，接著進入第二階段</p>
+</li>
+<li><p>第二階段：網路請求資料<br>這個階段基本可以理解為前端(Client)向後端(Server)拿資料。這個流程挺複雜的，我的理解拆為以下三階段：</p>
+<ul>
+<li>打招呼：俗稱三次握手，Client 向 Server 詢問是否存在，Server 回應我在，接著 Client 宣告我準備要執行傳資料的動作囉。</li>
+<li>傳送資料(req &amp; res)：前端透過某個 method 向後端拿資料，這邊用 get，後端送封包過去後，再傳一組成功的狀態碼(200)給前端。</li>
+<li>結束關閉：Client 向 Server 通知準備關閉，Server 向 Client 說 ok 我也要關閉了，並進行關閉，接著 Client 也進行關閉，這階段俗稱四次揮手。</li>
+</ul>
+</li>
+<li><p>第三階段：取得資料，開始進行頁面渲染<br>首先 HTML 和 CSS 會優先執行，前者開始搭建整個頁面 DOM Tree，後者則是提前準備好所有樣式，接著來到 style 階段，將樣式指到對應的元素，Layout 開始排列頁面位置，最終完成頁面渲染。至於 JS，為了確保使用者最低限度要能看到靜態頁面，所以依慣例我們會將 JS 的執行順序放至 body 底部，確保它最後執行。</p>
+</li>
+<li><p><a href="https://w3c.hexschool.com/blog/8d691e4f" target="_blank" rel="noopener">詳細圖解</a></p>
+</li>
+</ul>
+<h3 id="什麼是瀏覽器的同源策略？另外跨域問題，如何解決？"><a href="#什麼是瀏覽器的同源策略？另外跨域問題，如何解決？" class="headerlink" title="什麼是瀏覽器的同源策略？另外跨域問題，如何解決？"></a>什麼是瀏覽器的同源策略？另外跨域問題，如何解決？</h3><p>當 ajax 發出請求時，瀏覽器會要求當前網頁與 server，基於安全性必須同源，也就是協議(http、https)、域名(abc.com)、端口(8080)，三者皆必須一致，只要任一者不同，就是不同源，倘若三者相同則為同源(符合同源策略)，同源策略僅限瀏覽器，後端(server)無此限制。當然，如果是 cdn 引入 js 的框架，或是 css 引入圖片網址，可以無視這個規則。<br>當非同源時，前端發出請求時，需要進行跨域，而任何跨域行為，理當經過 server 端允許，若未經允許即可實現跨域，代表網站本身已存在重大漏洞。解決方案，主要有三種，JSONP 和 CORS 以及代理，JSONP 透過 script 導入目前比較少使用，CORS 則是由後端處理，前端直接使用，代理則需要特定設置(vue =&gt; vue.config.js)。<br>當然，如果是 cdn 引入 js 的框架，或是 css 引入圖片網址，可以無視這個規則。任何跨域行為，都應該經過 server 端允許，若未經允許即可實現跨域，代表網站本身已存在重大漏洞。</p>
+<h3 id="CORS-是什麼，它解決了什麼問題？"><a href="#CORS-是什麼，它解決了什麼問題？" class="headerlink" title="CORS 是什麼，它解決了什麼問題？"></a>CORS 是什麼，它解決了什麼問題？</h3><p>前端的一種跨域方式，由 server 端設置(通常是由後端設置在 http header)，前端可以直接使用，也可以只允許特定網址使用。</p>
+<h3 id="Proxy-代理"><a href="#Proxy-代理" class="headerlink" title="Proxy 代理"></a>Proxy 代理</h3><p>得通過 nginx server 的設定來達成，以 Vue 為例，在 vue.config.js 進行設定：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  devServer: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    host: &#39;localhost&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    port: 8080,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 當網址攔截到 &#x2F;api</span></pre></td></tr><tr><td class="code"><pre><span class="line">    proxy: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#39;&#x2F;api&#39;: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;&#x2F; 目標要指向哪個網址</span></pre></td></tr><tr><td class="code"><pre><span class="line">        target: &#39;https:&#x2F;&#x2F;www.xxx.com&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        changeOrigin: true,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#x2F;*</span></pre></td></tr><tr><td class="code"><pre><span class="line">          實務上，會遇到n個api，每一隻api路徑皆有所差別</span></pre></td></tr><tr><td class="code"><pre><span class="line">          為了統一攔截，因此虛擬化了一個路徑 &#x2F;api</span></pre></td></tr><tr><td class="code"><pre><span class="line">          但當轉發路徑時，才將這個虛擬化的路徑轉為空</span></pre></td></tr><tr><td class="code"><pre><span class="line">        *&#x2F;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        pathRewrite: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">          &#39;api&#x2F;&#39;: &#39;&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>代理的安全性較高，可以隱藏後端 server 的來源，同時前後端需要設定的東西也較少。</p>
+<h3 id="描述-cookies-localStorage-sessionStorage-的差別？"><a href="#描述-cookies-localStorage-sessionStorage-的差別？" class="headerlink" title="描述 cookies/localStorage/sessionStorage 的差別？"></a>描述 cookies/localStorage/sessionStorage 的差別？</h3><p>這三者都是前端在瀏覽器儲存的方式，cookie 是比較早期的做法，儲存的容量有限，只有 4KB，預設保存時效是瀏覽器關閉時就失效。一方面是本身儲存的容量小，另一方面因為會攜帶在 http 中，所以太多數據又會影響效能，所以大多不使用 cookie。</p>
+<p>但我個人此前有一個使用場景，業務推廣產品網址會帶有一組推廣碼，營運方希望在客戶成功註冊前，保存這組推廣碼24小時，我的解法是：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">當客戶透過推廣網址進入時註冊頁面時，立刻觸發保存當前時間(new Date())</span></pre></td></tr><tr><td class="code"><pre><span class="line">接下來利用 getTime() 來取從紀元時間到當前時間的毫秒數，再往後加上 24 小時的毫秒數</span></pre></td></tr><tr><td class="code"><pre><span class="line">等於建立了一個時間戳記，再把它存到 document.cookie 的 expires，達到希望失效時間的目的。</span></pre></td></tr></table></figure>
+
+<p>localStorage 和 sessionStorage 都是從 HTML5 開始提供的 API，儲存的容量大 5MB，也不會對效能產生問題，所以目前已用來取代 cookie，但因為兩者使用 API 相同，前者永久保存除非手動清除，後者則一樣是關閉瀏覽器即失效，因此多用前者居多。除了常見於用來保存 login 的 token，我個人還有用過一個情境在於，當網站透過 i18n 建立多語系功能時，客戶第一次進入網站時，前台會使用後台預設的語系，但當客戶切換語系後，會透過 localStorage 來保存客戶切換的語系，避免下次進入時失效，畢竟我們無法判斷客戶下次登入網站時間，所以這邊採用永久保存會是比較好的做法。</p>
+<ul>
+<li><a href="https://medium.com/@bebebobohaha/cookie-localstorage-sessionstorage-%E5%B7%AE%E7%95%B0-9e1d5df3dd7f" target="_blank" rel="noopener">詳細圖解</a></li>
+</ul>
+<h3 id="請簡單解釋-RESTful-API"><a href="#請簡單解釋-RESTful-API" class="headerlink" title="請簡單解釋 RESTful API"></a>請簡單解釋 RESTful API</h3><p>表現層狀態轉移…嗯，這種不是人話的東西，基本上是看不懂的。當然撰寫 RESTful API 是有固定的風格設計，譬如使用名詞而不盡量不使用動詞之類的。但對前端來說，應該可以拆成三部分來理解，查看後端提供的 API 文件：</p>
+<ol>
+<li>url =&gt; 告訴前端你請求的是什麼，全部的產品列表或是單一商品的細節</li>
+<li>method =&gt; 使用哪一種方法，get(獲取)，post(送出增加)，delete(刪除)，put(更改)</li>
+<li>status code =&gt; 拿到的 api 結果為何？成功或失敗，細部原因是什麼</li>
+</ol>
+<h3 id="請解釋一下-TCP-和-UDP"><a href="#請解釋一下-TCP-和-UDP" class="headerlink" title="請解釋一下 TCP 和 UDP"></a>請解釋一下 TCP 和 UDP</h3><p>本質上都是網路通訊協議，也都是通過封包來傳送資料。</p>
+<ul>
+<li><p>UDP：雖然本質雷同，但 UDP 可以理解為最低程度的傳送資料方式，它只管送資料，不在意接收方是否有接受到，所以也是一種不可靠傳輸，同時接收方也可能出現資料到達時間不一致的問題。如果是做直播類產品，可能會考慮採用 UDP，因為 UDP 傳送資料速度快，不需要和 TCP 一樣進行反覆確認的握手揮手機制，在低速弱網環境下，使用體驗更好，而且丟失的封包是可以承受的。另外就是，因為傳送快加上不需要握手，所以漏洞反而較少，DDOS 很難攻擊(但仍有攻擊手段 flood)。</p>
+</li>
+<li><p>TCP：最大宗的通用協議，他的運作機制嚴謹可靠且穩定，所以又被稱為可靠性傳輸，需要拆解成三階段來理解連線、傳輸、斷線。</p>
+<ul>
+<li><p>一、打招呼階段(三次握手)：</p>
+<ol>
+<li>前端先向 server 端 say hello，確定 server 端是否存在</li>
+<li>server 端回應存在</li>
+<li>前端接著會通知說準備傳送資料</li>
+</ol>
+</li>
+<li><p>二、傳送資料階段：前端會透過某個 method 來送出請求，例如 get。server 端接收到請求後，不管成功與否，會回傳一段資料和狀態碼(status code)給前端，這時前端就能判斷請求有沒有成功。</p>
+</li>
+<li><p>三、說再見階段(四次分手)：</p>
+<ol>
+<li>前端會先通知 server 端準備分手</li>
+<li>server 端收到通知後，會先回傳可以理解的訊息</li>
+<li>接著 server 端會再通知一個執行分手動作的訊息</li>
+<li>前端回傳 ok(此處 server 正式分手斷線)，而前端大約 4 分鐘後才會釋出資源正式斷線</li>
+</ol>
+</li>
+</ul>
+<p>這麼嚴謹的機制帶來的就是速度慢，效率不佳，消耗的資源也多，尤其三次握手階段，容易出現漏洞被攻擊。</p>
+</li>
+</ul>
+<h3 id="簡單說幾個常見的-http-狀態碼？"><a href="#簡單說幾個常見的-http-狀態碼？" class="headerlink" title="簡單說幾個常見的 http 狀態碼？"></a>簡單說幾個常見的 http 狀態碼？</h3><ul>
+<li><p>1XX =&gt; server 端已收到請求，需要請求者繼續執行操作</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">100 &#x2F;&#x2F; 臨時性的狀態碼，client 仍在繼續發送請求</span></pre></td></tr><tr><td class="code"><pre><span class="line">101 &#x2F;&#x2F; server 端依據 client 端的請求切換協議(只能向上切換)</span></pre></td></tr></table></figure>
+</li>
+<li><p>2XX =&gt; 請求已成功，server 端成功接收並執行處理</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">200 &#x2F;&#x2F; server 端回傳成功 status code</span></pre></td></tr></table></figure>
+</li>
+<li><p>3XX =&gt; 請求重定向網址，需要進一步的操作來完成請求</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">301 &#x2F;&#x2F; 請求的網頁或資源已被移到新的 URL，之後的請求都必須使用新的 URL</span></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li><p>4XX =&gt; client 端出現錯誤</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">400 &#x2F;&#x2F; 前端直接送錯請求，server 端無法解析處理</span></pre></td></tr><tr><td class="code"><pre><span class="line">401 &#x2F;&#x2F; 缺少 Token 或是認證失敗，需要登入的頁面，常會進行這個狀態阻擋</span></pre></td></tr><tr><td class="code"><pre><span class="line">403 &#x2F;&#x2F; 認證已完成，但權限不足被擋住</span></pre></td></tr><tr><td class="code"><pre><span class="line">404 &#x2F;&#x2F; server 端找不到請求的網頁，或者是找不到資源</span></pre></td></tr></table></figure>
+</li>
+<li><p>5XX =&gt; server 端出現錯誤</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">500 &#x2F;&#x2F; server 端遇到錯誤(通常是掛了)</span></pre></td></tr><tr><td class="code"><pre><span class="line">502 &#x2F;&#x2F; 網關或代理錯誤，通常是某個服務或功能爆了</span></pre></td></tr><tr><td class="code"><pre><span class="line">503 &#x2F;&#x2F; server 暫時無法使用(常用於停機維修)</span></pre></td></tr><tr><td class="code"><pre><span class="line">504 &#x2F;&#x2F; 一直沒收到請求，也就是所謂的 api 請求超時</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="http-狀態碼-401-和-403-兩者有什麼區別？"><a href="#http-狀態碼-401-和-403-兩者有什麼區別？" class="headerlink" title="http 狀態碼 401 和 403 兩者有什麼區別？"></a>http 狀態碼 401 和 403 兩者有什麼區別？</h3><ul>
+<li><p>401：<br>代表認證錯誤，可能缺少 Token 或是認證失敗，如果確定程式碼正確，那有時候可能是偶發性的臨時狀況，通常這時候會請用戶直接重整頁面。</p>
+</li>
+<li><p>403：<br>則是認證本身已經成功，只是目前這個用戶沒有權限去訪問想進入的頁面，所以通常會看到頁面通知說，請聯繫管理員或客服之類的訊息。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>HTTP</tag>
+        <tag>HTTPS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：ES6</title>
+    <url>/2019/06/05/interview-es6/</url>
+    <content><![CDATA[<p>ES6 的面試問題，更多會是原生 JS 問題延伸過來，所以在回答問題上，可以更靈活結合兩者來答覆，譬如說，當問到 this 的指向問題時，先回答 ES5 的情境，再延伸論述 ES6 加上的 arrow function 的狀況，可以讓答案更為完整。但目前 ES6 的問題整理較少，有空我就會盡量補充。</p>
+<a id="more"></a>
+<h3 id="定義-var、let、const"><a href="#定義-var、let、const" class="headerlink" title="定義 var、let、const"></a>定義 var、let、const</h3><p>在 ES6 中，新增了兩種變數宣告方式 let、const，傳統的 var 容易污染到全域變數，因此在 ES6 調整了變數應用在作用域的範圍，通常是以 function 為分界，使用 let 在 function 內宣告變數後，可以避免離開 function 仍被污染，另一方面也可以再次賦值。const 定義為常數，不能重複賦值，而且也要求一定要賦值。</p>
+<h3 id="僅宣告-const-a-會出現什麼狀況？"><a href="#僅宣告-const-a-會出現什麼狀況？" class="headerlink" title="僅宣告 const a 會出現什麼狀況？"></a>僅宣告 const a 會出現什麼狀況？</h3><p>const 作為一種常數宣告，不允許未賦值的情況，會跳出以下錯誤：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Uncaught SyntaxError: Missing initializer in const declaration</span></pre></td></tr></table></figure>
+<p>但是 var、let 可以接受未賦值時，預設值為 undefined</p>
+<h3 id="請簡單說明-arrow-function？"><a href="#請簡單說明-arrow-function？" class="headerlink" title="請簡單說明 arrow function？"></a>請簡單說明 arrow function？</h3><p>最簡單的說法，更簡短的函式宣告方式，省略了 function 改用 =&gt; 取代，但除了這點外，語法特性上，若參數僅有一個的情況下可以省略()，另外若 return 只有一行的狀況下可以省略 {}，但這邊是看團隊的 coding style，我個人不習慣太省略的寫法。</p>
+<p>另外需要注意，在 ES6 中使用 arrow function 的狀況下，this 會被全部指向全域變數(window)。</p>
+<h3 id="ES5-和-ES6-的差異？"><a href="#ES5-和-ES6-的差異？" class="headerlink" title="ES5 和 ES6 的差異？"></a>ES5 和 ES6 的差異？</h3><ul>
+<li><p>作用域的區分更為嚴謹，新增了兩種宣告變量的方式，避免污染問題。</p>
+</li>
+<li><p>arrow function：讓函式的寫法變得更為簡短，雖然極短可以在只有一行回傳時，可以縮減大括號({})，但我不考慮這樣寫，維護和閱讀都很不容易。另外也讓 this 的指向問題變得更為單純，全部指向全域變數(window)。</p>
+</li>
+<li><p>字符串模板，讓程式碼更為簡潔，避免過往的頻繁 ‘’ + ‘’。</p>
+</li>
+<li><p>非同步操作：提供 Promise 方法來改善過往的 callback 的問題，但會建議和 async/await 一起搭配，否則也是會容易出現 .then() 串下去的窘境。</p>
+</li>
+<li><p>解構賦值讓變數交換簡化，同時書寫起來更為方便。</p>
+</li>
+<li><p>class 會是比較重要的概念，雖然嚴格來說還不能稱為物件導向，但應該算是近似了。透過 class 的方式搭配 constructor 建立物件(這個物件就是原型)。當我 new 一個新的物件時，同時會傳屬性進去，再透過 constructor 內進行賦值，接著就可以執行我想要執行的函式。而且當原型建立後，我可以在外面宣告數個 new 物件，分別傳不同屬性進去。</p>
+</li>
+<li><p>模組化規劃寫法，import 導入，export 導出。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>ES6</tag>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：JavaScript</title>
+    <url>/2019/06/04/interview-js/</url>
+    <content><![CDATA[<p>關於原生 JavaScript 的一些面試問題彙整，當然網路上可以找到一海票問題，但目前就是依序整理出答案才會列出來(雖然有些答案依然不夠完善)。後續大概每 20 題就整理一個 page，方便自己日後查看。</p>
+<a id="more"></a>
+<h3 id="什麼是-DOM"><a href="#什麼是-DOM" class="headerlink" title="什麼是 DOM ?"></a>什麼是 DOM ?</h3><p>我們所撰寫的 HTML 文件，瀏覽器會解析成樹狀結構，父層包覆子層形成一個 document 文件，每一個元素都可以理解為物件，DOM 操作就是透過 JS 去操作這些物件去執行行為。同時為了避免操作過程中，污染相同屬性的元素，譬如兩個 p 標籤，所以我們會透過 id 或 class 來指定操作：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">document.getElementById(id)</span></pre></td></tr><tr><td class="code"><pre><span class="line">document.querySelector(.className)</span></pre></td></tr></table></figure>
+
+<h3 id="為什麼我們要將-JS-檔案放在-body-尾端？"><a href="#為什麼我們要將-JS-檔案放在-body-尾端？" class="headerlink" title="為什麼我們要將 JS 檔案放在 body 尾端？"></a>為什麼我們要將 JS 檔案放在 body 尾端？</h3><p>瀏覽器在解析 HTML 文件時，如果遇到 script 標籤，會先將 JS 檔案執行完畢才繼續執行解析 HTML。如果 JS 內容龐大，那對頁面來說載入時間就相對拉長，這是很不利於使用體驗的，更糟的是，如果 JS 執行過程中出錯，有很大機率會卡住呈現空白頁面。</p>
+<p>因此基於瀏覽者的使用體驗，我們必須先確保最低的使用體驗，優先讓靜態 HTML 結構搭建完成，再執行動態的 JS。</p>
+<h3 id="請問什麼是-this？"><a href="#請問什麼是-this？" class="headerlink" title="請問什麼是 this？"></a>請問什麼是 this？</h3><p>this 雖然簡單來說就是函式內的執行情境(function context)，但需要拆成 ES5 和 ES6 兩種狀況來解釋。 </p>
+<p>在 ES5 的時候，是根據 function 內的動作來決定 this 指向的對象，如果 function 沒有做其他處理，那就會自動往外尋找全域變數。e.g.：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var myName &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(this.name) &#x2F;&#x2F; 這邊的 this 向函式外尋找變數</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">myName() &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure>
+<p>但如果 function 被賦值給物件，那就會向物件內尋找變數。e.g：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var myName &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(this.name)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var newName &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  name: &#39;Nini&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">newName.myName &#x3D; myName</span></pre></td></tr><tr><td class="code"><pre><span class="line">newName.myName() &#x2F;&#x2F; 印出 Nini</span></pre></td></tr></table></figure>
+<p>但如果 function 的執行被綁在 DOM 元素上，譬如 click 事件，那麼 this 就會被指向 DOM 上面相同名稱的變數。</p>
+<p>但到了 ES6 的環境下，this 的指向不再這麼複雜，透過 arrow function 的自動綁定的特性，this 一律指向全域變數(window)。</p>
+<h3 id="簡單說明立即函式-IIFE-。"><a href="#簡單說明立即函式-IIFE-。" class="headerlink" title="簡單說明立即函式(IIFE)。"></a>簡單說明立即函式(IIFE)。</h3><p>寫法格式如下，用小括號包裹，並在最後額外加上一個 ()。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 兩種寫法都可以</span></pre></td></tr><tr><td class="code"><pre><span class="line">(function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(1)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;())</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">(function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(2)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)()</span></pre></td></tr></table></figure>
+<p>他有兩個特點，一是會被立即執行，二是不管對立即函式是否命名，它都無法在函式再次被執行。基於函式作用域會銷毀變數的特性，立即函式執行完畢後，也不會保留其作用域內的變數，因此常用於限制變數的作用域。立即函式可以透過結尾 () 傳參，再加上其也是表達式的特性，因此也可以透過變數，接受它 return 的結果。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var test &#x3D; (function (val) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return val</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)(&#39;params&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(test) &#x2F;&#x2F; 印出 params</span></pre></td></tr></table></figure>
+<p>另外，因為立即函式的特性，連續兩個立即函式，會造成 ASI(自動補全分號)的規則沒有運作。因此在連續兩組立即函式的狀況下，需要自己補上分號。立即函式在一般開發比較少見，以我個人開發經驗是完全沒用過，但在框架的底層程式碼中，立即函式是有被使用的，通常用於保證變數有被正常掛載到全域變數上。</p>
+<h3 id="請簡單說明-JS-的原型。"><a href="#請簡單說明-JS-的原型。" class="headerlink" title="請簡單說明 JS 的原型。"></a>請簡單說明 JS 的原型。</h3><p>我們使用原型的目的，在於建立一個樣板或者說藍圖，透過這個樣板，我們放入屬性或方法，這樣可以快速建立 instance(實體)，e.g.：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr></table></figure>
+<p>另外，prototype 也可以優化 function 佔用的記憶體空間，e.g.：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.say &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;$&#123;this.name&#125; is a $&#123;this.type&#125; say Hi!&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(boy.say &#x3D;&#x3D;&#x3D; girl.say) &#x2F;&#x2F; false</span></pre></td></tr></table></figure>
+<p>雖然他們呼叫同一個函式，但卻各自佔用一個空間，在專案小的時候，可能差異不大，但大型專案或多或少會影響效能，因此可以透過 function prototype 來優化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">Person.prototype.say &#x3D; function () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#96;$&#123;this.name&#125; is a $&#123;this.type&#125; say Hi!&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(boy.say &#x3D;&#x3D;&#x3D; girl.say) &#x2F;&#x2F; true</span></pre></td></tr></table></figure>
+
+<h3 id="簡單聊一下繼承。"><a href="#簡單聊一下繼承。" class="headerlink" title="簡單聊一下繼承。"></a>簡單聊一下繼承。</h3><ul>
+<li>ES5 的寫法，使用 Object.create() e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person (name, type) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.name &#x3D; name</span></pre></td></tr><tr><td class="code"><pre><span class="line">  this.type &#x3D; type</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var boy &#x3D; new Person(&#39;pitt&#39;, &#39;boy&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">var girl &#x3D; new Person(&#39;kumi&#39;, &#39;girl&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var man &#x3D; Object.create(boy)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(man)</span></pre></td></tr></table></figure>
+對 man 這個變數來說，它繼承到的原型 Person 只是一個空物件，但因為原型練的特性，他會向上找 <code>__proto__</code> 的內容，這時候就會找到屬性與方法，e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(man.name) &#x2F;&#x2F; pitt</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(man.type) &#x2F;&#x2F; boy</span></pre></td></tr></table></figure></li>
+<li>在 ES6 中引入新的寫法 class，e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Player &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用 function constructor (建構式)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (playerName, hp) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.playerName &#x3D; playerName</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.hp &#x3D; hp</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  playerStatus () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;玩家名稱：$&#123;this.playerName&#125;，玩家血量：$&#123;this.hp&#125;&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var Pitt &#x3D; new Player(&#39;Pitt&#39;, 200)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Pitt.playerStatus()</span></pre></td></tr></table></figure></li>
+<li>子類別也可以透過 extends &amp;&amp; super 去繼承父類別的方法與屬性，e.g.：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; father</span></pre></td></tr><tr><td class="code"><pre><span class="line">class Player &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#x2F;&#x2F; 使用 function constructor (建構式)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (playerName, hp) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.playerName &#x3D; playerName</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.hp &#x3D; hp</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  playerStatus () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;玩家名稱：$&#123;this.playerName&#125;，玩家血量：$&#123;this.hp&#125;&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">var Pitt &#x3D; new Player(&#39;Pitt&#39;, 200)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Pitt.playerStatus()</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; son</span></pre></td></tr><tr><td class="code"><pre><span class="line">class BeginnerPlayer extends Player &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (playerName, hp, job) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    super(playerName, hp)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    this.job &#x3D; job</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  playerJob () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    console.log(&#96;玩家：$&#123;this.playerName&#125;，血量：$&#123;this.hp&#125;，初始職業為$&#123;this.job&#125;&#96;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var Lisa &#x3D; new BeginnerPlayer(&#39;Lisa&#39;, 300, &#39;初心者&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">Lisa.playerJob()</span></pre></td></tr></table></figure>
+但我在前職中幾乎沒有使用過。不過在 React 這個寫法是極其普遍的：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class Board extends React.Components &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  constructor (props) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    super(props)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="請說明什麼是閉包？"><a href="#請說明什麼是閉包？" class="headerlink" title="請說明什麼是閉包？"></a>請說明什麼是閉包？</h3><p>簡單說，就是當 JS 的 function 因為GC(垃圾回收)機制觸發，導致函式執行完後，內部作用域內容會被銷毀。這時可以透過子函式來保存我們需要的變數或內容。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function deposit () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  var cash &#x3D; 100</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return function (coin) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cash &#x3D; cash + coin</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return cash</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>因為子函式沒有被銷毀，加上範圍鍊的原則，子函式調用外面父函式的變數 cash，因此父函式作用域在閉包的狀況下被保存下來，同時後續宣告不同變數時，也可以獨立調用這一組函式而不用擔心互相污染。另外，變數宣告在父函式時，又可以避免變數宣告在全域的污染問題。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function deposit () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  var cash &#x3D; 100</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return function (coin) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    cash &#x3D; cash + coin</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return cash</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var PittPay &#x3D; deposit()</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 200</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 300</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(PittPay(100)) &#x2F;&#x2F; 400</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var KimiPay &#x3D; deposit()</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 300</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 500</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(KimiPay(200)) &#x2F;&#x2F; 700</span></pre></td></tr></table></figure>
+
+<h3 id="濫用閉包會造成的問題？"><a href="#濫用閉包會造成的問題？" class="headerlink" title="濫用閉包會造成的問題？"></a>濫用閉包會造成的問題？</h3><p>原本 JS 提供的垃圾回收機制，就是希望函式結束後銷毀變數，釋放出記憶體資源，但因為閉包的特性，會使變數被保存下來，自然記憶體也就一直存著變數，記憶體消耗變大，網頁效能也就越來越差。</p>
+<h3 id="簡單說明-Hoisting-變量提升-。"><a href="#簡單說明-Hoisting-變量提升-。" class="headerlink" title="簡單說明 Hoisting(變量提升)。"></a>簡單說明 Hoisting(變量提升)。</h3><p>JS 的運行可以拆解為兩階段，分別是創造與執行：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure>
+<p>在變數中，上面這段 code 在實際運作上，需要理解為</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name)</span></pre></td></tr></table></figure>
+<p>而函式又和變數不同，在創造階段就會指給記憶體，陳述式如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">getName()</span></pre></td></tr><tr><td class="code"><pre><span class="line">function getName () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#39;string&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>上面這段之所以能正常運行印出 console.log，而不會報錯，在於以下邏輯</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">function getName () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(&#39;string&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">getName()</span></pre></td></tr></table></figure>
+<p>但需要注意的是，這種 JS 提升的性質，在表達式時需要注意撰寫順序問題<br>創造階段 =&gt; 函式優先，其次才是變數</p>
+<ul>
+<li>success<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">相等於</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure></li>
+<li>error<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 undefined</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">相等於</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 undefined，還未拿到賦值，只拿到預設的 undefined</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr></table></figure></li>
+<li>e.g.<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">whoseName()</span></pre></td></tr><tr><td class="code"><pre><span class="line">function whoseName () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  if (name) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name &#x3D; &#39;Nini&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">相等於</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 創造</span></pre></td></tr><tr><td class="code"><pre><span class="line">function whoseName () &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(1, name) &#x2F;&#x2F; &#x3D;&gt; 拿到預設的 undefined，因此不往下走判斷</span></pre></td></tr><tr><td class="code"><pre><span class="line">  if (name) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name &#x3D; &#39;Nini&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">var name</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">whoseName()</span></pre></td></tr><tr><td class="code"><pre><span class="line">name &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(name) &#x2F;&#x2F; 印出 Pitt</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="簡單說明-JavaScript-為何需要非同步？簡單聊一下對-call-stack-跟-event-loop-的理解。"><a href="#簡單說明-JavaScript-為何需要非同步？簡單聊一下對-call-stack-跟-event-loop-的理解。" class="headerlink" title="簡單說明 JavaScript 為何需要非同步？簡單聊一下對 call stack 跟 event loop 的理解。"></a>簡單說明 JavaScript 為何需要非同步？簡單聊一下對 call stack 跟 event loop 的理解。</h3><p>JS 的本質是單線程的語言，因為它的工作之一就是修改瀏覽器的 DOM 結構，如果多線程但同時修改同一個節點，會讓整體情況變得相當複雜，所以為了避免複雜的狀況發生，因此才會採用單線程。而非同步就是因應單線程的背景，假設某個動作需要等待 2 秒，瀏覽器當然不可能等在原地 2 秒，因此會先執行所有同步性的工作，而所有非同步性的工作則先放到 task queue(任務等待序列)。瀏覽器先執行同步性工作的環境，可以理解為包在 call stack 區間，瀏覽器先依序把 call stack 內的工作執行完畢，當它檢查到 call stack 為空時，接著前往 task queue 中將等待序列的工作丟到 call stack 依序執行。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">瀏覽器檢查 call stack 是否為空</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x3D;&gt; 否 &#x3D;&gt; 回到 call stack 繼續執行</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x3D;&gt; 是 &#x3D;&gt; 進入 task queue 開始將非同步工作丟到 call stack 執行</span></pre></td></tr></table></figure>
+<p>這樣不斷循環的過程就是 event loop。e.g.：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(1);</span></pre></td></tr><tr><td class="code"><pre><span class="line">setTimeout(function() &#123; &#x2F;&#x2F; &#x3D;&gt; 這種非同步的函式就是 callback</span></pre></td></tr><tr><td class="code"><pre><span class="line">  console.log(2);</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;, 0);</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(3);</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 依序印出 1 3 2</span></pre></td></tr></table></figure>
+
+<h3 id="如何用-JS-原生方法實作回上頁的功能？"><a href="#如何用-JS-原生方法實作回上頁的功能？" class="headerlink" title="如何用 JS 原生方法實作回上頁的功能？"></a>如何用 JS 原生方法實作回上頁的功能？</h3><p>可以使用下述這兩種方法：</p>
+<ul>
+<li><p>回到上一頁</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">window.history.back</span></pre></td></tr></table></figure>
+</li>
+<li><p>指定回到上一頁，若傳入參數為 -2，則指定回到上二頁</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">window.history.go(-1)</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="簡單聊一下-JS-的事件傳遞機制。"><a href="#簡單聊一下-JS-的事件傳遞機制。" class="headerlink" title="簡單聊一下 JS 的事件傳遞機制。"></a>簡單聊一下 JS 的事件傳遞機制。</h3><p>經典名言</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">先捕獲，再冒泡</span></pre></td></tr></table></figure>
+<p>當我們點擊目標時，會先從 window 往下依序捕獲，直到到達 target，等到到達目標後，在逆向冒泡回去。這樣一個捕獲和冒泡，就是所謂的事件傳播。但需要注意，當到達目標時，沒有區分捕獲和冒泡，會根據程式碼撰寫的順序執行，直到脫離目標，再恢復回冒泡。</p>
+<p>取消事件傳遞機制 e.stopPropagation，而這整個循環機制就是一個事件委託。</p>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：CSS</title>
+    <url>/2019/06/03/interview-css/</url>
+    <content><![CDATA[<p>CSS 面試問題彙整。</p>
+<a id="more"></a>
+<h3 id="簡單聊聊-box-model"><a href="#簡單聊聊-box-model" class="headerlink" title="簡單聊聊 box-model"></a>簡單聊聊 box-model</h3><p>box-model 可以理解為前端工程師製作網頁的一種工具，透過它可以定義網頁上元素的位置，進而達到排版的目的。從內到外，環繞它身邊有三個語法，padding、border、margin。其中前兩者預設會影響到元素，因此在 box-sizing 會採用另一個模式 border-box，來避免不必要的計算。</p>
+<h3 id="請解釋-box-sizing-border-box-，並且說明使用它的好處？"><a href="#請解釋-box-sizing-border-box-，並且說明使用它的好處？" class="headerlink" title="請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？"></a>請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？</h3><p><img src="/images/box-sizing.png" alt=""><br>box-sizing =&gt; 意指，當元素計算寬度和高度時，border &amp; padding 會內含還是外加。<br>content-box =&gt; 預設的屬性，會使 border &amp; padding 添加額外的寬高(外加)。</p>
+<p>但前述這個設計，會使前端開發時被迫需要一直計算寬高，為了改善這個開發體驗，所以改用以下模式：<br>border-box =&gt; 將 border &amp; padding 塞進元素本身(內含)。<br>因此我們通常建議在初始化樣式時，加入到 <code>*</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  box-sizing: border-box;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://zh-tw.learnlayout.com/box-sizing.html" target="_blank" rel="noopener">圖片詳解</a></li>
+</ul>
+<h3 id="如何處理水平垂直置中？"><a href="#如何處理水平垂直置中？" class="headerlink" title="如何處理水平垂直置中？"></a>如何處理水平垂直置中？</h3><p>在 flexbox 語法中，處理這個需求並不困難：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  display: flex;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  justify-content: center;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  align-items: center;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>但如果不使用 flexbox 就會比較麻煩，首先水平置中，常用兩種方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  margin: 0 auto;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  text-align: center;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>至於垂直置中的方法有數種，但我這邊只記錄兩種(後續待補充)：</p>
+<ol>
+<li>line-height</li>
+<li>vertical-align: middle;</li>
+</ol>
+<p>但基本我個人現在只用 flexbox 語法來處理，未來會再加上 grid。</p>
+<h3 id="倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><a href="#倘若有不同的樣式表-stylesheets-，該如何整併到網站？" class="headerlink" title="倘若有不同的樣式表 (stylesheets)，該如何整併到網站？"></a>倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</h3><p>以 Vue 專案結構為例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- assets</span></pre></td></tr><tr><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - color.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - mixin.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - share.scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">    - style.scss</span></pre></td></tr></table></figure>
+<p>將共用顏色(color)和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
+<h3 id="如何處理專案-RWD"><a href="#如何處理專案-RWD" class="headerlink" title="如何處理專案 RWD"></a>如何處理專案 RWD</h3><ul>
+<li><p>共用參數<br>假設 UI/UX 為首次合作，因此會先討論網站的色系與主要的共用間距(當然如果是經驗豐富的 UI/UX，這一步可以忽略)，因為斷點、三輔一主的色系、常用間距，需先準備在 scss 作為共用參數。至於斷點，現在市面上，320px 尺寸的手機(iPhone5)，雖然市佔率已經相當低，但目前開發上仍會考慮保留，因此預期我的斷點會設計：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">360 &#x3D;&gt; 兼容小尺寸 android &amp; iPhone5</span></pre></td></tr><tr><td class="code"><pre><span class="line">480 &#x3D;&gt; 主流手機</span></pre></td></tr><tr><td class="code"><pre><span class="line">768 &#x3D;&gt; pad</span></pre></td></tr><tr><td class="code"><pre><span class="line">pc &#x3D;&gt; 這個沒有固定，視討論而定，通常1024(但其實也可以用 padPro來命名)</span></pre></td></tr></table></figure>
+</li>
+<li><p>UI Framework<br>主要分為兩種狀況，手刻或者用框架：</p>
+<ul>
+<li>手刻：目前主流是用 flexbox(目前兼容性已經極高了，哪怕是大陸冷門瀏覽器 QQ、UC)，至於 grid 目前來說，對移動裝置的支援還有疑慮，稍微舊一點的版本或是冷門瀏覽器都是不支援居多，還需要一點時間讓瀏覽器廠商跑步前進。<ul>
+<li><a href="https://hackmd.io/tlJAS8MqQ0qqJ0wh3sggsw" target="_blank" rel="noopener">瀏覽器市佔率</a></li>
+</ul>
+</li>
+<li>框架：這就看團隊的技術選型，根據團隊採用不同的前端框架，相應的框架也會有差異，以 Vue 來說，目前海外社群投票最大宗是 Vuetify，其次是 element-ui(但不支援 RWD，主要用於 CMS)，Tailwind CSS 正在追趕，Bootstrap 這我不太確定，需等 v5 之後的版本觀察。<ul>
+<li><a href="https://hackmd.io/mmVT15NkT8KZJTR5octHlA" target="_blank" rel="noopener">Tailwind CSS</a></li>
+</ul>
+</li>
+</ul>
+<p>至於更細節的開發，就視實際的設計稿而定，這邊不再贅述了。</p>
+</li>
+</ul>
+<h3 id="比較-CSS1、CSS2、CSS3-的區別？"><a href="#比較-CSS1、CSS2、CSS3-的區別？" class="headerlink" title="比較 CSS1、CSS2、CSS3 的區別？"></a>比較 CSS1、CSS2、CSS3 的區別？</h3><ul>
+<li><p>規範：<br>CSS1 年代比較偏向是為了更好維護 HTML 結構，將樣式抽離 tag，並賦予一些基礎屬性可以改變，譬如文字、文章內容、字體、顏色等等。<br>CSS2 改變了樣式表的概念，不在單純使用 table td 等元素，開始使用 div 或是 ul li 之類的 tag 來建立結構後，再透過 CSS 改變樣式。<br>CSS3 除了導入新的特性，也開始要求模組化的機制。</p>
+</li>
+<li><p>選擇器方面：<br>CSS1 屬於簡單選擇器，也就是 id、class 之類的。</p>
+<p>CSS2 開始添加偽元素(before、after)。</p>
+<p>CSS3 開始組合選擇器，後代與子選擇器，可以指定某個元素下的所有元素，或是同層級所有元素(使用 +)，又或者是通用兄弟選擇器(使用 ~)，另外新增屬性選擇器。</p>
+</li>
+<li><p>字體：<br>在 1、2 的時候，多半只能使用安全字體，也就是通用型字體，但到了 3 開始可以引用一些特殊字體。</p>
+</li>
+<li><p>文章內容：<br>到了 3 開始提供自動斷行功能，讓文章中的文字可以自行換行。</p>
+</li>
+<li><p>網頁設計：<br>border-radius 之類圓角設計，開始在 3 的時代出現，另外也開始加入動畫特效。</p>
+</li>
+</ul>
+<h3 id="若不使用-flexbox，float-如何置中？"><a href="#若不使用-flexbox，float-如何置中？" class="headerlink" title="若不使用 flexbox，float 如何置中？"></a>若不使用 flexbox，float 如何置中？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="code"><pre><span class="line">.wrap</span></pre></td></tr><tr><td class="code"><pre><span class="line">  .main</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ul</span></pre></td></tr><tr><td class="code"><pre><span class="line">      li.box.blue</span></pre></td></tr><tr><td class="code"><pre><span class="line">      li.box.green</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; css</span></pre></td></tr><tr><td class="code"><pre><span class="line">.wrap &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  float: left;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  position: relative;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  left: 50%;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">.main &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  float: left;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  position: relative;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  left: -50%;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h3 id="元素設定-flex-屬性後，float-會發生什麼情況？"><a href="#元素設定-flex-屬性後，float-會發生什麼情況？" class="headerlink" title="元素設定 flex 屬性後，float 會發生什麼情況？"></a>元素設定 flex 屬性後，float 會發生什麼情況？</h3><p>在 CSS 規範中，父元素設定 flex 屬性後，子元素的 float 即會失效，另一方面，兩者也不應該共用。</p>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：HTML</title>
+    <url>/2019/06/02/interview-html/</url>
+    <content><![CDATA[<p>其實 HTML 相關問題考的是比較少的，所以現階段整理的內容也不多，只能等後續有看到就補充進去。</p>
+<a id="more"></a>
+<h3 id="doctype-做什麼用的？"><a href="#doctype-做什麼用的？" class="headerlink" title="doctype 做什麼用的？"></a><code>doctype</code> 做什麼用的？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用來定義網頁編寫的 HTML 採用什麼版本。</span></pre></td></tr></table></figure>
+
+<h3 id="有用過-HTML-樣板語言（template-languages）嗎？"><a href="#有用過-HTML-樣板語言（template-languages）嗎？" class="headerlink" title="有用過 HTML 樣板語言（template languages）嗎？"></a>有用過 HTML 樣板語言（template languages）嗎？</h3><p>目前使用 <code>pug</code>，除了減少閉合標籤，也能讓 template 更為簡潔。</p>
+<h3 id="簡單說明-HTML5-的特色"><a href="#簡單說明-HTML5-的特色" class="headerlink" title="簡單說明 HTML5 的特色"></a>簡單說明 HTML5 的特色</h3><ul>
+<li>語意化：諸如 header、main、section 之類的語意化標籤，善用這些標籤能對網站 SEO 能更加友善。</li>
+<li>多媒體：隨著 HTML5 開始支援播放影片音樂，成為壓垮 flash 的主因之一。Canvas 除了讓網頁直接繪出圖形，也讓許多遊戲產業獲得更好的發展。</li>
+<li>API：增加許多 API 方法，諸如支援移動裝置的 touch 事件、地理資訊紀錄(Geolocation)以及雙向溝通的 websocket(但存有安全性疑慮)。</li>
+</ul>
+<h3 id="可以簡單列舉常用的-HTML5-語意標籤嗎？"><a href="#可以簡單列舉常用的-HTML5-語意標籤嗎？" class="headerlink" title="可以簡單列舉常用的 HTML5 語意標籤嗎？"></a>可以簡單列舉常用的 HTML5 語意標籤嗎？</h3><ol>
+<li>header  =&gt; 網頁的標題，通常放置網站的 logo 或 navbar</li>
+<li>nav     =&gt; 網站的選單與導覽列</li>
+<li>main    =&gt; 網頁的主要內容</li>
+<li>aside   =&gt; 側邊欄或是一些附加內容</li>
+<li>section =&gt; 自定義的區塊內容</li>
+<li>article =&gt; 一篇文章的內容</li>
+<li>footer  =&gt; 網頁的底部，版權宣告或聯絡方式</li>
+<li>mark    =&gt; 特殊強調</li>
+<li>time    =&gt; 顯示日期時間</li>
+</ol>
+<h3 id="簡單說明一下-HTML5-的-data-attribute"><a href="#簡單說明一下-HTML5-的-data-attribute" class="headerlink" title="簡單說明一下 HTML5 的 data-attribute"></a>簡單說明一下 HTML5 的 data-attribute</h3><p>相對於過往的 src 或是 type，data-attribute 就是 HTML 的自定義屬性，書寫規範上，不可以使用大寫。建立好的自定義屬性，可以透過 CSS 的偽元素來獲取：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="code"><pre><span class="line">span(data-value&#x3D;&quot;Hello&quot;) &#x3D;&gt; 可以透過 API 取得的資料先擺上去</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; scss</span></pre></td></tr><tr><td class="code"><pre><span class="line">span &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &amp;::before&#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    content: attr(data-value);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>也可以建立通用樣式，方便全域調用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">p[data-size&#x3D;&quot;lg&quot;] &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  width: 1024px</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>JS 可以透過 dataset 的方法來獲取指定元素的資料</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="code"><pre><span class="line">div#value(data-value&#x3D;&quot;show&quot;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; js</span></pre></td></tr><tr><td class="code"><pre><span class="line">let dataValue &#x3D; document.getElementById(&#39;value&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(dataValue.dataset.value)  &#x2F;&#x2F; 印出 show</span></pre></td></tr></table></figure>
+<p>但在瀏覽器的兼容性上，我抱有一定疑慮，透過 can i use 查詢，舊版本的瀏覽器似乎並沒有實作，如果面向的客戶對象為大陸，則多數冷門瀏覽器不兼容。</p>
+<h3 id="input-tag-在-HTML-5-中新增的屬性？"><a href="#input-tag-在-HTML-5-中新增的屬性？" class="headerlink" title="input tag 在 HTML 5 中新增的屬性？"></a>input tag 在 HTML 5 中新增的屬性？</h3><ul>
+<li><p>時間相關：month(月)、week(週)、time(時、分、秒)</p>
+<ul>
+<li>date：可以選擇年、月、日</li>
+<li>month：選擇年、月</li>
+<li>week：選擇週、年</li>
+<li>time：選擇時間(時、分)</li>
+<li>datetime：選擇時間、日期、月、年(UTC 時間)</li>
+<li>datetime-local：選擇時間、日期、月、年(本地時間)</li>
+</ul>
+</li>
+<li><p>email、tel、url、search、number(限制只能輸入數字)、color(顏色選擇器)、range(slide bar)</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試筆記彙整</title>
+    <url>/2019/06/02/interview-collection/</url>
+    <content><![CDATA[<p>把不同知識面向的筆記統一進行彙整。</p>
+<a id="more"></a>
+<h3 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h3><ul>
+<li><a href="/2019/06/01/interview-general/" title="面試問題：通用">面試問題：通用</a></li>
+<li><a href="/2019/06/02/interview-html/" title="面試問題：HTML">面試問題：HTML</a></li>
+<li><a href="/2019/06/03/interview-css/" title="面試問題：CSS">面試問題：CSS</a></li>
+<li><a href="/2019/06/04/interview-js/" title="面試問題：JavaScript">面試問題：JavaScript</a></li>
+<li><a href="/2019/06/05/interview-es6/" title="面試問題：ES6">面試問題：ES6</a></li>
+<li><a href="/2019/06/06/interview-https/" title="面試問題：網際網路協議">面試問題：網際網路協議</a></li>
+<li><a href="/2019/06/07/interview-code/" title="面試問題：程式碼實作">面試問題：程式碼實作</a></li>
+<li>前端框架：Vue.js<ul>
+<li><a href="/2019/06/08/interview-vue-I/" title="面試問題：Vue.js - I">面試問題：Vue.js - I</a></li>
+<li><a href="/2019/06/08/interview-vue-II/" title="面試問題：Vue.js - II">面試問題：Vue.js - II</a>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h3>]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面試問題：通用</title>
+    <url>/2019/06/01/interview-general/</url>
+    <content><![CDATA[<p>這邊主要整理偏向通用性問題，或者比較難區分類別性的面試考題，答案的部分會偏向我個人的經驗處理，可以視你的需求進行調整。</p>
+<a id="more"></a>
+<h3 id="近期學習了什麼？"><a href="#近期學習了什麼？" class="headerlink" title="近期學習了什麼？"></a>近期學習了什麼？</h3><p>主要在摸索 Nuxt 開發，以及一些架站與 CICD 相關的知識，考慮到未來工作，必須認真看待(前職沒有這個需求) SEO 的需求，SSR 這一塊無可避免會碰觸到，因此抽出一些時間來加以了解。另一方面，查看台北的職缺需求中，對 Nuxt 的要求似乎也相對普遍了(2020年)，因此實務上還是得要求自己盡可能掌握這個框架。</p>
+<h3 id="如果今年你能精通一項技術，那會是什麼？-2020"><a href="#如果今年你能精通一項技術，那會是什麼？-2020" class="headerlink" title="如果今年你能精通一項技術，那會是什麼？(2020)"></a>如果今年你能精通一項技術，那會是什麼？(2020)</h3><p>主要希望能將 Nuxt 掌握到熟稔程度，能順利上手開發，但因爲 Nuxt 又是以 Node 為基底，所以 Node 的基礎知識與運用也必須補上。</p>
+<h3 id="喜好的開發環境-作業系統-編輯器或-IDE-瀏覽器-開發工具-…-之類-。"><a href="#喜好的開發環境-作業系統-編輯器或-IDE-瀏覽器-開發工具-…-之類-。" class="headerlink" title="喜好的開發環境 (作業系統, 編輯器或 IDE, 瀏覽器, 開發工具 … 之類)。"></a>喜好的開發環境 (作業系統, 編輯器或 IDE, 瀏覽器, 開發工具 … 之類)。</h3><p>前端開發目前主要使用 mac os 系統，一方面是生態系完整，如果遇到問題，相對容易透過網路資訊排除。早期有使用過一陣子 sublime 和 ATOM，後來因為 vscode 急起直追和插件生態日益豐富完整，最後投入 vscode 懷抱。瀏覽器就是以 Chrome 為開發，畢竟習慣了 Chrome 的開發者工作，偶爾還是會回去摸摸 Firefox，但除錯方面，除了是特定瀏覽器破版問題，否則仍以 Chrome 為主。</p>
+<h3 id="最熟悉哪一套版本控制系統？"><a href="#最熟悉哪一套版本控制系統？" class="headerlink" title="最熟悉哪一套版本控制系統？"></a>最熟悉哪一套版本控制系統？</h3><p>Git，前職的團隊，主要使用 GUI 工具(SourceTree)，方便查看節點，但目前也持續筆記 git 指令，方便未來自己在終端機直接操作。</p>
+<h3 id="可以描述前一份工作在開發一個網站時的流程是？"><a href="#可以描述前一份工作在開發一個網站時的流程是？" class="headerlink" title="可以描述前一份工作在開發一個網站時的流程是？"></a>可以描述前一份工作在開發一個網站時的流程是？</h3><p>依循 4 階段規劃進行開發：分析 =&gt; 規劃 =&gt; 實作 =&gt; 驗證</p>
+<ul>
+<li>分析：需求營運方+UI/UX+前後端+QA進行開會，明確釐清專案訴求為何？</li>
+<li>規劃：專案可能會面臨時程問題，或是技術上目前是否可行，先列出優先度最重要的功能，確保功能面且權重最重者，可以優先上線，後續再針對次要功能與樣式進行優化。</li>
+<li>實作：依據現有技術進行實作開發，倘若開發面臨困難，則提前反饋給主管。反之，若實際開發可行，但程式碼不如預期優雅，則以先不報錯為原則，試寫出第一版，後續再進行重構。</li>
+<li>驗證：因為目前還未掌握自動化測試，目前驗證手法仍以手動驗證為主，大多採用由其他組員進行手動測試，並撰寫測試文件，當測試通過才發PR給主管。另外，若是QA驗證出現錯誤或是上線後發現錯誤，則統一發佈到issues，再依優先度解決。</li>
+</ul>
+<h3 id="如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？"><a href="#如果加入了一個專案，但是他們的程式碼用-tabs，但是你習慣用spaces-空白鍵-，你會怎麼做？" class="headerlink" title="如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？"></a>如果加入了一個專案，但是他們的程式碼用 tabs，但是你習慣用spaces (空白鍵)，你會怎麼做？</h3><p>通常若是維護舊專案，會配合既有專案的風格進行開發，但若是新專案，則會討論 coding style 如何處理，不過我個人也是採用 tab。</p>
+<h3 id="描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？"><a href="#描述漸進增強-progressive-enhancement-和優美退化-graceful-degradation-間的差異？" class="headerlink" title="描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？"></a>描述漸進增強 (progressive enhancement) 和優美退化 (graceful degradation) 間的差異？</h3><ul>
+<li><p>漸進漸強：從基本功能開始開發，保證系統在各種瀏覽器環境都可以執行，再逐步增加功能及提升使用者體驗。</p>
+</li>
+<li><p>優美退化：開發系統時，就針對最新最完善的環境來設計，而對於較舊的平台僅提供基本功能，而非完整功能。</p>
+</li>
+</ul>
+<p>但目前實務上，專案只碰過漸進增強的理念，因為通常專案時程規劃，大都蠻不友善的XD，在有限的時間內，通常是優先讓功能面先上線，後續再逐步優化。</p>
+<h3 id="前端效能優化可以怎麼做？"><a href="#前端效能優化可以怎麼做？" class="headerlink" title="前端效能優化可以怎麼做？"></a>前端效能優化可以怎麼做？</h3><p>(這題我目前都回答得不好，後續會再調整答案的部分)<br>受限於現代網站載入的資源體積越來越大，因此若要著手優化網站的效能，大概要先從載入資源大小、畫面渲染兩方面來著手。</p>
+<ol>
+<li><p>載入資源</p>
+<ul>
+<li>壓縮並醜化檔案，無論是 css 的 minify，或是 JS 的 uglify，都可以大幅縮減檔案體積，不過目前處理這些工作，大都丟給 webpack 一並處理。</li>
+<li>壓縮圖片檔案大小，此前是使用 tinypng 工具。</li>
+</ul>
+</li>
+<li><p>畫面渲染</p>
+<ul>
+<li>盡可能將 css 抽離出來，不要和 JS 混在一起。在 webpack 中使用 extract-text-webpack-plugin。這麼做的目的，當然是為了利用瀏覽器本身的緩存的特性，因此能用 css 處理的地方就不使用 JS，這樣可以節省開啟頁面的時間。</li>
+</ul>
+</li>
+</ol>
+<h3 id="什麼是-Deadlock-死鎖-？"><a href="#什麼是-Deadlock-死鎖-？" class="headerlink" title="什麼是 Deadlock(死鎖)？"></a>什麼是 Deadlock(死鎖)？</h3><p>這邊是指進程死鎖，後端語言具有多線程特性，可以同時執行多個任務，通常會出現某個進程正在等待其中一個資源，結果好死不死，那個資源正在被其他進程使用。當這種狀況出現好幾組時，就很有可能會互相卡住，結果導致無限期僵持，最終陷入死鎖。</p>
+<p>造成這種原因的可能因素有兩種，要嘛是資源有限，要不嘛就是進程推進順序不正確。但對 JS 這種單線程語言來說，應該只會出現無限循環而不會出現死鎖。</p>
+<!-- ### 優化網頁讀取速度的方法 (感覺上的速度或是真正的讀取時間)。 -->
+
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>重新拾筆</title>
-    <url>/2019/07/27/firstPost/</url>
+    <url>/2019/05/16/firstPost/</url>
     <content><![CDATA[<p>信手寫一些雜談想法，就當做一篇簡單的隨筆。</p>
 <a id="more"></a>
 <h2 id="框架選擇"><a href="#框架選擇" class="headerlink" title="框架選擇"></a>框架選擇</h2><p><code>Hexo</code>從2018年開始接觸，期間雖然嘗試寫了幾篇筆記，但終究因為懶，時常無疾而終。雖然後面斷斷續續摸了幾種靜態站點框架，譬如<code>Hugo</code>、<code>Gatsby.js</code>、<code>Gridsome</code>，但始終沒有很順手。</p>

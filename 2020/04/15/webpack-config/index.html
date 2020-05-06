@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="雖然到 vue-cli 3.0 之後，其實 vue 官方已經將 webpack 進行封裝，希望開發者專注在開發而非設定上，但還是需要理解基本的設定，以及細節的理解。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-04-16T14:24:51.321Z">
+<meta property="og:updated_time" content="2020-04-27T20:36:34.796Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/04/15/webpack-config/">
@@ -240,7 +240,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-16 22:24:51" itemprop="dateModified" datetime="2020-04-16T22:24:51+08:00">2020-04-16</time>
+                <time title="Modified: 2020-04-28 04:36:34" itemprop="dateModified" datetime="2020-04-28T04:36:34+08:00">2020-04-28</time>
               </span>
 
           
@@ -296,6 +296,7 @@
 <h4 id="lintOnSave"><a href="#lintOnSave" class="headerlink" title="lintOnSave"></a>lintOnSave</h4><p>檢查 code 有沒有符合 eslint 規範，預設開啟，但也不需要特別調整，畢竟現在開發都會遵循 eslint，至於採用哪種風格，則是依照團隊 coding style。</p>
 <h4 id="chainWebpack"><a href="#chainWebpack" class="headerlink" title="chainWebpack"></a>chainWebpack</h4><p>根據自己的需求，進行客製化調整，譬如希望修改網頁上方標題：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">chainWebpack: (config) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  config</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    .plugin(&#39;html&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    .tap((args) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      args[0].title &#x3D; &#39;Tiger Coding Blog&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      return args</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -318,8 +319,8 @@
       <i class="fa fa-chevron-left"></i> Vue & React 簡單的對比
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/04/21/gulp/" rel="next" title="關於 Gulp">
-      關於 Gulp <i class="fa fa-chevron-right"></i>
+    <a href="/2020/04/21/parcel/" rel="next" title="關於 Parcel：基礎實作">
+      關於 Parcel：基礎實作 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -374,14 +375,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">32</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
