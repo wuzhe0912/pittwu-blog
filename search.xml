@@ -1,8 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>傳值 &amp; 淺拷貝 &amp; 深拷貝</title>
+    <url>/2020/05/17/topic/js/pass-by-value/</url>
+    <content><![CDATA[<p>關於 JS 傳值的基礎知識，以及如何透過淺拷貝和深拷貝來改善潛在的問題。</p>
+<a id="more"></a>
+<h3 id="Pass-by-value"><a href="#Pass-by-value" class="headerlink" title="Pass by value"></a>Pass by value</h3><p>當變數的值為原始型別時，JS 的行為模式會採用 Pass by value</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 宣告 a 變數的賦值為 10，並且在記憶體中 copy 出 10，賦值給 b</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var a &#x3D; 10</span></pre></td></tr><tr><td class="code"><pre><span class="line">var b &#x3D; a</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(b) &#x2F;&#x2F; 10</span></pre></td></tr></table></figure>
+
+<p>上述的傳值適用以下原始型別：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">String</span></pre></td></tr><tr><td class="code"><pre><span class="line">Number</span></pre></td></tr><tr><td class="code"><pre><span class="line">Boolean</span></pre></td></tr><tr><td class="code"><pre><span class="line">Undefined</span></pre></td></tr><tr><td class="code"><pre><span class="line">Null</span></pre></td></tr></table></figure>
+
+<h3 id="Pass-by-reference"><a href="#Pass-by-reference" class="headerlink" title="Pass by reference"></a>Pass by reference</h3><p>而在物件型別中，則是另一番情景：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var object1 &#x3D; &#123; num: 5 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">var object2 &#x3D; object1</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(object2) &#x2F;&#x2F; &#123; num: 5 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">object1.num &#x3D; 8</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(object2) &#x2F;&#x2F; &#123; num: 8 &#125;</span></pre></td></tr></table></figure>
+<p>在物件型別中，object1 和 object2 的賦值在記憶體中都會指向同一個位置，因此如果改變 object1，則連帶會影響到 object2，它並不會像原始型別一樣，在記憶體中進行 copy。</p>
+<p>適用以下型別：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Object</span></pre></td></tr><tr><td class="code"><pre><span class="line">Array</span></pre></td></tr></table></figure>
+
+<h3 id="淺拷貝-shallow-copy"><a href="#淺拷貝-shallow-copy" class="headerlink" title="淺拷貝(shallow copy)"></a>淺拷貝(shallow copy)</h3><p>為了改善前述的 Pass by reference 產生的問題，具體延伸出以下方法：</p>
+<h4 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h4><ul>
+<li><p>slice() 方法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; slice 會從括號內的索引位置開始進行 copy</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">var array1 &#x3D; [1, 2, 3]</span></pre></td></tr><tr><td class="code"><pre><span class="line">var array2 &#x3D; array1.slice(0)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(array2) &#x2F;&#x2F; [1, 2, 3]</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">array1[1] &#x3D; 4</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(array1) &#x2F;&#x2F; [1, 4, 3]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(array2) &#x2F;&#x2F; [1, 2, 3]</span></pre></td></tr></table></figure>
+</li>
+<li><p>展開運算符</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var array1 &#x3D; [10, 20, 30]</span></pre></td></tr><tr><td class="code"><pre><span class="line">var array3 &#x3D; [...array1]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(array3) &#x2F;&#x2F; [10, 20, 30]</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">array1[2] &#x3D; 50</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(array1) &#x2F;&#x2F; [10, 20, 50]</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(array3) &#x2F;&#x2F; [10, 20, 30]</span></pre></td></tr></table></figure>
+<p>上述這兩個方法都可以避免 Array 在記憶中被指向同一個位置。</p>
+</li>
+</ul>
+<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><ul>
+<li>Object.assign<br>操作 Object 的資料時，不建議直接操作原始資料，而是 copy 出來再進行處理<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var object1 &#x3D; &#123; num: 10 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">var object2 &#x3D; Object.assign(&#123;&#125;, object1)</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(object2) &#x2F;&#x2F; &#123; num: 10 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">object1.num &#x3D; 100</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(object1) &#x2F;&#x2F; &#123; num: 100 &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(object2) &#x2F;&#x2F; &#123; num: 10 &#125;</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="淺拷貝存在的問題"><a href="#淺拷貝存在的問題" class="headerlink" title="淺拷貝存在的問題"></a>淺拷貝存在的問題</h4><h3 id="深拷貝-deep-copy"><a href="#深拷貝-deep-copy" class="headerlink" title="深拷貝(deep copy)"></a>深拷貝(deep copy)</h3><h3 id="Pass-by-sharing"><a href="#Pass-by-sharing" class="headerlink" title="Pass by sharing"></a>Pass by sharing</h3>]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>需求解法：重組陣列</title>
+    <url>/2020/05/15/topic/js/reorganization-array/</url>
+    <content><![CDATA[<p>朋友遇到業務上的一個場景，需要將原始陣列中的值進行過濾，重組後提到第一層，再重組第二層的子陣列。這邊嘗試解解看，先試解一個解法，後續若有新的解法再補充。</p>
+<a id="more"></a>
+<h3 id="原始陣列"><a href="#原始陣列" class="headerlink" title="原始陣列"></a>原始陣列</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let studentList &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    id: 1,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;小明&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    class: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      name: &#39;A班&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    id: 2,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;小王&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    class: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      name: &#39;C班&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    id: 3,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;小智&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    class: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      name: &#39;C班&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    id: 4,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;小美&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    class: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      name: &#39;A班&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    id: 5,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;小智障&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    class: &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      name: &#39;B班&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
+
+<h3 id="預期結果"><a href="#預期結果" class="headerlink" title="預期結果"></a>預期結果</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let classRoster &#x3D; [</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;A班&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    students: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        id: 1,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        name: &#39;小明&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        id: 4,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        name: &#39;小美&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;B班&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    students: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        id: 5,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        name: &#39;小智障&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: &#39;C班&#39;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    students: [</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        id: 2,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        name: &#39;小王&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">        id: 3,</span></pre></td></tr><tr><td class="code"><pre><span class="line">        name: &#39;小智&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    ]</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure>
+
+<h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 整理重複班別名稱</span></pre></td></tr><tr><td class="code"><pre><span class="line">let target &#x3D; []</span></pre></td></tr><tr><td class="code"><pre><span class="line">studentList.forEach(node &#x3D;&gt; target.push(node.class.name))</span></pre></td></tr><tr><td class="code"><pre><span class="line">let classNameList &#x3D; Array.from(new Set(target)).sort()</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 重組陣列</span></pre></td></tr><tr><td class="code"><pre><span class="line">let subTarget &#x3D; classNameList.map((node) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  let item &#x3D; studentList.filter((subNode) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return subNode.class.name &#x3D;&#x3D;&#x3D; node</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  let subItem &#x3D; item.map((val) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">      id: val.id,</span></pre></td></tr><tr><td class="code"><pre><span class="line">      name: val.name</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    name: node,</span></pre></td></tr><tr><td class="code"><pre><span class="line">    students: subItem</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">console.log(subTarget)</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>實作 React 購物車</title>
+    <url>/2020/05/11/react/shopping-cart/</url>
+    <content><![CDATA[<p>客觀來說，個人沒有特別偏好使用 React，但因為 Vue 3.0 的走向會朝向函數式編程的趨勢，這點似乎會和 React 目前的境況不謀而合，因此算是透過學習 React 來提前為 Vue 3.0 預作準備。再者，和好友聊天之餘，對方也希望我能偶爾摸摸 React，盛情難卻之下，也算是學習契機。</p>
+<a id="more"></a>
+<h2 id="環境搭建"><a href="#環境搭建" class="headerlink" title="環境搭建"></a>環境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx create-react-app react-store</span></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>實作遊戲介紹網站(Nuxt.js &amp; Tailwind CSS)</title>
-    <url>/2020/04/29/nuxt-video-game/</url>
+    <url>/2020/04/29/nuxt/video-game/</url>
     <content><![CDATA[<p>Tailwind CSS 是一個結合設計規範的 UI Framework，近年在海外的社群極速竄紅，相較於 BootStrap 之類框架，它更像是先和設計師約定好預期的設計內容，並據此設定好變數，方便後續調用。恰好它也是 Nuxt.js 官方預設腳手架中的 UI 框架之一，因此來練習實作看看。</p>
 <a id="more"></a>]]></content>
       <tags>
@@ -159,7 +220,7 @@
   </entry>
   <entry>
     <title>Nuxt.js 實作 Blog</title>
-    <url>/2020/04/02/nuxt-blog/</url>
+    <url>/2020/04/02/nuxt/blog/</url>
     <content><![CDATA[<p>寫在前面，為了理解 Nuxt 的基礎運用，動手實作一個簡易的 Blog，同時記錄下目前的流程，方便後續可以參照比對。</p>
 <a id="more"></a>
 <p>受限於目前還未掌握 Node 開發後端的能力，因此直接採用官方建議的 CMS 系統(storyblok)。不過樣式就不特別處理，簡單的 RWD。另外渲染 markdown 的部分，v-html 要改的樣式太多，只能以後有時間再來慢慢處理。部署仍是萬年的 netlify 不變。</p>
@@ -226,7 +287,7 @@
   </entry>
   <entry>
     <title>Nuxt.js II - 框架基礎觀念</title>
-    <url>/2020/03/22/nuxt-basic-II/</url>
+    <url>/2020/03/22/nuxt/basic-II/</url>
     <content><![CDATA[<p>記錄 Nuxt 專案開發與框架基礎觀念。</p>
 <a id="more"></a>
 <h2 id="Nuxt-js-的注意事項"><a href="#Nuxt-js-的注意事項" class="headerlink" title="Nuxt.js 的注意事項"></a>Nuxt.js 的注意事項</h2><p>Nuxt =&gt; 基底語法以 node.js 為主，因此 node 不支援的語法，在 Nuxt 中也無法運作。</p>
@@ -286,7 +347,7 @@
   </entry>
   <entry>
     <title>Nuxt.js I - 架站與手動部署(GCP)</title>
-    <url>/2020/03/21/nuxt-basic-I/</url>
+    <url>/2020/03/21/nuxt/basic-I/</url>
     <content><![CDATA[<p>記錄 Nuxt 前期架站準備工作。</p>
 <a id="more"></a>
 <h2 id="環境"><a href="#環境" class="headerlink" title="環境"></a>環境</h2><ol>
@@ -684,7 +745,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>Git 指令記錄</title>
-    <url>/2020/02/21/git-command/</url>
+    <url>/2020/02/21/git/command/</url>
     <content><![CDATA[<p>前工作的前端團隊都使用 SourceTree 進行版控，相對較少使用指令操作 git，為了方便日後終端機操作，記錄一下指令功能。</p>
 <a id="more"></a>
 <ul>
@@ -746,13 +807,13 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">q-btn 若僅加上 type&#x3D;&quot;submit&quot; 無法正常送出 q-form 內的資料</span></pre></td></tr><tr><td class="code"><pre><span class="line">需在 q-btn 本身再補上一個 @click 事件，才能執行 methods</span></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>Vue.js</tag>
         <tag>Quasar</tag>
+        <tag>Vue.js</tag>
       </tags>
   </entry>
   <entry>
     <title>Express 框架運用與理解</title>
-    <url>/2020/02/16/node-Express/</url>
+    <url>/2020/02/16/node/express/</url>
     <content><![CDATA[<p>Express 算是比較老牌的輕量級 Node.js Web 框架，透過學習使用 Express 來加深自己對 Node 的理解，同時提高對後端的認知。</p>
 <a id="more"></a>
 <h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>指令：</p>
@@ -867,7 +928,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>ES6：解構賦值</title>
-    <url>/2020/02/09/es6-destructuring/</url>
+    <url>/2020/02/09/es6/destructuring/</url>
     <content><![CDATA[<p>解構賦值簡單來說，就是輕便且快速地取出元素。</p>
 <a id="more"></a>
 <h2 id="陣列解構"><a href="#陣列解構" class="headerlink" title="陣列解構"></a>陣列解構</h2><p>若有一個陣列如下</p>
@@ -906,7 +967,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>ES6：筆記整理</title>
-    <url>/2020/02/09/es6-note/</url>
+    <url>/2020/02/09/es6/note/</url>
     <content><![CDATA[<p>整理散落各方的 ES6 筆記，方便自己日後查詢。</p>
 <a id="more"></a>
 <h2 id="變數宣告"><a href="#變數宣告" class="headerlink" title="變數宣告"></a>變數宣告</h2><p>傳統變數宣告採用 <code>var</code> 的方式，但容易存在污染環境的問題。因此在 ES6 的語法中，新增兩個變數宣告方式 <code>let、const</code>。</p>
@@ -933,7 +994,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>Node 基礎知識</title>
-    <url>/2020/01/27/node-basic-knowledge/</url>
+    <url>/2020/01/27/node/basic-knowledge/</url>
     <content><![CDATA[<p>記錄自己學習 Node.js 基礎API用法。</p>
 <a id="more"></a>
 <h2 id="require、module-exports"><a href="#require、module-exports" class="headerlink" title="require、module exports"></a>require、module exports</h2><p><code>require</code>語法可以載入檔案，反之<code>module.exports</code>則能導出內容。寫法如下：<br>app.js</p>
@@ -1043,7 +1104,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>NVM 常用指令</title>
-    <url>/2019/12/09/nvm-instruction/</url>
+    <url>/2019/12/09/nvm/instruction/</url>
     <content><![CDATA[<p>記錄常用 NVM 指令。</p>
 <a id="more"></a>
 <h4 id="查詢遠端可安裝的-node-版本"><a href="#查詢遠端可安裝的-node-版本" class="headerlink" title="查詢遠端可安裝的 node 版本"></a>查詢遠端可安裝的 node 版本</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm ls-remote</span></pre></td></tr></table></figure>
@@ -1056,7 +1117,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>ES6：類別與物件的基本觀念</title>
-    <url>/2019/12/02/es6-object/</url>
+    <url>/2019/12/02/es6/object/</url>
     <content><![CDATA[<p>關於類別與物件的基本觀念。</p>
 <a id="more"></a>
 <h2 id="什麼是類別與物件"><a href="#什麼是類別與物件" class="headerlink" title="什麼是類別與物件"></a>什麼是類別與物件</h2><h3 id="舉例來說"><a href="#舉例來說" class="headerlink" title="舉例來說"></a>舉例來說</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">類別，可以理解為設計圖</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">物件，則是根據設計圖製造出來的實體</span></pre></td></tr></table></figure>
@@ -1081,7 +1142,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>ES6：宣告變數與箭頭函式</title>
-    <url>/2019/12/02/es6-const-arrow/</url>
+    <url>/2019/12/02/es6/const-arrow/</url>
     <content><![CDATA[<p>記錄自己學習 ES6 語法，對比 ES5 和 ES3 如何解決問題。</p>
 <a id="more"></a>
 <h2 id="var、let、const"><a href="#var、let、const" class="headerlink" title="var、let、const"></a>var、let、const</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">早期 javascript 只能用 var 宣告變數</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">在 ES6 版本後，添加 let、const 兩種方式</span></pre></td></tr></table></figure>
@@ -1114,7 +1175,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>GitHub + Netlify = Auto Deploy Hexo Post</title>
-    <url>/2019/12/01/hexo-auto-deploy/</url>
+    <url>/2019/12/01/hexo/auto-deploy/</url>
     <content><![CDATA[<p>回歸 Hexo 寫技術筆記後，就一直懷念 Gatsby.js 可以透過 Netlify 自動推送部署，花了點時間 Google，終於也找到 Hexo 的自動部署方式，一整個對寫文章非常方便。</p>
 <a id="more"></a>
 <ul>
@@ -1143,7 +1204,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>Node &amp; NPM Version Path Fixed</title>
-    <url>/2019/12/01/node-version-fixed/</url>
+    <url>/2019/12/01/node/version-fixed/</url>
     <content><![CDATA[<p>近期公司 MIS 調整硬體設備，造成環境有點跑掉，記錄一下自己在 Stack Overflow 上找到的解法。</p>
 <a id="more"></a>
 <p>打開 iTerm 會出現下述 error。</p>
@@ -1161,7 +1222,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>Git Command Error Fixed</title>
-    <url>/2019/12/01/git-command-error-fixed/</url>
+    <url>/2019/12/01/git/command-error-fixed/</url>
     <content><![CDATA[<p>Git 雖然是基本知識，但有時操作上，還是不免出現一些 Error，記錄當中的解法，方便日後快速排查問題。</p>
 <a id="more"></a>
 <h2 id="初始化錯誤"><a href="#初始化錯誤" class="headerlink" title="初始化錯誤"></a>初始化錯誤</h2><p>由於之前習慣性從遠端 clone 下來，所以<code>.git</code>檔案同時會被準備完成，但這次因為嘗試自動部署<code>Hexo</code>，在推送時跳出下面這個錯誤。</p>
@@ -1188,7 +1249,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>Next Theme Error Fixed</title>
-    <url>/2019/11/29/next-theme-error-fixed/</url>
+    <url>/2019/11/29/hexo/next-theme-error-fixed/</url>
     <content><![CDATA[<p>雖然 Hexo 的學習曲線平滑，網路上也是隨手可得教學資料，但仍免不了，在使用過程中碰到一些難點，因此順手記錄這些難點的解法，方便自己日後回顧檢查。</p>
 <a id="more"></a>
 <h2 id="Next-主題背景動畫配置無效果"><a href="#Next-主題背景動畫配置無效果" class="headerlink" title="Next 主題背景動畫配置無效果"></a>Next 主題背景動畫配置無效果</h2><p><code>Next</code>在5.x版本時，設定背景動畫效果，僅需在<code>_config.yml</code>調整<code>true or false</code>即有效果。但在6.X版本，不知道因為何種原因，這種設置方式完全失效，因此改採用下述三個步驟設置動畫效果。</p>
@@ -1201,7 +1262,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>Next Theme Install Note</title>
-    <url>/2019/11/28/next-theme-install-note/</url>
+    <url>/2019/11/28/hexo/next-theme-install-note/</url>
     <content><![CDATA[<p>安裝 Hexo 的難度不高，但是調整 Hexo Theme 的配置是件不小的工程，記錄一下自己的調整流程。</p>
 <a id="more"></a>
 
@@ -1244,7 +1305,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>面試問題：Webpack</title>
-    <url>/2019/06/09/interview-webpack/</url>
+    <url>/2019/06/09/interview/webpack/</url>
     <content><![CDATA[<p>Webpack 是目前近兩年最熱門的打包工具，功能強大與客製化程度高，與之相對的，在設定上有很多眉角。另一方面，因為工作上使用 Vue cli 已經預設好相當多功能，反而對 Webpack 的認識不足。之後，需要練習使用純 webpack 來搭建環境而不使用框架。</p>
 <a id="more"></a>
 <h3 id="webpack-中-babel-如何設定？"><a href="#webpack-中-babel-如何設定？" class="headerlink" title="webpack 中 babel 如何設定？"></a>webpack 中 babel 如何設定？</h3><ul>
@@ -1274,7 +1335,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>面試問題：Vue.js - II</title>
-    <url>/2019/06/08/interview-vue-II/</url>
+    <url>/2019/06/08/interview/vue-II/</url>
     <content><![CDATA[<p>Vue.js 相關面試問題彙整 II。</p>
 <a id="more"></a>
 <h3 id="聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。"><a href="#聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。" class="headerlink" title="聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。"></a>聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。</h3><p>Vue 的父子組件中，還有一種不特別推薦的通訊方式，父組件通過 $children 可以改變子組件的 data，相反的，子組件可以透過 $parent 來改變父組件的 data。但官方建議少用這種方式，應該是要避免數據流動被搞混。</p>
@@ -1286,7 +1347,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>面試問題：Vue.js - I</title>
-    <url>/2019/06/08/interview-vue-I/</url>
+    <url>/2019/06/08/interview/vue-I/</url>
     <content><![CDATA[<p>Vue.js 相關面試問題彙整 I。</p>
 <a id="more"></a>
 <h3 id="如何理解-MVC-和-MVVM-差異？"><a href="#如何理解-MVC-和-MVVM-差異？" class="headerlink" title="如何理解 MVC 和 MVVM 差異？"></a>如何理解 MVC 和 MVVM 差異？</h3><ul>
@@ -1394,7 +1455,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>面試問題：程式碼實作</title>
-    <url>/2019/06/07/interview-code/</url>
+    <url>/2019/06/07/interview/code/</url>
     <content><![CDATA[<p>程式碼實作考題，基本上是躲不了，但有些情境可能在考試當下，會出現大腦當機的狀況，所以就只能多練習相關題型，才能順利解題。不過 LeetCode 這一塊我還太弱，只能慢慢補。</p>
 <a id="more"></a>
 <h3 id="foo-的值是什麼？"><a href="#foo-的值是什麼？" class="headerlink" title="foo 的值是什麼？"></a>foo 的值是什麼？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var foo &#x3D; 10 + &#39;20&#39;;</span></pre></td></tr></table></figure>
@@ -1436,7 +1497,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>面試問題：網際網路協議</title>
-    <url>/2019/06/06/interview-https/</url>
+    <url>/2019/06/06/interview/https/</url>
     <content><![CDATA[<p>網際網路協議相關的問題，其實會比較偏向計算機原理，雖然表面上看前端開發沒有直接關係，但實際上網站的運作與效能，都脫離不了網路協議，所以自然也躲不掉相關的考題。</p>
 <a id="more"></a>
 <h3 id="從輸入網址列到渲染畫面，過程經歷了什麼事？"><a href="#從輸入網址列到渲染畫面，過程經歷了什麼事？" class="headerlink" title="從輸入網址列到渲染畫面，過程經歷了什麼事？"></a>從輸入網址列到渲染畫面，過程經歷了什麼事？</h3><ul>
@@ -1537,7 +1598,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>面試問題：ES6</title>
-    <url>/2019/06/05/interview-es6/</url>
+    <url>/2019/06/05/interview/es6/</url>
     <content><![CDATA[<p>ES6 的面試問題，更多會是原生 JS 問題延伸過來，所以在回答問題上，可以更靈活結合兩者來答覆，譬如說，當問到 this 的指向問題時，先回答 ES5 的情境，再延伸論述 ES6 加上的 arrow function 的狀況，可以讓答案更為完整。但目前 ES6 的問題整理較少，有空我就會盡量補充。</p>
 <a id="more"></a>
 <h3 id="定義-var、let、const"><a href="#定義-var、let、const" class="headerlink" title="定義 var、let、const"></a>定義 var、let、const</h3><p>在 ES6 中，新增了兩種變數宣告方式 let、const，傳統的 var 容易污染到全域變數，因此在 ES6 調整了變數應用在作用域的範圍，通常是以 function 為分界，使用 let 在 function 內宣告變數後，可以避免離開 function 仍被污染，另一方面也可以再次賦值。const 定義為常數，不能重複賦值，而且也要求一定要賦值。</p>
@@ -1564,13 +1625,13 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 </ul>
 ]]></content>
       <tags>
-        <tag>ES6</tag>
         <tag>Interview</tag>
+        <tag>ES6</tag>
       </tags>
   </entry>
   <entry>
     <title>面試問題：JavaScript</title>
-    <url>/2019/06/04/interview-js/</url>
+    <url>/2019/06/04/interview/js/</url>
     <content><![CDATA[<p>關於原生 JavaScript 的一些面試問題彙整，當然網路上可以找到一海票問題，但目前就是依序整理出答案才會列出來(雖然有些答案依然不夠完善)。後續大概每 20 題就整理一個 page，方便自己日後查看。</p>
 <a id="more"></a>
 <h3 id="什麼是-DOM"><a href="#什麼是-DOM" class="headerlink" title="什麼是 DOM ?"></a>什麼是 DOM ?</h3><p>我們所撰寫的 HTML 文件，瀏覽器會解析成樹狀結構，父層包覆子層形成一個 document 文件，每一個元素都可以理解為物件，DOM 操作就是透過 JS 去操作這些物件去執行行為。同時為了避免操作過程中，污染相同屬性的元素，譬如兩個 p 標籤，所以我們會透過 id 或 class 來指定操作：</p>
@@ -1655,7 +1716,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>面試問題：CSS</title>
-    <url>/2019/06/03/interview-css/</url>
+    <url>/2019/06/03/interview/css/</url>
     <content><![CDATA[<p>CSS 面試問題彙整。</p>
 <a id="more"></a>
 <h3 id="簡單聊聊-box-model"><a href="#簡單聊聊-box-model" class="headerlink" title="簡單聊聊 box-model"></a>簡單聊聊 box-model</h3><p>box-model 可以理解為前端工程師製作網頁的一種工具，透過它可以定義網頁上元素的位置，進而達到排版的目的。從內到外，環繞它身邊有三個語法，padding、border、margin。其中前兩者預設會影響到元素，因此在 box-sizing 會採用另一個模式 border-box，來避免不必要的計算。</p>
@@ -1723,7 +1784,7 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
   </entry>
   <entry>
     <title>面試問題：HTML</title>
-    <url>/2019/06/02/interview-html/</url>
+    <url>/2019/06/02/interview/html/</url>
     <content><![CDATA[<p>其實 HTML 相關問題考的是比較少的，所以現階段整理的內容也不多，只能等後續有看到就補充進去。</p>
 <a id="more"></a>
 <h3 id="doctype-做什麼用的？"><a href="#doctype-做什麼用的？" class="headerlink" title="doctype 做什麼用的？"></a><code>doctype</code> 做什麼用的？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">用來定義網頁編寫的 HTML 採用什麼版本。</span></pre></td></tr></table></figure>
@@ -1773,34 +1834,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
       </tags>
   </entry>
   <entry>
-    <title>面試筆記彙整</title>
-    <url>/2019/06/02/interview-collection/</url>
-    <content><![CDATA[<p>把不同知識面向的筆記統一進行彙整。</p>
-<a id="more"></a>
-<h3 id="Frontend"><a href="#Frontend" class="headerlink" title="Frontend"></a>Frontend</h3><ul>
-<li><a href="/2019/06/01/interview-general/" title="面試問題：通用">面試問題：通用</a></li>
-<li><a href="/2019/06/02/interview-html/" title="面試問題：HTML">面試問題：HTML</a></li>
-<li><a href="/2019/06/03/interview-css/" title="面試問題：CSS">面試問題：CSS</a></li>
-<li><a href="/2019/06/04/interview-js/" title="面試問題：JavaScript">面試問題：JavaScript</a></li>
-<li><a href="/2019/06/05/interview-es6/" title="面試問題：ES6">面試問題：ES6</a></li>
-<li><a href="/2019/06/06/interview-https/" title="面試問題：網際網路協議">面試問題：網際網路協議</a></li>
-<li><a href="/2019/06/07/interview-code/" title="面試問題：程式碼實作">面試問題：程式碼實作</a></li>
-<li>前端框架：Vue.js<ul>
-<li><a href="/2019/06/08/interview-vue-I/" title="面試問題：Vue.js - I">面試問題：Vue.js - I</a></li>
-<li><a href="/2019/06/08/interview-vue-II/" title="面試問題：Vue.js - II">面試問題：Vue.js - II</a>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Backend"><a href="#Backend" class="headerlink" title="Backend"></a>Backend</h3>]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>面試問題：通用</title>
-    <url>/2019/06/01/interview-general/</url>
+    <url>/2019/06/01/interview/general/</url>
     <content><![CDATA[<p>這邊主要整理偏向通用性問題，或者比較難區分類別性的面試考題，答案的部分會偏向我個人的經驗處理，可以視你的需求進行調整。</p>
 <a id="more"></a>
 <h3 id="近期學習了什麼？"><a href="#近期學習了什麼？" class="headerlink" title="近期學習了什麼？"></a>近期學習了什麼？</h3><p>主要在摸索 Nuxt 開發，以及一些架站與 CICD 相關的知識，考慮到未來工作，必須認真看待(前職沒有這個需求) SEO 的需求，SSR 這一塊無可避免會碰觸到，因此抽出一些時間來加以了解。另一方面，查看台北的職缺需求中，對 Nuxt 的要求似乎也相對普遍了(2020年)，因此實務上還是得要求自己盡可能掌握這個框架。</p>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Pitt Wu's 隨想筆記" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="CSS 面試問題彙整。">
+<meta name="keywords" content="Interview,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面試問題：CSS">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;06&#x2F;03&#x2F;interview&#x2F;css&#x2F;index.html">
+<meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
+<meta property="og:description" content="CSS 面試問題彙整。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;box-sizing.png">
+<meta property="og:updated_time" content="2020-05-17T05:48:01.796Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;box-sizing.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/06/03/interview/css/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>面試問題：CSS | Pitt Wu's 隨想筆記</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/wuzhe0912" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pitt Wu's 隨想筆記</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好記性不如爛筆頭</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-demo">
+
+    <a href="/demo/" rel="section"><i class="fa fa-fw fa-sitemap"></i>Demo</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/03/interview/css/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Pitt Wu">
+      <meta itemprop="description" content="凡是過往，皆為序章">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pitt Wu's 隨想筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          面試問題：CSS
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-06-03 20:44:59" itemprop="dateCreated datePublished" datetime="2019-06-03T20:44:59+08:00">2019-06-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-05-17 13:48:01" itemprop="dateModified" datetime="2020-05-17T13:48:01+08:00">2020-05-17</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>CSS 面試問題彙整。</p>
+<a id="more"></a>
+<h3 id="簡單聊聊-box-model"><a href="#簡單聊聊-box-model" class="headerlink" title="簡單聊聊 box-model"></a>簡單聊聊 box-model</h3><p>box-model 可以理解為前端工程師製作網頁的一種工具，透過它可以定義網頁上元素的位置，進而達到排版的目的。從內到外，環繞它身邊有三個語法，padding、border、margin。其中前兩者預設會影響到元素，因此在 box-sizing 會採用另一個模式 border-box，來避免不必要的計算。</p>
+<h3 id="請解釋-box-sizing-border-box-，並且說明使用它的好處？"><a href="#請解釋-box-sizing-border-box-，並且說明使用它的好處？" class="headerlink" title="請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？"></a>請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？</h3><p><img src="/images/box-sizing.png" alt=""><br>box-sizing =&gt; 意指，當元素計算寬度和高度時，border &amp; padding 會內含還是外加。<br>content-box =&gt; 預設的屬性，會使 border &amp; padding 添加額外的寬高(外加)。</p>
+<p>但前述這個設計，會使前端開發時被迫需要一直計算寬高，為了改善這個開發體驗，所以改用以下模式：<br>border-box =&gt; 將 border &amp; padding 塞進元素本身(內含)。<br>因此我們通常建議在初始化樣式時，加入到 <code>*</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">* &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  box-sizing: border-box;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://zh-tw.learnlayout.com/box-sizing.html" target="_blank" rel="noopener">圖片詳解</a></li>
+</ul>
+<h3 id="如何處理水平垂直置中？"><a href="#如何處理水平垂直置中？" class="headerlink" title="如何處理水平垂直置中？"></a>如何處理水平垂直置中？</h3><p>在 flexbox 語法中，處理這個需求並不困難：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  display: flex;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  justify-content: center;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  align-items: center;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>但如果不使用 flexbox 就會比較麻煩，首先水平置中，常用兩種方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  margin: 0 auto;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">div &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  text-align: center;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<p>至於垂直置中的方法有數種，但我這邊只記錄兩種(後續待補充)：</p>
+<ol>
+<li>line-height</li>
+<li>vertical-align: middle;</li>
+</ol>
+<p>但基本我個人現在只用 flexbox 語法來處理，未來會再加上 grid。</p>
+<h3 id="倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><a href="#倘若有不同的樣式表-stylesheets-，該如何整併到網站？" class="headerlink" title="倘若有不同的樣式表 (stylesheets)，該如何整併到網站？"></a>倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</h3><p>以 Vue 專案結構為例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">- assets</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  - scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    - color.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    - mixin.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    - share.scss</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    - style.scss</span></pre></td></tr></table></figure>
+<p>將共用顏色(color)和共用函式(breakpoint、position)進行拆分，兩者都 @import 到 share.scss，各 component 的 style.scss 直接 @import share.scss。同時再將 share.scss @import 到 style.scss，在 assets/scss/style.scss，被視為權重最高的樣式表，除了進行樣式初始化，也是用來處理特定需求(譬如覆蓋套件的樣式)，並將其註冊到 main.js。</p>
+<h3 id="如何處理專案-RWD"><a href="#如何處理專案-RWD" class="headerlink" title="如何處理專案 RWD"></a>如何處理專案 RWD</h3><ul>
+<li><p>共用參數<br>假設 UI/UX 為首次合作，因此會先討論網站的色系與主要的共用間距(當然如果是經驗豐富的 UI/UX，這一步可以忽略)，因為斷點、三輔一主的色系、常用間距，需先準備在 scss 作為共用參數。至於斷點，現在市面上，320px 尺寸的手機(iPhone5)，雖然市佔率已經相當低，但目前開發上仍會考慮保留，因此預期我的斷點會設計：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">360 &#x3D;&gt; 兼容小尺寸 android &amp; iPhone5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">480 &#x3D;&gt; 主流手機</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">768 &#x3D;&gt; pad</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">pc &#x3D;&gt; 這個沒有固定，視討論而定，通常1024(但其實也可以用 padPro來命名)</span></pre></td></tr></table></figure>
+</li>
+<li><p>UI Framework<br>主要分為兩種狀況，手刻或者用框架：</p>
+<ul>
+<li>手刻：目前主流是用 flexbox(目前兼容性已經極高了，哪怕是大陸冷門瀏覽器 QQ、UC)，至於 grid 目前來說，對移動裝置的支援還有疑慮，稍微舊一點的版本或是冷門瀏覽器都是不支援居多，還需要一點時間讓瀏覽器廠商跑步前進。<ul>
+<li><a href="https://hackmd.io/tlJAS8MqQ0qqJ0wh3sggsw" target="_blank" rel="noopener">瀏覽器市佔率</a></li>
+</ul>
+</li>
+<li>框架：這就看團隊的技術選型，根據團隊採用不同的前端框架，相應的框架也會有差異，以 Vue 來說，目前海外社群投票最大宗是 Vuetify，其次是 element-ui(但不支援 RWD，主要用於 CMS)，Tailwind CSS 正在追趕，Bootstrap 這我不太確定，需等 v5 之後的版本觀察。<ul>
+<li><a href="https://hackmd.io/mmVT15NkT8KZJTR5octHlA" target="_blank" rel="noopener">Tailwind CSS</a></li>
+</ul>
+</li>
+</ul>
+<p>至於更細節的開發，就視實際的設計稿而定，這邊不再贅述了。</p>
+</li>
+</ul>
+<h3 id="比較-CSS1、CSS2、CSS3-的區別？"><a href="#比較-CSS1、CSS2、CSS3-的區別？" class="headerlink" title="比較 CSS1、CSS2、CSS3 的區別？"></a>比較 CSS1、CSS2、CSS3 的區別？</h3><ul>
+<li><p>規範：<br>CSS1 年代比較偏向是為了更好維護 HTML 結構，將樣式抽離 tag，並賦予一些基礎屬性可以改變，譬如文字、文章內容、字體、顏色等等。<br>CSS2 改變了樣式表的概念，不在單純使用 table td 等元素，開始使用 div 或是 ul li 之類的 tag 來建立結構後，再透過 CSS 改變樣式。<br>CSS3 除了導入新的特性，也開始要求模組化的機制。</p>
+</li>
+<li><p>選擇器方面：<br>CSS1 屬於簡單選擇器，也就是 id、class 之類的。</p>
+<p>CSS2 開始添加偽元素(before、after)。</p>
+<p>CSS3 開始組合選擇器，後代與子選擇器，可以指定某個元素下的所有元素，或是同層級所有元素(使用 +)，又或者是通用兄弟選擇器(使用 ~)，另外新增屬性選擇器。</p>
+</li>
+<li><p>字體：<br>在 1、2 的時候，多半只能使用安全字體，也就是通用型字體，但到了 3 開始可以引用一些特殊字體。</p>
+</li>
+<li><p>文章內容：<br>到了 3 開始提供自動斷行功能，讓文章中的文字可以自行換行。</p>
+</li>
+<li><p>網頁設計：<br>border-radius 之類圓角設計，開始在 3 的時代出現，另外也開始加入動畫特效。</p>
+</li>
+</ul>
+<h3 id="若不使用-flexbox，float-如何置中？"><a href="#若不使用-flexbox，float-如何置中？" class="headerlink" title="若不使用 flexbox，float 如何置中？"></a>若不使用 flexbox，float 如何置中？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; pug</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">.wrap</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  .main</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    ul</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      li.box.blue</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      li.box.green</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; css</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">.wrap &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  float: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  position: relative;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  left: 50%;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">.main &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  float: left;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  position: relative;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  left: -50%;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h3 id="元素設定-flex-屬性後，float-會發生什麼情況？"><a href="#元素設定-flex-屬性後，float-會發生什麼情況？" class="headerlink" title="元素設定 flex 屬性後，float 會發生什麼情況？"></a>元素設定 flex 屬性後，float 會發生什麼情況？</h3><p>在 CSS 規範中，父元素設定 flex 屬性後，子元素的 float 即會失效，另一方面，兩者也不應該共用。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Interview/" rel="tag"><i class="fa fa-tag"></i> Interview</a>
+              <a href="/tags/CSS/" rel="tag"><i class="fa fa-tag"></i> CSS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/02/interview/html/" rel="prev" title="面試問題：HTML">
+      <i class="fa fa-chevron-left"></i> 面試問題：HTML
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/06/04/interview/js/" rel="next" title="面試問題：JavaScript">
+      面試問題：JavaScript <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#簡單聊聊-box-model"><span class="nav-number">1.</span> <span class="nav-text">簡單聊聊 box-model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#請解釋-box-sizing-border-box-，並且說明使用它的好處？"><span class="nav-number">2.</span> <span class="nav-text">請解釋 * { box-sizing: border-box; }，並且說明使用它的好處？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何處理水平垂直置中？"><span class="nav-number">3.</span> <span class="nav-text">如何處理水平垂直置中？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#倘若有不同的樣式表-stylesheets-，該如何整併到網站？"><span class="nav-number">4.</span> <span class="nav-text">倘若有不同的樣式表 (stylesheets)，該如何整併到網站？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何處理專案-RWD"><span class="nav-number">5.</span> <span class="nav-text">如何處理專案 RWD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比較-CSS1、CSS2、CSS3-的區別？"><span class="nav-number">6.</span> <span class="nav-text">比較 CSS1、CSS2、CSS3 的區別？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#若不使用-flexbox，float-如何置中？"><span class="nav-number">7.</span> <span class="nav-text">若不使用 flexbox，float 如何置中？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元素設定-flex-屬性後，float-會發生什麼情況？"><span class="nav-number">8.</span> <span class="nav-text">元素設定 flex 屬性後，float 會發生什麼情況？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Pitt Wu"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Pitt Wu</p>
+  <div class="site-description" itemprop="description">凡是過往，皆為序章</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wuzhe0912" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wuzhe0912" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:kgb00128@gmail.com" title="E-Mail → mailto:kgb00128@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pitt Wu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user">本站訪問人數：</i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye">本站訪問量：</i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@latest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
