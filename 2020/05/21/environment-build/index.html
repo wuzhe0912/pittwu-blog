@@ -47,18 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="記錄自己學習 Node.js 基礎API用法。">
-<meta name="keywords" content="Node.js">
+  <meta name="description" content="近期新工作取得新的 mac，整個環境初始化，需要耗費不少時間重新搭建需要的工具和安裝套件。為了避免日後同樣情況下，花費太多時間取得資源，因此記錄自己的搭建流程。">
+<meta name="keywords" content="環境搭建,工作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Node 基礎知識">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;27&#x2F;node&#x2F;basic-knowledge&#x2F;index.html">
+<meta property="og:title" content="工作環境搭建">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;05&#x2F;21&#x2F;environment-build&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="記錄自己學習 Node.js 基礎API用法。">
+<meta property="og:description" content="近期新工作取得新的 mac，整個環境初始化，需要耗費不少時間重新搭建需要的工具和安裝套件。為了避免日後同樣情況下，花費太多時間取得資源，因此記錄自己的搭建流程。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-17T07:07:22.794Z">
+<meta property="og:updated_time" content="2020-05-21T06:37:18.380Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/01/27/node/basic-knowledge/">
+<link rel="canonical" href="http://yoursite.com/2020/05/21/environment-build/">
 
 
 <script id="page-configurations">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>Node 基礎知識 | Pitt Wu's 隨想筆記</title>
+  <title>工作環境搭建 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -210,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/27/node/basic-knowledge/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/21/environment-build/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -223,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Node 基礎知識
+          工作環境搭建
         </h1>
 
         <div class="post-meta">
@@ -232,16 +232,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2020-01-27 23:35:59" itemprop="dateCreated datePublished" datetime="2020-01-27T23:35:59+08:00">2020-01-27</time>
+              <time title="Created: 2020-05-21 09:55:18 / Modified: 14:37:18" itemprop="dateCreated datePublished" datetime="2020-05-21T09:55:18+08:00">2020-05-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-05-17 15:07:22" itemprop="dateModified" datetime="2020-05-17T15:07:22+08:00">2020-05-17</time>
-              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -261,23 +255,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>記錄自己學習 Node.js 基礎API用法。</p>
+        <p>近期新工作取得新的 mac，整個環境初始化，需要耗費不少時間重新搭建需要的工具和安裝套件。為了避免日後同樣情況下，花費太多時間取得資源，因此記錄自己的搭建流程。</p>
 <a id="more"></a>
-<h2 id="require、module-exports"><a href="#require、module-exports" class="headerlink" title="require、module exports"></a>require、module exports</h2><p><code>require</code>語法可以載入檔案，反之<code>module.exports</code>則能導出內容。寫法如下：<br>app.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let content &#x3D; require(&#39;.&#x2F;app2&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(content)</span></pre></td></tr></table></figure>
-<p>app2.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let data &#x3D; &#39;node-test&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; data</span></pre></td></tr></table></figure>
-<p>印出<code>&#39;node-test&#39;</code>字串。</p>
-<p>除此之外也能放入物件格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  title: data,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  subTitle: &#39;title-test&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>印出對應的物件。</p>
-<h3 id="相對冷門寫法"><a href="#相對冷門寫法" class="headerlink" title="相對冷門寫法"></a>相對冷門寫法</h3><p>一般導出寫法多採用<code>module.exports</code>，但單純使用<code>exports</code>也能導出。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">exports.subContent &#x3D; 123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 這個寫法等於建立一個物件，如下：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    subContent: 123</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;除了物件外，也能調用函式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">exports.call &#x3D; (() &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  return &#39;call!&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<h2 id="http-API"><a href="#http-API" class="headerlink" title="http API"></a>http API</h2><h3 id="createServer"><a href="#createServer" class="headerlink" title="createServer"></a>createServer</h3><p>Node 原生 http API 用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const http &#x3D; require(&#39;http&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; request 使用者發出請求，常縮寫為 req</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; response 回傳結果，常縮寫為 res</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">http.createServer((req, res) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 表頭內容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  res.writeHead(200, &#123; &quot;Content-Type&quot;: &quot;text&#x2F;plain&quot; &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 回傳結果內容</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  res.write(&#39;Hello Node!&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 結束</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  res.end()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;).listen(8081) &#x2F;&#x2F; 監聽 port</span></pre></td></tr></table></figure>
-<h2 id="查詢路徑或檔案名稱"><a href="#查詢路徑或檔案名稱" class="headerlink" title="查詢路徑或檔案名稱"></a>查詢路徑或檔案名稱</h2><p><code>__dirname</code>語法，可以查詢到當前檔案所在的路徑。<br><code>__filename</code>語法，則能檢查當前檔案名稱。</p>
-<h2 id="path"><a href="#path" class="headerlink" title="path"></a>path</h2><p>Node 原生 path API 用法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 抓目錄路徑，回傳 &#x2F;Path&#x2F;subNode</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(path.dirname(&#39;&#x2F;Path&#x2F;subNode&#x2F;index.js&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 路徑合併</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">console.log(path.join(__dirname, &#39;&#x2F;Path&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 抓取檔案名稱，回傳 index.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">console.log(path.basename(&#39;&#x2F;Path&#x2F;subNode&#x2F;index.js&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 抓副檔名，回傳 .js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">console.log(path.extname(&#39;&#x2F;Path&#x2F;subNode&#x2F;index.js&#39;))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 分析路徑</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">console.log(path.parse(&#39;&#x2F;Path&#x2F;subNode&#x2F;index.js&#39;))</span></pre></td></tr></table></figure>
+<h2 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h2><ul>
+<li>install 主流瀏覽器<ul>
+<li>Chrome</li>
+<li>Firefox</li>
+<li>Safari(Mac 預設原生)</li>
+</ul>
+</li>
+</ul>
+<h2 id="終端機環境與套件"><a href="#終端機環境與套件" class="headerlink" title="終端機環境與套件"></a>終端機環境與套件</h2><h3 id="install-HomeBrew"><a href="#install-HomeBrew" class="headerlink" title="install HomeBrew"></a>install HomeBrew</h3><p>打開 terminal 輸入以下指令，安裝過程中，同步會安裝<code>xcode</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span></pre></td></tr></table></figure>
+<p>檢查 homebrew 版本號，確認是否安裝正常</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew --version</span></pre></td></tr></table></figure>
+
+<h3 id="install-iTerm2"><a href="#install-iTerm2" class="headerlink" title="install iTerm2"></a>install iTerm2</h3><p>使用 HomeBrew 進行安裝</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew cask install iterm2</span></pre></td></tr></table></figure>
+<p>後續預設使用 iterm 來執行指令</p>
+<h3 id="install-zash"><a href="#install-zash" class="headerlink" title="install zash"></a>install zash</h3><p>若 zash 尚未安裝，則安裝 zash 來取代 bash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew install zsh zsh-completions</span></pre></td></tr></table></figure>
+<p>調整預設的 shell 為 zsh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr></table></figure>
+
+<h2 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a>IDE</h2>
     </div>
 
     
@@ -287,7 +288,8 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Node-js/" rel="tag"><i class="fa fa-tag"></i> Node.js</a>
+              <a href="/tags/%E7%92%B0%E5%A2%83%E6%90%AD%E5%BB%BA/" rel="tag"><i class="fa fa-tag"></i> 環境搭建</a>
+              <a href="/tags/%E5%B7%A5%E4%BD%9C/" rel="tag"><i class="fa fa-tag"></i> 工作</a>
           </div>
 
         
@@ -296,13 +298,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/21/gulp/" rel="prev" title="關於 Gulp">
-      <i class="fa fa-chevron-left"></i> 關於 Gulp
+    <a href="/2020/05/21/css/question-I/" rel="prev" title="CSS 踩坑記錄">
+      <i class="fa fa-chevron-left"></i> CSS 踩坑記錄
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/09/es6/note/" rel="next" title="ES6：筆記整理">
-      ES6：筆記整理 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -340,7 +339,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#require、module-exports"><span class="nav-number">1.</span> <span class="nav-text">require、module exports</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相對冷門寫法"><span class="nav-number">1.1.</span> <span class="nav-text">相對冷門寫法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http-API"><span class="nav-number">2.</span> <span class="nav-text">http API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#createServer"><span class="nav-number">2.1.</span> <span class="nav-text">createServer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查詢路徑或檔案名稱"><span class="nav-number">3.</span> <span class="nav-text">查詢路徑或檔案名稱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path"><span class="nav-number">4.</span> <span class="nav-text">path</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Browser"><span class="nav-number">1.</span> <span class="nav-text">Browser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#終端機環境與套件"><span class="nav-number">2.</span> <span class="nav-text">終端機環境與套件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#install-HomeBrew"><span class="nav-number">2.1.</span> <span class="nav-text">install HomeBrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#install-iTerm2"><span class="nav-number">2.2.</span> <span class="nav-text">install iTerm2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#install-zash"><span class="nav-number">2.3.</span> <span class="nav-text">install zash</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDE"><span class="nav-number">3.</span> <span class="nav-text">IDE</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -356,14 +355,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">52</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
