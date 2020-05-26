@@ -1,5 +1,5 @@
 ---
-title: 傳值 or 傳址 & 淺拷貝 or 深拷貝
+title: JS 傳值 or 傳址 & 淺拷貝 or 深拷貝
 date: 2020-05-17 23:49:14
 tags:
   - JavaScript

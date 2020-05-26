@@ -56,5 +56,6 @@ const target = React.createElement('ul', {}, [
   subItem
 ])
 ```
+當元素過多時，這種 React.createElement 其實並不適合維護與開發，因此才會導入 JSX 語法來進行撰寫。
 
 ## JSX 語法
