@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>前端送出資料進行加密</title>
+    <url>/2020/05/28/jsencrypt/</url>
+    <content><![CDATA[<p>前端送出資料時(例如註冊、登入)，基於安全性考量，應該進行加密而非明文傳輸，目前已知的做法是採用<code>JSEncrypt</code>套件進行加密，再由後端進行解密，這邊記錄目前已知的做法。</p>
+<a id="more"></a>
+<h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yarn add jsencrypt</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">npm install jsencrypt</span></pre></td></tr></table></figure>
+
+<h2 id="設置公鑰"><a href="#設置公鑰" class="headerlink" title="設置公鑰"></a>設置公鑰</h2><p>公鑰為後端所提供，可能提供的方式有二，一是後端提供一組寫死的固定公鑰，二是由後端出API，提供動態的公鑰，這邊的做法先記錄第一種。另外，需要注意的是，若是前端需要進行解密動作，則後端同時也要提供私鑰。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; Vuex store</span></pre></td></tr><tr><td class="code"><pre><span class="line">const state &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  publicKey: &#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  -----BEGIN PUBLIC KEY-----</span></pre></td></tr><tr><td class="code"><pre><span class="line">  xxx&#x2F;xxxx&#x2F;xxx</span></pre></td></tr><tr><td class="code"><pre><span class="line">  -----END PUBLIC KEY-----&#96;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">const getters &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  [&#39;publicKey&#39;](state) &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return state.publicKey;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+
+<h2 id="建立加密函式"><a href="#建立加密函式" class="headerlink" title="建立加密函式"></a>建立加密函式</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;utils&#x2F;index.js</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">import JSEncrypt from &#39;jsencrypt&#39;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">import store from &#39;..&#x2F;store&#39;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">const encrypted &#x3D; (userInfo &#x3D; &#39;&#39;) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  const encrypt &#x3D; new JSEncrypt();</span></pre></td></tr><tr><td class="code"><pre><span class="line">  encrypt.setPublicKey(store.getters.publicKey);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  return encrypt.encrypt(JSON.stringify(userInfo));</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">export &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  encrypted</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+
+<h2 id="import-component"><a href="#import-component" class="headerlink" title="import component"></a>import component</h2><p>將要送出的參數抽離到物件中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; login</span></pre></td></tr><tr><td class="code"><pre><span class="line">const userInfo &#x3D; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  name: this.name,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  passWord: this.pwd</span></pre></td></tr><tr><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="code"><pre><span class="line">api</span></pre></td></tr><tr><td class="code"><pre><span class="line">  .post(&#39;eLogin&#39;, userInfo)</span></pre></td></tr></table></figure>
+
+<h2 id="axios-攔截器進行加密"><a href="#axios-攔截器進行加密" class="headerlink" title="axios 攔截器進行加密"></a>axios 攔截器進行加密</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; src&#x2F;api&#x2F;index.js</span></pre></td></tr><tr><td class="code"><pre><span class="line">import &#123; encrypted &#125; from &#39;..&#x2F;utils&#39;;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">axios.interceptors.request.use(</span></pre></td></tr><tr><td class="code"><pre><span class="line">  config &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    &#x2F;&#x2F; 這邊可以加入所有需加密的API，例如login、register</span></pre></td></tr><tr><td class="code"><pre><span class="line">    const encryptedUrL &#x3D; [&#39;eLogin&#39;];</span></pre></td></tr><tr><td class="code"><pre><span class="line">    let haveEncryptedUrL &#x3D; encryptedUrL.some(j &#x3D;&gt; j &#x3D;&#x3D;&#x3D; config.url);</span></pre></td></tr><tr><td class="code"><pre><span class="line">    haveEncryptedUrL &amp;&amp; (config.data &#x3D; encrypted(config.data));</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return config;</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="code"><pre><span class="line">  error &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return Promise.reject(error);</span></pre></td></tr><tr><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="code"><pre><span class="line">);</span></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JSEncrypt</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>工作環境搭建(Mac)</title>
     <url>/2020/05/21/environment-build/</url>
     <content><![CDATA[<p>近期新工作取得新的 mac，整個環境初始化，需要耗費不少時間重新搭建需要的工具和安裝套件。為了避免日後同樣情況下，花費太多時間取得資源，因此建立一個 check<br>list，方便自己快速比對確認。</p>
@@ -71,6 +92,16 @@
 <li>Auto Rename Tag</li>
 <li>Path Intellisense</li>
 <li>Path Autocomplete</li>
+<li>indent-rainbow</li>
+<li>One Dark Pro</li>
+<li>One</li>
+<li>Markdown Preview Enhanced</li>
+</ul>
+<h3 id="Theme"><a href="#Theme" class="headerlink" title="Theme"></a>Theme</h3><ul>
+<li>Material Theme<ul>
+<li>採用 default</li>
+</ul>
+</li>
 </ul>
 <h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><h3 id="install-1"><a href="#install-1" class="headerlink" title="install"></a>install</h3><p>使用 HomeBrew 的指令安裝 Git</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">brew install git</span></pre></td></tr></table></figure>
@@ -98,7 +129,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm install v12.16.3</span></pre></td></tr></table></figure>
 
 <p>切換所需使用的 node 版本</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm use v12.16.2</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm use v12.16.3</span></pre></td></tr></table></figure>
 
 <p>設定預設使用的 node 版本</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nvm alias default v12.16.2</span></pre></td></tr></table></figure>
@@ -1407,8 +1438,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 ]]></content>
       <tags>
         <tag>Node.js</tag>
-        <tag>NPM</tag>
         <tag>NVM</tag>
+        <tag>NPM</tag>
       </tags>
   </entry>
   <entry>
