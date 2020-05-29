@@ -153,6 +153,13 @@ source ~/.zshrc
 - Path Intellisense
 - Path Autocomplete
 - indent-rainbow
+- One Dark Pro
+- One
+- Markdown Preview Enhanced
+
+### Theme
+- Material Theme
+  - 採用 default
 
 ## Git
 
@@ -208,7 +215,7 @@ nvm install v12.16.3
 切換所需使用的 node 版本
 
 ```
-nvm use v12.16.2
+nvm use v12.16.3
 ```
 
 設定預設使用的 node 版本
