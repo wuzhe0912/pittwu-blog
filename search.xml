@@ -1606,8 +1606,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 </ul>
 ]]></content>
       <tags>
-        <tag>Webpack</tag>
         <tag>Interview</tag>
+        <tag>Webpack</tag>
       </tags>
   </entry>
   <entry>
@@ -1618,8 +1618,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <h3 id="聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。"><a href="#聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。" class="headerlink" title="聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。"></a>聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。</h3><p>Vue 的父子組件中，還有一種不特別推薦的通訊方式，父組件通過 $children 可以改變子組件的 data，相反的，子組件可以透過 $parent 來改變父組件的 data。但官方建議少用這種方式，應該是要避免數據流動被搞混。</p>
 ]]></content>
       <tags>
-        <tag>Vue.js</tag>
         <tag>Interview</tag>
+        <tag>Vue.js</tag>
       </tags>
   </entry>
   <entry>
@@ -1726,8 +1726,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <p>第一階段，因為開發時間不足，所以採用最笨的方法，一個個抽出來，再重新 push 進對應的陣列。<br>第二階段，進行重構，先透過 for in 的方式遍歷 object 轉為 array，再透過 map() 方法，重組並建立好第二層陣列的結構，接著在其中重組並建立好第三層陣列，再回到第二層處理陣列，並把整理好的第三層陣列放入第二層的 children 中，最後回到第一層，把第二層陣列放到第一層的 children。</p>
 ]]></content>
       <tags>
-        <tag>Vue.js</tag>
         <tag>Interview</tag>
+        <tag>Vue.js</tag>
       </tags>
   </entry>
   <entry>
