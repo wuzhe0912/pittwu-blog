@@ -8,7 +8,7 @@ subtitle: 好記性不如爛筆頭
 description: 凡是過往，皆為序章
 keywords:
 author: Pitt Wu
-language: en
+language: zh-TW
 timezone: ''
 
 # URL
@@ -98,3 +98,11 @@ deploy:
   type: git # 部署方式
   repository: https://github.com/wuzhe0912/pittwu-blog.git # 關聯 github
   branch: run-page # 部署用 branch
+
+symbols_count_time:
+  # 文章是否顯示字數統計 & 閱讀時間
+  symbols: true
+  time: true
+  # 網頁底部是否顯示字數統計 & 閱讀時間
+  total_symbols: true
+  total_time: true
