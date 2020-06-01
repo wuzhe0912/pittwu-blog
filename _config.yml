@@ -87,6 +87,14 @@ include:
 exclude:
 ignore:
 
+symbols_count_time:
+  # 文章是否顯示字數統計 & 閱讀時間
+  symbols: true
+  time: true
+  # 網頁底部是否顯示字數統計 & 閱讀時間
+  total_symbols: true
+  total_time: true
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
@@ -98,11 +106,3 @@ deploy:
   type: git # 部署方式
   repository: https://github.com/wuzhe0912/pittwu-blog.git # 關聯 github
   branch: run-page # 部署用 branch
-
-symbols_count_time:
-  # 文章是否顯示字數統計 & 閱讀時間
-  symbols: true
-  time: true
-  # 網頁底部是否顯示字數統計 & 閱讀時間
-  total_symbols: true
-  total_time: true
