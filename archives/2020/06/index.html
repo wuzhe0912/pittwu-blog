@@ -47,18 +47,16 @@
   };
 </script>
 
-  <meta name="description" content="整理 Vue 的生命週期和用法理解。">
-<meta name="keywords" content="Vue.js">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Vue.js 生命週期簡單理解">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;13&#x2F;vue-life-cycle&#x2F;index.html">
+  <meta name="description" content="凡是過往，皆為序章">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pitt Wu&#39;s 隨想筆記">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;archives&#x2F;2020&#x2F;06&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="整理 Vue 的生命週期和用法理解。">
+<meta property="og:description" content="凡是過往，皆為序章">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2020-04-09T14:18:44.832Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/13/vue-life-cycle/">
+<link rel="canonical" href="http://yoursite.com/archives/2020/06/">
 
 
 <script id="page-configurations">
@@ -66,13 +64,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true,
+    isPost: false,
     isPage: false,
-    isArchive: false
+    isArchive: true
   };
 </script>
 
-  <title>Vue.js 生命週期簡單理解 | Pitt Wu's 隨想筆記</title>
+  <title>歸檔 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -205,117 +203,50 @@
           <div class="content">
             
 
-  <div class="posts-expand">
-      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/vue-life-cycle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Pitt Wu">
-      <meta itemprop="description" content="凡是過往，皆為序章">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Pitt Wu's 隨想筆記">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Vue.js 生命週期簡單理解
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">發表於</span>
-
-              <time title="創建時間：2020-02-13 00:16:03" itemprop="dateCreated datePublished" datetime="2020-02-13T00:16:03+08:00">2020-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-09 22:18:44" itemprop="dateModified" datetime="2020-04-09T22:18:44+08:00">2020-04-09</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">閱讀次數：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="文章字數">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">文章字數：</span>
-              <span>874</span>
-            </span>
-            <span class="post-meta-item" title="所需閱讀時間">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
-              <span>1 分鐘</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        
+        <span class="collection-header">好! 目前共有 54 篇文章。 繼續努力。</span>
+      </div>
 
       
-        <p>整理 Vue 的生命週期和用法理解。</p>
-<a id="more"></a>
-<h2 id="數據變化與更新"><a href="#數據變化與更新" class="headerlink" title="數據變化與更新"></a>數據變化與更新</h2><h3 id="beforeUpdate-amp-updated"><a href="#beforeUpdate-amp-updated" class="headerlink" title="beforeUpdate &amp; updated"></a>beforeUpdate &amp; updated</h3><p>透過 @click 事件來達到數據更新的功能。<br>一開始頁面渲染 data 的初始資料，當點擊時觸發函式執行資料更新。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; template</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">p &#123;&#123; msg &#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">button(@click&#x3D;&quot;update()&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; data 存放資料的初始值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">data () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    msg: &#39;Hello Vue!&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; methods 存放執行的函式，透過點擊執行函式來更新資料</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  update () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    this.msg &#x3D; &#39;Hello Pitt!&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h2 id="銷毀"><a href="#銷毀" class="headerlink" title="銷毀"></a>銷毀</h2><h3 id="beforeDestroy-amp-destroyed"><a href="#beforeDestroy-amp-destroyed" class="headerlink" title="beforeDestroy &amp; destroyed"></a>beforeDestroy &amp; destroyed</h3><p>理解銷毀的概念，可以透過 v-if 來理解。當判斷為 false 時，本質上就等於銷毀該 Dom 節點。若預設 data 為 true，一開始頁面渲染時會出現，此時不會觸發 beforeDestroy &amp; destroyed。但當點擊動作觸發轉為 false 時，則會觸發 beforeDestroy &amp; destroyed，這時頁面上被綁定的對象也會消失，即可是為銷毀。</p>
-<h2 id="掛載順序"><a href="#掛載順序" class="headerlink" title="掛載順序"></a>掛載順序</h2><p>在 Vue.js 的生命週期中，當頁面渲染時，透過 console.log，可以看到依序為：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. beforeCreate &#x2F;&#x2F; 在這個階段 $el 和 $data 都尚未掛載 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. created &#x2F;&#x2F; $data 初始資料已載入，$el 尚未 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. beforeMount &#x2F;&#x2F; $el 依然為空 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. mounted &#x2F;&#x2F; $el 完成渲染出現資料</span></pre></td></tr></table></figure>
+    <div class="collection-year">
+      <h1 class="collection-header">2020</h1>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/Vue-js/" rel="tag"><i class="fa fa-tag"></i> Vue.js</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-06-01T16:01:13+08:00"
+              content="2020-06-01">
+          06-01
+        </time>
+      </div>
 
-        
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2020/06/01/hexo/hexo-word-count/" itemprop="url">
+            <span itemprop="name">Hexo 增加字數統計</span>
+          </a>
+      </h2>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/02/12/firebase/note/" rel="prev" title="Firebase 操作記錄筆記">
-      <i class="fa fa-chevron-left"></i> Firebase 操作記錄筆記
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/16/node/express/" rel="next" title="Express 框架運用與理解">
-      Express 框架運用與理解 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+
+    </div>
+  </div>
   
   
   
 
-  </div>
+  
+
 
 
           </div>
@@ -344,7 +275,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#數據變化與更新"><span class="nav-number">1.</span> <span class="nav-text">數據變化與更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeUpdate-amp-updated"><span class="nav-number">1.1.</span> <span class="nav-text">beforeUpdate &amp; updated</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#銷毀"><span class="nav-number">2.</span> <span class="nav-text">銷毀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeDestroy-amp-destroyed"><span class="nav-number">2.1.</span> <span class="nav-text">beforeDestroy &amp; destroyed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#掛載順序"><span class="nav-number">3.</span> <span class="nav-text">掛載順序</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

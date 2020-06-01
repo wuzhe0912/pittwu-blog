@@ -47,18 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="整理 Vue 的生命週期和用法理解。">
-<meta name="keywords" content="Vue.js">
+  <meta name="description" content="優化 Hexo Blog 呈現的形式，添加筆記字數統計與閱讀時間計算。">
+<meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue.js 生命週期簡單理解">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;13&#x2F;vue-life-cycle&#x2F;index.html">
+<meta property="og:title" content="Hexo 增加字數統計">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;hexo&#x2F;hexo-word-count&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="整理 Vue 的生命週期和用法理解。">
+<meta property="og:description" content="優化 Hexo Blog 呈現的形式，添加筆記字數統計與閱讀時間計算。">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2020-04-09T14:18:44.832Z">
+<meta property="og:updated_time" content="2020-06-01T08:31:07.589Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/13/vue-life-cycle/">
+<link rel="canonical" href="http://yoursite.com/2020/06/01/hexo/hexo-word-count/">
 
 
 <script id="page-configurations">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>Vue.js 生命週期簡單理解 | Pitt Wu's 隨想筆記</title>
+  <title>Hexo 增加字數統計 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -210,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/vue-life-cycle/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/01/hexo/hexo-word-count/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -223,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Vue.js 生命週期簡單理解
+          Hexo 增加字數統計
         </h1>
 
         <div class="post-meta">
@@ -232,16 +232,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2020-02-13 00:16:03" itemprop="dateCreated datePublished" datetime="2020-02-13T00:16:03+08:00">2020-02-13</time>
+              <time title="創建時間：2020-06-01 16:01:13 / 修改時間：16:31:07" itemprop="dateCreated datePublished" datetime="2020-06-01T16:01:13+08:00">2020-06-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-04-09 22:18:44" itemprop="dateModified" datetime="2020-04-09T22:18:44+08:00">2020-04-09</time>
-              </span>
 
           
             <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv" style="display: none;">
@@ -256,7 +250,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>874</span>
+              <span>452</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -275,13 +269,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>整理 Vue 的生命週期和用法理解。</p>
+        <p>優化 Hexo Blog 呈現的形式，添加筆記字數統計與閱讀時間計算。</p>
 <a id="more"></a>
-<h2 id="數據變化與更新"><a href="#數據變化與更新" class="headerlink" title="數據變化與更新"></a>數據變化與更新</h2><h3 id="beforeUpdate-amp-updated"><a href="#beforeUpdate-amp-updated" class="headerlink" title="beforeUpdate &amp; updated"></a>beforeUpdate &amp; updated</h3><p>透過 @click 事件來達到數據更新的功能。<br>一開始頁面渲染 data 的初始資料，當點擊時觸發函式執行資料更新。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; template</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">p &#123;&#123; msg &#125;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">button(@click&#x3D;&quot;update()&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; data 存放資料的初始值</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">data () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    msg: &#39;Hello Vue!&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; methods 存放執行的函式，透過點擊執行函式來更新資料</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">methods: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  update () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    this.msg &#x3D; &#39;Hello Pitt!&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h2 id="銷毀"><a href="#銷毀" class="headerlink" title="銷毀"></a>銷毀</h2><h3 id="beforeDestroy-amp-destroyed"><a href="#beforeDestroy-amp-destroyed" class="headerlink" title="beforeDestroy &amp; destroyed"></a>beforeDestroy &amp; destroyed</h3><p>理解銷毀的概念，可以透過 v-if 來理解。當判斷為 false 時，本質上就等於銷毀該 Dom 節點。若預設 data 為 true，一開始頁面渲染時會出現，此時不會觸發 beforeDestroy &amp; destroyed。但當點擊動作觸發轉為 false 時，則會觸發 beforeDestroy &amp; destroyed，這時頁面上被綁定的對象也會消失，即可是為銷毀。</p>
-<h2 id="掛載順序"><a href="#掛載順序" class="headerlink" title="掛載順序"></a>掛載順序</h2><p>在 Vue.js 的生命週期中，當頁面渲染時，透過 console.log，可以看到依序為：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">1. beforeCreate &#x2F;&#x2F; 在這個階段 $el 和 $data 都尚未掛載 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">2. created &#x2F;&#x2F; $data 初始資料已載入，$el 尚未 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">3. beforeMount &#x2F;&#x2F; $el 依然為空 &#x3D;&gt; undefined</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">4. mounted &#x2F;&#x2F; $el 完成渲染出現資料</span></pre></td></tr></table></figure>
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add hexo-symbols-count-time</span></pre></td></tr></table></figure>
+
+<h2 id="調整-config-yml-設定"><a href="#調整-config-yml-設定" class="headerlink" title="調整 _config.yml 設定"></a>調整 _config.yml 設定</h2><p>在<code>_config.yml</code>底部添加以下設定：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">symbols_count_time:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  # 文章是否顯示字數統計 &amp; 閱讀時間</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  symbols: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  time: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  # 網頁底部是否顯示字數統計 &amp; 閱讀時間</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  total_symbols: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  total_time: true</span></pre></td></tr></table></figure>
+
+<h2 id="NexT-設定"><a href="#NexT-設定" class="headerlink" title="NexT 設定"></a>NexT 設定</h2><p>預設已經開啟，所以無需額外調整。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">symbols_count_time:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  separated_meta: true  # false 時只會顯示單行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  item_text_post: true  # 若為 false 只會顯示圖標和數字，不會顯示所需閱讀時間&amp;文章字數</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  item_text_total: true # footer 是否顯示 總字數文字與閱讀時間的文字</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  awl: 4 # 計算字數</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  wpm: 275 # 一分鐘閱讀的字數</span></pre></td></tr></table></figure>
+
+<p>重新啟動 Hexo，即可看到相關功能已經開啟。</p>
+
     </div>
 
     
@@ -291,7 +290,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Vue-js/" rel="tag"><i class="fa fa-tag"></i> Vue.js</a>
+              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
           </div>
 
         
@@ -300,13 +299,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/12/firebase/note/" rel="prev" title="Firebase 操作記錄筆記">
-      <i class="fa fa-chevron-left"></i> Firebase 操作記錄筆記
+    <a href="/2020/05/28/jsencrypt/" rel="prev" title="前端送出資料進行加密">
+      <i class="fa fa-chevron-left"></i> 前端送出資料進行加密
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/16/node/express/" rel="next" title="Express 框架運用與理解">
-      Express 框架運用與理解 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -344,7 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#數據變化與更新"><span class="nav-number">1.</span> <span class="nav-text">數據變化與更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeUpdate-amp-updated"><span class="nav-number">1.1.</span> <span class="nav-text">beforeUpdate &amp; updated</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#銷毀"><span class="nav-number">2.</span> <span class="nav-text">銷毀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#beforeDestroy-amp-destroyed"><span class="nav-number">2.1.</span> <span class="nav-text">beforeDestroy &amp; destroyed</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#掛載順序"><span class="nav-number">3.</span> <span class="nav-text">掛載順序</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝套件"><span class="nav-number">1.</span> <span class="nav-text">安裝套件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#調整-config-yml-設定"><span class="nav-number">2.</span> <span class="nav-text">調整 _config.yml 設定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NexT-設定"><span class="nav-number">3.</span> <span class="nav-text">NexT 設定</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
