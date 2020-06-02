@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Python 基礎知識</title>
+    <url>/2020/06/01/python/python-basic/</url>
+    <content><![CDATA[<p>記錄 Python 的基礎知識與操作。</p>
+<a id="more"></a>
+<h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ul>
+<li><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">官網下載網址</a><br>下載後解壓縮安裝，檢查是否安裝成功指令<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">python3</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">exit() &#x2F;&#x2F; 退出</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Jupyter"><a href="#Jupyter" class="headerlink" title="Jupyter"></a>Jupyter</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pip3 install jupyter notebook</span></pre></td></tr></table></figure>
+
+<p>執行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span></pre></td></tr></table></figure>
+
+<h2 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h2><p>在<code>python</code>的環境中，宣告變數直接聲明即可：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">print(player) &#x2F;&#x2F; Pitt</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">print(player + &#39; Job is &#39; + Job) &#x2F;&#x2F; Pitt Job is Witcher</span></pre></td></tr></table></figure>
+<p>但需要注意不同型別的變數，不可以放在一起，需要轉型：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; error</span></pre></td></tr><tr><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">HP &#x3D; 500</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">print(player + &#39; HP is &#39; + HP) &#x2F;&#x2F; TypeError</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; success</span></pre></td></tr><tr><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">HP &#x3D; 500</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">print(player + &#39; HP is &#39; + str(HP)) &#x2F;&#x2F; Pitt HP is 500</span></pre></td></tr></table></figure>
+
+<h3 id="轉型方法"><a href="#轉型方法" class="headerlink" title="轉型方法"></a>轉型方法</h3><ul>
+<li><p>布林</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">one &#x3D; &#39;variable&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line">two &#x3D; &#39;&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">print(bool(one)) &#x2F;&#x2F; true</span></pre></td></tr><tr><td class="code"><pre><span class="line">print(bool(two)) &#x2F;&#x2F; false</span></pre></td></tr></table></figure>
+</li>
+<li><p>轉數字</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">number &#x3D; &#39;10&#39;</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">print(float(number)) &#x2F;&#x2F; 10.0</span></pre></td></tr></table></figure>
+</li>
+<li><p>轉整數</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">number &#x3D; 10.6</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">print(int(number)) &#x2F;&#x2F; 10.0</span></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 增加字數統計</title>
     <url>/2020/06/01/hexo/hexo-word-count/</url>
     <content><![CDATA[<p>優化 Hexo Blog 呈現的形式，添加筆記字數統計與閱讀時間計算。</p>
@@ -1606,8 +1641,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 </ul>
 ]]></content>
       <tags>
-        <tag>Interview</tag>
         <tag>Webpack</tag>
+        <tag>Interview</tag>
       </tags>
   </entry>
   <entry>
@@ -1618,8 +1653,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <h3 id="聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。"><a href="#聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。" class="headerlink" title="聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。"></a>聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。</h3><p>Vue 的父子組件中，還有一種不特別推薦的通訊方式，父組件通過 $children 可以改變子組件的 data，相反的，子組件可以透過 $parent 來改變父組件的 data。但官方建議少用這種方式，應該是要避免數據流動被搞混。</p>
 ]]></content>
       <tags>
-        <tag>Interview</tag>
         <tag>Vue.js</tag>
+        <tag>Interview</tag>
       </tags>
   </entry>
   <entry>
@@ -1726,8 +1761,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <p>第一階段，因為開發時間不足，所以採用最笨的方法，一個個抽出來，再重新 push 進對應的陣列。<br>第二階段，進行重構，先透過 for in 的方式遍歷 object 轉為 array，再透過 map() 方法，重組並建立好第二層陣列的結構，接著在其中重組並建立好第三層陣列，再回到第二層處理陣列，並把整理好的第三層陣列放入第二層的 children 中，最後回到第一層，把第二層陣列放到第一層的 children。</p>
 ]]></content>
       <tags>
-        <tag>Interview</tag>
         <tag>Vue.js</tag>
+        <tag>Interview</tag>
       </tags>
   </entry>
   <entry>

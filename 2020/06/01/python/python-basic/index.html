@@ -47,18 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="Quasar Framework 是支援 Vue.js 的 UI 框架，作者設計出發的概念還蠻宏偉的，兼容全平台，實用性與否還有待評估，這邊先按照作者的教學實作看看。">
-<meta name="keywords" content="Quasar,Vue.js">
+  <meta name="description" content="記錄 Python 的基礎知識與操作。">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Quasar(Vue.js UI Framework)">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;18&#x2F;quasar&#x2F;index.html">
+<meta property="og:title" content="Python 基礎知識">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;01&#x2F;python&#x2F;python-basic&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="Quasar Framework 是支援 Vue.js 的 UI 框架，作者設計出發的概念還蠻宏偉的，兼容全平台，實用性與否還有待評估，這邊先按照作者的教學實作看看。">
+<meta property="og:description" content="記錄 Python 的基礎知識與操作。">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2020-03-07T04:32:10.552Z">
+<meta property="og:updated_time" content="2020-06-01T15:33:40.770Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/18/quasar/">
+<link rel="canonical" href="http://yoursite.com/2020/06/01/python/python-basic/">
 
 
 <script id="page-configurations">
@@ -72,7 +72,7 @@
   };
 </script>
 
-  <title>Quasar(Vue.js UI Framework) | Pitt Wu's 隨想筆記</title>
+  <title>Python 基礎知識 | Pitt Wu's 隨想筆記</title>
   
 
 
@@ -210,7 +210,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/18/quasar/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/01/python/python-basic/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -223,7 +223,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Quasar(Vue.js UI Framework)
+          Python 基礎知識
         </h1>
 
         <div class="post-meta">
@@ -232,16 +232,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
+              
 
-              <time title="創建時間：2020-02-18 15:02:52" itemprop="dateCreated datePublished" datetime="2020-02-18T15:02:52+08:00">2020-02-18</time>
+              <time title="創建時間：2020-06-01 21:17:14 / 修改時間：23:33:40" itemprop="dateCreated datePublished" datetime="2020-06-01T21:17:14+08:00">2020-06-01</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2020-03-07 12:32:10" itemprop="dateModified" datetime="2020-03-07T12:32:10+08:00">2020-03-07</time>
-              </span>
 
           
             <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv" style="display: none;">
@@ -256,7 +250,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>1.6k</span>
+              <span>900</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
@@ -275,26 +269,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Quasar Framework 是支援 Vue.js 的 UI 框架，作者設計出發的概念還蠻宏偉的，兼容全平台，實用性與否還有待評估，這邊先按照作者的教學實作看看。</p>
+        <p>記錄 Python 的基礎知識與操作。</p>
 <a id="more"></a>
-<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p><a href="https://quasar.dev/" target="_blank" rel="noopener">官網連結</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn global add @quasar&#x2F;cli</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"># or</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">npm install -g @quasar&#x2F;cli</span></pre></td></tr></table></figure>
-<h3 id="Quasar-Cli"><a href="#Quasar-Cli" class="headerlink" title="Quasar Cli"></a>Quasar Cli</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">quasar create project-name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">cd project</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">quasar dev</span></pre></td></tr></table></figure>
-<h2 id="Install-Pug"><a href="#Install-Pug" class="headerlink" title="Install Pug"></a>Install Pug</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add --dev pug pug-plain-loader</span></pre></td></tr></table></figure>
-<h3 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; quasar.conf.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">build: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  extendWebpack (cfg) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    cfg.module.rules.push(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      test: &#x2F;\.pug$&#x2F;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      loader: &#39;pug-plain-loader&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h2 id="Install-Firebase"><a href="#Install-Firebase" class="headerlink" title="Install Firebase"></a>Install Firebase</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">yarn add firebase</span></pre></td></tr></table></figure>
-<p><code>quasar</code> 導入 <code>firebase</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">quasar new boot firebase</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 新生成檔案在 src&#x2F;boot&#x2F;firebase.js</span></pre></td></tr></table></figure>
-<p>設定 <code>quasar.config.js</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  boot: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &#39;firebase&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h3 id="firebase-js"><a href="#firebase-js" class="headerlink" title="firebase.js"></a>firebase.js</h3><p>設定內容寫法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Firebase App (the core Firebase SDK) is always required and must be listed first</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import * as firebase from &#39;firebase&#x2F;app&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; If you enabled Analytics in your project, add the Firebase SDK for Analytics</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">import &#39;firebase&#x2F;analytics&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Add the Firebase products that you want to use</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">import &#39;firebase&#x2F;auth&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">import &#39;firebase&#x2F;database&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 下方貼上 SDK 一大串 script</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 初始化需做調整 Initialize Firebase</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">const firebaseApp &#x3D; firebase.initializeApp(firebaseConfig)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">const firebaseAuth &#x3D; firebaseApp.auth()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">const firebaseDB &#x3D; firebaseApp.database()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">export &#123; firebaseAuth, firebaseDB &#125;</span></pre></td></tr></table></figure>
-<p>回到 <code>Vuex</code> 載入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import &#123; firebaseAuth, firebaseDB &#125; from &#39;boot&#x2F;firebase&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">console.log(1, firebaseAuth)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">console.log(2, firebaseDB)</span></pre></td></tr></table></figure>
-<h2 id="quasar-conf-js"><a href="#quasar-conf-js" class="headerlink" title="quasar.conf.js"></a>quasar.conf.js</h2><p>設定 router =&gt; History Mode</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vueRouterMode: &#39;history&#39;</span></pre></td></tr></table></figure>
-<h2 id="Error-Fixed"><a href="#Error-Fixed" class="headerlink" title="Error Fixed"></a>Error Fixed</h2><p>資料無法正常送出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">q-btn 若僅加上 type&#x3D;&quot;submit&quot; 無法正常送出 q-form 內的資料</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">需在 q-btn 本身再補上一個 @click 事件，才能執行 methods</span></pre></td></tr></table></figure>
+<h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ul>
+<li><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">官網下載網址</a><br>下載後解壓縮安裝，檢查是否安裝成功指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">python3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">exit() &#x2F;&#x2F; 退出</span></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="Jupyter"><a href="#Jupyter" class="headerlink" title="Jupyter"></a>Jupyter</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pip3 install jupyter notebook</span></pre></td></tr></table></figure>
+
+<p>執行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">jupyter notebook</span></pre></td></tr></table></figure>
+
+<h2 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h2><p>在<code>python</code>的環境中，宣告變數直接聲明即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">print(player) &#x2F;&#x2F; Pitt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">print(player + &#39; Job is &#39; + Job) &#x2F;&#x2F; Pitt Job is Witcher</span></pre></td></tr></table></figure>
+<p>但需要注意不同型別的變數，不可以放在一起，需要轉型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; error</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">HP &#x3D; 500</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">print(player + &#39; HP is &#39; + HP) &#x2F;&#x2F; TypeError</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; success</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">HP &#x3D; 500</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">print(player + &#39; HP is &#39; + str(HP)) &#x2F;&#x2F; Pitt HP is 500</span></pre></td></tr></table></figure>
+
+<h3 id="轉型方法"><a href="#轉型方法" class="headerlink" title="轉型方法"></a>轉型方法</h3><ul>
+<li><p>布林</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">one &#x3D; &#39;variable&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">two &#x3D; &#39;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">print(bool(one)) &#x2F;&#x2F; true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">print(bool(two)) &#x2F;&#x2F; false</span></pre></td></tr></table></figure>
+</li>
+<li><p>轉數字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">number &#x3D; &#39;10&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(float(number)) &#x2F;&#x2F; 10.0</span></pre></td></tr></table></figure>
+</li>
+<li><p>轉整數</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">number &#x3D; 10.6</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(int(number)) &#x2F;&#x2F; 10.0</span></pre></td></tr></table></figure></li>
+</ul>
 
     </div>
 
@@ -305,8 +306,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Quasar/" rel="tag"><i class="fa fa-tag"></i> Quasar</a>
-              <a href="/tags/Vue-js/" rel="tag"><i class="fa fa-tag"></i> Vue.js</a>
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
           </div>
 
         
@@ -315,13 +315,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/02/16/node/express/" rel="prev" title="Express 框架運用與理解">
-      <i class="fa fa-chevron-left"></i> Express 框架運用與理解
+    <a href="/2020/06/01/hexo/hexo-word-count/" rel="prev" title="Hexo 增加字數統計">
+      <i class="fa fa-chevron-left"></i> Hexo 增加字數統計
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/21/vue-element-cms-shop/" rel="next" title="實作 Element UI CMS">
-      實作 Element UI CMS <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -359,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install"><span class="nav-number">1.</span> <span class="nav-text">Install</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Quasar-Cli"><span class="nav-number">1.1.</span> <span class="nav-text">Quasar Cli</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Pug"><span class="nav-number">2.</span> <span class="nav-text">Install Pug</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Config"><span class="nav-number">2.1.</span> <span class="nav-text">Config</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Firebase"><span class="nav-number">3.</span> <span class="nav-text">Install Firebase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#firebase-js"><span class="nav-number">3.1.</span> <span class="nav-text">firebase.js</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#quasar-conf-js"><span class="nav-number">4.</span> <span class="nav-text">quasar.conf.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Error-Fixed"><span class="nav-number">5.</span> <span class="nav-text">Error Fixed</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.</span> <span class="nav-text">install</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">1.1.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jupyter"><span class="nav-number">1.2.</span> <span class="nav-text">Jupyter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#變數"><span class="nav-number">2.</span> <span class="nav-text">變數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轉型方法"><span class="nav-number">2.1.</span> <span class="nav-text">轉型方法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
