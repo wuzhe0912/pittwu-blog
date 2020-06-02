@@ -530,9 +530,9 @@
       
         <tags>
             
-            <tag> Quasar </tag>
-            
             <tag> Vue.js </tag>
+            
+            <tag> Quasar </tag>
             
         </tags>
       
@@ -825,9 +825,9 @@
             
             <tag> Node.js </tag>
             
-            <tag> NPM </tag>
-            
             <tag> NVM </tag>
+            
+            <tag> NPM </tag>
             
         </tags>
       
