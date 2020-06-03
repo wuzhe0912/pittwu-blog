@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://pittwu-blog.netlify.app
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -28,7 +28,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: google76200469f7414adb.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -99,6 +99,9 @@ symbols_count_time:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+
+sitemap:
+  path: sitemap.xml
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
