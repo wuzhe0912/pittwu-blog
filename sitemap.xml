@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://pittwu-blog.netlify.app/2020/06/03/hexo/hexo-google-search/</loc>
+    <loc>https://pittwu-blog.netlify.app/2020/06/01/python/python-basic/</loc>
     
-    <lastmod>2020-06-02T16:33:03.935Z</lastmod>
+    <lastmod>2020-06-08T23:27:53.011Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pittwu-blog.netlify.app/2020/06/01/python/python-basic/</loc>
+    <loc>https://pittwu-blog.netlify.app/demo/index.html</loc>
     
-    <lastmod>2020-06-01T15:33:40.770Z</lastmod>
+    <lastmod>2020-06-03T12:53:07.403Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://pittwu-blog.netlify.app/2020/06/03/hexo/hexo-google-search/</loc>
+    
+    <lastmod>2020-06-02T16:33:03.935Z</lastmod>
     
   </url>
   
@@ -303,13 +310,6 @@
   </url>
   
   <url>
-    <loc>https://pittwu-blog.netlify.app/demo/index.html</loc>
-    
-    <lastmod>2020-04-26T07:11:56.966Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://pittwu-blog.netlify.app/2020/02/21/vue-element-cms-shop/</loc>
     
     <lastmod>2020-04-26T07:11:39.078Z</lastmod>
@@ -352,13 +352,6 @@
   </url>
   
   <url>
-    <loc>https://pittwu-blog.netlify.app/2020/03/18/test-basic/</loc>
-    
-    <lastmod>2020-04-09T14:18:44.832Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://pittwu-blog.netlify.app/2020/01/14/vue-basic/</loc>
     
     <lastmod>2020-04-09T14:18:44.832Z</lastmod>
@@ -366,7 +359,7 @@
   </url>
   
   <url>
-    <loc>https://pittwu-blog.netlify.app/2020/02/13/vue-life-cycle/</loc>
+    <loc>https://pittwu-blog.netlify.app/2020/03/18/test-basic/</loc>
     
     <lastmod>2020-04-09T14:18:44.832Z</lastmod>
     
@@ -374,6 +367,13 @@
   
   <url>
     <loc>https://pittwu-blog.netlify.app/2020/03/15/js-basic/</loc>
+    
+    <lastmod>2020-04-09T14:18:44.832Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://pittwu-blog.netlify.app/2020/02/13/vue-life-cycle/</loc>
     
     <lastmod>2020-04-09T14:18:44.832Z</lastmod>
     

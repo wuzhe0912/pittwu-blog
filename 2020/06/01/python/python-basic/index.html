@@ -55,7 +55,7 @@
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
 <meta property="og:description" content="記錄 Python 的基礎知識與操作。">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2020-06-01T15:33:40.770Z">
+<meta property="og:updated_time" content="2020-06-08T23:27:53.011Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://pittwu-blog.netlify.app/2020/06/01/python/python-basic/">
@@ -241,10 +241,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">發表於</span>
-              
 
-              <time title="創建時間：2020-06-01 21:17:14 / 修改時間：23:33:40" itemprop="dateCreated datePublished" datetime="2020-06-01T21:17:14+08:00">2020-06-01</time>
+              <time title="創建時間：2020-06-01 21:17:14" itemprop="dateCreated datePublished" datetime="2020-06-01T21:17:14+08:00">2020-06-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-06-09 07:27:53" itemprop="dateModified" datetime="2020-06-09T07:27:53+08:00">2020-06-09</time>
+              </span>
 
           
             <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv" style="display: none;">
@@ -259,14 +265,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">文章字數：</span>
-              <span>900</span>
+              <span>1.7k</span>
             </span>
             <span class="post-meta-item" title="所需閱讀時間">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
-              <span>1 分鐘</span>
+              <span>2 分鐘</span>
             </span>
 
         </div>
@@ -281,16 +287,17 @@
         <p>記錄 Python 的基礎知識與操作。</p>
 <a id="more"></a>
 <h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ul>
-<li><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">官網下載網址</a><br>下載後解壓縮安裝，檢查是否安裝成功指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">python3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">exit() &#x2F;&#x2F; 退出</span></pre></td></tr></table></figure>
+<li><a href="https://www.Python.org/downloads/" target="_blank" rel="noopener">官網下載網址</a><br>下載後解壓縮安裝，檢查是否安裝成功指令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Python3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">exit() &#x2F;&#x2F; 退出</span></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h3 id="Jupyter"><a href="#Jupyter" class="headerlink" title="Jupyter"></a>Jupyter</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pip3 install jupyter notebook</span></pre></td></tr></table></figure>
 
-<p>執行</p>
+<p>執行指令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">jupyter notebook</span></pre></td></tr></table></figure>
 
-<h2 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h2><p>在<code>python</code>的環境中，宣告變數直接聲明即可：</p>
+<p><code>jupyter</code>環境開啟後，點選右上角的<code>new</code>開啟新專案。</p>
+<h2 id="變數"><a href="#變數" class="headerlink" title="變數"></a>變數</h2><p>在<code>Python</code>的環境中，宣告變數直接聲明即可：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">print(player) &#x2F;&#x2F; Pitt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">print(player + &#39; Job is &#39; + Job) &#x2F;&#x2F; Pitt Job is Witcher</span></pre></td></tr></table></figure>
 <p>但需要注意不同型別的變數，不可以放在一起，需要轉型：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; error</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">HP &#x3D; 500</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">print(player + &#39; HP is &#39; + HP) &#x2F;&#x2F; TypeError</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; success</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">player &#x3D; &#39;Pitt&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">Job &#x3D; &#39;Witcher&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">HP &#x3D; 500</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">print(player + &#39; HP is &#39; + str(HP)) &#x2F;&#x2F; Pitt HP is 500</span></pre></td></tr></table></figure>
@@ -303,9 +310,23 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">number &#x3D; &#39;10&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(float(number)) &#x2F;&#x2F; 10.0</span></pre></td></tr></table></figure>
 </li>
 <li><p>轉整數</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">number &#x3D; 10.6</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(int(number)) &#x2F;&#x2F; 10.0</span></pre></td></tr></table></figure></li>
-</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">number &#x3D; 10.6</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(int(number)) &#x2F;&#x2F; 10.0</span></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<h3 id="print"><a href="#print" class="headerlink" title="print()"></a>print()</h3><p>在<code>Python</code>的環境中，<code>print()</code>類似於 JS 的<code>console.log</code>。</p>
+<h2 id="運算符號"><a href="#運算符號" class="headerlink" title="運算符號"></a>運算符號</h2><p>加減乘除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">num &#x3D; 8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">print(num) &#x2F;&#x2F; 印出 8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">print(num + 4) &#x2F;&#x2F; 印出 12</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">print(num - 3) &#x2F;&#x2F; 印出 5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">print(num * 6) &#x2F;&#x2F; 印出 48</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">print(num &#x2F; 2) &#x2F;&#x2F; 印出 4.0</span></pre></td></tr></table></figure>
+<h3 id="相等"><a href="#相等" class="headerlink" title="相等"></a>相等</h3><p>不同於<code>JS</code>的語法特性，需要因為嚴謹性而使用<code>===</code>，<code>Python</code>僅需要使用<code>==</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">print(num &#x3D;&#x3D; 8) &#x2F;&#x2F; 印出 true</span></pre></td></tr></table></figure>
+
+<h3 id="多重判斷寫法"><a href="#多重判斷寫法" class="headerlink" title="多重判斷寫法"></a>多重判斷寫法</h3><p>不同於<code>JS</code>使用<code>&amp;&amp;、||</code>，<code>Python</code>使用更為語意直覺的英文<code>and、or</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">print(num &lt;&#x3D; 10 and num &gt; 6) &#x2F;&#x2F; 印出 true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">print(num &gt; 12 or num &lt; 4) &#x2F;&#x2F; 印出 false</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">print(num &gt; 6 or num &lt; 4) &#x2F;&#x2F; 印出 true</span></pre></td></tr></table></figure>
+
+<h2 id="if-else"><a href="#if-else" class="headerlink" title="if/else"></a>if/else</h2><p>寫法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">num &#x3D; 10</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">if (num &gt; 5):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    print(&#39;Hello&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">else:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    print(&#39;World&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出 Hello</span></pre></td></tr></table></figure>
+<p>不同於<code>JS</code>使用<code>{}</code>包裹，<code>Python</code>使用縮排4格來判斷。</p>
+<h3 id="elif-else-if-的縮寫"><a href="#elif-else-if-的縮寫" class="headerlink" title="elif(else if 的縮寫)"></a>elif(else if 的縮寫)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">num2 &#x3D; 7</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">if (num2 &gt; 10 and num2 &lt; 3):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    print(&#39;Kimi&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">elif (num2 &gt;&#x3D; 7 or num2 &lt;&#x3D; 3):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    print(&#39;Komi&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出 Komi</span></pre></td></tr></table></figure>
     </div>
 
     
@@ -368,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.</span> <span class="nav-text">install</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">1.1.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jupyter"><span class="nav-number">1.2.</span> <span class="nav-text">Jupyter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#變數"><span class="nav-number">2.</span> <span class="nav-text">變數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轉型方法"><span class="nav-number">2.1.</span> <span class="nav-text">轉型方法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.</span> <span class="nav-text">install</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python"><span class="nav-number">1.1.</span> <span class="nav-text">Python</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jupyter"><span class="nav-number">1.2.</span> <span class="nav-text">Jupyter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#變數"><span class="nav-number">2.</span> <span class="nav-text">變數</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轉型方法"><span class="nav-number">2.1.</span> <span class="nav-text">轉型方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#print"><span class="nav-number">2.2.</span> <span class="nav-text">print()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#運算符號"><span class="nav-number">3.</span> <span class="nav-text">運算符號</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相等"><span class="nav-number">3.1.</span> <span class="nav-text">相等</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多重判斷寫法"><span class="nav-number">3.2.</span> <span class="nav-text">多重判斷寫法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#if-else"><span class="nav-number">4.</span> <span class="nav-text">if/else</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#elif-else-if-的縮寫"><span class="nav-number">4.1.</span> <span class="nav-text">elif(else if 的縮寫)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,13 +464,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">總字數：</span>
-    <span title="總字數">98k</span>
+    <span title="總字數">99k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">所需總閱讀時間 &asymp;</span>
-    <span title="所需總閱讀時間">1:29</span>
+    <span title="所需總閱讀時間">1:30</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v4.0.0
   </div>
