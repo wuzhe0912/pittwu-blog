@@ -6,8 +6,8 @@ date: 2020-02-14 13:30:44
 ### Nuxt.js
 - {% post_link nuxt-blog 實作 Simple Nuxt Blog  %}
 
-### Landing Page
-- {% post_link parcel 實作 Parcel(新的打包工具) 寫 Landing Page %}
+<!-- ### Landing Page -->
+<!-- - {% post_link parcel 實作 Parcel(新的打包工具) 寫 Landing Page %} -->
 
 ### Vue.js & Firebase
 - {% post_link vue-firebase-chat 實作 Vue + Firebase 聊天室(含註冊登入) %}
