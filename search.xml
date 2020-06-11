@@ -57,7 +57,29 @@
 <h2 id="if-else"><a href="#if-else" class="headerlink" title="if/else"></a>if/else</h2><p>寫法如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">num &#x3D; 10</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">if (num &gt; 5):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(&#39;Hello&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">else:</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(&#39;World&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出 Hello</span></pre></td></tr></table></figure>
 <p>不同於<code>JS</code>使用<code>{}</code>包裹，<code>Python</code>使用縮排4格來判斷。</p>
-<h3 id="elif-else-if-的縮寫"><a href="#elif-else-if-的縮寫" class="headerlink" title="elif(else if 的縮寫)"></a>elif(else if 的縮寫)</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">num2 &#x3D; 7</span></pre></td></tr><tr><td class="code"><pre><span class="line">if (num2 &gt; 10 and num2 &lt; 3):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(&#39;Kimi&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">elif (num2 &gt;&#x3D; 7 or num2 &lt;&#x3D; 3):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(&#39;Komi&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出 Komi</span></pre></td></tr></table></figure>]]></content>
+<h3 id="elif-else-if-的縮寫"><a href="#elif-else-if-的縮寫" class="headerlink" title="elif(else if 的縮寫)"></a>elif(else if 的縮寫)</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">num2 &#x3D; 7</span></pre></td></tr><tr><td class="code"><pre><span class="line">if (num2 &gt; 10 and num2 &lt; 3):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(&#39;Kimi&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">elif (num2 &gt;&#x3D; 7 or num2 &lt;&#x3D; 3):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(&#39;Komi&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出 Komi</span></pre></td></tr></table></figure>
+
+<h3 id="練習"><a href="#練習" class="headerlink" title="練習"></a>練習</h3><p>建立一個變數 num，該 num 的意義為儲存『答對題數』，透過這個 num 去計算出對應的得分，並存在變數 ans 中，然後印出確定符合記分規則。規則如下：</p>
+<ol>
+<li>答對題數在 0~10 者，每題給 8 分。</li>
+<li>題數在 11~20 者，從第 11 題開始，每題給2分。(前 10 題還是每題給 8 分)</li>
+<li>題數在 20 以上者，一律 100 分。</li>
+</ol>
+<p>解法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># num 為答對題數</span></pre></td></tr><tr><td class="code"><pre><span class="line">num &#x3D; 16</span></pre></td></tr><tr><td class="code"><pre><span class="line"># ans 為加總分數</span></pre></td></tr><tr><td class="code"><pre><span class="line">ans &#x3D; 0</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">if (num &lt;&#x3D; 10):</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ans &#x3D; str(num * 8)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  print(&#39;你的分數：&#39; + ans)</span></pre></td></tr><tr><td class="code"><pre><span class="line">elif (num &gt;&#x3D; 11 and num &lt;&#x3D; 20):</span></pre></td></tr><tr><td class="code"><pre><span class="line">  lessNum &#x3D; (num - 10) * 2</span></pre></td></tr><tr><td class="code"><pre><span class="line">  ans &#x3D; str(10 * 8 + lessNum)</span></pre></td></tr><tr><td class="code"><pre><span class="line">  print(&#39;你的分數：&#39; + ans)</span></pre></td></tr><tr><td class="code"><pre><span class="line">else:</span></pre></td></tr><tr><td class="code"><pre><span class="line">  print(&#39;你的分數：100&#39;)</span></pre></td></tr></table></figure>
+
+<h2 id="迴圈"><a href="#迴圈" class="headerlink" title="迴圈"></a>迴圈</h2><h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">num &#x3D; 1</span></pre></td></tr><tr><td class="code"><pre><span class="line">while( num &lt; 5):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(num)</span></pre></td></tr><tr><td class="code"><pre><span class="line">    num &#x3D; num + 1</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出</span></pre></td></tr><tr><td class="code"><pre><span class="line">1</span></pre></td></tr><tr><td class="code"><pre><span class="line">2</span></pre></td></tr><tr><td class="code"><pre><span class="line">3</span></pre></td></tr><tr><td class="code"><pre><span class="line">4</span></pre></td></tr></table></figure>
+
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p>for 迴圈的寫法更為簡便直覺：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for item in range(1, 5):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(item)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出</span></pre></td></tr><tr><td class="code"><pre><span class="line">1</span></pre></td></tr><tr><td class="code"><pre><span class="line">2</span></pre></td></tr><tr><td class="code"><pre><span class="line">3</span></pre></td></tr><tr><td class="code"><pre><span class="line">4</span></pre></td></tr></table></figure>
+
+<h3 id="雙重迴圈"><a href="#雙重迴圈" class="headerlink" title="雙重迴圈"></a>雙重迴圈</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for item in range(1, 3):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    for subItem in range(1, 3):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(subItem)</span></pre></td></tr></table></figure>
+
+<h3 id="練習：99-乘法表"><a href="#練習：99-乘法表" class="headerlink" title="練習：99 乘法表"></a>練習：99 乘法表</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for node in range(1, 10):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    for subNode in range(1, 10):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(str(node) + &#39;*&#39; + str(subNode) + &#39;&#x3D;&#39; + str(node * subNode))</span></pre></td></tr></table></figure>
+
+<h3 id="練習：迴圈結合-if-else"><a href="#練習：迴圈結合-if-else" class="headerlink" title="練習：迴圈結合 if/else"></a>練習：迴圈結合 if/else</h3><p>輸入 A001 到 A100，範例如下：<br>A001<br>A002<br>A003<br>…<br>…<br>A100</p>
+<p>解法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for item in range(1, 101):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    if(item &lt; 10):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A00&#39; + str(item))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    elif(item &gt;&#x3D; 10 and item &lt;&#x3D; 99):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A0&#39; + str(item))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    else:</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A&#39; + str(item))</span></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>Python</tag>
       </tags>
@@ -1680,8 +1702,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <h3 id="聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。"><a href="#聊一下，你所知道的-Vue-組件通訊方式中，較少見的做法。" class="headerlink" title="聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。"></a>聊一下，你所知道的 Vue 組件通訊方式中，較少見的做法。</h3><p>Vue 的父子組件中，還有一種不特別推薦的通訊方式，父組件通過 $children 可以改變子組件的 data，相反的，子組件可以透過 $parent 來改變父組件的 data。但官方建議少用這種方式，應該是要避免數據流動被搞混。</p>
 ]]></content>
       <tags>
-        <tag>Vue.js</tag>
         <tag>Interview</tag>
+        <tag>Vue.js</tag>
       </tags>
   </entry>
   <entry>
@@ -1788,8 +1810,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 <p>第一階段，因為開發時間不足，所以採用最笨的方法，一個個抽出來，再重新 push 進對應的陣列。<br>第二階段，進行重構，先透過 for in 的方式遍歷 object 轉為 array，再透過 map() 方法，重組並建立好第二層陣列的結構，接著在其中重組並建立好第三層陣列，再回到第二層處理陣列，並把整理好的第三層陣列放入第二層的 children 中，最後回到第一層，把第二層陣列放到第一層的 children。</p>
 ]]></content>
       <tags>
-        <tag>Vue.js</tag>
         <tag>Interview</tag>
+        <tag>Vue.js</tag>
       </tags>
   </entry>
   <entry>
