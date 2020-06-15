@@ -79,7 +79,31 @@
 
 <h3 id="練習：迴圈結合-if-else"><a href="#練習：迴圈結合-if-else" class="headerlink" title="練習：迴圈結合 if/else"></a>練習：迴圈結合 if/else</h3><p>輸入 A001 到 A100，範例如下：<br>A001<br>A002<br>A003<br>…<br>…<br>A100</p>
 <p>解法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for item in range(1, 101):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    if(item &lt; 10):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A00&#39; + str(item))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    elif(item &gt;&#x3D; 10 and item &lt;&#x3D; 99):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A0&#39; + str(item))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    else:</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A&#39; + str(item))</span></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for item in range(1, 101):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    if(item &lt; 10):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A00&#39; + str(item))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    elif(item &gt;&#x3D; 10 and item &lt;&#x3D; 99):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A0&#39; + str(item))</span></pre></td></tr><tr><td class="code"><pre><span class="line">    else:</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(&#39;A&#39; + str(item))</span></pre></td></tr></table></figure>
+
+<h2 id="資料操作"><a href="#資料操作" class="headerlink" title="資料操作"></a>資料操作</h2><p><code>array</code>和<code>JS</code>的操作方法幾乎雷同，使用方法相去不遠：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">studentList &#x3D; [&#39;Mui&#39;, &#39;Kui&#39;, &#39;Mini&#39;]</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">print(studentList) &#x2F;&#x2F; [&#39;Mui&#39;, &#39;Judy&#39;, &#39;Mini&#39;]</span></pre></td></tr><tr><td class="code"><pre><span class="line">print(studentList[1]) &#x2F;&#x2F; Judy</span></pre></td></tr></table></figure>
+
+<h3 id="倒數"><a href="#倒數" class="headerlink" title="倒數"></a>倒數</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">print(studentList[-1]) &#x2F;&#x2F; Mini</span></pre></td></tr></table></figure>
+
+<h3 id="從目錄開始數幾個"><a href="#從目錄開始數幾個" class="headerlink" title="從目錄開始數幾個"></a>從目錄開始數幾個</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">print(studentList[0:2]) &#x2F;&#x2F; [&#39;Mui&#39;, &#39;Kui&#39;]</span></pre></td></tr></table></figure>
+
+<h3 id="Tuple"><a href="#Tuple" class="headerlink" title="Tuple"></a>Tuple</h3><p>和<code>array</code>相類似，但建立後，裡面的資料不可再改變，使用<code>()</code>包裹資料：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">drinks &#x3D; (&#39;Milk&#39;, &#39;Black Tea&#39;, &#39;Milk Tea&#39;, &#39;Soy Milk&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">print(drinks) &#x2F;&#x2F; (&#39;Milk&#39;, &#39;Black Tea&#39;, &#39;Milk Tea&#39;, &#39;Soy Milk&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">print(drinks[3]) &#x2F;&#x2F; Soy Milk</span></pre></td></tr><tr><td class="code"><pre><span class="line">drinks[1] &#x3D; &#39;Green Tea&#39; &#x2F;&#x2F; TypeError 不可改變</span></pre></td></tr></table></figure>
+
+<h3 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h3><p><code>enumerate(迭代)</code>方法跑過整個列表</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">studentList &#x3D; [&#39;Tania&#39;, &#39;Neisa&#39;, &#39;Sabrina&#39;, &#39;Yennefer&#39;]</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">print(len(studentList)) &#x2F;&#x2F; 4，計算陣列長度</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">listLength &#x3D; len(studentList)</span></pre></td></tr><tr><td class="code"><pre><span class="line">for item in range(0, listLength):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(studentList[item])</span></pre></td></tr></table></figure>
+
+<h2 id="def-函式"><a href="#def-函式" class="headerlink" title="def(函式)"></a>def(函式)</h2><p>函式的基礎寫法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; 印出</span></pre></td></tr><tr><td class="code"><pre><span class="line">def getNumber():</span></pre></td></tr><tr><td class="code"><pre><span class="line">    number &#x3D; 10</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(number)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">getNumber() &#x2F;&#x2F; 印出 10</span></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; return 回傳</span></pre></td></tr><tr><td class="code"><pre><span class="line">def getNumber():</span></pre></td></tr><tr><td class="code"><pre><span class="line">    number &#x3D; 20</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">    return number</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">getNumber()</span></pre></td></tr></table></figure>
+<p>傳值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def getNewNumber(val):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    print(val) &#x2F;&#x2F; 印出 17</span></pre></td></tr><tr><td class="code"><pre><span class="line">    newVal &#x3D; val + 120</span></pre></td></tr><tr><td class="code"><pre><span class="line">    return newVal &#x2F;&#x2F; return 137</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">getNewNumber(17) &#x2F;&#x2F; 137</span></pre></td></tr></table></figure>
+
+<h2 id="練習-1"><a href="#練習-1" class="headerlink" title="練習"></a>練習</h2><p>建立一個<code>Array</code>，內有不等數字，傳入函式中，經由迴圈判斷陣列中每一個數字，若為奇數則印出歐巴，反之則印出歐膩：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">numListOne &#x3D; [2, 5, 11, 50, 34, 16, 71, 100, 46, 22, 33]</span></pre></td></tr><tr><td class="code"><pre><span class="line">numListTwo &#x3D; [2, 10, 12, 11, 33, 77]</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">def countNumber(val):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    for item in range(0, len(val)):</span></pre></td></tr><tr><td class="code"><pre><span class="line">        if( val[item] % 2 &#x3D;&#x3D; 0 ):</span></pre></td></tr><tr><td class="code"><pre><span class="line">            print(&#39;歐巴&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        else:</span></pre></td></tr><tr><td class="code"><pre><span class="line">            print(&#39;歐膩&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">countNumber(numListOne)</span></pre></td></tr><tr><td class="code"><pre><span class="line">countNumber(numListTwo)</span></pre></td></tr></table></figure>
+
+<h3 id="另一種寫法"><a href="#另一種寫法" class="headerlink" title="另一種寫法"></a>另一種寫法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">numListTwo &#x3D; [2, 10, 12, 11, 33, 77]</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">def countNumber(val):</span></pre></td></tr><tr><td class="code"><pre><span class="line">    for item in val:</span></pre></td></tr><tr><td class="code"><pre><span class="line">        print(item)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        if( item % 2 &#x3D;&#x3D; 0 ):</span></pre></td></tr><tr><td class="code"><pre><span class="line">            print(&#39;歐巴&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line">        else:</span></pre></td></tr><tr><td class="code"><pre><span class="line">            print(&#39;歐膩&#39;)</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">countNumber(numListTwo)</span></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>Python</tag>
       </tags>
@@ -345,18 +369,10 @@
   <entry>
     <title>實作 React 購物車</title>
     <url>/2020/05/11/react/shopping-cart/</url>
-    <content><![CDATA[<p>入門 React 的基礎知識後，開始嘗試實作一些功能，方便進一步理解 React 的應用。</p>
+    <content><![CDATA[<p>客觀來說，沒有特別偏好使用<code>React</code>，但因為 Vue 3.0 的走向會朝向函數式編程的趨勢，這點似乎會和 React 目前的境況不謀而合，因此算是透過學習<code>React</code>來提前為 Vue 3.0 預作準備。再者，和好友聊天之餘，對方也希望我能偶爾摸摸<code>React</code>，盛情難卻之下，也算是學習契機。另外入門<code>React</code>的基礎知識後，開始嘗試實作一些功能，方便進一步理解<code>React</code>的應用。</p>
 <a id="more"></a>
-<h2 id="環境搭建"><a href="#環境搭建" class="headerlink" title="環境搭建"></a>環境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx create-react-app react-store</span></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>React</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>入門 React</title>
-    <url>/2020/05/10/react/basic/</url>
-    <content><![CDATA[<p>客觀來說，個人沒有特別偏好使用 React，但因為 Vue 3.0 的走向會朝向函數式編程的趨勢，這點似乎會和 React 目前的境況不謀而合，因此算是透過學習 React 來提前為 Vue 3.0 預作準備。再者，和好友聊天之餘，對方也希望我能偶爾摸摸 React，盛情難卻之下，也算是學習契機。</p>
-<a id="more"></a>
+<h2 id="環境搭建"><a href="#環境搭建" class="headerlink" title="環境搭建"></a>環境搭建</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npx create-react-app react-store</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">cd project</span></pre></td></tr><tr><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="code"><pre><span class="line">yarn start</span></pre></td></tr></table></figure>
+
 <h2 id="React-元素"><a href="#React-元素" class="headerlink" title="React 元素"></a>React 元素</h2><h3 id="屬性名稱"><a href="#屬性名稱" class="headerlink" title="屬性名稱"></a>屬性名稱</h3><p>一些 HTML 標籤的屬性名稱，原先是全小寫，但在 React 的環境下，若屬性為兩個單字，統一需要改為駝峰式名稱才能正常運作。譬如 <code>input</code> 標籤中 <code>readonly</code> =&gt; <code>readOnly</code>。</p>
 <h3 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h3><p>部分 HTML 標籤使用的名稱會和 React 產生的元素出現衝突，最常見的就是 <code>class</code>、<code>for</code>，所以需要使用 React 規範的名稱，<code>class</code> =&gt; <code>className</code>、<code>for</code> =&gt; <code>htmlFor</code>。</p>
 <h3 id="在-JS-中撰寫-CSS"><a href="#在-JS-中撰寫-CSS" class="headerlink" title="在 JS 中撰寫 CSS"></a>在 JS 中撰寫 CSS</h3><p>這邊還真的寫起來蠻卡的，和過往撰寫 css 的做法有一定差異，使用 style 物件包裹的方式來添加屬性的樣式，結尾自然也就改為 <code>,</code> 而非 <code>;</code>。css 的屬性名稱，如果原先用 <code>-</code> 隔開者，則改為駝峰式名稱。如下：</p>
@@ -1577,8 +1593,8 @@ pm2 目前會安裝在當前的node版本資料夾下，未來如果使用nvm切
 ]]></content>
       <tags>
         <tag>Node.js</tag>
-        <tag>NPM</tag>
         <tag>NVM</tag>
+        <tag>NPM</tag>
       </tags>
   </entry>
   <entry>

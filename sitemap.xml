@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pittwu-blog.netlify.app/2020/05/11/react/shopping-cart/</loc>
+    
+    <lastmod>2020-06-15T14:41:53.891Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pittwu-blog.netlify.app/2020/06/01/python/python-basic/</loc>
     
-    <lastmod>2020-06-09T23:19:13.772Z</lastmod>
+    <lastmod>2020-06-15T14:17:34.857Z</lastmod>
     
   </url>
   
@@ -58,13 +65,6 @@
   </url>
   
   <url>
-    <loc>https://pittwu-blog.netlify.app/2020/05/10/react/basic/</loc>
-    
-    <lastmod>2020-05-24T16:02:48.775Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://pittwu-blog.netlify.app/2020/02/12/firebase/note/</loc>
     
     <lastmod>2020-05-23T05:26:31.067Z</lastmod>
@@ -96,13 +96,6 @@
     <loc>https://pittwu-blog.netlify.app/2020/05/15/javascript/array-reorganization/</loc>
     
     <lastmod>2020-05-22T09:37:44.087Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pittwu-blog.netlify.app/2020/05/11/react/shopping-cart/</loc>
-    
-    <lastmod>2020-05-22T05:13:25.265Z</lastmod>
     
   </url>
   
