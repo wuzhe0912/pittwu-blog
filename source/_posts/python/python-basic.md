@@ -225,3 +225,105 @@ for item in range(1, 101):
     else:
         print('A' + str(item))
 ```
+
+## 資料操作
+`array`和`JS`的操作方法幾乎雷同，使用方法相去不遠：
+```
+studentList = ['Mui', 'Kui', 'Mini']
+
+print(studentList) // ['Mui', 'Judy', 'Mini']
+print(studentList[1]) // Judy
+```
+
+### 倒數
+```
+print(studentList[-1]) // Mini
+```
+
+### 從目錄開始數幾個
+```
+print(studentList[0:2]) // ['Mui', 'Kui']
+```
+
+### Tuple
+和`array`相類似，但建立後，裡面的資料不可再改變，使用`()`包裹資料：
+```
+drinks = ('Milk', 'Black Tea', 'Milk Tea', 'Soy Milk')
+
+print(drinks) // ('Milk', 'Black Tea', 'Milk Tea', 'Soy Milk')
+print(drinks[3]) // Soy Milk
+drinks[1] = 'Green Tea' // TypeError 不可改變
+```
+
+### dict
+`enumerate(迭代)`方法跑過整個列表
+```
+studentList = ['Tania', 'Neisa', 'Sabrina', 'Yennefer']
+
+print(len(studentList)) // 4，計算陣列長度
+
+listLength = len(studentList)
+for item in range(0, listLength):
+    print(studentList[item])
+```
+
+## def(函式)
+函式的基礎寫法：
+```
+// 印出
+def getNumber():
+    number = 10
+    print(number)
+
+getNumber() // 印出 10
+```
+```
+// return 回傳
+def getNumber():
+    number = 20
+
+    return number
+
+getNumber()
+```
+傳值：
+```
+def getNewNumber(val):
+    print(val) // 印出 17
+    newVal = val + 120
+    return newVal // return 137
+
+getNewNumber(17) // 137
+```
+
+## 練習
+建立一個`Array`，內有不等數字，傳入函式中，經由迴圈判斷陣列中每一個數字，若為奇數則印出歐巴，反之則印出歐膩：
+```
+numListOne = [2, 5, 11, 50, 34, 16, 71, 100, 46, 22, 33]
+numListTwo = [2, 10, 12, 11, 33, 77]
+
+def countNumber(val):
+    for item in range(0, len(val)):
+        if( val[item] % 2 == 0 ):
+            print('歐巴')
+        else:
+            print('歐膩')
+
+countNumber(numListOne)
+countNumber(numListTwo)
+```
+
+### 另一種寫法
+```
+numListTwo = [2, 10, 12, 11, 33, 77]
+
+def countNumber(val):
+    for item in val:
+        print(item)
+        if( item % 2 == 0 ):
+            print('歐巴')
+        else:
+            print('歐膩')
+
+countNumber(numListTwo)
+```
