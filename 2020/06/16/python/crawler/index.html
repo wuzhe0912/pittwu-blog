@@ -47,16 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="凡是過往，皆為序章">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:url" content="https:&#x2F;&#x2F;pittwu-blog.netlify.app&#x2F;archives&#x2F;2020&#x2F;02&#x2F;page&#x2F;2&#x2F;index.html">
+  <meta name="description" content="爬蟲是我一直想摸的東西，但礙於拖延症頻發，拖至今日才開始動工學習。而爬蟲爬到的資料，自然也要進行梳理彙整，產生一個自己看得順眼的報表，而這些工作則嘗試使用Python完成。">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python：實作爬蟲">
+<meta property="og:url" content="https:&#x2F;&#x2F;pittwu-blog.netlify.app&#x2F;2020&#x2F;06&#x2F;16&#x2F;python&#x2F;crawler&#x2F;index.html">
 <meta property="og:site_name" content="Pitt Wu&#39;s 隨想筆記">
-<meta property="og:description" content="凡是過往，皆為序章">
+<meta property="og:description" content="爬蟲是我一直想摸的東西，但礙於拖延症頻發，拖至今日才開始動工學習。而爬蟲爬到的資料，自然也要進行梳理彙整，產生一個自己看得順眼的報表，而這些工作則嘗試使用Python完成。">
 <meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2020-06-16T23:46:35.174Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://pittwu-blog.netlify.app/archives/2020/02/page/2/">
+<link rel="canonical" href="https://pittwu-blog.netlify.app/2020/06/16/python/crawler/">
 
 
 <script id="page-configurations">
@@ -64,13 +66,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>歸檔 | Pitt Wu's 隨想筆記</title>
+  <title>Python：實作爬蟲 | Pitt Wu's 隨想筆記</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VRJ53DLSS7"></script>
     <script>
@@ -212,73 +214,116 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        
-        <span class="collection-header">好! 目前共有 56 篇文章。 繼續努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://pittwu-blog.netlify.app/2020/06/16/python/crawler/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Pitt Wu">
+      <meta itemprop="description" content="凡是過往，皆為序章">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pitt Wu's 隨想筆記">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python：實作爬蟲
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+
+              <time title="創建時間：2020-06-16 23:31:47" itemprop="dateCreated datePublished" datetime="2020-06-16T23:31:47+08:00">2020-06-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新於</span>
+                <time title="修改時間：2020-06-17 07:46:35" itemprop="dateModified" datetime="2020-06-17T07:46:35+08:00">2020-06-17</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">閱讀次數：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>375</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>1 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
+        <p>爬蟲是我一直想摸的東西，但礙於拖延症頻發，拖至今日才開始動工學習。而爬蟲爬到的資料，自然也要進行梳理彙整，產生一個自己看得順眼的報表，而這些工作則嘗試使用<code>Python</code>完成。</p>
+<a id="more"></a>
+<h2 id="什麼是爬蟲？"><a href="#什麼是爬蟲？" class="headerlink" title="什麼是爬蟲？"></a>什麼是爬蟲？</h2><p>簡言之，透過連結上網站，並從網站上的某個頁面抓取我們需要的內容。既然要爬對方的資料，自然會模擬瀏覽器行為，抓頁面上的<code>DOM</code>結構資料。或者模仿使用者的行為，諸如<code>click</code>事件之類。當然，大量爬取資料也會本地資源的過度負荷，或是對方網站乘載量太差，而無法支撐。</p>
+<h2 id="爬蟲程式的環境"><a href="#爬蟲程式的環境" class="headerlink" title="爬蟲程式的環境"></a>爬蟲程式的環境</h2><p><a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank" rel="noopener">下載 chrome_headless</a><br>下載完成後，將<code>chromedriver</code>放到對應的專案資料夾內。</p>
+<h3 id="install-Selenium"><a href="#install-Selenium" class="headerlink" title="install Selenium"></a>install Selenium</h3><p>安裝自動化測試套件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pip3 install selenium</span></pre></td></tr></table></figure>
+
+<h3 id="install-BeautifulSoup"><a href="#install-BeautifulSoup" class="headerlink" title="install BeautifulSoup"></a>install BeautifulSoup</h3><p>安裝解析網頁套件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">pip3 install beautifulSoup4</span></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-09T23:22:15+08:00"
-              content="2020-02-09">
-          02-09
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/09/es6/destructuring/" itemprop="url">
-            <span itemprop="name">ES6：解構賦值</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-09T22:05:23+08:00"
-              content="2020-02-09">
-          02-09
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/02/09/es6/note/" itemprop="url">
-            <span itemprop="name">ES6：筆記整理</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+        
 
 
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/03/hexo/hexo-google-search/" rel="prev" title="Hexo 設置 Google Search Console">
+      <i class="fa fa-chevron-left"></i> Hexo 設置 Google Search Console
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2020/02/"><i class="fa fa-angle-left" aria-label="上一頁"></i></a><a class="page-number" href="/archives/2020/02/">1</a><span class="page-number current">2</span>
-  </nav>
-
 
 
           </div>
@@ -307,6 +352,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什麼是爬蟲？"><span class="nav-number">1.</span> <span class="nav-text">什麼是爬蟲？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爬蟲程式的環境"><span class="nav-number">2.</span> <span class="nav-text">爬蟲程式的環境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#install-Selenium"><span class="nav-number">2.1.</span> <span class="nav-text">install Selenium</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#install-BeautifulSoup"><span class="nav-number">2.2.</span> <span class="nav-text">install BeautifulSoup</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

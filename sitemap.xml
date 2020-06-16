@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pittwu-blog.netlify.app/2020/06/16/python/crawler/</loc>
+    
+    <lastmod>2020-06-16T23:46:35.174Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pittwu-blog.netlify.app/2020/05/11/react/shopping-cart/</loc>
     
     <lastmod>2020-06-15T14:41:53.891Z</lastmod>
